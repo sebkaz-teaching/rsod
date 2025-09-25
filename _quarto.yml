@@ -3,9 +3,9 @@ project:
   output-dir: docs
 
 website: 
-  title: Wstęp do kwantowego uczenia maszynowego
-  description: "Wprowadzenie do kwatnowego uczenia maszynowego dla studentów SGH w Warszawie"
-  site-url: https://sebkaz-teaching.github.io/qml2025
+  title: Relacyjne Systemy Organizacji Danych
+  description: "Relacyjne Systemy Organizacji Danych dla studentów WAT w Warszawie"
+  site-url: https://sebkaz-teaching.github.io/rsod
   sidebar:
     style: "docked" 
     contents:
@@ -13,7 +13,6 @@ website:
       - section : "Wykłady"
         contents:
           - lectures/wyklad1.qmd
-          - lectures/w1.qmd
           # - lectures/wyklad2.qmd
           # - lectures/wyklad3.qmd
           # - lectures/wyklad4.qmd

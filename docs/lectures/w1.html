@@ -166,14 +166,17 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#wprowadzenie" id="toc-wprowadzenie" class="nav-link active" data-scroll-target="#wprowadzenie">Wprowadzenie</a>
   <ul class="collapse">
   <li><a href="#plan-wykładu" id="toc-plan-wykładu" class="nav-link" data-scroll-target="#plan-wykładu">Plan wykładu</a></li>
-  </ul></li>
   <li><a href="#obliczenia-klasyczne-a-kwantowe" id="toc-obliczenia-klasyczne-a-kwantowe" class="nav-link" data-scroll-target="#obliczenia-klasyczne-a-kwantowe">Obliczenia klasyczne a kwantowe</a></li>
   <li><a href="#co-to-jest-quantum-machine-learning-qml" id="toc-co-to-jest-quantum-machine-learning-qml" class="nav-link" data-scroll-target="#co-to-jest-quantum-machine-learning-qml">Co to jest Quantum Machine Learning (QML)?</a></li>
   <li><a href="#dlaczego-to-ważne-dla-analityków-danych" id="toc-dlaczego-to-ważne-dla-analityków-danych" class="nav-link" data-scroll-target="#dlaczego-to-ważne-dla-analityków-danych">Dlaczego to ważne dla analityków danych?</a></li>
   <li><a href="#przykłady-zastosowań-qml" id="toc-przykłady-zastosowań-qml" class="nav-link" data-scroll-target="#przykłady-zastosowań-qml">Przykłady zastosowań QML</a></li>
-  <li><a href="#jak-korzystać-z-qc-i-qml" id="toc-jak-korzystać-z-qc-i-qml" class="nav-link" data-scroll-target="#jak-korzystać-z-qc-i-qml">Jak korzystać z QC i QML?</a></li>
+  </ul></li>
+  <li><a href="#jak-korzystać-z-qc-i-qml" id="toc-jak-korzystać-z-qc-i-qml" class="nav-link" data-scroll-target="#jak-korzystać-z-qc-i-qml">Jak korzystać z QC i QML?</a>
+  <ul class="collapse">
   <li><a href="#podsumowanie" id="toc-podsumowanie" class="nav-link" data-scroll-target="#podsumowanie">Podsumowanie</a></li>
+  </ul></li>
   <li><a href="#roadmapa-kursu" id="toc-roadmapa-kursu" class="nav-link" data-scroll-target="#roadmapa-kursu">Roadmapa kursu</a></li>
+  <li><a href="#introduction-to-pytorch" id="toc-introduction-to-pytorch" class="nav-link" data-scroll-target="#introduction-to-pytorch">Introduction to PyTorch</a></li>
   </ul>
 </nav>
     </div>
@@ -216,17 +219,16 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <hr>
 </section>
-</section>
-<section id="obliczenia-klasyczne-a-kwantowe" class="level1">
-<h1>Obliczenia klasyczne a kwantowe</h1>
+<section id="obliczenia-klasyczne-a-kwantowe" class="level2">
+<h2 class="anchored" data-anchor-id="obliczenia-klasyczne-a-kwantowe">Obliczenia klasyczne a kwantowe</h2>
 <p><strong>Komputer klasyczny</strong> operuje na bitach (<code>0</code> lub <code>1</code>), a jego moc obliczeniowa zależy od liczby tranzystorów.<br>
 Rozwój technologii napotyka ograniczenia fizyczne (prawo Moore’a, miniaturyzacja, pobór energii).</p>
 <p><strong>Komputer kwantowy</strong> korzysta z kubitów – jednostek informacji, które mogą być w superpozycji (<code>0</code> i <code>1</code> jednocześnie) i mogą się splątywać. To daje potencjalny <strong>równoległy dostęp do wielu stanów</strong> i przewagę w pewnych obliczeniach.</p>
 <!-- GRAFIKA: prosta ilustracja porównująca bit i kubit (klasyczny vs kwantowy) -->
 <hr>
 </section>
-<section id="co-to-jest-quantum-machine-learning-qml" class="level1">
-<h1>Co to jest Quantum Machine Learning (QML)?</h1>
+<section id="co-to-jest-quantum-machine-learning-qml" class="level2">
+<h2 class="anchored" data-anchor-id="co-to-jest-quantum-machine-learning-qml">Co to jest Quantum Machine Learning (QML)?</h2>
 <p><strong>Uczenie maszynowe</strong> = algorytmy, które uczą się na danych.<br>
 <strong>QML</strong> = algorytmy ML działające na komputerach kwantowych (lub hybrydowo: klasyczny + kwantowy).</p>
 <p>Pytania, które nas interesują: - Czy QML może poprawić jakość modeli ML?<br>
@@ -235,14 +237,14 @@ Rozwój technologii napotyka ograniczenia fizyczne (prawo Moore’a, miniaturyza
 <!-- GRAFIKA: schemat "klasyczne ML vs QML" – np. klasyczne dane na klasycznych komputerach vs klasyczne dane na komputerach kwantowych -->
 <hr>
 </section>
-<section id="dlaczego-to-ważne-dla-analityków-danych" class="level1">
-<h1>Dlaczego to ważne dla analityków danych?</h1>
+<section id="dlaczego-to-ważne-dla-analityków-danych" class="level2">
+<h2 class="anchored" data-anchor-id="dlaczego-to-ważne-dla-analityków-danych">Dlaczego to ważne dla analityków danych?</h2>
 <p>Dzisiejsze problemy analizy danych często: - działają na <strong>ogromnych zbiorach danych</strong>, - wymagają kosztownej <strong>optymalizacji</strong> (np. sieci neuronowe), - mają wysokie wymagania <strong>energetyczne</strong>.</p>
 <p>Komputery kwantowe mogą: - przyspieszyć niektóre operacje (np. przeszukiwanie, optymalizacja), - efektywnie reprezentować bardzo duże przestrzenie stanów, - otworzyć nowe obszary, np. symulacje procesów fizycznych/chemicznych.</p>
 <hr>
 </section>
-<section id="przykłady-zastosowań-qml" class="level1">
-<h1>Przykłady zastosowań QML</h1>
+<section id="przykłady-zastosowań-qml" class="level2">
+<h2 class="anchored" data-anchor-id="przykłady-zastosowań-qml">Przykłady zastosowań QML</h2>
 <ul>
 <li><strong>Finanse</strong> – optymalizacja portfela, zarządzanie ryzykiem.<br>
 </li>
@@ -257,6 +259,7 @@ Rozwój technologii napotyka ograniczenia fizyczne (prawo Moore’a, miniaturyza
 <!-- GRAFIKA: kolaż branż (finanse, chemia, logistyka, NLP, prognozy) -->
 <hr>
 </section>
+</section>
 <section id="jak-korzystać-z-qc-i-qml" class="level1">
 <h1>Jak korzystać z QC i QML?</h1>
 <p>Dzięki chmurze dostępne są już <strong>narzędzia w Pythonie</strong>, które każdy analityk danych może wypróbować: - <a href="https://www.ibm.com/quantum">IBM Quantum / Qiskit</a><br>
@@ -266,9 +269,8 @@ Rozwój technologii napotyka ograniczenia fizyczne (prawo Moore’a, miniaturyza
 - <a href="https://aws.amazon.com/braket/">Amazon Braket</a></p>
 <!-- GRAFIKA: screenshot interfejsu Pennylane albo Qiskit (prostego kodu w Pythonie) -->
 <hr>
-</section>
-<section id="podsumowanie" class="level1">
-<h1>Podsumowanie</h1>
+<section id="podsumowanie" class="level2">
+<h2 class="anchored" data-anchor-id="podsumowanie">Podsumowanie</h2>
 <ul>
 <li><strong>Komputery kwantowe</strong> nie zastąpią klasycznych, ale mogą je uzupełnić.<br>
 </li>
@@ -279,6 +281,7 @@ Rozwój technologii napotyka ograniczenia fizyczne (prawo Moore’a, miniaturyza
 <li>Już teraz warto poznać narzędzia (Pennylane, Qiskit), aby być gotowym na przyszłość.</li>
 </ul>
 <hr>
+</section>
 </section>
 <section id="roadmapa-kursu" class="level1">
 <h1>Roadmapa kursu</h1>
@@ -294,6 +297,9 @@ Rozwój technologii napotyka ograniczenia fizyczne (prawo Moore’a, miniaturyza
 <li>Krytyczne spojrzenie: ograniczenia, koszty, hype vs rzeczywistość</li>
 </ol>
 <!-- GRAFIKA: prosta infografika roadmapy – 5 kroków z ikonami -->
+</section>
+<section id="introduction-to-pytorch" class="level1">
+<h1>Introduction to PyTorch</h1>
 
 
 </section>

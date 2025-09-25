@@ -1,1 +1,1 @@
-Sitemap: https://sebkaz-teaching.github.io/qml2025/sitemap.xml
+Sitemap: https://sebkaz-teaching.github.io/rsod/sitemap.xml

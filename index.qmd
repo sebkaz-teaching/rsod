@@ -1,0 +1,39 @@
+---
+title: "Informacje ogólne"
+---
+
+## {{< var main.nazwa >}}
+
+Kod: {{< var main.kod >}}
+
+Semestr {{< var main.semestr >}} {{< var main.rok >}},
+
+{{< var main.uczelnia >}}
+
+Podstawowe informacje znajdziesz w [sylabusie](/sylabus).
+
+Ciekawe książki i strony internetowe zamieszczone zostały w zakładce [książki](/ksiazki). 
+Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.
+
+## Kalendarz
+
+#### Wykład 
+
+Wykład jest realizowany w trybie stacjonarnym.
+
+Jest on NIEOBOWIĄZKOWY i odbywa się w sali C 3B.
+
+
+
+#### Laboratoria
+
+Wszystkie laboratoria odbywają się w sali C.
+
+
+## Technologie
+
+Uczestnicząc w zajęciach musisz opanować i przynajmniej w podstawowym zakresie posługiwać się następującymi technologiami informatycznymi:
+
+1. Algebra liniowa - wektory, macierze, baza, iloczyn skalarny, iloczyn tensorowy
+2. Python, Jupyter notebook, Jupyter lab, Colab
+3. Algorytmy sieci neuronowych i uczenia maszynowego w procesie klasyfikacji binarnej

@@ -1,0 +1,72 @@
+---
+title: Narzędzia
+---
+
+## Python
+
+W terminalu (Windows CMD) wpisz
+```bash
+python
+```
+Jeśli nie odnaleziono komendy uruchom polecenie:
+```bash
+python3
+```
+
+Zwróć uwagę, aby Twoja wersja nie była niższa niż 3.13
+Aby wyjść z powłoki pythona użyj funkcji `exit()`
+```bash
+Python 3.13.7 (main, Aug 14 2025, 11:12:11) [Clang 17.0.0 (clang-1700.0.13.3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit()
+```
+### Nowe środowisko pythona
+
+```bash
+python3 -m venv venv
+```
+Uruchomienie w systemach linux i mac os:
+```bash
+source venv/bin/activate
+# . venv/bin/activate
+
+(venv)$ ~
+```
+W systemie windows środowisko pythona uruchomisz poprzez: 
+
+```bash
+venv/Scripts/activate
+```
+
+Szybka instalacja podstawowych bibliotek i jupyterlab.
+```bash
+pip install --no-cache --upgrade pip setuptools
+
+pip install jupyterlab numpy pandas matplotlib scipy
+# jeśli masz plik requirements.txt z potrzebnymi bibliotekami
+pip install -r requirements.txt
+# uruchom 
+jupyterlab
+```
+W przeglądarce internetowej wpisz: _localhost:8888_
+
+Po ponownym uruchomieniu przejdź do katalogu w którym utworzyłeś środowisko, 
+następnie uruchom środowisko i jupyterlab.
+
+```bash
+source <name of env>/bin/activate
+jupyterlab
+```
+### Naucz się Pythona w 2 godziny
+
+Kurs podstaw pythona [Tomas Beuzen](https://www.tomasbeuzen.com/python-programming-for-data-science/README.html) polecam.
+
+Utwórz konto na [Kaggle](https://kaggle.com), przejdź do zakładki `Courses` i przerób cały moduł Pythona. Zawiera on: 
+
+- wyrażenia i zmienne
+- funkcje
+- warunki i flow programu
+- listy
+- pętle
+- stringi i słowniki
+- dodawanie i używanie zewnętrznych bibliotek

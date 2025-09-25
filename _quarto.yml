@@ -1,0 +1,49 @@
+project: 
+  type: website
+  output-dir: docs
+
+website: 
+  title: Wstęp do kwantowego uczenia maszynowego
+  description: "Wprowadzenie do kwatnowego uczenia maszynowego dla studentów SGH w Warszawie"
+  site-url: https://sebkaz-teaching.github.io/qml2025
+  sidebar:
+    style: "docked" 
+    contents:
+      - index.qmd
+      - section : "Wykłady"
+        contents:
+          - lectures/wyklad1.qmd
+          - lectures/w1.qmd
+          # - lectures/wyklad2.qmd
+          # - lectures/wyklad3.qmd
+          # - lectures/wyklad4.qmd
+      - section: "Ćwiczenia"
+        contents:
+          # - cwiczenia/cw1.ipynb
+          # - cwiczenia/cw2.ipynb
+          # - cwiczenia/cw3.ipynb
+          # - cwiczenia/cw4.ipynb
+          # - cwiczenia/cw5.ipynb
+          # - cwiczenia/ml.ipynb
+          # - cwiczenia/titanic.ipynb
+  navbar:
+    left:
+          - href: sylabus.qmd
+            text: Sylabus
+          - href: ksiazki.qmd
+            text: Książki
+          
+  page-footer: "Copyright 2025, Sebastian Zając"
+format:
+  html:
+    page-layout: article
+    css: style.css
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    toc-title: "**Sections**"
+    self-contained-math: true
+    code-overflow: wrap
+    highlight-style: github-dark
+    code-block-background: true
+    link-external-newwindow: true

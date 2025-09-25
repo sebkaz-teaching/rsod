@@ -13,18 +13,18 @@ exclude:      ["*.Rmd"]
 
 
 # Setup
-title:               Analiza Danych w czasie rzeczywistym
-tagline:             'kurs dla studentów SGH'
-description:         'Real-Time Analytics'
-url:                 https://sebkaz.github.io/RealTime
-baseurl:             "/RealTime"             
+title:               Relacyjne systemy organizacji danych
+tagline:             'kurs dla studentów WAT'
+description:         'Relacyjne systemy organizacji danych'
+url:                 https://sebkaz-teaching.github.io/rsod
+baseurl:             "/rsod"             
 paginate:            5
 
 # About/contact
 author:
   name:              Sebastian Zając
   url:               https://sebastianzajac.pl
-  email:             sebastian.zajac@sgh.waw.pl
+  email:             sebastian.zajac@wat.edu.pl
 
 # Custom vars
 version:             1.0.0

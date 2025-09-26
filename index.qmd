@@ -2,13 +2,11 @@
 title: "Informacje ogólne"
 ---
 
-## {{< var main.nazwa >}}
+## Relacyjne Systemy Organizacji Danych
 
-Kod: {{< var main.kod >}}
+Kod: 
 
-Semestr {{< var main.semestr >}} {{< var main.rok >}},
-
-{{< var main.uczelnia >}}
+Semestr: letni
 
 Podstawowe informacje znajdziesz w [sylabusie](/sylabus).
 
@@ -17,23 +15,8 @@ Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.
 
 ## Kalendarz
 
-#### Wykład 
-
-Wykład jest realizowany w trybie stacjonarnym.
-
-Jest on NIEOBOWIĄZKOWY i odbywa się w sali C 3B.
-
-
-
-#### Laboratoria
-
-Wszystkie laboratoria odbywają się w sali C.
-
-
-## Technologie
-
-Uczestnicząc w zajęciach musisz opanować i przynajmniej w podstawowym zakresie posługiwać się następującymi technologiami informatycznymi:
-
-1. Algebra liniowa - wektory, macierze, baza, iloczyn skalarny, iloczyn tensorowy
-2. Python, Jupyter notebook, Jupyter lab, Colab
-3. Algorytmy sieci neuronowych i uczenia maszynowego w procesie klasyfikacji binarnej
+1. 09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)
+2. 14.10.2025 Wtorek   Wykład 2 - b. 61 sala 116 (9-10)
+3. 15.10.2025 Środa    Wykład 3 - b. 61 sala 116 (3-4)
+4. 29.10.2025 Środa    Wykład 4 - b. 61 sala 116 (9-10)
+5. 30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)

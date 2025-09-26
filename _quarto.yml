@@ -27,8 +27,6 @@ website:
           # - cwiczenia/titanic.ipynb
   navbar:
     left:
-          - href: sylabus.qmd
-            text: Sylabus
           - href: ksiazki.qmd
             text: Książki
           

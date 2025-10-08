@@ -83,10 +83,10 @@ Każdy wiersz ma taki sam zestaw kolumn.
 
 Przykład: tabela klientów w Excelu lub SQL.
 
-ID | Imię | Nazwisko | Miasto  |
----|------|----------|---------|
-1  | Anna | Nowak    | Kraków  |
-2  | Jan  | Kowalski | Warszawa|
+| ID | Imię | Nazwisko | Miasto  |
+|----|------|----------|---------|
+| 1  | Anna | Nowak    | Kraków  |
+| 2  | Jan  | Kowalski | Warszawa|
 
 2. Półustrukturyzowane
 

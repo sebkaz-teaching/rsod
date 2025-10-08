@@ -14,17 +14,9 @@ website:
         contents:
           - lectures/wyklad1.qmd
           # - lectures/wyklad2.qmd
-          # - lectures/wyklad3.qmd
-          # - lectures/wyklad4.qmd
-      - section: "Ćwiczenia"
+      - section: "Laboratorium"
         contents:
           # - cwiczenia/cw1.ipynb
-          # - cwiczenia/cw2.ipynb
-          # - cwiczenia/cw3.ipynb
-          # - cwiczenia/cw4.ipynb
-          # - cwiczenia/cw5.ipynb
-          # - cwiczenia/ml.ipynb
-          # - cwiczenia/titanic.ipynb
   navbar:
     left:
           - href: ksiazki.qmd

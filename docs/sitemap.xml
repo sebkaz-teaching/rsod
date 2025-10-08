@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sebkaz-teaching.github.io/rsod/lectures/wyklad1.html</loc>
-    <lastmod>2025-09-25T14:58:09.231Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sebkaz-teaching.github.io/rsod/info.html</loc>
-    <lastmod>2025-09-10T10:24:57.576Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sebkaz-teaching.github.io/rsod/ksiazki.html</loc>
-    <lastmod>2025-07-17T07:56:48.067Z</lastmod>
+    <loc>https://sebkaz-teaching.github.io/rsod/lectures/plan.html</loc>
+    <lastmod>2025-10-08T21:37:43.630Z</lastmod>
   </url>
   <url>
     <loc>https://sebkaz-teaching.github.io/rsod/index.html</loc>
-    <lastmod>2025-09-26T00:27:12.198Z</lastmod>
+    <lastmod>2025-10-08T21:37:43.630Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sebkaz-teaching.github.io/rsod/ksiazki.html</loc>
+    <lastmod>2025-10-08T21:37:43.630Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sebkaz-teaching.github.io/rsod/lectures/wyklad1.html</loc>
+    <lastmod>2025-10-08T21:37:43.631Z</lastmod>
   </url>
 </urlset>

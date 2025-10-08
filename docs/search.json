@@ -1,45 +1,17 @@
 [
   {
-    "objectID": "info.html",
-    "href": "info.html",
-    "title": "Narzędzia",
+    "objectID": "lectures/plan.html",
+    "href": "lectures/plan.html",
+    "title": "Relacyjne Systemy Organizacji Danych",
     "section": "",
-    "text": "W terminalu (Windows CMD) wpisz\npython\nJeśli nie odnaleziono komendy uruchom polecenie:\npython3\nZwróć uwagę, aby Twoja wersja nie była niższa niż 3.13 Aby wyjść z powłoki pythona użyj funkcji exit()\nPython 3.13.7 (main, Aug 14 2025, 11:12:11) [Clang 17.0.0 (clang-1700.0.13.3)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; exit()\n\n\npython3 -m venv venv\nUruchomienie w systemach linux i mac os:\nsource venv/bin/activate\n# . venv/bin/activate\n\n(venv)$ ~\nW systemie windows środowisko pythona uruchomisz poprzez:\nvenv/Scripts/activate\nSzybka instalacja podstawowych bibliotek i jupyterlab.\npip install --no-cache --upgrade pip setuptools\n\npip install jupyterlab numpy pandas matplotlib scipy\n# jeśli masz plik requirements.txt z potrzebnymi bibliotekami\npip install -r requirements.txt\n# uruchom \njupyterlab\nW przeglądarce internetowej wpisz: localhost:8888\nPo ponownym uruchomieniu przejdź do katalogu w którym utworzyłeś środowisko, następnie uruchom środowisko i jupyterlab.\nsource &lt;name of env&gt;/bin/activate\njupyterlab\n\n\n\nKurs podstaw pythona Tomas Beuzen polecam.\nUtwórz konto na Kaggle, przejdź do zakładki Courses i przerób cały moduł Pythona. Zawiera on:\n\nwyrażenia i zmienne\nfunkcje\nwarunki i flow programu\nlisty\npętle\nstringi i słowniki\ndodawanie i używanie zewnętrznych bibliotek"
-  },
-  {
-    "objectID": "info.html#python",
-    "href": "info.html#python",
-    "title": "Narzędzia",
-    "section": "",
-    "text": "W terminalu (Windows CMD) wpisz\npython\nJeśli nie odnaleziono komendy uruchom polecenie:\npython3\nZwróć uwagę, aby Twoja wersja nie była niższa niż 3.13 Aby wyjść z powłoki pythona użyj funkcji exit()\nPython 3.13.7 (main, Aug 14 2025, 11:12:11) [Clang 17.0.0 (clang-1700.0.13.3)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n&gt;&gt;&gt; exit()\n\n\npython3 -m venv venv\nUruchomienie w systemach linux i mac os:\nsource venv/bin/activate\n# . venv/bin/activate\n\n(venv)$ ~\nW systemie windows środowisko pythona uruchomisz poprzez:\nvenv/Scripts/activate\nSzybka instalacja podstawowych bibliotek i jupyterlab.\npip install --no-cache --upgrade pip setuptools\n\npip install jupyterlab numpy pandas matplotlib scipy\n# jeśli masz plik requirements.txt z potrzebnymi bibliotekami\npip install -r requirements.txt\n# uruchom \njupyterlab\nW przeglądarce internetowej wpisz: localhost:8888\nPo ponownym uruchomieniu przejdź do katalogu w którym utworzyłeś środowisko, następnie uruchom środowisko i jupyterlab.\nsource &lt;name of env&gt;/bin/activate\njupyterlab\n\n\n\nKurs podstaw pythona Tomas Beuzen polecam.\nUtwórz konto na Kaggle, przejdź do zakładki Courses i przerób cały moduł Pythona. Zawiera on:\n\nwyrażenia i zmienne\nfunkcje\nwarunki i flow programu\nlisty\npętle\nstringi i słowniki\ndodawanie i używanie zewnętrznych bibliotek"
-  },
-  {
-    "objectID": "ksiazki.html",
-    "href": "ksiazki.html",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "Chris Bernhardt, Obliczenia kwantowe dla każdego. PWN 2020\n\n\nWyjaśnienie jak to działa w obliczeniach kwantowych.\n\n\nMichel Le Bellac, Wstęp do informatyki kwantowej. PWN 2011\n\n\nTrudniejsza, dużo matematyki i fizyki.\n\n\nThomas G. Wong, Introduction to Classical and Quantum Computing. Rooted Grove 2022.\n\n\nBardzo dobra!, dużo przykładów, dużo ciekawych informacji wyjaśnianych bardzo szczegółowo.\n\n\nA. Jacquier, O. Kondratyev, Quantum Machine Learning and Optimisation in Finance. On the Road to Quantum Advantage.\nP. Gawron, M. Cholewa, … Rewolucja stanu. Fantastyczne wprowadzenie do informatyki kwantowej. Quantumz.io 2021\nA. Saxena, J. Mancilla, I. Montalban, C. Pere, Financial Modeling Using Quantum Computing. Packt 2023\nM. Schuld, F. Petruccione, Machine Learning with Quantum Computers, Springer 2021.\n\n\n\n\n\n\n\nL. Moroney, Sztuczna inteligencja i uczenie maszynowe dla programistów. Praktyczny przewodnik po sztucznej inteligencji. Helion 2021. Zobacz opis lub Kup e-book\nBruce, Bruce, Gedeck, Statystyka praktyczna w data science. Wydanie II. Helion. 2021."
-  },
-  {
-    "objectID": "ksiazki.html#książki",
-    "href": "ksiazki.html#książki",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "Chris Bernhardt, Obliczenia kwantowe dla każdego. PWN 2020\n\n\nWyjaśnienie jak to działa w obliczeniach kwantowych.\n\n\nMichel Le Bellac, Wstęp do informatyki kwantowej. PWN 2011\n\n\nTrudniejsza, dużo matematyki i fizyki.\n\n\nThomas G. Wong, Introduction to Classical and Quantum Computing. Rooted Grove 2022.\n\n\nBardzo dobra!, dużo przykładów, dużo ciekawych informacji wyjaśnianych bardzo szczegółowo.\n\n\nA. Jacquier, O. Kondratyev, Quantum Machine Learning and Optimisation in Finance. On the Road to Quantum Advantage.\nP. Gawron, M. Cholewa, … Rewolucja stanu. Fantastyczne wprowadzenie do informatyki kwantowej. Quantumz.io 2021\nA. Saxena, J. Mancilla, I. Montalban, C. Pere, Financial Modeling Using Quantum Computing. Packt 2023\nM. Schuld, F. Petruccione, Machine Learning with Quantum Computers, Springer 2021.\n\n\n\n\n\n\n\nL. Moroney, Sztuczna inteligencja i uczenie maszynowe dla programistów. Praktyczny przewodnik po sztucznej inteligencji. Helion 2021. Zobacz opis lub Kup e-book\nBruce, Bruce, Gedeck, Statystyka praktyczna w data science. Wydanie II. Helion. 2021."
-  },
-  {
-    "objectID": "ksiazki.html#strony-www",
-    "href": "ksiazki.html#strony-www",
-    "title": "Książki i strony WWW",
-    "section": "Strony WWW",
-    "text": "Strony WWW\n\nPeter Shor Wykład\n\n\nPakiety Python\n\nQiskit\nPennyLane\n\n\n\nPakiety Julia\n\nYao\nQAOA\n\n\n\nEdytory tekstu\n\nNotepad++\nSublime Text\nVisual Studio Code\n\n\n\nMarkdown\n\nMD\n\n\n\nFilmy\n\nWprowadzenie do obliczeń kwantowych\nQPoland, Bronze, Warsztaty z programowania komputerów kwantowych 2023"
+    "text": "🎓 OGÓLNE ZAŁOŻENIA CYKLU WYKŁADÓW Cel przedmiotu: Poznanie zasad gromadzenia, przechowywania, przetwarzania i udostępniania informacji w relacyjnych bazach danych. Zrozumienie projektowania, tworzenia i administrowania bazami danych oraz podstaw bezpieczeństwa i niezawodności systemów bazodanowych. Forma: 5 wykładów po 1,5 h (łącznie 7,5 h), z elementami dyskusji, przykładami SQL oraz odniesieniami do praktyki (np. PostgreSQL/MySQL).\n📘 WYKŁAD 1 – DANE I SYSTEMY ICH ORGANIZACJI Temat: Od pliku do bazy danych Cele: zrozumienie pojęcia danych, informacji i wiedzy, poznanie podstawowych form organizacji danych, wprowadzenie do pojęcia systemu bazodanowego. Zakres treści: Dane, informacja, wiedza – hierarchia pojęć. Rodzaje danych: ustrukturyzowane (np. tabele CSV), półustrukturyzowane (JSON, XML), nieustrukturyzowane (obrazy, dźwięk, teksty). Pliki jako forma przechowywania danych: pliki płaskie – cechy, wady, zalety, systemy plików, metadane, nazwy, prawa dostępu. Problemy przy pracy z plikami: redundancja, niespójność, brak współbieżności. Dlaczego bazy danych? idea centralnego repozytorium, korzyści z relacyjnego modelu danych, krótka historia (Codd, model relacyjny). Akcent praktyczny: porównanie pliku CSV z tabelą SQL. Efekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują. 📗 WYKŁAD 2 – MODEL RELACYJNY I PODSTAWY SQL Temat: Reprezentacja danych i podstawy zapytań Cele: zrozumienie idei relacji, kluczy i więzów integralności, nauczenie podstaw składni SQL. Zakres treści: Model relacyjny: tabele, wiersze, kolumny, dziedziny, klucze główne, obce, unikalność, null. Schemat bazy danych i relacje między tabelami. Podstawy SQL (DDL i DML): CREATE TABLE, ALTER TABLE, DROP TABLE, INSERT, SELECT, UPDATE, DELETE, podstawy WHERE, ORDER BY, GROUP BY, JOIN. Różnice między SQL a językami proceduralnymi. Akcent praktyczny: budowa prostej bazy np. „Biblioteka” (książki, autorzy). Efekty uczenia się: zna podstawową składnię SQL i potrafi tworzyć proste zapytania. 📙 WYKŁAD 3 – NORMALIZACJA I PROJEKTOWANIE BAZ DANYCH Temat: Jak uniknąć błędów w projektowaniu? Cele: nauczenie zasad normalizacji, zrozumienie zależności funkcjonalnych, wprowadzenie do diagramów ERD. Zakres treści: Problemy złego projektu: redundancja, anomalie aktualizacji, usuwania. Pojęcie zależności funkcjonalnych. Formy normalne (1NF–3NF, BCNF): przykłady i zastosowania. Diagramy ERD (Entity–Relationship Diagram): encje, atrybuty, relacje, kardynalności, identyfikatory. Proces projektowania bazy: analiza wymagań → model konceptualny → model logiczny → model fizyczny. Akcent praktyczny: ćwiczenie – model bazy danych dla systemu uczelnianego. Efekty uczenia się: potrafi projektować relacyjną bazę danych zgodnie z zasadami normalizacji. 📒 WYKŁAD 4 – TRANSAKCJE, WSPÓŁBIEŻNOŚĆ I WIDOKI Temat: Mechanizmy zapewniania spójności danych Cele: poznanie zasad transakcyjności, zrozumienie współbieżności i izolacji, wprowadzenie do widoków i ich zastosowań. Zakres treści: Pojęcie transakcji i właściwości ACID: atomicity, consistency, isolation, durability. Problemy współbieżności: utracone aktualizacje, odczyty brudnych danych, blokady. Poziomy izolacji transakcji. Widoki (Views): definicja, zalety (abstrakcja, bezpieczeństwo), przykłady CREATE VIEW, WITH CHECK OPTION. Przykład – transakcje w PostgreSQL (BEGIN/COMMIT/ROLLBACK). Akcent praktyczny: analiza równoczesnych transakcji na tej samej tabeli. Efekty uczenia się: rozumie zasady transakcyjności i umie zastosować widoki. 📕 WYKŁAD 5 – ADMINISTRACJA, BEZPIECZEŃSTWO I KOPIE ZAPASOWE Temat: Utrzymanie i ochrona baz danych Cele: poznanie zasad administrowania bazami danych, zrozumienie bezpieczeństwa i odporności systemów bazodanowych. Zakres treści: Role i uprawnienia użytkowników: GRANT, REVOKE, zarządzanie kontami. Bezpieczeństwo danych: szyfrowanie, kontrola dostępu, logowanie zdarzeń. Backup i odzyskiwanie: kopie pełne, przyrostowe, różnicowe, replikacja i wysokie dostępności (HA). Monitorowanie i optymalizacja: indeksy, analiza planów zapytań. Przegląd systemów bazodanowych: PostgreSQL, MySQL, SQLite, MS SQL, Oracle. Efekty uczenia się: zna metody ochrony i zarządzania bazami danych, potrafi wskazać strategie kopii zapasowych. 💡 PROJEKT ZALICZENIOWY (do realizacji na ćwiczeniach) Temat: Projekt i implementacja relacyjnej bazy danych wspierającej wybrany proces organizacyjny. Etapy projektu: Analiza problemu i identyfikacja wymagań. (np. system rezerwacji sal, ewidencja sprzętu, biblioteka, wypożyczalnia, rejestr studentów) Model konceptualny (ERD) i logiczny bazy danych. Implementacja bazy w wybranym systemie (np. PostgreSQL). Wypełnienie przykładowymi danymi, przygotowanie zapytań SQL. Demonstracja transakcji, widoków i podstawowych mechanizmów bezpieczeństwa. Efekty projektu: integracja wiedzy z zakresu modelowania, SQL i zarządzania, praktyczne umiejętności tworzenia bazy danych od podstaw, doświadczenie w pracy zespołowej i prezentacji wyników. 📈 POWIĄZANIE Z EFEKTAMI UCZENIA SIĘ Efekt uczenia się Odniesienie do wykładów / projektu Zna i rozumie algorytmy i metody w systemach BD Wykłady 2–5 Ma wiedzę z zakresu przetwarzania danych Wykład 1, 2 Zna standardy stosowane w BD Wykłady 2, 5 Potrafi przygotować prezentację i prowadzić dyskusję Projekt zespołowy Umie wykorzystać modele w realizacji projektów BD Wykład 3 + projekt Integruje wiedzę techniczną i pozatechniczną Projekt (analiza potrzeb użytkownika) Określa priorytety w realizacji zadań Projekt – planowanie etapów"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Informacje ogólne",
     "section": "",
-    "text": "Kod:\nSemestr: letni\nPodstawowe informacje znajdziesz w sylabusie.\nCiekawe książki i strony internetowe zamieszczone zostały w zakładce książki. Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.",
+    "text": "Kod:\nSemestr: letni",
     "crumbs": [
       "Książki",
       "Informacje ogólne"
@@ -50,7 +22,7 @@
     "href": "index.html#relacyjne-systemy-organizacji-danych",
     "title": "Informacje ogólne",
     "section": "",
-    "text": "Kod:\nSemestr: letni\nPodstawowe informacje znajdziesz w sylabusie.\nCiekawe książki i strony internetowe zamieszczone zostały w zakładce książki. Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.",
+    "text": "Kod:\nSemestr: letni",
     "crumbs": [
       "Książki",
       "Informacje ogólne"
@@ -61,10 +33,144 @@
     "href": "index.html#kalendarz",
     "title": "Informacje ogólne",
     "section": "Kalendarz",
-    "text": "Kalendarz\n\nWykład dla grup: WEL23EV1S0, WEL23EA1S0\n\n09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)\n14.10.2025 Wtorek Wykład 2 - b. 61 sala 116 (9-10)\n15.10.2025 Środa Wykład 3 - b. 61 sala 116 (3-4)\n29.10.2025 Środa Wykład 4 - b. 61 sala 116 (9-10)\n30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)\n\n\n\nLaboratorium grupa WEL23EV1S0:\n\n13.11.2025 Czwartek Lab - b. 61 sala 116\n\n\n\nLaboratorium grupa WEL23EA1S0:",
+    "text": "Kalendarz\n\nWykład dla grup: WEL23EV1S0, WEL23EA1S0\n\n09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)\n14.10.2025 Wtorek Wykład 2 - b. 61 sala 116 (9-10)\n15.10.2025 Środa Wykład 3 - b. 61 sala 116 (3-4)\n29.10.2025 Środa Wykład 4 - b. 61 sala 116 (9-10)\n30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)\n\n\n\nLaboratorium grupa WEL23EV1S0:\n\n25.11.2025 Wtorek - b. 61 sala 116\n04.12.2025 czwartek - b. 61 sala 116\n18.12.2025 czwartek - b. 61 sala 116\n08.01.2026 Czwartek - b. 61 sala 116\n22.01.2026 czwartek - b. 61 sala 116\n\n\n\nLaboratorium grupa WEL23EA1S0:\n\n13.11.2025 Czwartek Lab - b. 61 sala 116\n26.11.2025 środa Lab - b. 61 sala 116\n11.12.2025 czwartek - b. 61 sala 116\n15.01.2026 czwartek - b. 61 sala 116\n21.01.2026 środa - b. 61 sala 116",
     "crumbs": [
       "Książki",
       "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "ksiazki.html",
+    "href": "ksiazki.html",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
+    "objectID": "ksiazki.html#książki",
+    "href": "ksiazki.html#książki",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
+    "objectID": "lectures/wyklad1.html",
+    "href": "lectures/wyklad1.html",
+    "title": "Od pliku do bazy danych",
+    "section": "",
+    "text": "zrozumienie pojęcia danych, informacji i wiedzy,\npoznanie podstawowych form organizacji danych,\nwprowadzenie do pojęcia systemu bazodanowego.\n\n\n\n\nDane, informacja, wiedza – hierarchia pojęć.\n\n\n\n\nustrukturyzowane (np. tabele CSV),\npółustrukturyzowane (JSON, XML),\nnieustrukturyzowane (obrazy, dźwięk, teksty).\n\n\n\n\npliki płaskie – cechy, wady, zalety,\nsystemy plików, metadane, nazwy, prawa dostępu.\n\n\n\n\n\nredundancja,\nniespójność,\nbrak współbieżności.\n\n\n\n\n\nidea centralnego repozytorium,\nkorzyści z relacyjnego modelu danych,\nkrótka historia (Codd, model relacyjny).\n\n\n\n\n\nEfekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#plan",
+    "href": "lectures/wyklad1.html#plan",
+    "title": "Od pliku do bazy danych",
+    "section": "",
+    "text": "zrozumienie pojęcia danych, informacji i wiedzy,\npoznanie podstawowych form organizacji danych,\nwprowadzenie do pojęcia systemu bazodanowego.\n\n\n\n\nDane, informacja, wiedza – hierarchia pojęć.\n\n\n\n\nustrukturyzowane (np. tabele CSV),\npółustrukturyzowane (JSON, XML),\nnieustrukturyzowane (obrazy, dźwięk, teksty).\n\n\n\n\npliki płaskie – cechy, wady, zalety,\nsystemy plików, metadane, nazwy, prawa dostępu.\n\n\n\n\n\nredundancja,\nniespójność,\nbrak współbieżności.\n\n\n\n\n\nidea centralnego repozytorium,\nkorzyści z relacyjnego modelu danych,\nkrótka historia (Codd, model relacyjny).\n\n\n\n\n\nEfekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#dane-informacja-wiedza",
+    "href": "lectures/wyklad1.html#dane-informacja-wiedza",
+    "title": "Od pliku do bazy danych",
+    "section": "🧩 1. Dane, informacja, wiedza",
+    "text": "🧩 1. Dane, informacja, wiedza\n🗣\nZacznijmy od podstawowego pytania: czym właściwie są dane?\nDane to surowe fakty – liczby, znaki, pomiary, które same w sobie nie mają znaczenia, dopóki ich nie zinterpretujemy.\nGdy dane zaczynamy rozumieć w kontekście – powstaje informacja.\nA gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – mamy wiedzę.\n\n📊 Przykład:\nDane: 36.7, 37.1, 38.2\nInformacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”\nWiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”\n\n\n💬 Pytanie:\nCzy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#rodzaje-danych-1",
+    "href": "lectures/wyklad1.html#rodzaje-danych-1",
+    "title": "Od pliku do bazy danych",
+    "section": "💾 2. Rodzaje danych",
+    "text": "💾 2. Rodzaje danych\n🗣\nW świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.\n\n📚 Klasyfikacja:\n\nUstrukturyzowane\n\nDane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn. Przykład: tabela klientów w Excelu lub SQL.\nID | Imię | Nazwisko | Miasto 1 | Anna | Nowak | Kraków 2 | Jan | Kowalski | Warszawa\n\nPółustrukturyzowane\n\nZawierają strukturę, ale nie jest ona sztywna.\nPrzykład: pliki JSON, XML.\n{\n  \"imie\": \"Anna\",\n  \"miasto\": \"Kraków\",\n  \"zainteresowania\": [\"sport\", \"muzyka\"]\n}\n\nNieustrukturyzowane\n\nBrak jasno określonej struktury danych.\nPrzykład: obraz, dźwięk, wideo, dokument PDF.\nTakie dane trudno przeszukiwać klasycznymi metodami SQL.\n\n\n💬 Pytanie:\nJakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych-1",
+    "href": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych-1",
+    "title": "Od pliku do bazy danych",
+    "section": "🗂️ 3. Pliki jako forma przechowywania danych",
+    "text": "🗂️ 3. Pliki jako forma przechowywania danych\n🗣\nZanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).\nTo po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.\n📄 Przykład pliku płaskiego (CSV):\nID,Imię,Nazwisko,Miasto\n1,Anna,Nowak,Kraków\n2,Jan,Kowalski,Warszawa\n3,Piotr,Wiśniewski,Poznań\n\n🗃 Co można zauważyć:\nDane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.\nAle… brak:\n\nkontroli nad poprawnością (np. można wpisać błędny numer ID),\nrelacji między danymi (osobna lista klientów i zamówień się nie łączy),\nspójności przy równoczesnym dostępie.\n\n\n\n💬 Pytanie:\n\nCo się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#problemy-pracy-z-plikami",
+    "href": "lectures/wyklad1.html#problemy-pracy-z-plikami",
+    "title": "Od pliku do bazy danych",
+    "section": "🧱 4. Problemy pracy z plikami",
+    "text": "🧱 4. Problemy pracy z plikami\n🗣\nWraz ze wzrostem ilości danych zaczynają się problemy.\nSystemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.\n\n⚠️ Typowe problemy:\n\nRedundancja danych – powielanie informacji. np. imię i adres klienta wpisywany przy każdym zamówieniu.\nNiespójność danych – różne wersje tych samych danych w wielu plikach.\nTrudność w aktualizacji – brak jednego miejsca prawdy.\nBrak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.\nBrak bezpieczeństwa i kontroli dostępu.\n\n\n\n🧠 Przykład:\nPlik klienci.txt i zamowienia.txt – brak połączenia między nimi. Trudno ustalić, które zamówienie należy do którego klienta.\nklienci.txt:\n1;Anna Nowak;Kraków\n2;Jan Kowalski;Warszawa\n\nzamowienia.txt:\n10;Laptop;1\n11;Monitor;2\n12;Kabel HDMI;1\nTo działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#od-pliku-do-bazy-danych",
+    "href": "lectures/wyklad1.html#od-pliku-do-bazy-danych",
+    "title": "Od pliku do bazy danych",
+    "section": "🧮 5. Od pliku do bazy danych",
+    "text": "🧮 5. Od pliku do bazy danych\n🗣\nAby rozwiązać te problemy, w latach 70. pojawiła się koncepcja systemu bazodanowego.\nPomysł był prosty, ale rewolucyjny:\n\ndane przechowywane są w jednym centralnym repozytorium,\ndostęp do nich odbywa się przez język zapytań (SQL),\nkontrolowana jest spójność, współbieżność, bezpieczeństwo.\n\n\n📚 Pojęcia podstawowe:\n\nBaza danych – zbiór danych o określonej strukturze.\nSystem zarządzania bazą danych (DBMS) – oprogramowanie do tworzenia, przechowywania, udostępniania danych.\nUżytkownicy – aplikacje, programiści, analitycy, którzy korzystają z danych.\n\n\n\n📊 Przykład:\nPorównanie pliku CSV z tabelą SQL:\n\n\n\n\n\n\n\n\nCecha\nPlik CSV\nBaza danych (SQL)\n\n\n\n\nStruktura danych\nTekstowa, dowolna\nŚciśle zdefiniowana (kolumny, typy)\n\n\nSpójność danych\nNie\nZapewnia DBMS\n\n\nWspółbieżność\nBrak\nObsługiwana\n\n\nWyszukiwanie\nPełne skanowanie\nZapytania, indeksy\n\n\nBezpieczeństwo\nBrak\nKontrola dostępu",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#różnice-w-przetwarzaniu-danych-przykład-porównawczy",
+    "href": "lectures/wyklad1.html#różnice-w-przetwarzaniu-danych-przykład-porównawczy",
+    "title": "Od pliku do bazy danych",
+    "section": "🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy",
+    "text": "🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy\n🗣\nZanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposób ich przetwarzania.\n\n\n\n\n\n\n\n\n\nTyp danych\nPrzykład\nNarzędzie przetwarzania\nTypowe operacje\n\n\n\n\nTabelaryczne\nsprzedaż, klienci\nSQL, Excel\nsortowanie, sumowanie, filtracja\n\n\nTekstowe\nartykuły, maile\nwyszukiwanie pełnotekstowe\nindeksowanie, analiza słów\n\n\nObraz\nzdjęcia, wideo\nbiblioteki CV, AI\nklasyfikacja, rozpoznawanie obiektów\n\n\nDźwięk\nnagrania, mowa\nDSP, ML\nfiltracja, transkrypcja\n\n\n\n\n💬 Pytanie:\n\nDlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#podsumowanie-wykładu",
+    "href": "lectures/wyklad1.html#podsumowanie-wykładu",
+    "title": "Od pliku do bazy danych",
+    "section": "🧩 7. Podsumowanie wykładu",
+    "text": "🧩 7. Podsumowanie wykładu\n\n🔑 Kluczowe pojęcia:\nDane vs informacja vs wiedza\nUstrukturyzowane / nieustrukturyzowane dane\nPlik płaski i jego ograniczenia\nPowody wprowadzenia systemów baz danych\n\n\n🧭 Wniosek:\n\nBazy danych powstały nie dlatego, że ktoś lubił tabele, ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#materiały-do-dalszej-lektury",
+    "href": "lectures/wyklad1.html#materiały-do-dalszej-lektury",
+    "title": "Od pliku do bazy danych",
+    "section": "📚 Materiały do dalszej lektury",
+    "text": "📚 Materiały do dalszej lektury\n\nC.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
     ]
   }
 ]

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,14 +32,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-d329e753491efaeac79c98c4b193a686.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b6232578699c41ebed293775b607817.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-274dc1d14b15d766dfc72bb6e59290d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,6 +80,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Relacyjne Systemy Organizacji Danych</span>
     </a>
@@ -114,6 +117,10 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -134,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lectures/wyklad1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Wprowadzenie do relacyjnych baz danych</span></a>
+ <span class="menu-text">Od pliku do bazy danych</span></a>
   </div>
 </li>
       </ul>
@@ -184,8 +191,6 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="relacyjne-systemy-organizacji-danych">Relacyjne Systemy Organizacji Danych</h2>
 <p>Kod:</p>
 <p>Semestr: letni</p>
-<p>Podstawowe informacje znajdziesz w <a href="./sylabus">sylabusie</a>.</p>
-<p>Ciekawe książki i strony internetowe zamieszczone zostały w zakładce <a href="./ksiazki">książki</a>. Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.</p>
 </section>
 <section id="kalendarz" class="level2">
 <h2 class="anchored" data-anchor-id="kalendarz">Kalendarz</h2>
@@ -202,13 +207,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="laboratorium-grupa-wel23ev1s0" class="level3">
 <h3 class="anchored" data-anchor-id="laboratorium-grupa-wel23ev1s0">Laboratorium grupa WEL23EV1S0:</h3>
 <ol type="1">
-<li>13.11.2025 Czwartek Lab - b. 61 sala 116</li>
+<li>25.11.2025 Wtorek - b. 61 sala 116</li>
+<li>04.12.2025 czwartek - b. 61 sala 116</li>
+<li>18.12.2025 czwartek - b. 61 sala 116</li>
+<li>08.01.2026 Czwartek - b. 61 sala 116</li>
+<li>22.01.2026 czwartek - b. 61 sala 116</li>
 </ol>
 </section>
 <section id="laboratorium-grupa-wel23ea1s0" class="level3">
 <h3 class="anchored" data-anchor-id="laboratorium-grupa-wel23ea1s0">Laboratorium grupa WEL23EA1S0:</h3>
 <ol type="1">
-<li></li>
+<li>13.11.2025 Czwartek Lab - b. 61 sala 116</li>
+<li>26.11.2025 środa Lab - b. 61 sala 116</li>
+<li>11.12.2025 czwartek - b. 61 sala 116</li>
+<li>15.01.2026 czwartek - b. 61 sala 116</li>
+<li>21.01.2026 środa - b. 61 sala 116</li>
 </ol>
 
 
@@ -267,13 +280,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

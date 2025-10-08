@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wprowadzenie do relacyjnych baz danych – Relacyjne Systemy Organizacji Danych</title>
+<title>Od pliku do bazy danych – Relacyjne Systemy Organizacji Danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -32,14 +67,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d329e753491efaeac79c98c4b193a686.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-969ddfa49e00a70eb3423444dbc81f6c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5b6232578699c41ebed293775b607817.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-274dc1d14b15d766dfc72bb6e59290d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,6 +115,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Relacyjne Systemy Organizacji Danych</span>
     </a>
@@ -104,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wprowadzenie do relacyjnych baz danych</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Od pliku do bazy danych</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -114,6 +152,10 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -134,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/wyklad1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Wprowadzenie do relacyjnych baz danych</span></a>
+ <span class="menu-text">Od pliku do bazy danych</span></a>
   </div>
 </li>
       </ul>
@@ -148,15 +190,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Sections</strong></h2>
+   
+  <ul class="collapse">
+  <li><a href="#plan" id="toc-plan" class="nav-link active" data-scroll-target="#plan">PLAN:</a></li>
+  <li><a href="#dane-informacja-wiedza" id="toc-dane-informacja-wiedza" class="nav-link" data-scroll-target="#dane-informacja-wiedza">🧩 1. Dane, informacja, wiedza</a></li>
+  <li><a href="#rodzaje-danych-1" id="toc-rodzaje-danych-1" class="nav-link" data-scroll-target="#rodzaje-danych-1">💾 2. Rodzaje danych</a></li>
+  <li><a href="#pliki-jako-forma-przechowywania-danych-1" id="toc-pliki-jako-forma-przechowywania-danych-1" class="nav-link" data-scroll-target="#pliki-jako-forma-przechowywania-danych-1">🗂️ 3. Pliki jako forma przechowywania danych</a></li>
+  <li><a href="#problemy-pracy-z-plikami" id="toc-problemy-pracy-z-plikami" class="nav-link" data-scroll-target="#problemy-pracy-z-plikami">🧱 4. Problemy pracy z plikami</a></li>
+  <li><a href="#od-pliku-do-bazy-danych" id="toc-od-pliku-do-bazy-danych" class="nav-link" data-scroll-target="#od-pliku-do-bazy-danych">🧮 5. Od pliku do bazy danych</a></li>
+  <li><a href="#różnice-w-przetwarzaniu-danych-przykład-porównawczy" id="toc-różnice-w-przetwarzaniu-danych-przykład-porównawczy" class="nav-link" data-scroll-target="#różnice-w-przetwarzaniu-danych-przykład-porównawczy">🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy</a></li>
+  <li><a href="#podsumowanie-wykładu" id="toc-podsumowanie-wykładu" class="nav-link" data-scroll-target="#podsumowanie-wykładu">🧩 7. Podsumowanie wykładu</a></li>
+  <li><a href="#materiały-do-dalszej-lektury" id="toc-materiały-do-dalszej-lektury" class="nav-link" data-scroll-target="#materiały-do-dalszej-lektury">📚 Materiały do dalszej lektury</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wprowadzenie do relacyjnych baz danych</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Od pliku do bazy danych</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Wprowadzenie do relacyjnych baz danych</h1>
+<h1 class="title">Od pliku do bazy danych</h1>
 </div>
 
 
@@ -173,8 +229,306 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan">PLAN:</h2>
+<section id="cele" class="level3">
+<h3 class="anchored" data-anchor-id="cele">cele</h3>
+<ul>
+<li>zrozumienie pojęcia danych, informacji i wiedzy,</li>
+<li>poznanie podstawowych form organizacji danych,</li>
+<li>wprowadzenie do pojęcia systemu bazodanowego.</li>
+</ul>
+</section>
+<section id="zakres-treści" class="level3">
+<h3 class="anchored" data-anchor-id="zakres-treści">Zakres treści:</h3>
+<p>Dane, informacja, wiedza – hierarchia pojęć.</p>
+</section>
+<section id="rodzaje-danych" class="level3">
+<h3 class="anchored" data-anchor-id="rodzaje-danych">Rodzaje danych:</h3>
+<ul>
+<li>ustrukturyzowane (np. tabele CSV),</li>
+<li>półustrukturyzowane (JSON, XML),</li>
+<li>nieustrukturyzowane (obrazy, dźwięk, teksty).</li>
+</ul>
+<section id="pliki-jako-forma-przechowywania-danych" class="level4">
+<h4 class="anchored" data-anchor-id="pliki-jako-forma-przechowywania-danych">Pliki jako forma przechowywania danych:</h4>
+<ul>
+<li>pliki płaskie – cechy, wady, zalety,</li>
+<li>systemy plików, metadane, nazwy, prawa dostępu.</li>
+</ul>
+</section>
+<section id="problemy-przy-pracy-z-plikami" class="level4">
+<h4 class="anchored" data-anchor-id="problemy-przy-pracy-z-plikami">Problemy przy pracy z plikami:</h4>
+<ul>
+<li>redundancja,</li>
+<li>niespójność,</li>
+<li>brak współbieżności.</li>
+</ul>
+</section>
+<section id="dlaczego-bazy-danych" class="level4">
+<h4 class="anchored" data-anchor-id="dlaczego-bazy-danych">Dlaczego bazy danych?</h4>
+<ul>
+<li>idea centralnego repozytorium,</li>
+<li>korzyści z relacyjnego modelu danych,</li>
+<li>krótka historia (Codd, model relacyjny).</li>
+</ul>
+</section>
+</section>
+<section id="akcent-praktyczny-porównanie-pliku-csv-z-tabelą-sql." class="level3">
+<h3 class="anchored" data-anchor-id="akcent-praktyczny-porównanie-pliku-csv-z-tabelą-sql.">Akcent praktyczny: porównanie pliku CSV z tabelą SQL.</h3>
+<p>Efekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.</p>
+</section>
+</section>
+<section id="dane-informacja-wiedza" class="level2">
+<h2 class="anchored" data-anchor-id="dane-informacja-wiedza">🧩 1. Dane, informacja, wiedza</h2>
+<p>🗣</p>
+<p>Zacznijmy od podstawowego pytania: czym właściwie są dane?</p>
+<p>Dane to surowe fakty – liczby, znaki, pomiary, które same w sobie nie mają znaczenia, dopóki ich nie zinterpretujemy.</p>
+<p>Gdy dane zaczynamy rozumieć w kontekście – powstaje informacja.</p>
+<p>A gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – mamy wiedzę.</p>
+<section id="przykład" class="level3">
+<h3 class="anchored" data-anchor-id="przykład">📊 Przykład:</h3>
+<p>Dane: 36.7, 37.1, 38.2</p>
+<p>Informacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”</p>
+<p>Wiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”</p>
+</section>
+<section id="pytanie" class="level3">
+<h3 class="anchored" data-anchor-id="pytanie">💬 Pytanie:</h3>
+<p>Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?</p>
+</section>
+</section>
+<section id="rodzaje-danych-1" class="level2">
+<h2 class="anchored" data-anchor-id="rodzaje-danych-1">💾 2. Rodzaje danych</h2>
+<p>🗣</p>
+<p>W świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.</p>
+<section id="klasyfikacja" class="level3">
+<h3 class="anchored" data-anchor-id="klasyfikacja">📚 Klasyfikacja:</h3>
+<ol type="1">
+<li>Ustrukturyzowane</li>
+</ol>
+<p>Dane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn. Przykład: tabela klientów w Excelu lub SQL.</p>
+<p>ID | Imię | Nazwisko | Miasto 1 | Anna | Nowak | Kraków 2 | Jan | Kowalski | Warszawa</p>
+<ol start="2" type="1">
+<li>Półustrukturyzowane</li>
+</ol>
+<p>Zawierają strukturę, ale nie jest ona sztywna.</p>
+<p>Przykład: pliki JSON, XML.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"imie"</span><span class="fu">:</span> <span class="st">"Anna"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"miasto"</span><span class="fu">:</span> <span class="st">"Kraków"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"zainteresowania"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"sport"</span><span class="ot">,</span> <span class="st">"muzyka"</span><span class="ot">]</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Nieustrukturyzowane</li>
+</ol>
+<p>Brak jasno określonej struktury danych.</p>
+<p>Przykład: obraz, dźwięk, wideo, dokument PDF.</p>
+<p>Takie dane trudno przeszukiwać klasycznymi metodami SQL.</p>
+</section>
+<section id="pytanie-1" class="level3">
+<h3 class="anchored" data-anchor-id="pytanie-1">💬 Pytanie:</h3>
+<p>Jakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?</p>
+</section>
+</section>
+<section id="pliki-jako-forma-przechowywania-danych-1" class="level2">
+<h2 class="anchored" data-anchor-id="pliki-jako-forma-przechowywania-danych-1">🗂️ 3. Pliki jako forma przechowywania danych</h2>
+<p>🗣</p>
+<p>Zanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).</p>
+<p>To po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.</p>
+<p>📄 Przykład pliku płaskiego (CSV):</p>
+<pre class="csv"><code>ID,Imię,Nazwisko,Miasto
+1,Anna,Nowak,Kraków
+2,Jan,Kowalski,Warszawa
+3,Piotr,Wiśniewski,Poznań</code></pre>
+<section id="co-można-zauważyć" class="level3">
+<h3 class="anchored" data-anchor-id="co-można-zauważyć">🗃 Co można zauważyć:</h3>
+<p>Dane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.</p>
+<p>Ale… brak:</p>
+<ul>
+<li>kontroli nad poprawnością (np. można wpisać błędny numer ID),</li>
+<li>relacji między danymi (osobna lista klientów i zamówień się nie łączy),</li>
+<li>spójności przy równoczesnym dostępie.</li>
+</ul>
+</section>
+<section id="pytanie-2" class="level3">
+<h3 class="anchored" data-anchor-id="pytanie-2">💬 Pytanie:</h3>
+<blockquote class="blockquote">
+<p>Co się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?</p>
+</blockquote>
+</section>
+</section>
+<section id="problemy-pracy-z-plikami" class="level2">
+<h2 class="anchored" data-anchor-id="problemy-pracy-z-plikami">🧱 4. Problemy pracy z plikami</h2>
+<p>🗣</p>
+<p>Wraz ze wzrostem ilości danych zaczynają się problemy.</p>
+<p>Systemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.</p>
+<section id="typowe-problemy" class="level3">
+<h3 class="anchored" data-anchor-id="typowe-problemy">⚠️ Typowe problemy:</h3>
+<ol type="1">
+<li><p>Redundancja danych – powielanie informacji. np. imię i adres klienta wpisywany przy każdym zamówieniu.</p></li>
+<li><p>Niespójność danych – różne wersje tych samych danych w wielu plikach.</p></li>
+<li><p>Trudność w aktualizacji – brak jednego miejsca prawdy.</p></li>
+<li><p>Brak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.</p></li>
+<li><p>Brak bezpieczeństwa i kontroli dostępu.</p></li>
+</ol>
+</section>
+<section id="przykład-1" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-1">🧠 Przykład:</h3>
+<p>Plik klienci.txt i zamowienia.txt – brak połączenia między nimi. Trudno ustalić, które zamówienie należy do którego klienta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>klienci.txt:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>1;Anna Nowak;Kraków</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>2;Jan Kowalski;Warszawa</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>zamowienia.txt:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>10;Laptop;1</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>11;Monitor;2</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>12;Kabel HDMI;1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.</p>
+</section>
+</section>
+<section id="od-pliku-do-bazy-danych" class="level2">
+<h2 class="anchored" data-anchor-id="od-pliku-do-bazy-danych">🧮 5. Od pliku do bazy danych</h2>
+<p>🗣</p>
+<p>Aby rozwiązać te problemy, w latach 70. pojawiła się koncepcja systemu bazodanowego.</p>
+<p>Pomysł był prosty, ale rewolucyjny:</p>
+<ul>
+<li>dane przechowywane są w jednym centralnym repozytorium,</li>
+<li>dostęp do nich odbywa się przez język zapytań (SQL),</li>
+<li>kontrolowana jest spójność, współbieżność, bezpieczeństwo.</li>
+</ul>
+<section id="pojęcia-podstawowe" class="level3">
+<h3 class="anchored" data-anchor-id="pojęcia-podstawowe">📚 Pojęcia podstawowe:</h3>
+<ol type="1">
+<li>Baza danych – zbiór danych o określonej strukturze.</li>
+<li>System zarządzania bazą danych (DBMS) – oprogramowanie do tworzenia, przechowywania, udostępniania danych.</li>
+<li>Użytkownicy – aplikacje, programiści, analitycy, którzy korzystają z danych.</li>
+</ol>
+</section>
+<section id="przykład-2" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-2">📊 Przykład:</h3>
+<p>Porównanie pliku CSV z tabelą SQL:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 25%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cecha</th>
+<th>Plik CSV</th>
+<th>Baza danych (SQL)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Struktura danych</td>
+<td>Tekstowa, dowolna</td>
+<td>Ściśle zdefiniowana (kolumny, typy)</td>
+</tr>
+<tr class="even">
+<td>Spójność danych</td>
+<td>Nie</td>
+<td>Zapewnia DBMS</td>
+</tr>
+<tr class="odd">
+<td>Współbieżność</td>
+<td>Brak</td>
+<td>Obsługiwana</td>
+</tr>
+<tr class="even">
+<td>Wyszukiwanie</td>
+<td>Pełne skanowanie</td>
+<td>Zapytania, indeksy</td>
+</tr>
+<tr class="odd">
+<td>Bezpieczeństwo</td>
+<td>Brak</td>
+<td>Kontrola dostępu</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="różnice-w-przetwarzaniu-danych-przykład-porównawczy" class="level2">
+<h2 class="anchored" data-anchor-id="różnice-w-przetwarzaniu-danych-przykład-porównawczy">🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy</h2>
+<p>🗣</p>
+<p>Zanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposób ich przetwarzania.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 28%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Typ danych</th>
+<th>Przykład</th>
+<th>Narzędzie przetwarzania</th>
+<th>Typowe operacje</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tabelaryczne</td>
+<td>sprzedaż, klienci</td>
+<td>SQL, Excel</td>
+<td>sortowanie, sumowanie, filtracja</td>
+</tr>
+<tr class="even">
+<td>Tekstowe</td>
+<td>artykuły, maile</td>
+<td>wyszukiwanie pełnotekstowe</td>
+<td>indeksowanie, analiza słów</td>
+</tr>
+<tr class="odd">
+<td>Obraz</td>
+<td>zdjęcia, wideo</td>
+<td>biblioteki CV, AI</td>
+<td>klasyfikacja, rozpoznawanie obiektów</td>
+</tr>
+<tr class="even">
+<td>Dźwięk</td>
+<td>nagrania, mowa</td>
+<td>DSP, ML</td>
+<td>filtracja, transkrypcja</td>
+</tr>
+</tbody>
+</table>
+<section id="pytanie-3" class="level3">
+<h3 class="anchored" data-anchor-id="pytanie-3">💬 Pytanie:</h3>
+<blockquote class="blockquote">
+<p>Dlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?</p>
+</blockquote>
+</section>
+</section>
+<section id="podsumowanie-wykładu" class="level2">
+<h2 class="anchored" data-anchor-id="podsumowanie-wykładu">🧩 7. Podsumowanie wykładu</h2>
+<section id="kluczowe-pojęcia" class="level3">
+<h3 class="anchored" data-anchor-id="kluczowe-pojęcia">🔑 Kluczowe pojęcia:</h3>
+<p>Dane vs informacja vs wiedza</p>
+<p>Ustrukturyzowane / nieustrukturyzowane dane</p>
+<p>Plik płaski i jego ograniczenia</p>
+<p>Powody wprowadzenia systemów baz danych</p>
+</section>
+<section id="wniosek" class="level3">
+<h3 class="anchored" data-anchor-id="wniosek">🧭 Wniosek:</h3>
+<blockquote class="blockquote">
+<p>Bazy danych powstały nie dlatego, że ktoś lubił tabele, ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.</p>
+</blockquote>
+</section>
+</section>
+<section id="materiały-do-dalszej-lektury" class="level2">
+<h2 class="anchored" data-anchor-id="materiały-do-dalszej-lektury">📚 Materiały do dalszej lektury</h2>
+<ol type="1">
+<li>C.J. Date, An Introduction to Database Systems</li>
+<li>R. Elmasri, S.B. Navathe, Fundamentals of Database Systems</li>
+<li>Dokumentacja PostgreSQL: https://www.postgresql.org/docs/</li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -228,13 +582,14 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

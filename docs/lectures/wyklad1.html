@@ -104,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -288,13 +317,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – mamy wiedzę.</p>
 <section id="przykład" class="level3">
 <h3 class="anchored" data-anchor-id="przykład">📊 Przykład:</h3>
-<p>Dane: 36.7, 37.1, 38.2</p>
+<p>Dane: <span class="math inline">\(36.7, 37.1, 38.2\)</span></p>
 <p>Informacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”</p>
 <p>Wiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”</p>
 </section>
 <section id="pytanie" class="level3">
 <h3 class="anchored" data-anchor-id="pytanie">💬 Pytanie:</h3>
+<blockquote class="blockquote">
 <p>Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?</p>
+</blockquote>
 </section>
 </section>
 <section id="rodzaje-danych-1" class="level2">
@@ -306,8 +337,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Ustrukturyzowane</li>
 </ol>
-<p>Dane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn. Przykład: tabela klientów w Excelu lub SQL.</p>
-<p>ID | Imię | Nazwisko | Miasto 1 | Anna | Nowak | Kraków 2 | Jan | Kowalski | Warszawa</p>
+<p>Dane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn.</p>
+<p>Przykład: tabela klientów w Excelu lub SQL.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Imię</th>
+<th>Nazwisko</th>
+<th>Miasto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Anna</td>
+<td>Nowak</td>
+<td>Kraków</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Jan</td>
+<td>Kowalski</td>
+<td>Warszawa</td>
+</tr>
+</tbody>
+</table>
 <ol start="2" type="1">
 <li>Półustrukturyzowane</li>
 </ol>
@@ -327,7 +382,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pytanie-1" class="level3">
 <h3 class="anchored" data-anchor-id="pytanie-1">💬 Pytanie:</h3>
+<blockquote class="blockquote">
 <p>Jakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?</p>
+</blockquote>
 </section>
 </section>
 <section id="pliki-jako-forma-przechowywania-danych-1" class="level2">
@@ -374,7 +431,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="przykład-1" class="level3">
 <h3 class="anchored" data-anchor-id="przykład-1">🧠 Przykład:</h3>
-<p>Plik klienci.txt i zamowienia.txt – brak połączenia między nimi. Trudno ustalić, które zamówienie należy do którego klienta.</p>
+<p>Plik <code>klienci.txt</code> i <code>zamowienia.txt</code> – brak połączenia między nimi.</p>
+<p>Trudno ustalić, które zamówienie należy do którego klienta.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>klienci.txt:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>1;Anna Nowak;Kraków</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>2;Jan Kowalski;Warszawa</span>

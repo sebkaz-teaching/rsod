@@ -6,6 +6,7 @@ title: " Od pliku do bazy danych"
 ## PLAN:
 
 ### cele
+
 - zrozumienie pojęcia danych, informacji i wiedzy,
 - poznanie podstawowych form organizacji danych,
 - wprowadzenie do pojęcia systemu bazodanowego.
@@ -57,14 +58,15 @@ A gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – ma
 
 ### 📊 Przykład:
 
-Dane: 36.7, 37.1, 38.2
+Dane: $36.7, 37.1, 38.2$
 
 Informacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”
 
 Wiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”
 
 ### 💬 Pytanie:
-Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?
+
+> Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?
 
 ## 💾 2. Rodzaje danych
 
@@ -78,11 +80,13 @@ W świecie informatyki dane występują w różnych formach. Warto je uporządko
 
 Dane w tabelach, arkuszach, bazach.
 Każdy wiersz ma taki sam zestaw kolumn.
+
 Przykład: tabela klientów w Excelu lub SQL.
 
-ID | Imię | Nazwisko | Miasto
-1  | Anna | Nowak    | Kraków
-2  | Jan  | Kowalski | Warszawa
+ID | Imię | Nazwisko | Miasto  |
+---|------|----------|---------|
+1  | Anna | Nowak    | Kraków  |
+2  | Jan  | Kowalski | Warszawa|
 
 2. Półustrukturyzowane
 
@@ -107,7 +111,8 @@ Przykład: obraz, dźwięk, wideo, dokument PDF.
 Takie dane trudno przeszukiwać klasycznymi metodami SQL.
 
 ### 💬 Pytanie:
-Jakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?
+
+> Jakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?
 
 ## 🗂️ 3. Pliki jako forma przechowywania danych
 
@@ -135,6 +140,7 @@ Ale… brak:
 - kontroli nad poprawnością (np. można wpisać błędny numer ID),
 - relacji między danymi (osobna lista klientów i zamówień się nie łączy),
 - spójności przy równoczesnym dostępie.
+
 
 ### 💬 Pytanie:
 
@@ -164,7 +170,8 @@ np. imię i adres klienta wpisywany przy każdym zamówieniu.
 
 ### 🧠 Przykład:
 
-Plik klienci.txt i zamowienia.txt – brak połączenia między nimi.
+Plik `klienci.txt` i `zamowienia.txt` – brak połączenia między nimi.
+
 Trudno ustalić, które zamówienie należy do którego klienta.
 
 
@@ -229,7 +236,7 @@ Zanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposó
 
 ### 💬 Pytanie:
 
->Dlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?
+> Dlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?
 
 
 ## 🧩 7. Podsumowanie wykładu

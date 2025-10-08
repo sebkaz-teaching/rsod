@@ -28,6 +28,7 @@ korzyści z relacyjnego modelu danych,
 krótka historia (Codd, model relacyjny).
 Akcent praktyczny: porównanie pliku CSV z tabelą SQL.
 Efekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.
+
 📗 WYKŁAD 2 – MODEL RELACYJNY I PODSTAWY SQL
 Temat: Reprezentacja danych i podstawy zapytań
 Cele:

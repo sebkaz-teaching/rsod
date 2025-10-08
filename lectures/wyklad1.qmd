@@ -1,5 +1,257 @@
 ---
-title: "Wprowadzenie do relacyjnych baz danych"
+title: " Od pliku do bazy danych"
 ---
 
 
+## PLAN:
+
+### cele
+- zrozumienie pojęcia danych, informacji i wiedzy,
+- poznanie podstawowych form organizacji danych,
+- wprowadzenie do pojęcia systemu bazodanowego.
+
+### Zakres treści:
+
+Dane, informacja, wiedza – hierarchia pojęć.
+
+### Rodzaje danych:
+
+- ustrukturyzowane (np. tabele CSV),
+- półustrukturyzowane (JSON, XML),
+- nieustrukturyzowane (obrazy, dźwięk, teksty).
+
+#### Pliki jako forma przechowywania danych:
+
+- pliki płaskie – cechy, wady, zalety,
+- systemy plików, metadane, nazwy, prawa dostępu.
+
+#### Problemy przy pracy z plikami:
+
+- redundancja, 
+- niespójność, 
+- brak współbieżności.
+
+#### Dlaczego bazy danych?
+
+- idea centralnego repozytorium,
+- korzyści z relacyjnego modelu danych,
+- krótka historia (Codd, model relacyjny).
+
+### Akcent praktyczny: porównanie pliku CSV z tabelą SQL.
+
+Efekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.
+
+
+## 🧩 1. Dane, informacja, wiedza
+
+🗣 
+
+Zacznijmy od podstawowego pytania: czym właściwie są dane?
+
+Dane to surowe fakty – liczby, znaki, pomiary, które same w sobie nie mają znaczenia, dopóki ich nie zinterpretujemy.
+
+Gdy dane zaczynamy rozumieć w kontekście – powstaje informacja.
+
+A gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – mamy wiedzę.
+
+
+### 📊 Przykład:
+
+Dane: 36.7, 37.1, 38.2
+
+Informacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”
+
+Wiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”
+
+### 💬 Pytanie:
+Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?
+
+## 💾 2. Rodzaje danych
+
+🗣
+
+W świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.
+
+### 📚 Klasyfikacja:
+
+1. Ustrukturyzowane
+
+Dane w tabelach, arkuszach, bazach.
+Każdy wiersz ma taki sam zestaw kolumn.
+Przykład: tabela klientów w Excelu lub SQL.
+
+ID | Imię | Nazwisko | Miasto
+1  | Anna | Nowak    | Kraków
+2  | Jan  | Kowalski | Warszawa
+
+2. Półustrukturyzowane
+
+Zawierają strukturę, ale nie jest ona sztywna.
+
+Przykład: pliki JSON, XML.
+
+```JSON
+{
+  "imie": "Anna",
+  "miasto": "Kraków",
+  "zainteresowania": ["sport", "muzyka"]
+}
+```
+
+3. Nieustrukturyzowane
+
+Brak jasno określonej struktury danych.
+
+Przykład: obraz, dźwięk, wideo, dokument PDF.
+
+Takie dane trudno przeszukiwać klasycznymi metodami SQL.
+
+### 💬 Pytanie:
+Jakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?
+
+## 🗂️ 3. Pliki jako forma przechowywania danych
+
+🗣 
+
+Zanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).
+
+To po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.
+
+📄 Przykład pliku płaskiego (CSV):
+
+```csv
+ID,Imię,Nazwisko,Miasto
+1,Anna,Nowak,Kraków
+2,Jan,Kowalski,Warszawa
+3,Piotr,Wiśniewski,Poznań
+```
+
+### 🗃 Co można zauważyć:
+
+Dane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.
+
+Ale… brak:
+
+- kontroli nad poprawnością (np. można wpisać błędny numer ID),
+- relacji między danymi (osobna lista klientów i zamówień się nie łączy),
+- spójności przy równoczesnym dostępie.
+
+### 💬 Pytanie:
+
+> Co się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?
+
+
+## 🧱 4. Problemy pracy z plikami
+
+🗣 
+
+Wraz ze wzrostem ilości danych zaczynają się problemy.
+
+Systemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.
+
+### ⚠️ Typowe problemy:
+
+1. Redundancja danych – powielanie informacji.
+np. imię i adres klienta wpisywany przy każdym zamówieniu.
+
+2. Niespójność danych – różne wersje tych samych danych w wielu plikach.
+
+3. Trudność w aktualizacji – brak jednego miejsca prawdy.
+
+4. Brak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.
+
+5. Brak bezpieczeństwa i kontroli dostępu.
+
+### 🧠 Przykład:
+
+Plik klienci.txt i zamowienia.txt – brak połączenia między nimi.
+Trudno ustalić, które zamówienie należy do którego klienta.
+
+
+```txt
+klienci.txt:
+1;Anna Nowak;Kraków
+2;Jan Kowalski;Warszawa
+
+zamowienia.txt:
+10;Laptop;1
+11;Monitor;2
+12;Kabel HDMI;1
+```
+
+To działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.
+
+
+## 🧮 5. Od pliku do bazy danych
+
+🗣 
+
+Aby rozwiązać te problemy, w latach 70. pojawiła się koncepcja systemu bazodanowego.
+
+Pomysł był prosty, ale rewolucyjny:
+
+- dane przechowywane są w jednym centralnym repozytorium,
+- dostęp do nich odbywa się przez język zapytań (SQL),
+- kontrolowana jest spójność, współbieżność, bezpieczeństwo.
+
+### 📚 Pojęcia podstawowe:
+
+1. Baza danych – zbiór danych o określonej strukturze.
+2. System zarządzania bazą danych (DBMS) – oprogramowanie do tworzenia, przechowywania, udostępniania danych.
+3. Użytkownicy – aplikacje, programiści, analitycy, którzy korzystają z danych.
+
+### 📊 Przykład:
+
+Porównanie pliku CSV z tabelą SQL:
+
+| Cecha            | Plik CSV          | Baza danych (SQL)                   |
+| ---------------- | ----------------- | ----------------------------------- |
+| Struktura danych | Tekstowa, dowolna | Ściśle zdefiniowana (kolumny, typy) |
+| Spójność danych  | Nie               | Zapewnia DBMS                       |
+| Współbieżność    | Brak              | Obsługiwana                         |
+| Wyszukiwanie     | Pełne skanowanie  | Zapytania, indeksy                  |
+| Bezpieczeństwo   | Brak              | Kontrola dostępu                    |
+
+
+## 🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy
+
+🗣 
+
+Zanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposób ich przetwarzania.
+
+| Typ danych   | Przykład          | Narzędzie przetwarzania    | Typowe operacje                      |
+| ------------ | ----------------- | -------------------------- | ------------------------------------ |
+| Tabelaryczne | sprzedaż, klienci | SQL, Excel                 | sortowanie, sumowanie, filtracja     |
+| Tekstowe     | artykuły, maile   | wyszukiwanie pełnotekstowe | indeksowanie, analiza słów           |
+| Obraz        | zdjęcia, wideo    | biblioteki CV, AI          | klasyfikacja, rozpoznawanie obiektów |
+| Dźwięk       | nagrania, mowa    | DSP, ML                    | filtracja, transkrypcja              |
+
+
+### 💬 Pytanie:
+
+>Dlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?
+
+
+## 🧩 7. Podsumowanie wykładu
+
+### 🔑 Kluczowe pojęcia:
+
+Dane vs informacja vs wiedza
+
+Ustrukturyzowane / nieustrukturyzowane dane
+
+Plik płaski i jego ograniczenia
+
+Powody wprowadzenia systemów baz danych
+
+### 🧭 Wniosek:
+
+> Bazy danych powstały nie dlatego, że ktoś lubił tabele,
+> ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.
+
+
+## 📚 Materiały do dalszej lektury
+
+1. C.J. Date, An Introduction to Database Systems
+2. R. Elmasri, S.B. Navathe, Fundamentals of Database Systems
+3. Dokumentacja PostgreSQL: https://www.postgresql.org/docs/

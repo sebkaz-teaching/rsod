@@ -8,11 +8,6 @@ Kod:
 
 Semestr: letni
 
-Podstawowe informacje znajdziesz w [sylabusie](/sylabus).
-
-Ciekawe książki i strony internetowe zamieszczone zostały w zakładce [książki](/ksiazki). 
-Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.
-
 ## Kalendarz
 
 ### Wykład dla grup: WEL23EV1S0, WEL23EA1S0
@@ -26,10 +21,19 @@ Jeśli chciał(a)byś coś dodać prześlij informacje przez MS teams.
 
 ### Laboratorium grupa WEL23EV1S0: 
 
-1. 13.11.2025 Czwartek Lab - b. 61 sala 116
 
+
+1. 25.11.2025 Wtorek - b. 61 sala 116
+2. 04.12.2025 czwartek - b. 61 sala 116
+3. 18.12.2025 czwartek - b. 61 sala 116
+4. 08.01.2026 Czwartek - b. 61 sala 116
+5. 22.01.2026 czwartek - b. 61 sala 116
 
 
 ### Laboratorium grupa WEL23EA1S0:
 
-1. 
+1. 13.11.2025 Czwartek Lab  - b. 61 sala 116
+2. 26.11.2025 środa Lab - b. 61 sala 116
+3. 11.12.2025 czwartek - b. 61 sala 116
+4. 15.01.2026 czwartek - b. 61 sala 116
+5. 21.01.2026 środa - b. 61 sala 116

@@ -162,6 +162,30 @@
     ]
   },
   {
+    "objectID": "lectures/wyklad1.html#historia-i-ewolucja-baz-danych",
+    "href": "lectures/wyklad1.html#historia-i-ewolucja-baz-danych",
+    "title": "Od pliku do bazy danych",
+    "section": "Historia i ewolucja baz danych",
+    "text": "Historia i ewolucja baz danych\nBazy danych nie są wynalazkiem XXI wieku — ich początki sięgają lat 60. XX wieku, gdy organizacje zaczęły gromadzić coraz większe ilości danych.\n\n🔹 Systemy plikowe\nPierwsze systemy przechowywały dane w plikach na dyskach. Choć były proste, miały poważne ograniczenia:\n\nBrak centralnej kontroli nad danymi\nTrudność w utrzymaniu spójności\nBrak uniwersalnych narzędzi do wyszukiwania\n\n💡 Zadanie: Na jakich innych obiektach, oprócz plików, można pracować w systemach operacyjnych?\n\n\n🔹 Wczesne systemy DBMS\nW latach 60. i 70. pojawiły się pierwsze systemy zarządzania bazami danych (DBMS). Zapewniały:\n\ncentralną kontrolę danych,\nintegralność i bezpieczeństwo,\nwydajne przetwarzanie i wyszukiwanie.\n\n\n\n🔹 Modele hierarchiczne i sieciowe\nWczesne systemy wykorzystywały struktury drzewiaste lub grafowe. Były skuteczne, ale trudne w modyfikacji i rozwoju.\n\n\n🔹 Przełom: model relacyjny\nW 1970 roku Edgar F. Codd zaproponował model relacyjny danych, w którym:\n\ndane są przechowywane w tabelach (relacjach),\nkażda tabela ma kolumny (atrybuty) i wiersze (krotki).\n\nZalety:\n\nprostota i przejrzystość,\nelastyczność (łatwo dodawać nowe tabele),\nbezpieczeństwo i spójność danych.\n\n\n\n🔹 SQL – język pracy z danymi\nWraz z rozwojem modelu relacyjnego powstał SQL (Structured Query Language) – język do tworzenia, modyfikowania i pobierania danych.\nDziś SQL jest fundamentem większości systemów: od aplikacji biurowych po duże systemy korporacyjne. Nawet współczesne rozwiązania NoSQL często nawiązują do idei relacyjnych.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#dane-informacja-baza-danych-i-dbms",
+    "href": "lectures/wyklad1.html#dane-informacja-baza-danych-i-dbms",
+    "title": "Od pliku do bazy danych",
+    "section": "Dane, informacja, baza danych i DBMS",
+    "text": "Dane, informacja, baza danych i DBMS\n\n🔹 Dane a informacja\n\nDane – surowe fakty, liczby, teksty, które same w sobie niewiele znaczą. 👉 np. 25, Warszawa, 12345\nInformacja – dane zinterpretowane i zorganizowane w kontekście. 👉 np. „25 klientów z Warszawy złożyło zamówienie w ostatnim tygodniu”.\n\nDane to materiał, informacja to znaczenie.\n\n\n🔹 Baza danych\nZorganizowany zbiór danych umożliwiający ich łatwe przeszukiwanie, aktualizację i analizę.\nCechy:\n\nStrukturalność\nCentralizacja\nTrwałość i bezpieczeństwo\n\nPrzykłady:\n\nLista kontaktów w telefonie\nSystem rezerwacji hotelowej\nSklep internetowy",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
     "objectID": "lectures/wyklad1.html#materiały-do-dalszej-lektury",
     "href": "lectures/wyklad1.html#materiały-do-dalszej-lektury",
     "title": "Od pliku do bazy danych",

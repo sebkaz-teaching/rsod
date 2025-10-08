@@ -257,6 +257,87 @@ Powody wprowadzenia systemów baz danych
 > ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.
 
 
+## Historia i ewolucja baz danych
+
+Bazy danych nie są wynalazkiem XXI wieku — ich początki sięgają lat 60. XX wieku, gdy organizacje zaczęły gromadzić coraz większe ilości danych.
+
+### 🔹 Systemy plikowe
+
+Pierwsze systemy przechowywały dane w plikach na dyskach.
+Choć były proste, miały poważne ograniczenia:
+
+- Brak centralnej kontroli nad danymi
+- Trudność w utrzymaniu spójności
+- Brak uniwersalnych narzędzi do wyszukiwania
+
+💡 Zadanie: Na jakich innych obiektach, oprócz plików, można pracować w systemach operacyjnych?
+
+### 🔹 Wczesne systemy DBMS
+
+W latach 60. i 70. pojawiły się pierwsze systemy zarządzania bazami danych (DBMS).
+Zapewniały:
+
+- centralną kontrolę danych,
+- integralność i bezpieczeństwo,
+- wydajne przetwarzanie i wyszukiwanie.
+
+### 🔹 Modele hierarchiczne i sieciowe
+
+Wczesne systemy wykorzystywały struktury drzewiaste lub grafowe.
+Były skuteczne, ale trudne w modyfikacji i rozwoju.
+
+### 🔹 Przełom: model relacyjny
+
+W 1970 roku Edgar F. Codd zaproponował model relacyjny danych, w którym:
+
+- dane są przechowywane w tabelach (relacjach),
+- każda tabela ma kolumny (atrybuty) i wiersze (krotki).
+
+Zalety:
+
+- prostota i przejrzystość,
+- elastyczność (łatwo dodawać nowe tabele),
+- bezpieczeństwo i spójność danych.
+
+### 🔹 SQL – język pracy z danymi
+
+Wraz z rozwojem modelu relacyjnego powstał SQL (Structured Query Language) – język do tworzenia, modyfikowania i pobierania danych.
+
+Dziś SQL jest fundamentem większości systemów: od aplikacji biurowych po duże systemy korporacyjne.
+Nawet współczesne rozwiązania NoSQL często nawiązują do idei relacyjnych.
+
+## Dane, informacja, baza danych i DBMS
+
+### 🔹 Dane a informacja
+
+- Dane – surowe fakty, liczby, teksty, które same w sobie niewiele znaczą.
+👉 np. 25, Warszawa, 12345
+
+- Informacja – dane zinterpretowane i zorganizowane w kontekście.
+👉 np. „25 klientów z Warszawy złożyło zamówienie w ostatnim tygodniu”.
+
+Dane to materiał, informacja to znaczenie.
+
+
+### 🔹 Baza danych
+
+Zorganizowany zbiór danych umożliwiający ich łatwe przeszukiwanie, aktualizację i analizę.
+
+Cechy:
+
+- Strukturalność
+- Centralizacja
+- Trwałość i bezpieczeństwo
+
+Przykłady:
+
+- Lista kontaktów w telefonie
+- System rezerwacji hotelowej
+- Sklep internetowy
+
+
+
+
 ## 📚 Materiały do dalszej lektury
 
 1. C.J. Date, An Introduction to Database Systems

@@ -232,6 +232,8 @@ window.Quarto = {
   <li><a href="#od-pliku-do-bazy-danych" id="toc-od-pliku-do-bazy-danych" class="nav-link" data-scroll-target="#od-pliku-do-bazy-danych">🧮 5. Od pliku do bazy danych</a></li>
   <li><a href="#różnice-w-przetwarzaniu-danych-przykład-porównawczy" id="toc-różnice-w-przetwarzaniu-danych-przykład-porównawczy" class="nav-link" data-scroll-target="#różnice-w-przetwarzaniu-danych-przykład-porównawczy">🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy</a></li>
   <li><a href="#podsumowanie-wykładu" id="toc-podsumowanie-wykładu" class="nav-link" data-scroll-target="#podsumowanie-wykładu">🧩 7. Podsumowanie wykładu</a></li>
+  <li><a href="#historia-i-ewolucja-baz-danych" id="toc-historia-i-ewolucja-baz-danych" class="nav-link" data-scroll-target="#historia-i-ewolucja-baz-danych">Historia i ewolucja baz danych</a></li>
+  <li><a href="#dane-informacja-baza-danych-i-dbms" id="toc-dane-informacja-baza-danych-i-dbms" class="nav-link" data-scroll-target="#dane-informacja-baza-danych-i-dbms">Dane, informacja, baza danych i DBMS</a></li>
   <li><a href="#materiały-do-dalszej-lektury" id="toc-materiały-do-dalszej-lektury" class="nav-link" data-scroll-target="#materiały-do-dalszej-lektury">📚 Materiały do dalszej lektury</a></li>
   </ul>
 </nav>
@@ -575,6 +577,79 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>Bazy danych powstały nie dlatego, że ktoś lubił tabele, ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.</p>
 </blockquote>
+</section>
+</section>
+<section id="historia-i-ewolucja-baz-danych" class="level2">
+<h2 class="anchored" data-anchor-id="historia-i-ewolucja-baz-danych">Historia i ewolucja baz danych</h2>
+<p>Bazy danych nie są wynalazkiem XXI wieku — ich początki sięgają lat 60. XX wieku, gdy organizacje zaczęły gromadzić coraz większe ilości danych.</p>
+<section id="systemy-plikowe" class="level3">
+<h3 class="anchored" data-anchor-id="systemy-plikowe">🔹 Systemy plikowe</h3>
+<p>Pierwsze systemy przechowywały dane w plikach na dyskach. Choć były proste, miały poważne ograniczenia:</p>
+<ul>
+<li>Brak centralnej kontroli nad danymi</li>
+<li>Trudność w utrzymaniu spójności</li>
+<li>Brak uniwersalnych narzędzi do wyszukiwania</li>
+</ul>
+<p>💡 Zadanie: Na jakich innych obiektach, oprócz plików, można pracować w systemach operacyjnych?</p>
+</section>
+<section id="wczesne-systemy-dbms" class="level3">
+<h3 class="anchored" data-anchor-id="wczesne-systemy-dbms">🔹 Wczesne systemy DBMS</h3>
+<p>W latach 60. i 70. pojawiły się pierwsze systemy zarządzania bazami danych (DBMS). Zapewniały:</p>
+<ul>
+<li>centralną kontrolę danych,</li>
+<li>integralność i bezpieczeństwo,</li>
+<li>wydajne przetwarzanie i wyszukiwanie.</li>
+</ul>
+</section>
+<section id="modele-hierarchiczne-i-sieciowe" class="level3">
+<h3 class="anchored" data-anchor-id="modele-hierarchiczne-i-sieciowe">🔹 Modele hierarchiczne i sieciowe</h3>
+<p>Wczesne systemy wykorzystywały struktury drzewiaste lub grafowe. Były skuteczne, ale trudne w modyfikacji i rozwoju.</p>
+</section>
+<section id="przełom-model-relacyjny" class="level3">
+<h3 class="anchored" data-anchor-id="przełom-model-relacyjny">🔹 Przełom: model relacyjny</h3>
+<p>W 1970 roku Edgar F. Codd zaproponował model relacyjny danych, w którym:</p>
+<ul>
+<li>dane są przechowywane w tabelach (relacjach),</li>
+<li>każda tabela ma kolumny (atrybuty) i wiersze (krotki).</li>
+</ul>
+<p>Zalety:</p>
+<ul>
+<li>prostota i przejrzystość,</li>
+<li>elastyczność (łatwo dodawać nowe tabele),</li>
+<li>bezpieczeństwo i spójność danych.</li>
+</ul>
+</section>
+<section id="sql-język-pracy-z-danymi" class="level3">
+<h3 class="anchored" data-anchor-id="sql-język-pracy-z-danymi">🔹 SQL – język pracy z danymi</h3>
+<p>Wraz z rozwojem modelu relacyjnego powstał SQL (Structured Query Language) – język do tworzenia, modyfikowania i pobierania danych.</p>
+<p>Dziś SQL jest fundamentem większości systemów: od aplikacji biurowych po duże systemy korporacyjne. Nawet współczesne rozwiązania NoSQL często nawiązują do idei relacyjnych.</p>
+</section>
+</section>
+<section id="dane-informacja-baza-danych-i-dbms" class="level2">
+<h2 class="anchored" data-anchor-id="dane-informacja-baza-danych-i-dbms">Dane, informacja, baza danych i DBMS</h2>
+<section id="dane-a-informacja" class="level3">
+<h3 class="anchored" data-anchor-id="dane-a-informacja">🔹 Dane a informacja</h3>
+<ul>
+<li><p>Dane – surowe fakty, liczby, teksty, które same w sobie niewiele znaczą. 👉 np. 25, Warszawa, 12345</p></li>
+<li><p>Informacja – dane zinterpretowane i zorganizowane w kontekście. 👉 np. „25 klientów z Warszawy złożyło zamówienie w ostatnim tygodniu”.</p></li>
+</ul>
+<p>Dane to materiał, informacja to znaczenie.</p>
+</section>
+<section id="baza-danych" class="level3">
+<h3 class="anchored" data-anchor-id="baza-danych">🔹 Baza danych</h3>
+<p>Zorganizowany zbiór danych umożliwiający ich łatwe przeszukiwanie, aktualizację i analizę.</p>
+<p>Cechy:</p>
+<ul>
+<li>Strukturalność</li>
+<li>Centralizacja</li>
+<li>Trwałość i bezpieczeństwo</li>
+</ul>
+<p>Przykłady:</p>
+<ul>
+<li>Lista kontaktów w telefonie</li>
+<li>System rezerwacji hotelowej</li>
+<li>Sklep internetowy</li>
+</ul>
 </section>
 </section>
 <section id="materiały-do-dalszej-lektury" class="level2">

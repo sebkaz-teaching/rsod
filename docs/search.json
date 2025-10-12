@@ -4,7 +4,189 @@
     "href": "lectures/plan.html",
     "title": "Relacyjne Systemy Organizacji Danych",
     "section": "",
-    "text": "🎓 OGÓLNE ZAŁOŻENIA CYKLU WYKŁADÓW Cel przedmiotu: Poznanie zasad gromadzenia, przechowywania, przetwarzania i udostępniania informacji w relacyjnych bazach danych. Zrozumienie projektowania, tworzenia i administrowania bazami danych oraz podstaw bezpieczeństwa i niezawodności systemów bazodanowych. Forma: 5 wykładów po 1,5 h (łącznie 7,5 h), z elementami dyskusji, przykładami SQL oraz odniesieniami do praktyki (np. PostgreSQL/MySQL).\n📘 WYKŁAD 1 – DANE I SYSTEMY ICH ORGANIZACJI Temat: Od pliku do bazy danych Cele: zrozumienie pojęcia danych, informacji i wiedzy, poznanie podstawowych form organizacji danych, wprowadzenie do pojęcia systemu bazodanowego. Zakres treści: Dane, informacja, wiedza – hierarchia pojęć. Rodzaje danych: ustrukturyzowane (np. tabele CSV), półustrukturyzowane (JSON, XML), nieustrukturyzowane (obrazy, dźwięk, teksty). Pliki jako forma przechowywania danych: pliki płaskie – cechy, wady, zalety, systemy plików, metadane, nazwy, prawa dostępu. Problemy przy pracy z plikami: redundancja, niespójność, brak współbieżności. Dlaczego bazy danych? idea centralnego repozytorium, korzyści z relacyjnego modelu danych, krótka historia (Codd, model relacyjny). Akcent praktyczny: porównanie pliku CSV z tabelą SQL. Efekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.\n📗 WYKŁAD 2 – MODEL RELACYJNY I PODSTAWY SQL Temat: Reprezentacja danych i podstawy zapytań Cele: zrozumienie idei relacji, kluczy i więzów integralności, nauczenie podstaw składni SQL. Zakres treści: Model relacyjny: tabele, wiersze, kolumny, dziedziny, klucze główne, obce, unikalność, null. Schemat bazy danych i relacje między tabelami. Podstawy SQL (DDL i DML): CREATE TABLE, ALTER TABLE, DROP TABLE, INSERT, SELECT, UPDATE, DELETE, podstawy WHERE, ORDER BY, GROUP BY, JOIN. Różnice między SQL a językami proceduralnymi. Akcent praktyczny: budowa prostej bazy np. „Biblioteka” (książki, autorzy). Efekty uczenia się: zna podstawową składnię SQL i potrafi tworzyć proste zapytania. 📙 WYKŁAD 3 – NORMALIZACJA I PROJEKTOWANIE BAZ DANYCH Temat: Jak uniknąć błędów w projektowaniu? Cele: nauczenie zasad normalizacji, zrozumienie zależności funkcjonalnych, wprowadzenie do diagramów ERD. Zakres treści: Problemy złego projektu: redundancja, anomalie aktualizacji, usuwania. Pojęcie zależności funkcjonalnych. Formy normalne (1NF–3NF, BCNF): przykłady i zastosowania. Diagramy ERD (Entity–Relationship Diagram): encje, atrybuty, relacje, kardynalności, identyfikatory. Proces projektowania bazy: analiza wymagań → model konceptualny → model logiczny → model fizyczny. Akcent praktyczny: ćwiczenie – model bazy danych dla systemu uczelnianego. Efekty uczenia się: potrafi projektować relacyjną bazę danych zgodnie z zasadami normalizacji. 📒 WYKŁAD 4 – TRANSAKCJE, WSPÓŁBIEŻNOŚĆ I WIDOKI Temat: Mechanizmy zapewniania spójności danych Cele: poznanie zasad transakcyjności, zrozumienie współbieżności i izolacji, wprowadzenie do widoków i ich zastosowań. Zakres treści: Pojęcie transakcji i właściwości ACID: atomicity, consistency, isolation, durability. Problemy współbieżności: utracone aktualizacje, odczyty brudnych danych, blokady. Poziomy izolacji transakcji. Widoki (Views): definicja, zalety (abstrakcja, bezpieczeństwo), przykłady CREATE VIEW, WITH CHECK OPTION. Przykład – transakcje w PostgreSQL (BEGIN/COMMIT/ROLLBACK). Akcent praktyczny: analiza równoczesnych transakcji na tej samej tabeli. Efekty uczenia się: rozumie zasady transakcyjności i umie zastosować widoki. 📕 WYKŁAD 5 – ADMINISTRACJA, BEZPIECZEŃSTWO I KOPIE ZAPASOWE Temat: Utrzymanie i ochrona baz danych Cele: poznanie zasad administrowania bazami danych, zrozumienie bezpieczeństwa i odporności systemów bazodanowych. Zakres treści: Role i uprawnienia użytkowników: GRANT, REVOKE, zarządzanie kontami. Bezpieczeństwo danych: szyfrowanie, kontrola dostępu, logowanie zdarzeń. Backup i odzyskiwanie: kopie pełne, przyrostowe, różnicowe, replikacja i wysokie dostępności (HA). Monitorowanie i optymalizacja: indeksy, analiza planów zapytań. Przegląd systemów bazodanowych: PostgreSQL, MySQL, SQLite, MS SQL, Oracle. Efekty uczenia się: zna metody ochrony i zarządzania bazami danych, potrafi wskazać strategie kopii zapasowych. 💡 PROJEKT ZALICZENIOWY (do realizacji na ćwiczeniach) Temat: Projekt i implementacja relacyjnej bazy danych wspierającej wybrany proces organizacyjny. Etapy projektu: Analiza problemu i identyfikacja wymagań. (np. system rezerwacji sal, ewidencja sprzętu, biblioteka, wypożyczalnia, rejestr studentów) Model konceptualny (ERD) i logiczny bazy danych. Implementacja bazy w wybranym systemie (np. PostgreSQL). Wypełnienie przykładowymi danymi, przygotowanie zapytań SQL. Demonstracja transakcji, widoków i podstawowych mechanizmów bezpieczeństwa. Efekty projektu: integracja wiedzy z zakresu modelowania, SQL i zarządzania, praktyczne umiejętności tworzenia bazy danych od podstaw, doświadczenie w pracy zespołowej i prezentacji wyników. 📈 POWIĄZANIE Z EFEKTAMI UCZENIA SIĘ Efekt uczenia się Odniesienie do wykładów / projektu Zna i rozumie algorytmy i metody w systemach BD Wykłady 2–5 Ma wiedzę z zakresu przetwarzania danych Wykład 1, 2 Zna standardy stosowane w BD Wykłady 2, 5 Potrafi przygotować prezentację i prowadzić dyskusję Projekt zespołowy Umie wykorzystać modele w realizacji projektów BD Wykład 3 + projekt Integruje wiedzę techniczną i pozatechniczną Projekt (analiza potrzeb użytkownika) Określa priorytety w realizacji zadań Projekt – planowanie etapów"
+    "text": "📙 WYKŁAD 3 – NORMALIZACJA I PROJEKTOWANIE BAZ DANYCH Temat: Jak uniknąć błędów w projektowaniu? Cele: nauczenie zasad normalizacji, zrozumienie zależności funkcjonalnych, wprowadzenie do diagramów ERD. Zakres treści: Problemy złego projektu: redundancja, anomalie aktualizacji, usuwania. Pojęcie zależności funkcjonalnych. Formy normalne (1NF–3NF, BCNF): przykłady i zastosowania. Diagramy ERD (Entity–Relationship Diagram): encje, atrybuty, relacje, kardynalności, identyfikatory. Proces projektowania bazy: analiza wymagań → model konceptualny → model logiczny → model fizyczny. Akcent praktyczny: ćwiczenie – model bazy danych dla systemu uczelnianego. Efekty uczenia się: potrafi projektować relacyjną bazę danych zgodnie z zasadami normalizacji. 📒 WYKŁAD 4 – TRANSAKCJE, WSPÓŁBIEŻNOŚĆ I WIDOKI Temat: Mechanizmy zapewniania spójności danych Cele: poznanie zasad transakcyjności, zrozumienie współbieżności i izolacji, wprowadzenie do widoków i ich zastosowań. Zakres treści: Pojęcie transakcji i właściwości ACID: atomicity, consistency, isolation, durability. Problemy współbieżności: utracone aktualizacje, odczyty brudnych danych, blokady. Poziomy izolacji transakcji. Widoki (Views): definicja, zalety (abstrakcja, bezpieczeństwo), przykłady CREATE VIEW, WITH CHECK OPTION. Przykład – transakcje w PostgreSQL (BEGIN/COMMIT/ROLLBACK). Akcent praktyczny: analiza równoczesnych transakcji na tej samej tabeli. Efekty uczenia się: rozumie zasady transakcyjności i umie zastosować widoki. 📕 WYKŁAD 5 – ADMINISTRACJA, BEZPIECZEŃSTWO I KOPIE ZAPASOWE Temat: Utrzymanie i ochrona baz danych Cele: poznanie zasad administrowania bazami danych, zrozumienie bezpieczeństwa i odporności systemów bazodanowych. Zakres treści: Role i uprawnienia użytkowników: GRANT, REVOKE, zarządzanie kontami. Bezpieczeństwo danych: szyfrowanie, kontrola dostępu, logowanie zdarzeń. Backup i odzyskiwanie: kopie pełne, przyrostowe, różnicowe, replikacja i wysokie dostępności (HA). Monitorowanie i optymalizacja: indeksy, analiza planów zapytań. Przegląd systemów bazodanowych: PostgreSQL, MySQL, SQLite, MS SQL, Oracle. Efekty uczenia się: zna metody ochrony i zarządzania bazami danych, potrafi wskazać strategie kopii zapasowych. 💡 PROJEKT ZALICZENIOWY (do realizacji na ćwiczeniach) Temat: Projekt i implementacja relacyjnej bazy danych wspierającej wybrany proces organizacyjny. Etapy projektu: Analiza problemu i identyfikacja wymagań. (np. system rezerwacji sal, ewidencja sprzętu, biblioteka, wypożyczalnia, rejestr studentów) Model konceptualny (ERD) i logiczny bazy danych. Implementacja bazy w wybranym systemie (np. PostgreSQL). Wypełnienie przykładowymi danymi, przygotowanie zapytań SQL. Demonstracja transakcji, widoków i podstawowych mechanizmów bezpieczeństwa. Efekty projektu: integracja wiedzy z zakresu modelowania, SQL i zarządzania, praktyczne umiejętności tworzenia bazy danych od podstaw, doświadczenie w pracy zespołowej i prezentacji wyników. 📈 POWIĄZANIE Z EFEKTAMI UCZENIA SIĘ Efekt uczenia się Odniesienie do wykładów / projektu Zna i rozumie algorytmy i metody w systemach BD Wykłady 2–5 Ma wiedzę z zakresu przetwarzania danych Wykład 1, 2 Zna standardy stosowane w BD Wykłady 2, 5 Potrafi przygotować prezentację i prowadzić dyskusję Projekt zespołowy Umie wykorzystać modele w realizacji projektów BD Wykład 3 + projekt Integruje wiedzę techniczną i pozatechniczną Projekt (analiza potrzeb użytkownika) Określa priorytety w realizacji zadań Projekt – planowanie etapów"
+  },
+  {
+    "objectID": "lectures/wyklad2.html",
+    "href": "lectures/wyklad2.html",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "",
+    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#model-relacyjny-przypomnienie-i-pojęcia-podstawowe",
+    "href": "lectures/wyklad2.html#model-relacyjny-przypomnienie-i-pojęcia-podstawowe",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "",
+    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#klucze-i-więzy-integralności",
+    "href": "lectures/wyklad2.html#klucze-i-więzy-integralności",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "2️⃣ Klucze i więzy integralności",
+    "text": "2️⃣ Klucze i więzy integralności\n\n🔸 Klucz główny (PRIMARY KEY)\n\nUnikalnie identyfikuje każdy wiersz w tabeli.\nNie może być NULL.\n\n\n\n🔸 Klucz obcy (FOREIGN KEY)\n\nOdwołuje się do innej tabeli (relacja między tabelami).\n\n\n\n🔸 Inne więzy:\n\nUNIQUE – unikalność wartości w kolumnie.\nNOT NULL – kolumna nie może mieć wartości pustej.\nCHECK – warunek logiczny na wartość kolumny.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#schemat-bazy-danych-przykład-biblioteka",
+    "href": "lectures/wyklad2.html#schemat-bazy-danych-przykład-biblioteka",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "3️⃣ Schemat bazy danych – przykład „Biblioteka”",
+    "text": "3️⃣ Schemat bazy danych – przykład „Biblioteka”\n\nTabele:\n\nAutorzy (autor_id, imie, nazwisko)\nKsiazki (ksiazka_id, tytul, rok, autor_id)\n\n\n\nRelacja:\n\nKsiazki.autor_id \\(\\to\\) Autorzy.autor_id (klucz obcy)",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#tworzenie-tabel-ddl-data-definition-language",
+    "href": "lectures/wyklad2.html#tworzenie-tabel-ddl-data-definition-language",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "4️⃣ Tworzenie tabel (DDL – Data Definition Language)",
+    "text": "4️⃣ Tworzenie tabel (DDL – Data Definition Language)\nPolecenie CREATE TABLE służy do utworzenia nowej tabeli w bazie danych.\nW tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak PRIMARY KEY, NOT NULL czy FOREIGN KEY.\nKażda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.\nW przykładzie poniżej tworzymy dwie tabele: Autorzy i Ksiazki, które będą ze sobą powiązane relacją klucz główny–klucz obcy.\n\nPrzykład w SQLite i PostgreSQL\nCREATE TABLE Autorzy (\n    autor_id     INTEGER PRIMARY KEY,         -- w SQLite automatycznie AUTOINCREMENT\n    imie         TEXT NOT NULL,\n    nazwisko     TEXT NOT NULL\n);\n\nCREATE TABLE Ksiazki (\n    ksiazka_id   SERIAL PRIMARY KEY,          -- PostgreSQL: automatyczna numeracja\n    tytul        VARCHAR(200) NOT NULL,\n    rok          INTEGER CHECK (rok &gt; 0),\n    autor_id     INTEGER,\n    FOREIGN KEY (autor_id) REFERENCES Autorzy(autor_id)\n);\n\nW SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.\nW PostgreSQL SERIAL lub GENERATED ALWAYS AS IDENTITY.\n\nW powyższym przykładzie tabela Autorzy przechowuje dane o autorach, a tabela Ksiazki – dane o książkach. Kolumna autor_id w tabeli Ksiazki jest kluczem obcym i wskazuje, który autor napisał daną książkę. Dzięki więzom integralności baza pilnuje, aby każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#modyfikacja-i-usuwanie-tabel",
+    "href": "lectures/wyklad2.html#modyfikacja-i-usuwanie-tabel",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "5️⃣ Modyfikacja i usuwanie tabel",
+    "text": "5️⃣ Modyfikacja i usuwanie tabel\nALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;\n\nDROP TABLE Ksiazki;",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#wstawianie-danych-dml-data-manipulation-language",
+    "href": "lectures/wyklad2.html#wstawianie-danych-dml-data-manipulation-language",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "6️⃣ Wstawianie danych (DML – Data Manipulation Language)",
+    "text": "6️⃣ Wstawianie danych (DML – Data Manipulation Language)\nPolecenie INSERT INTO służy do wprowadzania nowych wierszy (rekordów) do tabeli. Wartości muszą być zgodne z typami kolumn oraz ograniczeniami (NOT NULL, CHECK, itp.). Można dodać jeden lub wiele rekordów w jednym poleceniu. Poniżej wstawiamy kilku autorów oraz ich książki do utworzonych wcześniej tabel.\nINSERT INTO Autorzy (imie, nazwisko) VALUES\n('Adam', 'Mickiewicz'),\n('Henryk', 'Sienkiewicz'),\n('Bolesław', 'Prus');\n\nINSERT INTO Ksiazki (tytul, rok, autor_id) VALUES\n('Pan Tadeusz', 1834, 1),\n('Quo Vadis', 1896, 2),\n('Lalka', 1890, 3);\nKażdy rekord reprezentuje jedną pozycję w tabeli. Polecenie INSERT wymaga podania wartości w tej samej kolejności, w jakiej wymieniono kolumny. Jeśli nie podamy jakiejś kolumny, a ma ona zdefiniowaną wartość domyślną (DEFAULT), baza wstawi ją automatycznie. Dzięki temu możemy stopniowo budować zawartość naszej bazy danych.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#wybieranie-danych-select",
+    "href": "lectures/wyklad2.html#wybieranie-danych-select",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "7️⃣ Wybieranie danych – SELECT",
+    "text": "7️⃣ Wybieranie danych – SELECT\n\n🧩 Podstawowy SELECT\nPolecenie SELECT jest najczęściej używanym poleceniem SQL i służy do pobierania danych z tabel. Pozwala określić, które kolumny chcemy zobaczyć i z których tabel dane mają pochodzić. Jeśli użyjemy gwiazdki *, oznacza to, że wybieramy wszystkie kolumny. Poniższe zapytanie zwraca wszystkich autorów z tabeli Autorzy.\nSELECT * FROM Autorzy;\n\n\n🧩 Wybór konkretnych kolumn\nSELECT imie, nazwisko FROM Autorzy;\nWynik to pełna tabela z kolumnami autor_id, imie i nazwisko. Często jednak potrzebujemy tylko części danych, np. imienia i nazwiska – wtedy podajemy konkretne kolumny:\n\n\n🧩 Nadawanie aliasów\nSELECT imie AS \"Imię\", nazwisko AS \"Nazwisko\" FROM Autorzy;\nTakie zapytania pomagają ograniczyć ilość danych i zwiększyć czytelność wyników. Warto też nadawać aliasy (AS), które pozwalają zmienić nazwę kolumn w wynikach i nadać im bardziej opisowy wygląd.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#filtrowanie-where",
+    "href": "lectures/wyklad2.html#filtrowanie-where",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "8️⃣ Filtrowanie – WHERE",
+    "text": "8️⃣ Filtrowanie – WHERE\nKiedy chcemy wybrać tylko część danych, używamy klauzuli WHERE. Dzięki niej możemy ustawić warunki, jakie muszą spełniać rekordy, by pojawiły się w wyniku. To bardzo potężne narzędzie, które pozwala np. wyszukiwać książki z konkretnego roku lub autora. W poniższym przykładzie wybieramy książki wydane po roku 1850.\nSELECT * FROM Ksiazki\nWHERE rok &gt; 1850;\n\n🧠 Operatory:\nMożemy też stosować inne operatory:\n\n=, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=\nLIKE ‘Q%’ → zaczyna się na Q\nIN (…)\nBETWEEN 1800 AND 1900\nIS NULL, IS NOT NULL\n\nNa przykład, aby znaleźć wszystkie książki, których tytuł zawiera literę „a”, używamy wzorca z LIKE:\nSELECT tytul FROM Ksiazki WHERE tytul LIKE '%a%';\nKlauzula WHERE pozwala więc filtrować dane na wiele sposobów, co czyni zapytania SQL bardzo elastycznymi.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#sortowanie-order-by",
+    "href": "lectures/wyklad2.html#sortowanie-order-by",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "9️⃣ Sortowanie – ORDER BY",
+    "text": "9️⃣ Sortowanie – ORDER BY\nPo pobraniu danych często chcemy uporządkować je według określonego kryterium. Do tego służy klauzula ORDER BY, dzięki której możemy sortować rosnąco (ASC) lub malejąco (DESC). Sortowanie działa na dowolnej kolumnie, także tych, które nie są wyświetlane w wyniku. W przykładzie poniżej porządkujemy książki według roku wydania od najnowszej do najstarszej.\nSELECT * FROM Ksiazki ORDER BY rok DESC;\nJeśli nie podamy kierunku sortowania, domyślnie jest to ASC (rosnąco). Można też sortować według kilku kolumn jednocześnie, np. najpierw po autorze, a potem po roku. Sortowanie poprawia czytelność wyników i pozwala szybciej analizować dane.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#grupowanie-i-agregacja-group-by-having",
+    "href": "lectures/wyklad2.html#grupowanie-i-agregacja-group-by-having",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "🔟 Grupowanie i agregacja – GROUP BY, HAVING",
+    "text": "🔟 Grupowanie i agregacja – GROUP BY, HAVING\nCzasem chcemy policzyć, ile danych należy do danej kategorii – np. ilu autorów napisało więcej niż jedną książkę. Do tego służy GROUP BY, które grupuje dane według wybranej kolumny. W połączeniu z funkcjami agregującymi, takimi jak COUNT(), AVG(), SUM(), MIN() czy MAX(), daje duże możliwości analizy. Klauzula HAVING pozwala odfiltrować grupy po obliczeniu agregacji.\nSELECT autor_id, COUNT(*) AS liczba_ksiazek\nFROM Ksiazki\nGROUP BY autor_id\nHAVING COUNT(*) &gt; 1;\nTo zapytanie zwraca tylko tych autorów, którzy mają więcej niż jedną książkę. Różnica między WHERE a HAVING polega na tym, że WHERE filtruje pojedyncze wiersze przed grupowaniem, a HAVING filtruje całe grupy po agregacji. Wyniki można potem łączyć z innymi tabelami, by uzyskać bardziej opisowe raporty.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#łączenie-tabel-join",
+    "href": "lectures/wyklad2.html#łączenie-tabel-join",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "1️⃣1️⃣ Łączenie tabel – JOIN",
+    "text": "1️⃣1️⃣ Łączenie tabel – JOIN\nW relacyjnym modelu danych informacje są rozproszone w różnych tabelach, które łączy się przy pomocy kluczy obcych. Polecenie JOIN pozwala zestawić dane z kilku tabel na podstawie wspólnej kolumny. Najczęściej używany jest INNER JOIN, który zwraca tylko rekordy, dla których istnieje dopasowanie w obu tabelach. W przykładzie łączymy tabelę Ksiazki z Autorzy, aby zobaczyć tytuł książki i jej autora.\n\n🔹 INNER JOIN\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nJOIN Autorzy a ON k.autor_id = a.autor_id;\nWynikiem będzie lista książek wraz z imieniem i nazwiskiem autora. Jeśli chcemy, aby w wynikach pojawiły się także książki bez autora (lub autorzy bez książek), używamy odpowiednio LEFT JOIN lub RIGHT JOIN. Łączenie tabel to fundament relacyjnych baz danych – dzięki niemu dane są spójne i nie trzeba ich powielać.\n\n\n🔹 LEFT JOIN\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nLEFT JOIN Autorzy a ON k.autor_id = a.autor_id;",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#aktualizacja-i-usuwanie-danych",
+    "href": "lectures/wyklad2.html#aktualizacja-i-usuwanie-danych",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "1️⃣2️⃣ Aktualizacja i usuwanie danych",
+    "text": "1️⃣2️⃣ Aktualizacja i usuwanie danych\nPolecenie UPDATE pozwala modyfikować dane już istniejące w tabeli. Zawsze należy używać klauzuli WHERE, aby zmiana nie objęła wszystkich rekordów. Z kolei DELETE służy do usuwania rekordów – również z warunkiem, by nie usunąć wszystkiego przez pomyłkę. Przykład poniżej pokazuje, jak zmienić rok wydania książki i usunąć starsze pozycje.\nUPDATE Ksiazki SET rok = 1836 WHERE tytul = 'Pan Tadeusz';\n\nDELETE FROM Ksiazki WHERE rok &lt; 1850;\nUPDATE pozwala też aktualizować wiele kolumn naraz, a nawet wykonywać obliczenia. Z kolei DELETE usuwa rekordy z tabeli, ale nie zmienia struktury bazy. Warto zawsze testować warunek WHERE wcześniej przy pomocy SELECT, by uniknąć niechcianych usunięć.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#podsumowanie",
+    "href": "lectures/wyklad2.html#podsumowanie",
+    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "section": "Podsumowanie",
+    "text": "Podsumowanie\nSQL jest językiem deklaratywnym – opisujemy co chcemy uzyskać, a nie jak to zrobić. Dzięki temu użytkownik nie musi znać szczegółów działania bazy danych, wystarczy, że opisze warunki i strukturę zapytania. Poznane dziś polecenia (CREATE, INSERT, SELECT, UPDATE, DELETE, JOIN, GROUP BY) to fundament pracy z bazami danych. Opanowanie ich pozwala budować i analizować nawet bardzo złożone systemy informacyjne.\n\nDokumentacja SQLite\nDokumentacja PostgreSQL\nA. Silberschatz, H. Korth, S. Sudarshan, Database System Concepts",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "MODEL RELACYJNY I PODSTAWY SQL"
+    ]
+  },
+  {
+    "objectID": "ksiazki.html",
+    "href": "ksiazki.html",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
+    "objectID": "ksiazki.html#książki",
+    "href": "ksiazki.html#książki",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
   },
   {
     "objectID": "index.html",
@@ -38,20 +220,6 @@
       "Książki",
       "Informacje ogólne"
     ]
-  },
-  {
-    "objectID": "ksiazki.html",
-    "href": "ksiazki.html",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
-  },
-  {
-    "objectID": "ksiazki.html#książki",
-    "href": "ksiazki.html#książki",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
   },
   {
     "objectID": "lectures/wyklad1.html",

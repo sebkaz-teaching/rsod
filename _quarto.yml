@@ -13,7 +13,7 @@ website:
       - section : "Wykłady"
         contents:
           - lectures/wyklad1.qmd
-          # - lectures/wyklad2.qmd
+          - lectures/wyklad2.qmd
       - section: "Laboratorium"
         contents:
           # - cwiczenia/cw1.ipynb

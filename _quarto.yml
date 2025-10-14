@@ -14,6 +14,7 @@ website:
         contents:
           - lectures/wyklad1.qmd
           - lectures/wyklad2.qmd
+          - lectures/wyklad3.qmd
       - section: "Laboratorium"
         contents:
           # - cwiczenia/cw1.ipynb

@@ -74,3 +74,7 @@ Potrafi przygotować prezentację i prowadzić dyskusję	Projekt zespołowy
 Umie wykorzystać modele w realizacji projektów BD	Wykład 3 + projekt
 Integruje wiedzę techniczną i pozatechniczną	Projekt (analiza potrzeb użytkownika)
 Określa priorytety w realizacji zadań	Projekt – planowanie etapów
+
+
+
+nowe elementy

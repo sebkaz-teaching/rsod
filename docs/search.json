@@ -4,7 +4,56 @@
     "href": "lectures/plan.html",
     "title": "Relacyjne Systemy Organizacji Danych",
     "section": "",
-    "text": "📙 WYKŁAD 3 – NORMALIZACJA I PROJEKTOWANIE BAZ DANYCH Temat: Jak uniknąć błędów w projektowaniu? Cele: nauczenie zasad normalizacji, zrozumienie zależności funkcjonalnych, wprowadzenie do diagramów ERD. Zakres treści: Problemy złego projektu: redundancja, anomalie aktualizacji, usuwania. Pojęcie zależności funkcjonalnych. Formy normalne (1NF–3NF, BCNF): przykłady i zastosowania. Diagramy ERD (Entity–Relationship Diagram): encje, atrybuty, relacje, kardynalności, identyfikatory. Proces projektowania bazy: analiza wymagań → model konceptualny → model logiczny → model fizyczny. Akcent praktyczny: ćwiczenie – model bazy danych dla systemu uczelnianego. Efekty uczenia się: potrafi projektować relacyjną bazę danych zgodnie z zasadami normalizacji. 📒 WYKŁAD 4 – TRANSAKCJE, WSPÓŁBIEŻNOŚĆ I WIDOKI Temat: Mechanizmy zapewniania spójności danych Cele: poznanie zasad transakcyjności, zrozumienie współbieżności i izolacji, wprowadzenie do widoków i ich zastosowań. Zakres treści: Pojęcie transakcji i właściwości ACID: atomicity, consistency, isolation, durability. Problemy współbieżności: utracone aktualizacje, odczyty brudnych danych, blokady. Poziomy izolacji transakcji. Widoki (Views): definicja, zalety (abstrakcja, bezpieczeństwo), przykłady CREATE VIEW, WITH CHECK OPTION. Przykład – transakcje w PostgreSQL (BEGIN/COMMIT/ROLLBACK). Akcent praktyczny: analiza równoczesnych transakcji na tej samej tabeli. Efekty uczenia się: rozumie zasady transakcyjności i umie zastosować widoki. 📕 WYKŁAD 5 – ADMINISTRACJA, BEZPIECZEŃSTWO I KOPIE ZAPASOWE Temat: Utrzymanie i ochrona baz danych Cele: poznanie zasad administrowania bazami danych, zrozumienie bezpieczeństwa i odporności systemów bazodanowych. Zakres treści: Role i uprawnienia użytkowników: GRANT, REVOKE, zarządzanie kontami. Bezpieczeństwo danych: szyfrowanie, kontrola dostępu, logowanie zdarzeń. Backup i odzyskiwanie: kopie pełne, przyrostowe, różnicowe, replikacja i wysokie dostępności (HA). Monitorowanie i optymalizacja: indeksy, analiza planów zapytań. Przegląd systemów bazodanowych: PostgreSQL, MySQL, SQLite, MS SQL, Oracle. Efekty uczenia się: zna metody ochrony i zarządzania bazami danych, potrafi wskazać strategie kopii zapasowych. 💡 PROJEKT ZALICZENIOWY (do realizacji na ćwiczeniach) Temat: Projekt i implementacja relacyjnej bazy danych wspierającej wybrany proces organizacyjny. Etapy projektu: Analiza problemu i identyfikacja wymagań. (np. system rezerwacji sal, ewidencja sprzętu, biblioteka, wypożyczalnia, rejestr studentów) Model konceptualny (ERD) i logiczny bazy danych. Implementacja bazy w wybranym systemie (np. PostgreSQL). Wypełnienie przykładowymi danymi, przygotowanie zapytań SQL. Demonstracja transakcji, widoków i podstawowych mechanizmów bezpieczeństwa. Efekty projektu: integracja wiedzy z zakresu modelowania, SQL i zarządzania, praktyczne umiejętności tworzenia bazy danych od podstaw, doświadczenie w pracy zespołowej i prezentacji wyników. 📈 POWIĄZANIE Z EFEKTAMI UCZENIA SIĘ Efekt uczenia się Odniesienie do wykładów / projektu Zna i rozumie algorytmy i metody w systemach BD Wykłady 2–5 Ma wiedzę z zakresu przetwarzania danych Wykład 1, 2 Zna standardy stosowane w BD Wykłady 2, 5 Potrafi przygotować prezentację i prowadzić dyskusję Projekt zespołowy Umie wykorzystać modele w realizacji projektów BD Wykład 3 + projekt Integruje wiedzę techniczną i pozatechniczną Projekt (analiza potrzeb użytkownika) Określa priorytety w realizacji zadań Projekt – planowanie etapów"
+    "text": "📙 WYKŁAD 3 – NORMALIZACJA I PROJEKTOWANIE BAZ DANYCH Temat: Jak uniknąć błędów w projektowaniu? Cele: nauczenie zasad normalizacji, zrozumienie zależności funkcjonalnych, wprowadzenie do diagramów ERD. Zakres treści: Problemy złego projektu: redundancja, anomalie aktualizacji, usuwania. Pojęcie zależności funkcjonalnych. Formy normalne (1NF–3NF, BCNF): przykłady i zastosowania. Diagramy ERD (Entity–Relationship Diagram): encje, atrybuty, relacje, kardynalności, identyfikatory. Proces projektowania bazy: analiza wymagań → model konceptualny → model logiczny → model fizyczny. Akcent praktyczny: ćwiczenie – model bazy danych dla systemu uczelnianego. Efekty uczenia się: potrafi projektować relacyjną bazę danych zgodnie z zasadami normalizacji. 📒 WYKŁAD 4 – TRANSAKCJE, WSPÓŁBIEŻNOŚĆ I WIDOKI Temat: Mechanizmy zapewniania spójności danych Cele: poznanie zasad transakcyjności, zrozumienie współbieżności i izolacji, wprowadzenie do widoków i ich zastosowań. Zakres treści: Pojęcie transakcji i właściwości ACID: atomicity, consistency, isolation, durability. Problemy współbieżności: utracone aktualizacje, odczyty brudnych danych, blokady. Poziomy izolacji transakcji. Widoki (Views): definicja, zalety (abstrakcja, bezpieczeństwo), przykłady CREATE VIEW, WITH CHECK OPTION. Przykład – transakcje w PostgreSQL (BEGIN/COMMIT/ROLLBACK). Akcent praktyczny: analiza równoczesnych transakcji na tej samej tabeli. Efekty uczenia się: rozumie zasady transakcyjności i umie zastosować widoki. 📕 WYKŁAD 5 – ADMINISTRACJA, BEZPIECZEŃSTWO I KOPIE ZAPASOWE Temat: Utrzymanie i ochrona baz danych Cele: poznanie zasad administrowania bazami danych, zrozumienie bezpieczeństwa i odporności systemów bazodanowych. Zakres treści: Role i uprawnienia użytkowników: GRANT, REVOKE, zarządzanie kontami. Bezpieczeństwo danych: szyfrowanie, kontrola dostępu, logowanie zdarzeń. Backup i odzyskiwanie: kopie pełne, przyrostowe, różnicowe, replikacja i wysokie dostępności (HA). Monitorowanie i optymalizacja: indeksy, analiza planów zapytań. Przegląd systemów bazodanowych: PostgreSQL, MySQL, SQLite, MS SQL, Oracle. Efekty uczenia się: zna metody ochrony i zarządzania bazami danych, potrafi wskazać strategie kopii zapasowych. 💡 PROJEKT ZALICZENIOWY (do realizacji na ćwiczeniach) Temat: Projekt i implementacja relacyjnej bazy danych wspierającej wybrany proces organizacyjny. Etapy projektu: Analiza problemu i identyfikacja wymagań. (np. system rezerwacji sal, ewidencja sprzętu, biblioteka, wypożyczalnia, rejestr studentów) Model konceptualny (ERD) i logiczny bazy danych. Implementacja bazy w wybranym systemie (np. PostgreSQL). Wypełnienie przykładowymi danymi, przygotowanie zapytań SQL. Demonstracja transakcji, widoków i podstawowych mechanizmów bezpieczeństwa. Efekty projektu: integracja wiedzy z zakresu modelowania, SQL i zarządzania, praktyczne umiejętności tworzenia bazy danych od podstaw, doświadczenie w pracy zespołowej i prezentacji wyników. 📈 POWIĄZANIE Z EFEKTAMI UCZENIA SIĘ Efekt uczenia się Odniesienie do wykładów / projektu Zna i rozumie algorytmy i metody w systemach BD Wykłady 2–5 Ma wiedzę z zakresu przetwarzania danych Wykład 1, 2 Zna standardy stosowane w BD Wykłady 2, 5 Potrafi przygotować prezentację i prowadzić dyskusję Projekt zespołowy Umie wykorzystać modele w realizacji projektów BD Wykład 3 + projekt Integruje wiedzę techniczną i pozatechniczną Projekt (analiza potrzeb użytkownika) Określa priorytety w realizacji zadań Projekt – planowanie etapów\nnowe elementy"
+  },
+  {
+    "objectID": "lectures/wyklad4.html",
+    "href": "lectures/wyklad4.html",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "",
+    "text": "Celem wykładu jest wprowadzenie do języka proceduralnego PL/SQL, pokazanie zasad przetwarzania transakcyjnego w bazach danych oraz omówienie roli indeksów w przyspieszaniu wyszukiwania danych."
+  },
+  {
+    "objectID": "lectures/wyklad4.html#temat-programowanie-w-plsql-i-podstawy-optymalizacji",
+    "href": "lectures/wyklad4.html#temat-programowanie-w-plsql-i-podstawy-optymalizacji",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "",
+    "text": "Celem wykładu jest wprowadzenie do języka proceduralnego PL/SQL, pokazanie zasad przetwarzania transakcyjnego w bazach danych oraz omówienie roli indeksów w przyspieszaniu wyszukiwania danych."
+  },
+  {
+    "objectID": "lectures/wyklad4.html#cele-wykładu",
+    "href": "lectures/wyklad4.html#cele-wykładu",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🧠 Cele wykładu",
+    "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nzrozumieć różnice między SQL a PL/SQL,\n\npisać proste bloki PL/SQL do operowania na danych,\n\nzarządzać transakcjami (commit, rollback),\n\nrozumieć rolę i zasady tworzenia indeksów w bazie danych."
+  },
+  {
+    "objectID": "lectures/wyklad4.html#wprowadzenie-do-plsql",
+    "href": "lectures/wyklad4.html#wprowadzenie-do-plsql",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "1️⃣ Wprowadzenie do PL/SQL",
+    "text": "1️⃣ Wprowadzenie do PL/SQL\n\n🔹 Czym jest PL/SQL?\n\nPL/SQL to proceduralny język rozszerzający SQL w systemach Oracle i kompatybilnych.\n\nUmożliwia użycie instrukcji warunkowych, pętli, zmiennych i procedur, czego SQL nie oferuje w formie deklaratywnej.\n\nPrzykład prostego bloku PL/SQL:\nBEGIN\n    DBMS_OUTPUT.PUT_LINE('Witaj w świecie PL/SQL!');\nEND;\n/\nKod ten uruchamia blok proceduralny, który wypisuje komunikat.\nBEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.\n\n\n🔹 Zmienne i typy danych\nPL/SQL pozwala tworzyć zmienne i przypisywać im wartości.\nDECLARE\n    v_imie VARCHAR2(50);\n    v_wiek NUMBER;\nBEGIN\n    v_imie := 'Jan';\n    v_wiek := 25;\n    DBMS_OUTPUT.PUT_LINE('Student: ' || v_imie || ', wiek: ' || v_wiek);\nEND;\n/\nZmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.\n\n\n🔹 Instrukcje warunkowe i pętle\nPL/SQL pozwala na użycie:\n\nIF…THEN…ELSE:\n\nIF v_wiek &gt;= 18 THEN\n    DBMS_OUTPUT.PUT_LINE('Pełnoletni');\nELSE\n    DBMS_OUTPUT.PUT_LINE('Niepełnoletni');\nEND IF;\n\nLOOP, WHILE, FOR – do powtarzania operacji:\n\nFOR i IN 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);\nEND LOOP;\nInstrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych."
+  },
+  {
+    "objectID": "lectures/wyklad4.html#operacje-na-danych-w-plsql",
+    "href": "lectures/wyklad4.html#operacje-na-danych-w-plsql",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "2️⃣ Operacje na danych w PL/SQL",
+    "text": "2️⃣ Operacje na danych w PL/SQL\nPL/SQL umożliwia wykonywanie standardowych operacji SQL:\n\nINSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.\n\nPrzykład aktualizacji studenta:\nBEGIN\n    UPDATE Studenci\n    SET Wiek = 26\n    WHERE NrIndeksu = 12345;\nEND;\n/\nmożna grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych."
+  },
+  {
+    "objectID": "lectures/wyklad4.html#przetwarzanie-transakcyjne",
+    "href": "lectures/wyklad4.html#przetwarzanie-transakcyjne",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "3️⃣ Przetwarzanie transakcyjne",
+    "text": "3️⃣ Przetwarzanie transakcyjne\n\n🔹 Co to jest transakcja?\nTransakcja to jednostka pracy w bazie danych, która:\n\nwykonuje kilka operacji jako całość,\njest atomowa – albo wszystkie operacje się powiodą, albo żadna,\nzapewnia spójność danych (ACID).\n\n\n\n🔹 Polecenia transakcyjne\n\nCOMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.\nROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.\nSAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.\n\nPrzykład użycia transakcji:\nBEGIN\n    INSERT INTO Studenci VALUES(12346, 'Anna', 'Kowalska', 21);\n    UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10;\n    COMMIT;\nEND;\n/\nobie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni."
+  },
+  {
+    "objectID": "lectures/wyklad4.html#indeksy-w-bazie-danych",
+    "href": "lectures/wyklad4.html#indeksy-w-bazie-danych",
+    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "section": "4️⃣ Indeksy w bazie danych",
+    "text": "4️⃣ Indeksy w bazie danych\n\n🔹 Co to jest indeks?\n\nIndeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.\nDziała podobnie jak spis treści w książce.\n\nPrzykład tworzenia indeksu:\nCREATE INDEX idx_studenci_nazwisko\nON Studenci(Nazwisko);\nndeks przyspiesza wyszukiwanie po kolumnie Nazwisko. Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.\n\n\n🔹 Rodzaje indeksów\n\nJedno-kolumnowe – indeks na jednej kolumnie.\nWielokolumnowe (composite) – indeks na kilku kolumnach razem.\nUnikalne – zapewniają unikalność wartości w kolumnie.\n\nDobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność."
   },
   {
     "objectID": "lectures/wyklad3.html",
@@ -43,11 +92,71 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad3.html#zakres-treści",
-    "href": "lectures/wyklad3.html#zakres-treści",
+    "objectID": "lectures/wyklad3.html#problemy-złego-projektu-bazy-danych",
+    "href": "lectures/wyklad3.html#problemy-złego-projektu-bazy-danych",
     "title": "Normalizacja i projektowanie baz danych",
-    "section": "📋 Zakres treści",
-    "text": "📋 Zakres treści\n\n1. Problemy złego projektu bazy danych\nZłe zaprojektowanie struktury bazy danych prowadzi do wielu problemów:\n\n🔹 Redundancja danych\nTo powielanie tych samych informacji w różnych miejscach bazy.\nPrzykład: jeśli w każdej tabeli z zamówieniami przechowujemy pełne dane klienta, to zmiana jego adresu wymaga aktualizacji wielu rekordów.\n\n\n🔹 Anomalie danych\nBłędy i niekonsekwencje wynikające z nadmiarowej struktury danych.\n\nAnomalia aktualizacji – zmiana jednej informacji wymaga wielu modyfikacji.\nNp. zmiana nazwiska wykładowcy w kilku wierszach tabeli.\nAnomalia wstawiania – brak możliwości dodania danych bez istnienia innych.\nNp. nie można dodać nowego kursu, dopóki nie zapisze się na niego student.\nAnomalia usuwania – usunięcie rekordu powoduje utratę innych informacji.\nNp. usunięcie ostatniego studenta z kursu powoduje utratę danych o samym kursie.\n\n👉 Wniosek: błędy projektowe utrudniają utrzymanie spójności danych.\n\n\n\n\n2. Zależności funkcjonalne\n\n🔹 Definicja\nZależność funkcjonalna (ang. functional dependency) opisuje relację między atrybutami w tabeli.\nMówimy, że atrybut B jest funkcyjnie zależny od atrybutu A (zapis:\nA → B), jeśli każdej wartości A odpowiada dokładnie jedna wartość B.\n\n\n🔹 Przykłady\n\nNrIndeksu → Imię, Nazwisko, Kierunek\n(każdy numer indeksu jednoznacznie identyfikuje studenta)\nKurs → Sala, Prowadzący\n(dany kurs odbywa się zawsze w tej samej sali, prowadzony przez tę samą osobę)\n\n\n\n🔹 Klucze\n\nKlucz główny (primary key) – jednoznacznie identyfikuje wiersz tabeli.\n\nKlucz kandydujący (candidate key) – minimalny zestaw atrybutów, który może być kluczem.\n\nKlucz obcy (foreign key) – wskazuje na klucz główny w innej tabeli i tworzy powiązanie między tabelami.\n\n\n\n🔹 Typy zależności\n\nZależność pełna – atrybut zależy od całego klucza złożonego.\n\nZależność częściowa – atrybut zależy tylko od części klucza.\n\nZależność przechodnia – atrybut zależy pośrednio od klucza (A → B → C).\n\n\n\n\n\n3. Formy normalne (1NF – 3NF, BCNF)\nNormalizacja to proces przekształcania tabel w taki sposób, aby usunąć redundancję i zapobiec anomaliom.\n\n🧩 Pierwsza postać normalna (1NF)\n\nWszystkie wartości w tabeli są atomowe (niepodzielne).\n\nBrak list, zbiorów lub kolumn powtarzających się.\n✅ Każda kolumna ma jedną wartość w komórce.\n\nPrzykład (naruszenie 1NF): | Student | NrIndeksu | Kursy | |———-|————|——–| | Jan Nowak | 12345 | Bazy danych, Programowanie |\n✅ Poprawnie:\nTworzymy osobną tabelę STUDENT_KURS, gdzie każdy kurs to osobny rekord.\n\n\n\n🧩 Druga postać normalna (2NF)\n\nTabela jest w 1NF i wszystkie atrybuty niekluczowe zależą w pełni od całego klucza głównego.\n\nDotyczy tabel z kluczem złożonym.\n\nPrzykład: Tabela ZAPISY(StudentID, KursID, Sala)\n→ atrybut Sala zależy tylko od KursID, a nie od całego klucza (StudentID, KursID).\nRozwiązanie: wydziel tabelę KURS(KursID, Sala).\n\n\n\n🧩 Trzecia postać normalna (3NF)\n\nTabela jest w 2NF i nie zawiera zależności przechodnich.\n\nKażdy atrybut niekluczowy zależy bezpośrednio od klucza głównego.\n\nPrzykład: NrIndeksu → Kierunek, Kierunek → Dziekan\n➡️ Dziekan zależy pośrednio od NrIndeksu.\nRozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).\n\n\n\n🧩 Postać Boyce’a-Codda (BCNF)\n\nDla każdej zależności A → B, zbiór A musi być kluczem kandydującym.\n\nBardziej restrykcyjna niż 3NF – eliminuje wszelkie potencjalne redundancje.\n\n\n\n\n\n4. Diagramy ERD (Entity–Relationship Diagram)\nDiagram ERD jest graficznym sposobem przedstawienia modelu konceptualnego bazy danych.\n\n🔹 Główne elementy ERD\n\nEncja (Entity) – obiekt, o którym przechowujemy dane (np. Student, Kurs).\n\nAtrybut (Attribute) – właściwość encji (np. Imię, Nazwisko, NrIndeksu).\n\nRelacja (Relationship) – powiązanie między encjami (np. Student zapisuje się na Kurs).\n\nKardynalność (Cardinality) – określa liczność relacji:\n\n1:1 (jeden do jednego)\n\n1:N (jeden do wielu)\n\nN:M (wielu do wielu)\n\n\nIdentyfikator (Primary Key) – atrybut jednoznacznie identyfikujący encję.\n\n\n\n🔹 Przykład:\nSTUDENT (NrIndeksu, Imię, Nazwisko, Kierunek)\nKURS (KursID, Nazwa, Prowadzący)\nZAPIS (NrIndeksu, KursID, DataZapisu)\nRelacja między STUDENT a KURS: N:M poprzez encję pośredniczącą ZAPIS.\n\n\n\n\n5. Proces projektowania bazy danych\nProjektowanie bazy to proces etapowy:\n\nAnaliza wymagań – zrozumienie, jakie dane są potrzebne i jakie operacje będą wykonywane.\n\nModel konceptualny – opis danych w postaci ERD.\n\nModel logiczny – zamiana modelu ERD na relacyjny schemat tabel.\n\nModel fizyczny – implementacja w konkretnym systemie DBMS (np. PostgreSQL, MySQL).\n\n\n\n\n6. Akcent praktyczny\nĆwiczenie (do wykonania na zajęciach):\nZaprojektuj model bazy danych dla prostego systemu uczelnianego, obejmującego: - Studentów, - Kursy, - Wykładowców, - Zapis na kursy.\nPrzygotuj: 1. Diagram ERD,\n2. Schemat relacyjny po normalizacji (do 3NF).",
+    "section": "1. Problemy złego projektu bazy danych",
+    "text": "1. Problemy złego projektu bazy danych\nZłe zaprojektowanie struktury bazy danych prowadzi do wielu problemów:\n\n🔹 Redundancja danych\nTo powielanie tych samych informacji w różnych miejscach bazy.\nPrzykład: jeśli w każdej tabeli z zamówieniami przechowujemy pełne dane klienta, to zmiana jego adresu wymaga aktualizacji wielu rekordów.\n\n\n🔹 Anomalie danych\nBłędy i niekonsekwencje wynikające z nadmiarowej struktury danych.\n\nAnomalia aktualizacji – zmiana jednej informacji wymaga wielu modyfikacji.\nNp. zmiana nazwiska wykładowcy w kilku wierszach tabeli.\nAnomalia wstawiania – brak możliwości dodania danych bez istnienia innych.\nNp. nie można dodać nowego kursu, dopóki nie zapisze się na niego student.\nAnomalia usuwania – usunięcie rekordu powoduje utratę innych informacji.\nNp. usunięcie ostatniego studenta z kursu powoduje utratę danych o samym kursie.\n\n👉 Wniosek: błędy projektowe utrudniają utrzymanie spójności danych.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Normalizacja i projektowanie baz danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad3.html#zależności-funkcjonalne",
+    "href": "lectures/wyklad3.html#zależności-funkcjonalne",
+    "title": "Normalizacja i projektowanie baz danych",
+    "section": "2. Zależności funkcjonalne",
+    "text": "2. Zależności funkcjonalne\n\n🔹 Definicja\nZależność funkcjonalna (ang. functional dependency) opisuje relację między atrybutami w tabeli.\nMówimy, że atrybut B jest funkcyjnie zależny od atrybutu A (zapis:\nA → B), jeśli każdej wartości A odpowiada dokładnie jedna wartość B.\n\n\n🔹 Przykłady\n\nNrIndeksu → Imię, Nazwisko, Kierunek\n(każdy numer indeksu jednoznacznie identyfikuje studenta)\nKurs → Sala, Prowadzący\n(dany kurs odbywa się zawsze w tej samej sali, prowadzony przez tę samą osobę)\n\n\n\n🔹 Klucze\n\nKlucz główny (primary key) – jednoznacznie identyfikuje wiersz tabeli.\n\nKlucz kandydujący (candidate key) – minimalny zestaw atrybutów, który może być kluczem.\n\nKlucz obcy (foreign key) – wskazuje na klucz główny w innej tabeli i tworzy powiązanie między tabelami.\n\n\n\n🔹 Typy zależności\n\nZależność pełna – atrybut zależy od całego klucza złożonego.\n\nZależność częściowa – atrybut zależy tylko od części klucza.\n\nZależność przechodnia – atrybut zależy pośrednio od klucza (A → B → C).",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Normalizacja i projektowanie baz danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad3.html#formy-normalne-1nf-3nf-bcnf",
+    "href": "lectures/wyklad3.html#formy-normalne-1nf-3nf-bcnf",
+    "title": "Normalizacja i projektowanie baz danych",
+    "section": "3. Formy normalne (1NF – 3NF, BCNF)",
+    "text": "3. Formy normalne (1NF – 3NF, BCNF)\nNormalizacja to proces przekształcania tabel w taki sposób, aby usunąć redundancję i zapobiec anomaliom.\n\n🧩 Pierwsza postać normalna (1NF)\n\nWszystkie wartości w tabeli są atomowe (niepodzielne).\n\nBrak list, zbiorów lub kolumn powtarzających się.\n\n✅ Każda kolumna ma jedną wartość w komórce.\nPrzykład (naruszenie 1NF): | Student | NrIndeksu | Kursy | |———-|————|——–| | Jan Nowak | 12345 | Bazy danych, Programowanie |\n✅ Poprawnie:\nTworzymy osobną tabelę STUDENT_KURS, gdzie każdy kurs to osobny rekord.\n\n\n\n🧩 Druga postać normalna (2NF)\n\nTabela jest w 1NF i wszystkie atrybuty niekluczowe zależą w pełni od całego klucza głównego.\n\nDotyczy tabel z kluczem złożonym.\n\nPrzykład:\nTabela ZAPISY(StudentID, KursID, Sala)\n→ atrybut Sala zależy tylko od KursID, a nie od całego klucza (StudentID, KursID).\nRozwiązanie: wydziel tabelę KURS(KursID, Sala).\n\n\n\n🧩 Trzecia postać normalna (3NF)\n\nTabela jest w 2NF i nie zawiera zależności przechodnich.\n\nKażdy atrybut niekluczowy zależy bezpośrednio od klucza głównego.\n\nPrzykład:\nNrIndeksu → Kierunek, Kierunek → Dziekan\n➡️ Dziekan zależy pośrednio od NrIndeksu.\nRozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).\n\n\n\n🧩 Postać Boyce’a-Codda (BCNF)\n\nDla każdej zależności A → B, zbiór A musi być kluczem kandydującym.\n\nBardziej restrykcyjna niż 3NF – eliminuje wszelkie potencjalne redundancje.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Normalizacja i projektowanie baz danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad3.html#diagramy-erd-entityrelationship-diagram",
+    "href": "lectures/wyklad3.html#diagramy-erd-entityrelationship-diagram",
+    "title": "Normalizacja i projektowanie baz danych",
+    "section": "4. Diagramy ERD (Entity–Relationship Diagram)",
+    "text": "4. Diagramy ERD (Entity–Relationship Diagram)\nDiagram ERD jest graficznym sposobem przedstawienia modelu konceptualnego bazy danych.\n\n🔹 Główne elementy ERD\n\nEncja (Entity) – obiekt, o którym przechowujemy dane (np. Student, Kurs).\n\nAtrybut (Attribute) – właściwość encji (np. Imię, Nazwisko, NrIndeksu).\n\nRelacja (Relationship) – powiązanie między encjami (np. Student zapisuje się na Kurs).\n\nKardynalność (Cardinality) – określa liczność relacji:\n\n1:1 (jeden do jednego)\n\n1:N (jeden do wielu)\n\nN:M (wielu do wielu)\n\n\nIdentyfikator (Primary Key) – atrybut jednoznacznie identyfikujący encję.\n\n\n\n🔹 Przykład:\nSTUDENT (NrIndeksu, Imię, Nazwisko, Kierunek)\nKURS (KursID, Nazwa, Prowadzący)\nZAPIS (NrIndeksu, KursID, DataZapisu)\nRelacja między STUDENT a KURS: N:M poprzez encję pośredniczącą ZAPIS.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Normalizacja i projektowanie baz danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad3.html#proces-projektowania-bazy-danych",
+    "href": "lectures/wyklad3.html#proces-projektowania-bazy-danych",
+    "title": "Normalizacja i projektowanie baz danych",
+    "section": "5. Proces projektowania bazy danych",
+    "text": "5. Proces projektowania bazy danych\nProjektowanie bazy to proces etapowy:\n\nAnaliza wymagań – zrozumienie, jakie dane są potrzebne i jakie operacje będą wykonywane.\n\nModel konceptualny – opis danych w postaci ERD.\n\nModel logiczny – zamiana modelu ERD na relacyjny schemat tabel.\n\nModel fizyczny – implementacja w konkretnym systemie DBMS (np. PostgreSQL, MySQL).",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Normalizacja i projektowanie baz danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad3.html#akcent-praktyczny",
+    "href": "lectures/wyklad3.html#akcent-praktyczny",
+    "title": "Normalizacja i projektowanie baz danych",
+    "section": "6. Akcent praktyczny",
+    "text": "6. Akcent praktyczny\nĆwiczenie (do wykonania na zajęciach):\nZaprojektuj model bazy danych dla prostego systemu uczelnianego, obejmującego: - Studentów, - Kursy, - Wykładowców, - Zapis na kursy.\nPrzygotuj: 1. Diagram ERD,\n2. Schemat relacyjny po normalizacji (do 3NF).",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -59,7 +168,7 @@
     "href": "lectures/wyklad3.html#efekty-uczenia-się",
     "title": "Normalizacja i projektowanie baz danych",
     "section": "🎓 Efekty uczenia się",
-    "text": "🎓 Efekty uczenia się\nPo zakończeniu wykładu student: - rozumie pojęcia normalizacji i zależności funkcjonalnych,\n- potrafi rozpoznać błędy projektowe (redundancja, anomalie),\n- potrafi zaprojektować relacyjną bazę danych zgodnie z zasadami normalizacji,\n- zna podstawowe elementy diagramów ERD i proces projektowania bazy danych.\n\n\n💡 Wskazówka dla studentów:\nW praktyce dążymy do uzyskania trzeciej postaci normalnej (3NF).\nCzasami stosuje się denormalizację dla poprawy wydajności, ale tylko po wcześniejszym zrozumieniu skutków tego działania.",
+    "text": "🎓 Efekty uczenia się\nPo zakończeniu wykładu student: - rozumie pojęcia normalizacji i zależności funkcjonalnych,\n- potrafi rozpoznać błędy projektowe (redundancja, anomalie),\n- potrafi zaprojektować relacyjną bazę danych zgodnie z zasadami normalizacji,\n- zna podstawowe elementy diagramów ERD i proces projektowania bazy danych.\n\n💡 Wskazówka dla studentów:\nW praktyce dążymy do uzyskania trzeciej postaci normalnej (3NF).\nCzasami stosuje się denormalizację dla poprawy wydajności, ale tylko po wcześniejszym zrozumieniu skutków tego działania.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -118,7 +227,7 @@
     "href": "lectures/wyklad2.html",
     "title": "MODEL RELACYJNY I PODSTAWY SQL",
     "section": "",
-    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
+    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\nPrzykład relacji STUDENT:\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -130,7 +239,7 @@
     "href": "lectures/wyklad2.html#model-relacyjny-przypomnienie-i-pojęcia-podstawowe",
     "title": "MODEL RELACYJNY I PODSTAWY SQL",
     "section": "",
-    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
+    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\nPrzykład relacji STUDENT:\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -142,7 +251,7 @@
     "href": "lectures/wyklad2.html#klucze-i-więzy-integralności",
     "title": "MODEL RELACYJNY I PODSTAWY SQL",
     "section": "2️⃣ Klucze i więzy integralności",
-    "text": "2️⃣ Klucze i więzy integralności\n\n🔸 Klucz główny (PRIMARY KEY)\n\nUnikalnie identyfikuje każdy wiersz w tabeli.\nNie może być NULL.\n\n\n\n🔸 Klucz obcy (FOREIGN KEY)\n\nOdwołuje się do innej tabeli (relacja między tabelami).\n\n\n\n🔸 Inne więzy:\n\nUNIQUE – unikalność wartości w kolumnie.\nNOT NULL – kolumna nie może mieć wartości pustej.\nCHECK – warunek logiczny na wartość kolumny.",
+    "text": "2️⃣ Klucze i więzy integralności\n\n🔸 Klucz główny (PRIMARY KEY)\n\nUnikalnie identyfikuje każdy wiersz w tabeli.\nNie może być NULL.\n\n\n\n🔸 Klucz obcy (FOREIGN KEY)\n\nOdwołuje się do innej tabeli (relacja między tabelami).\n\n\n\n🔸 Inne więzy:\n\nUNIQUE – unikalność wartości w kolumnie.\nNOT NULL – kolumna nie może mieć wartości pustej.\nCHECK – warunek logiczny na wartość kolumny.\n\n\n\n\n\n\n\n\n\nRodzaj klucza\nOpis\nPrzykład\n\n\n\n\nKlucz główny (Primary Key)\njednoznacznie identyfikuje rekord\nNrIndeksu w STUDENT\n\n\nKlucz obcy (Foreign Key)\ntworzy powiązanie między tabelami\nKursID w tabeli ZAPIS\n\n\nKlucz kandydujący (Candidate Key)\natrybut lub zestaw atrybutów, który może pełnić rolę klucza głównego\n(PESEL), (NrIndeksu)\n\n\nKlucz złożony (Composite Key)\nskłada się z kilku kolumn\n(StudentID, KursID)",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -150,23 +259,11 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad2.html#schemat-bazy-danych-przykład-biblioteka",
-    "href": "lectures/wyklad2.html#schemat-bazy-danych-przykład-biblioteka",
+    "objectID": "lectures/wyklad2.html#rodzaje-związków-relacji-między-tabelami",
+    "href": "lectures/wyklad2.html#rodzaje-związków-relacji-między-tabelami",
     "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "3️⃣ Schemat bazy danych – przykład „Biblioteka”",
-    "text": "3️⃣ Schemat bazy danych – przykład „Biblioteka”\n\nTabele:\n\nAutorzy (autor_id, imie, nazwisko)\nKsiazki (ksiazka_id, tytul, rok, autor_id)\n\n\n\nRelacja:\n\nKsiazki.autor_id \\(\\to\\) Autorzy.autor_id (klucz obcy)",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad2.html#tworzenie-tabel-ddl-data-definition-language",
-    "href": "lectures/wyklad2.html#tworzenie-tabel-ddl-data-definition-language",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "4️⃣ Tworzenie tabel (DDL – Data Definition Language)",
-    "text": "4️⃣ Tworzenie tabel (DDL – Data Definition Language)\nPolecenie CREATE TABLE służy do utworzenia nowej tabeli w bazie danych.\nW tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak PRIMARY KEY, NOT NULL czy FOREIGN KEY.\nKażda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.\nW przykładzie poniżej tworzymy dwie tabele: Autorzy i Ksiazki, które będą ze sobą powiązane relacją klucz główny–klucz obcy.\n\nPrzykład w SQLite i PostgreSQL\nCREATE TABLE Autorzy (\n    autor_id     INTEGER PRIMARY KEY,         -- w SQLite automatycznie AUTOINCREMENT\n    imie         TEXT NOT NULL,\n    nazwisko     TEXT NOT NULL\n);\n\nCREATE TABLE Ksiazki (\n    ksiazka_id   SERIAL PRIMARY KEY,          -- PostgreSQL: automatyczna numeracja\n    tytul        VARCHAR(200) NOT NULL,\n    rok          INTEGER CHECK (rok &gt; 0),\n    autor_id     INTEGER,\n    FOREIGN KEY (autor_id) REFERENCES Autorzy(autor_id)\n);\n\nW SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.\nW PostgreSQL SERIAL lub GENERATED ALWAYS AS IDENTITY.\n\nW powyższym przykładzie tabela Autorzy przechowuje dane o autorach, a tabela Ksiazki – dane o książkach. Kolumna autor_id w tabeli Ksiazki jest kluczem obcym i wskazuje, który autor napisał daną książkę. Dzięki więzom integralności baza pilnuje, aby każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.",
+    "section": "2️⃣ Rodzaje związków (relacji) między tabelami",
+    "text": "2️⃣ Rodzaje związków (relacji) między tabelami\nW relacyjnej bazie danych tabele mogą być ze sobą połączone przez klucze obce, które tworzą różne typy relacji:\n\n\n\n\n\n\n\n\nTyp relacji\nOpis\nPrzykład\n\n\n\n\n1:1 (jeden do jednego)\njeden rekord w tabeli A odpowiada dokładnie jednemu rekordowi w tabeli B\nStudent ↔︎️ Legitymacja\n\n\n1:N (jeden do wielu)\njeden rekord w tabeli A może być powiązany z wieloma rekordami w tabeli B\nWykładowca ↔︎️ Kursy\n\n\nN:M (wielu do wielu)\nwiele rekordów w A może być powiązanych z wieloma w B\nStudenci ↔︎️ Kursy\n\n\n\nRelację N:M realizujemy przez tabelę pośredniczącą (łączącą), np.:\nSTUDENT (NrIndeksu, Imie, Nazwisko)\nKURS (KursID, Nazwa)\nZAPIS (NrIndeksu, KursID, DataZapisu)\n\nTABELA ZAPIS zawiera klucze obce wskazujące na STUDENT i KURS.\n\n## 3️⃣ Schemat bazy danych – przykład „Biblioteka”\n\n### Tabele:\n- **Autorzy** (`autor_id`, `imie`, `nazwisko`)\n- **Ksiazki** (`ksiazka_id`, `tytul`, `rok`, `autor_id`)\n\n### Relacja:\n- `Ksiazki.autor_id` $\\to$ `Autorzy.autor_id` (klucz obcy)\n\n## 4️⃣ Wprowadzenie do języka SQL (Structured Query Language)\n\nSQL to standardowy język do definiowania, modyfikowania i pobierania danych w relacyjnych bazach danych.\n\n| DDL (Data Definition Language) | definiuje strukturę bazy |CREATE TABLE, ALTER TABLE, DROP TABLE |\n|---------------------------------------------------------------------------------------|\n| DML (Data Manipulation Language) | operacje na danych | INSERT, UPDATE, DELETE, SELECT |\n|----------------------------------------------------------------------------------------|\n| DCL (Data Control Language) | kontrola dostępu | GRANT, REVOKE|\n|----------------------------------------------------------------------------------------|\n| TCL (Transaction Control Language) | kontrola transakcji |COMMIT, ROLLBACK |\n\n\n🔹 Składnia SQL – podział na podjęzyki:\n\n### Tworzenie tabel (DDL – Data Definition Language)\n\nPolecenie `CREATE TABLE` służy do utworzenia nowej tabeli w bazie danych.  \nW tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak `PRIMARY KEY`, `NOT NULL` czy `FOREIGN KEY`.  \nKażda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.  \nW przykładzie poniżej tworzymy dwie tabele: **Autorzy** i **Ksiazki**, które będą ze sobą powiązane relacją klucz główny–klucz obcy.\n\n\n\n### Przykład w **SQLite** i **PostgreSQL**\n\n```sql\nCREATE TABLE Autorzy (\n    autor_id     INTEGER PRIMARY KEY,         -- w SQLite automatycznie AUTOINCREMENT\n    imie         TEXT NOT NULL,\n    nazwisko     TEXT NOT NULL\n);\n\nCREATE TABLE Ksiazki (\n    ksiazka_id   SERIAL PRIMARY KEY,          -- PostgreSQL: automatyczna numeracja\n    tytul        VARCHAR(200) NOT NULL,\n    rok          INTEGER CHECK (rok &gt; 0),\n    autor_id     INTEGER,\n    FOREIGN KEY (autor_id) REFERENCES Autorzy(autor_id)\n);\n\nW SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.\nW PostgreSQL SERIAL lub GENERATED ALWAYS AS IDENTITY.\n\nW powyższym przykładzie tabela Autorzy przechowuje dane o autorach, a tabela Ksiazki – dane o książkach. Kolumna autor_id w tabeli Ksiazki jest kluczem obcym i wskazuje, który autor napisał daną książkę. Dzięki więzom integralności baza pilnuje, aby każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -178,7 +275,7 @@
     "href": "lectures/wyklad2.html#modyfikacja-i-usuwanie-tabel",
     "title": "MODEL RELACYJNY I PODSTAWY SQL",
     "section": "5️⃣ Modyfikacja i usuwanie tabel",
-    "text": "5️⃣ Modyfikacja i usuwanie tabel\nALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;\n\nDROP TABLE Ksiazki;",
+    "text": "5️⃣ Modyfikacja i usuwanie tabel\n\n🔹 Dodawanie kolumn\nALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;\n\n\n🔹 Zmiana typu kolumny\nALTER TABLE STUDENT ALTER COLUMN Kierunek TYPE VARCHAR(100);\n\n\n🔹 Usuwanie kolumny\nALTER TABLE STUDENT DROP COLUMN Email;\n\n\n🔹 Usuwanie tabeli\nDROP TABLE Ksiazki;",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -286,7 +383,7 @@
     "href": "lectures/wyklad1.html",
     "title": "Od pliku do bazy danych",
     "section": "",
-    "text": "zrozumienie pojęcia danych, informacji i wiedzy,\npoznanie podstawowych form organizacji danych,\nwprowadzenie do pojęcia systemu bazodanowego.\n\n\n\n\nDane, informacja, wiedza – hierarchia pojęć.\n\n\n\n\nustrukturyzowane (np. tabele CSV),\npółustrukturyzowane (JSON, XML),\nnieustrukturyzowane (obrazy, dźwięk, teksty).\n\n\n\n\npliki płaskie – cechy, wady, zalety,\nsystemy plików, metadane, nazwy, prawa dostępu.\n\n\n\n\n\nredundancja,\nniespójność,\nbrak współbieżności.\n\n\n\n\n\nidea centralnego repozytorium,\nkorzyści z relacyjnego modelu danych,\nkrótka historia (Codd, model relacyjny).\n\n\n\n\n\nEfekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.",
+    "text": "poznanie podstawowych pojęć: dane, informacja, baza danych, DBMS,\n\nzrozumienie różnicy między systemem plikowym a bazą danych,\n\npoznanie architektury systemu baz danych (ANSI/SPARC),\n\nwprowadzenie do modelu relacyjnego i idei organizacji danych w tabelach.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -294,11 +391,11 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad1.html#plan",
-    "href": "lectures/wyklad1.html#plan",
+    "objectID": "lectures/wyklad1.html#dane-informacja-baza-danych",
+    "href": "lectures/wyklad1.html#dane-informacja-baza-danych",
     "title": "Od pliku do bazy danych",
-    "section": "",
-    "text": "zrozumienie pojęcia danych, informacji i wiedzy,\npoznanie podstawowych form organizacji danych,\nwprowadzenie do pojęcia systemu bazodanowego.\n\n\n\n\nDane, informacja, wiedza – hierarchia pojęć.\n\n\n\n\nustrukturyzowane (np. tabele CSV),\npółustrukturyzowane (JSON, XML),\nnieustrukturyzowane (obrazy, dźwięk, teksty).\n\n\n\n\npliki płaskie – cechy, wady, zalety,\nsystemy plików, metadane, nazwy, prawa dostępu.\n\n\n\n\n\nredundancja,\nniespójność,\nbrak współbieżności.\n\n\n\n\n\nidea centralnego repozytorium,\nkorzyści z relacyjnego modelu danych,\nkrótka historia (Codd, model relacyjny).\n\n\n\n\n\nEfekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.",
+    "section": "1️⃣ Dane, informacja, baza danych",
+    "text": "1️⃣ Dane, informacja, baza danych\n\n🔹 Dane\n\nZacznijmy od podstawowego pytania: czym właściwie są dane?\n\nDane to surowe fakty, liczby, teksty, symbole — same w sobie nie mają jeszcze znaczenia.\nPrzykład: 12345, Jan Kowalski, Bazy danych.\n\n\n🔹 Informacja\nTo dane zinterpretowane w kontekście.\nPrzykład:\n\n„12345” to numer indeksu studenta Jana Kowalskiego zapisującego się na kurs Bazy danych.\n\n\n\nCzy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?\n\n\n\n\n🔹 Baza danych (ang. Database)\nTo uporządkowany zbiór danych, przechowywany w sposób umożliwiający łatwe wyszukiwanie, aktualizację i kontrolę spójności.\n\n\n🔹 System zarządzania bazą danych (DBMS)\nDBMS (Database Management System) to oprogramowanie pośredniczące między użytkownikiem a bazą danych.\nOdpowiada za:\n\ndefiniowanie struktury danych (tworzenie tabel, relacji),\nprzechowywanie i wyszukiwanie danych,\nbezpieczeństwo i kontrolę dostępu,\nobsługę wielu użytkowników,\nzapewnienie spójności transakcji.\n\nPrzykłady DBMS: PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -306,23 +403,11 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad1.html#dane-informacja-wiedza",
-    "href": "lectures/wyklad1.html#dane-informacja-wiedza",
-    "title": "Od pliku do bazy danych",
-    "section": "🧩 1. Dane, informacja, wiedza",
-    "text": "🧩 1. Dane, informacja, wiedza\n🗣\nZacznijmy od podstawowego pytania: czym właściwie są dane?\nDane to surowe fakty – liczby, znaki, pomiary, które same w sobie nie mają znaczenia, dopóki ich nie zinterpretujemy.\nGdy dane zaczynamy rozumieć w kontekście – powstaje informacja.\nA gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – mamy wiedzę.\n\n📊 Przykład:\nDane: \\(36.7, 37.1, 38.2\\)\nInformacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”\nWiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”\n\n\n💬 Pytanie:\n\nCzy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Od pliku do bazy danych"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad1.html#rodzaje-danych-1",
-    "href": "lectures/wyklad1.html#rodzaje-danych-1",
+    "objectID": "lectures/wyklad1.html#rodzaje-danych",
+    "href": "lectures/wyklad1.html#rodzaje-danych",
     "title": "Od pliku do bazy danych",
     "section": "💾 2. Rodzaje danych",
-    "text": "💾 2. Rodzaje danych\n🗣\nW świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.\n\n📚 Klasyfikacja:\n\nUstrukturyzowane\n\nDane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn.\nPrzykład: tabela klientów w Excelu lub SQL.\n\n\n\nID\nImię\nNazwisko\nMiasto\n\n\n\n\n1\nAnna\nNowak\nKraków\n\n\n2\nJan\nKowalski\nWarszawa\n\n\n\n\nPółustrukturyzowane\n\nZawierają strukturę, ale nie jest ona sztywna.\nPrzykład: pliki JSON, XML.\n{\n  \"imie\": \"Anna\",\n  \"miasto\": \"Kraków\",\n  \"zainteresowania\": [\"sport\", \"muzyka\"]\n}\n\nNieustrukturyzowane\n\nBrak jasno określonej struktury danych.\nPrzykład: obraz, dźwięk, wideo, dokument PDF.\nTakie dane trudno przeszukiwać klasycznymi metodami SQL.\n\n\n💬 Pytanie:\n\nJakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?",
+    "text": "💾 2. Rodzaje danych\n🗣\nW świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.\n\n📚 Klasyfikacja danych:\n\nUstrukturyzowane\n\nDane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn.\nPrzykład: tabela klientów w Excelu lub SQL.\n\n\n\nID\nImię\nNazwisko\nMiasto\n\n\n\n\n1\nAnna\nNowak\nKraków\n\n\n2\nJan\nKowalski\nWarszawa\n\n\n\n\nPółustrukturyzowane\n\nZawierają strukturę, ale nie jest ona sztywna.\nPrzykład: pliki JSON, XML.\n{\n  \"imie\": \"Anna\",\n  \"miasto\": \"Kraków\",\n  \"zainteresowania\": [\"sport\", \"muzyka\"]\n}\n\nNieustrukturyzowane\n\nBrak jasno określonej struktury danych.\nPrzykład: obraz, dźwięk, wideo, dokument PDF.\nTakie dane trudno przeszukiwać klasycznymi metodami SQL.\n\n\n💬 Pytanie:\n\nJakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -330,11 +415,11 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych-1",
-    "href": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych-1",
+    "objectID": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych",
+    "href": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych",
     "title": "Od pliku do bazy danych",
     "section": "🗂️ 3. Pliki jako forma przechowywania danych",
-    "text": "🗂️ 3. Pliki jako forma przechowywania danych\n🗣\nZanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).\nTo po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.\n📄 Przykład pliku płaskiego (CSV):\nID,Imię,Nazwisko,Miasto\n1,Anna,Nowak,Kraków\n2,Jan,Kowalski,Warszawa\n3,Piotr,Wiśniewski,Poznań\n\n🗃 Co można zauważyć:\nDane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.\nAle… brak:\n\nkontroli nad poprawnością (np. można wpisać błędny numer ID),\nrelacji między danymi (osobna lista klientów i zamówień się nie łączy),\nspójności przy równoczesnym dostępie.\n\n\n\n💬 Pytanie:\n\nCo się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?",
+    "text": "🗂️ 3. Pliki jako forma przechowywania danych\nZanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).\nTo po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.\n📄 Przykład pliku płaskiego (CSV):\nID,Imię,Nazwisko,Miasto\n1,Anna,Nowak,Kraków\n2,Jan,Kowalski,Warszawa\n3,Piotr,Wiśniewski,Poznań\n\n🗃 Co można zauważyć:\nDane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.\nAle… brak:\n\nkontroli nad poprawnością (np. można wpisać błędny numer ID),\nrelacji między danymi (osobna lista klientów i zamówień się nie łączy),\nspójności przy równoczesnym dostępie.\n\n\n\n💬 Pytanie:\n\nCo się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -346,7 +431,7 @@
     "href": "lectures/wyklad1.html#problemy-pracy-z-plikami",
     "title": "Od pliku do bazy danych",
     "section": "🧱 4. Problemy pracy z plikami",
-    "text": "🧱 4. Problemy pracy z plikami\n🗣\nWraz ze wzrostem ilości danych zaczynają się problemy.\nSystemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.\n\n⚠️ Typowe problemy:\n\nRedundancja danych – powielanie informacji. np. imię i adres klienta wpisywany przy każdym zamówieniu.\nNiespójność danych – różne wersje tych samych danych w wielu plikach.\nTrudność w aktualizacji – brak jednego miejsca prawdy.\nBrak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.\nBrak bezpieczeństwa i kontroli dostępu.\n\n\n\n🧠 Przykład:\nPlik klienci.txt i zamowienia.txt – brak połączenia między nimi.\nTrudno ustalić, które zamówienie należy do którego klienta.\nklienci.txt:\n1;Anna Nowak;Kraków\n2;Jan Kowalski;Warszawa\n\nzamowienia.txt:\n10;Laptop;1\n11;Monitor;2\n12;Kabel HDMI;1\nTo działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.",
+    "text": "🧱 4. Problemy pracy z plikami\n🗣\nWraz ze wzrostem ilości danych zaczynają się problemy.\nSystemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.\n\n⚠️ Typowe problemy:\n\nRedundancja danych – powielanie informacji. np. imię i adres klienta wpisywany przy każdym zamówieniu.\nNiespójność danych – różne wersje tych samych danych w wielu plikach.\nTrudność w aktualizacji – brak jednego miejsca prawdy.\nBrak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.\nBrak bezpieczeństwa i kontroli dostępu.\n\n\n\n🧠 Przykład:\nPlik klienci.txt i zamowienia.txt – brak połączenia między nimi.\nTrudno ustalić, które zamówienie należy do którego klienta.\nklienci.txt:\n1;Anna Nowak;Kraków\n2;Jan Kowalski;Warszawa\n\nzamowienia.txt:\n10;Laptop;1\n11;Monitor;2\n12;Kabel HDMI;1\nTo działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.\n\n\n\n\n\n\n\nProblem\nOpis\n\n\n\n\n🔁 Redundancja\nTe same dane powielane w wielu plikach\n\n\n⚠️ Brak spójności\nAktualizacja w jednym pliku nie zmienia danych w innych\n\n\n⛔ Brak współbieżności\nTylko jedna osoba mogła modyfikować dane naraz\n\n\n❌ Trudna kontrola dostępu\nBrak ról i uprawnień\n\n\n🧩 Słaba integracja\nDane rozproszone po różnych plikach i formatach\n\n\n\nSystem bazodanowy rozwiązuje te problemy, centralizując dane i zarządzając nimi przez DBMS.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -378,11 +463,23 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad1.html#podsumowanie-wykładu",
-    "href": "lectures/wyklad1.html#podsumowanie-wykładu",
+    "objectID": "lectures/wyklad1.html#architektura-systemów-baz-danych-ansisparc",
+    "href": "lectures/wyklad1.html#architektura-systemów-baz-danych-ansisparc",
     "title": "Od pliku do bazy danych",
-    "section": "🧩 7. Podsumowanie wykładu",
-    "text": "🧩 7. Podsumowanie wykładu\n\n🔑 Kluczowe pojęcia:\nDane vs informacja vs wiedza\nUstrukturyzowane / nieustrukturyzowane dane\nPlik płaski i jego ograniczenia\nPowody wprowadzenia systemów baz danych\n\n\n🧭 Wniosek:\n\nBazy danych powstały nie dlatego, że ktoś lubił tabele, ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.",
+    "section": "3️⃣ Architektura systemów baz danych (ANSI/SPARC)",
+    "text": "3️⃣ Architektura systemów baz danych (ANSI/SPARC)\nAby zapewnić niezależność danych od aplikacji, opracowano model trójwarstwowy ANSI/SPARC:\n\n\n\n\n\n\n\n\nPoziom\nOpis\nPrzykład\n\n\n\n\nZewnętrzny\nPunkt widzenia użytkownika – wybrane dane w określonym formacie\nWidok „Studenci z kierunku Informatyka”\n\n\nLogiczny (koncepcyjny)\nGlobalny model danych – struktura tabel, relacje, ograniczenia\nSchemat bazy uczelni\n\n\nWewnętrzny (fizyczny)\nSposób przechowywania danych na dysku\nIndeksy, pliki, metody dostępu\n\n\n\nTen model umożliwia: - niezależność logiczną danych (zmiany struktury nie psują aplikacji), - niezależność fizyczną danych (zmiany sposobu zapisu nie wpływają na logikę).",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#typy-baz-danych",
+    "href": "lectures/wyklad1.html#typy-baz-danych",
+    "title": "Od pliku do bazy danych",
+    "section": "4️⃣ Typy baz danych",
+    "text": "4️⃣ Typy baz danych\nW zależności od sposobu przechowywania i powiązań danych wyróżniamy:\n\n\n\n\n\n\n\n\nTyp bazy danych\nOpis\nPrzykład\n\n\n\n\nHierarchiczna\nDane ułożone w strukturę drzewa\nIMS, stary system IBM\n\n\nSieciowa\nWiele połączeń między rekordami (graf zależności)\nIDMS\n\n\nRelacyjna\nDane w tabelach (relacjach) – klucze, związki\nPostgreSQL, MySQL\n\n\nObiektowa\nDane jako obiekty (z metodami)\nObjectDB, db4o\n\n\nDokumentowa / NoSQL\nDane w formacie JSON, brak stałego schematu\nMongoDB, CouchDB\n\n\nGrafowa\nDane w formie węzłów i krawędzi\nNeo4j\n\n\n\nNajczęściej używanym modelem jest model relacyjny, ponieważ łączy prostotę, spójność i matematyczne podstawy (algebra relacji).\n\n🧭 Wniosek:\n\nBazy danych powstały nie dlatego, że ktoś lubił tabele, ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -402,11 +499,23 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad1.html#dane-informacja-baza-danych-i-dbms",
-    "href": "lectures/wyklad1.html#dane-informacja-baza-danych-i-dbms",
+    "objectID": "lectures/wyklad1.html#zalety-podejścia-relacyjnego",
+    "href": "lectures/wyklad1.html#zalety-podejścia-relacyjnego",
     "title": "Od pliku do bazy danych",
-    "section": "Dane, informacja, baza danych i DBMS",
-    "text": "Dane, informacja, baza danych i DBMS\n\n🔹 Dane a informacja\n\nDane – surowe fakty, liczby, teksty, które same w sobie niewiele znaczą. 👉 np. 25, Warszawa, 12345\nInformacja – dane zinterpretowane i zorganizowane w kontekście. 👉 np. „25 klientów z Warszawy złożyło zamówienie w ostatnim tygodniu”.\n\nDane to materiał, informacja to znaczenie.\n\n\n🔹 Baza danych\nZorganizowany zbiór danych umożliwiający ich łatwe przeszukiwanie, aktualizację i analizę.\nCechy:\n\nStrukturalność\nCentralizacja\nTrwałość i bezpieczeństwo\n\nPrzykłady:\n\nLista kontaktów w telefonie\nSystem rezerwacji hotelowej\nSklep internetowy",
+    "section": "6️⃣ Zalety podejścia relacyjnego",
+    "text": "6️⃣ Zalety podejścia relacyjnego\n\nbrak redundancji danych (dzięki kluczom i relacjom),\nłatwe wyszukiwanie i łączenie informacji (język SQL),\nkontrola spójności i integralności,\nbezpieczeństwo i wielodostępność,\nniezależność logiczna od aplikacji.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#od-modelu-do-języka-wprowadzenie-do-sql",
+    "href": "lectures/wyklad1.html#od-modelu-do-języka-wprowadzenie-do-sql",
+    "title": "Od pliku do bazy danych",
+    "section": "7️⃣ Od modelu do języka – wprowadzenie do SQL",
+    "text": "7️⃣ Od modelu do języka – wprowadzenie do SQL\nJęzyk SQL (Structured Query Language) został stworzony, by umożliwić: - definiowanie struktur danych (DDL – Data Definition Language), - manipulowanie danymi (DML – Data Manipulation Language), - kontrolę dostępu i transakcji (DCL, TCL).\nPrzykład: ```sql CREATE TABLE STUDENT ( NrIndeksu INT PRIMARY KEY, Imie VARCHAR(30), Nazwisko VARCHAR(30), Kierunek VARCHAR(50) );",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -424,5 +533,68 @@
       "Wykłady",
       "Od pliku do bazy danych"
     ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html",
+    "href": "lectures/wyklad5.html",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "",
+    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje",
+    "href": "lectures/wyklad5.html#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "",
+    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#cele-wykładu",
+    "href": "lectures/wyklad5.html#cele-wykładu",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "🧠 Cele wykładu",
+    "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nprojektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),\n\nkorzystać z połączeń bazodanowych (DB connection),\n\nwykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,\n\nrozumieć podstawy zabezpieczania danych i transakcji w aplikacjach."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#projektowanie-interfejsu-bazy-danych",
+    "href": "lectures/wyklad5.html#projektowanie-interfejsu-bazy-danych",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "1️⃣ Projektowanie interfejsu bazy danych",
+    "text": "1️⃣ Projektowanie interfejsu bazy danych\n\n🔹 Co to jest interfejs bazy danych?\n\nInterfejs to warstwa komunikacji między aplikacją a bazą danych.\n\nPozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.\n\n\n\n🔹 Główne elementy interfejsu\n\nPołączenie z bazą danych – obiekt, który umożliwia komunikację z serwerem DB.\n\nWysyłanie zapytań – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.\n\nObsługa wyników – pobieranie danych w formie rekordów lub tabel.\n\nZarządzanie transakcjami – commit, rollback.\n\nOpis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#przykład-połączenie-do-bazy-w-pythonie",
+    "href": "lectures/wyklad5.html#przykład-połączenie-do-bazy-w-pythonie",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "2️⃣ Przykład – połączenie do bazy w Pythonie",
+    "text": "2️⃣ Przykład – połączenie do bazy w Pythonie\nimport cx_Oracle\n\n# Nawiązanie połączenia\nconn = cx_Oracle.connect('uzytkownik/haslo@localhost/XE')\ncursor = conn.cursor()\n\n# Wykonanie zapytania SELECT\ncursor.execute(\"SELECT imie, nazwisko FROM Studenci\")\nfor row in cursor:\n    print(f\"Student: {row[0]} {row[1]}\")\n\n# Zamknięcie połączenia\ncursor.close()\nconn.close()\nkod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#wykonywanie-operacji-sql-i-plsql-w-aplikacji",
+    "href": "lectures/wyklad5.html#wykonywanie-operacji-sql-i-plsql-w-aplikacji",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji",
+    "text": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji\n🔹 Operacje SQL\n\nINSERT – dodawanie nowych rekordów.\nUPDATE – modyfikacja istniejących danych.\nDELETE – usuwanie rekordów.\n\nPrzykład:\ncursor.execute(\"INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)\")\nconn.commit()\nconn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.\n\n🔹 Wywołanie procedury PL/SQL\ncursor.callproc(\"dodaj_studenta\", [12348, 'Anna', 'Kowalska', 21])\nconn.commit()\ncallproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#obsługa-transakcji-w-aplikacjach",
+    "href": "lectures/wyklad5.html#obsługa-transakcji-w-aplikacjach",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "4️⃣ Obsługa transakcji w aplikacjach",
+    "text": "4️⃣ Obsługa transakcji w aplikacjach\n\nTransakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.\nTypowy wzorzec:\n\nRozpocznij transakcję\nWykonaj operacje (INSERT, UPDATE, DELETE)\nW razie powodzenia: commit\nW razie błędu: rollback\n\n\nPrzykład w Pythonie:\ntry:\n    cursor.execute(\"UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10\")\n    cursor.execute(\"INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)\")\n    conn.commit()\nexcept:\n    conn.rollback()\n    print(\"Wystąpił błąd, transakcja wycofana\")\nzięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#indeksy-i-optymalizacja-zapytań-w-aplikacji",
+    "href": "lectures/wyklad5.html#indeksy-i-optymalizacja-zapytań-w-aplikacji",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji",
+    "text": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji\n\nIndeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.\nW aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.\n\nPrzykład w SQL:\nCREATE INDEX idx_student_nazwisko ON Studenci(Nazwisko);\nindeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE."
+  },
+  {
+    "objectID": "lectures/wyklad5.html#podsumowanie-wykładu",
+    "href": "lectures/wyklad5.html#podsumowanie-wykładu",
+    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "section": "7️⃣ Podsumowanie wykładu",
+    "text": "7️⃣ Podsumowanie wykładu\n\n🔑 Kluczowe pojęcia:\n\nInterfejs bazy danych – połączenie między aplikacją a DBMS\nOperacje SQL i PL/SQL z poziomu aplikacji\nZarządzanie transakcjami dla spójności danych\nIndeksy i podstawowe zasady optymalizacji\n\n\n\n💡 Wskazówka:\nW praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji."
   }
 ]

@@ -1,0 +1,152 @@
+---
+title: "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+---
+
+## 🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji
+
+Celem wykładu jest wprowadzenie do **języka proceduralnego PL/SQL**, pokazanie zasad **przetwarzania transakcyjnego** w bazach danych oraz omówienie roli **indeksów** w przyspieszaniu wyszukiwania danych.
+
+---
+
+## 🧠 Cele wykładu
+
+Student po wykładzie będzie potrafił:
+
+- zrozumieć różnice między SQL a PL/SQL,  
+- pisać proste bloki PL/SQL do operowania na danych,  
+- zarządzać transakcjami (commit, rollback),  
+- rozumieć rolę i zasady tworzenia indeksów w bazie danych.
+
+---
+
+## 1️⃣ Wprowadzenie do PL/SQL
+
+### 🔹 Czym jest PL/SQL?
+
+- PL/SQL to **proceduralny język rozszerzający SQL** w systemach Oracle i kompatybilnych.  
+- Umożliwia użycie **instrukcji warunkowych, pętli, zmiennych i procedur**, czego SQL nie oferuje w formie deklaratywnej.  
+
+**Przykład prostego bloku PL/SQL:**
+
+```sql
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Witaj w świecie PL/SQL!');
+END;
+/
+```
+
+Kod ten uruchamia blok proceduralny, który wypisuje komunikat. 
+
+BEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.
+
+### 🔹 Zmienne i typy danych
+
+PL/SQL pozwala tworzyć zmienne i przypisywać im wartości.
+
+```sql
+DECLARE
+    v_imie VARCHAR2(50);
+    v_wiek NUMBER;
+BEGIN
+    v_imie := 'Jan';
+    v_wiek := 25;
+    DBMS_OUTPUT.PUT_LINE('Student: ' || v_imie || ', wiek: ' || v_wiek);
+END;
+/
+```
+
+Zmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.
+
+### 🔹 Instrukcje warunkowe i pętle
+
+PL/SQL pozwala na użycie:
+
+- IF…THEN…ELSE:
+
+```sql
+IF v_wiek >= 18 THEN
+    DBMS_OUTPUT.PUT_LINE('Pełnoletni');
+ELSE
+    DBMS_OUTPUT.PUT_LINE('Niepełnoletni');
+END IF;
+```
+
+- LOOP, WHILE, FOR – do powtarzania operacji:
+```sql
+FOR i IN 1..5 LOOP
+    DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);
+END LOOP;
+```
+
+Instrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych.
+
+## 2️⃣ Operacje na danych w PL/SQL
+
+PL/SQL umożliwia wykonywanie standardowych operacji SQL:
+
+- INSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.
+
+Przykład aktualizacji studenta:
+
+```sql
+BEGIN
+    UPDATE Studenci
+    SET Wiek = 26
+    WHERE NrIndeksu = 12345;
+END;
+/
+```
+
+można grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.
+
+## 3️⃣ Przetwarzanie transakcyjne
+
+### 🔹 Co to jest transakcja?
+
+Transakcja to jednostka pracy w bazie danych, która:
+
+- wykonuje kilka operacji jako całość,
+- jest atomowa – albo wszystkie operacje się powiodą, albo żadna,
+- zapewnia spójność danych (ACID).
+
+### 🔹 Polecenia transakcyjne
+
+- COMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.
+- ROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.
+- SAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.
+
+Przykład użycia transakcji:
+```sql
+BEGIN
+    INSERT INTO Studenci VALUES(12346, 'Anna', 'Kowalska', 21);
+    UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10;
+    COMMIT;
+END;
+/
+
+```
+obie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.
+
+## 4️⃣ Indeksy w bazie danych
+
+### 🔹 Co to jest indeks?
+
+- Indeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.
+- Działa podobnie jak spis treści w książce.
+
+Przykład tworzenia indeksu:
+```sql
+CREATE INDEX idx_studenci_nazwisko
+ON Studenci(Nazwisko);
+```
+
+ndeks przyspiesza wyszukiwanie po kolumnie Nazwisko.
+Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.
+
+### 🔹 Rodzaje indeksów
+
+- Jedno-kolumnowe – indeks na jednej kolumnie.
+- Wielokolumnowe (composite) – indeks na kilku kolumnach razem.
+- Unikalne – zapewniają unikalność wartości w kolumnie.
+
+Dobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.

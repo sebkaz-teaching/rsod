@@ -104,35 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -238,8 +209,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#model-relacyjny-przypomnienie-i-pojęcia-podstawowe" id="toc-model-relacyjny-przypomnienie-i-pojęcia-podstawowe" class="nav-link active" data-scroll-target="#model-relacyjny-przypomnienie-i-pojęcia-podstawowe">1️⃣ Model relacyjny – przypomnienie i pojęcia podstawowe</a></li>
   <li><a href="#klucze-i-więzy-integralności" id="toc-klucze-i-więzy-integralności" class="nav-link" data-scroll-target="#klucze-i-więzy-integralności">2️⃣ Klucze i więzy integralności</a></li>
-  <li><a href="#schemat-bazy-danych-przykład-biblioteka" id="toc-schemat-bazy-danych-przykład-biblioteka" class="nav-link" data-scroll-target="#schemat-bazy-danych-przykład-biblioteka">3️⃣ Schemat bazy danych – przykład „Biblioteka”</a></li>
-  <li><a href="#tworzenie-tabel-ddl-data-definition-language" id="toc-tworzenie-tabel-ddl-data-definition-language" class="nav-link" data-scroll-target="#tworzenie-tabel-ddl-data-definition-language">4️⃣ Tworzenie tabel (DDL – Data Definition Language)</a></li>
+  <li><a href="#rodzaje-związków-relacji-między-tabelami" id="toc-rodzaje-związków-relacji-między-tabelami" class="nav-link" data-scroll-target="#rodzaje-związków-relacji-między-tabelami">2️⃣ Rodzaje związków (relacji) między tabelami</a></li>
   <li><a href="#modyfikacja-i-usuwanie-tabel" id="toc-modyfikacja-i-usuwanie-tabel" class="nav-link" data-scroll-target="#modyfikacja-i-usuwanie-tabel">5️⃣ Modyfikacja i usuwanie tabel</a></li>
   <li><a href="#wstawianie-danych-dml-data-manipulation-language" id="toc-wstawianie-danych-dml-data-manipulation-language" class="nav-link" data-scroll-target="#wstawianie-danych-dml-data-manipulation-language">6️⃣ Wstawianie danych (DML – Data Manipulation Language)</a></li>
   <li><a href="#wybieranie-danych-select" id="toc-wybieranie-danych-select" class="nav-link" data-scroll-target="#wybieranie-danych-select">7️⃣ Wybieranie danych – SELECT</a></li>
@@ -286,6 +256,7 @@ window.Quarto = {
 </li>
 <li><strong>Dziedzina (domain)</strong> = zbiór dopuszczalnych wartości w kolumnie</li>
 </ul>
+<p>Przykład relacji <strong>STUDENT</strong>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -334,70 +305,171 @@ window.Quarto = {
 <li><code>NOT NULL</code> – kolumna nie może mieć wartości pustej.</li>
 <li><code>CHECK</code> – warunek logiczny na wartość kolumny.</li>
 </ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 18%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rodzaj klucza</th>
+<th>Opis</th>
+<th>Przykład</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Klucz główny (Primary Key)</strong></td>
+<td>jednoznacznie identyfikuje rekord</td>
+<td>NrIndeksu w STUDENT</td>
+</tr>
+<tr class="even">
+<td><strong>Klucz obcy (Foreign Key)</strong></td>
+<td>tworzy powiązanie między tabelami</td>
+<td>KursID w tabeli ZAPIS</td>
+</tr>
+<tr class="odd">
+<td><strong>Klucz kandydujący (Candidate Key)</strong></td>
+<td>atrybut lub zestaw atrybutów, który może pełnić rolę klucza głównego</td>
+<td>(PESEL), (NrIndeksu)</td>
+</tr>
+<tr class="even">
+<td><strong>Klucz złożony (Composite Key)</strong></td>
+<td>składa się z kilku kolumn</td>
+<td>(StudentID, KursID)</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
-<section id="schemat-bazy-danych-przykład-biblioteka" class="level2">
-<h2 class="anchored" data-anchor-id="schemat-bazy-danych-przykład-biblioteka">3️⃣ Schemat bazy danych – przykład „Biblioteka”</h2>
-<section id="tabele" class="level3">
-<h3 class="anchored" data-anchor-id="tabele">Tabele:</h3>
-<ul>
-<li><strong>Autorzy</strong> (<code>autor_id</code>, <code>imie</code>, <code>nazwisko</code>)</li>
-<li><strong>Ksiazki</strong> (<code>ksiazka_id</code>, <code>tytul</code>, <code>rok</code>, <code>autor_id</code>)</li>
-</ul>
-</section>
-<section id="relacja" class="level3">
-<h3 class="anchored" data-anchor-id="relacja">Relacja:</h3>
-<ul>
-<li><code>Ksiazki.autor_id</code> <span class="math inline">\(\to\)</span> <code>Autorzy.autor_id</code> (klucz obcy)</li>
-</ul>
-</section>
-</section>
-<section id="tworzenie-tabel-ddl-data-definition-language" class="level2">
-<h2 class="anchored" data-anchor-id="tworzenie-tabel-ddl-data-definition-language">4️⃣ Tworzenie tabel (DDL – Data Definition Language)</h2>
-<p>Polecenie <code>CREATE TABLE</code> służy do utworzenia nowej tabeli w bazie danych.<br>
-W tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak <code>PRIMARY KEY</code>, <code>NOT NULL</code> czy <code>FOREIGN KEY</code>.<br>
-Każda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.<br>
-W przykładzie poniżej tworzymy dwie tabele: <strong>Autorzy</strong> i <strong>Ksiazki</strong>, które będą ze sobą powiązane relacją klucz główny–klucz obcy.</p>
-<section id="przykład-w-sqlite-i-postgresql" class="level3">
-<h3 class="anchored" data-anchor-id="przykład-w-sqlite-i-postgresql">Przykład w <strong>SQLite</strong> i <strong>PostgreSQL</strong></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Autorzy (</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    autor_id     <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,         <span class="co">-- w SQLite automatycznie AUTOINCREMENT</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    imie         TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    nazwisko     TEXT <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>);</span>
+<section id="rodzaje-związków-relacji-między-tabelami" class="level2">
+<h2 class="anchored" data-anchor-id="rodzaje-związków-relacji-między-tabelami">2️⃣ Rodzaje związków (relacji) między tabelami</h2>
+<p>W relacyjnej bazie danych tabele mogą być ze sobą połączone przez <strong>klucze obce</strong>, które tworzą różne typy relacji:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 20%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Typ relacji</th>
+<th>Opis</th>
+<th>Przykład</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1:1 (jeden do jednego)</strong></td>
+<td>jeden rekord w tabeli A odpowiada dokładnie jednemu rekordowi w tabeli B</td>
+<td>Student ↔︎️ Legitymacja</td>
+</tr>
+<tr class="even">
+<td><strong>1:N (jeden do wielu)</strong></td>
+<td>jeden rekord w tabeli A może być powiązany z wieloma rekordami w tabeli B</td>
+<td>Wykładowca ↔︎️ Kursy</td>
+</tr>
+<tr class="odd">
+<td><strong>N:M (wielu do wielu)</strong></td>
+<td>wiele rekordów w A może być powiązanych z wieloma w B</td>
+<td>Studenci ↔︎️ Kursy</td>
+</tr>
+</tbody>
+</table>
+<p>Relację <strong>N:M</strong> realizujemy przez <strong>tabelę pośredniczącą (łączącą)</strong>, np.:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>STUDENT (NrIndeksu, Imie, Nazwisko)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>KURS (KursID, Nazwa)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ZAPIS (NrIndeksu, KursID, DataZapisu)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>TABELA ZAPIS zawiera klucze obce wskazujące na STUDENT i KURS.</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Ksiazki (</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ksiazka_id   SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,          <span class="co">-- PostgreSQL: automatyczna numeracja</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    tytul        <span class="dt">VARCHAR</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    rok          <span class="dt">INTEGER</span> <span class="kw">CHECK</span> (rok <span class="op">&gt;</span> <span class="dv">0</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    autor_id     <span class="dt">INTEGER</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (autor_id) <span class="kw">REFERENCES</span> Autorzy(autor_id)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>## <span class="dv">3</span>️⃣ Schemat bazy danych – przykład „Biblioteka”</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>### Tabele:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>Autorzy<span class="op">**</span> (`autor_id`, `imie`, `nazwisko`)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>Ksiazki<span class="op">**</span> (`ksiazka_id`, `tytul`, `rok`, `autor_id`)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>### Relacja:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `Ksiazki.autor_id` $\to$ `Autorzy.autor_id` (klucz obcy)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>## <span class="dv">4</span>️⃣ Wprowadzenie do języka SQL (Structured <span class="kw">Query</span> Language)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>SQL <span class="kw">to</span> standardowy język do definiowania, modyfikowania i pobierania danych w relacyjnych bazach danych.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>| <span class="kw">DDL</span> (<span class="kw">Data</span> Definition Language) | definiuje strukturę bazy |<span class="kw">CREATE</span> <span class="kw">TABLE</span>, <span class="kw">ALTER</span> <span class="kw">TABLE</span>, <span class="kw">DROP</span> <span class="kw">TABLE</span> |</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>|<span class="co">---------------------------------------------------------------------------------------|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>| DML (<span class="kw">Data</span> Manipulation Language) | operacje na danych | <span class="kw">INSERT</span>, <span class="kw">UPDATE</span>, <span class="kw">DELETE</span>, <span class="kw">SELECT</span> |</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>|<span class="co">----------------------------------------------------------------------------------------|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>| DCL (<span class="kw">Data</span> Control Language) | kontrola dostępu | <span class="kw">GRANT</span>, <span class="kw">REVOKE</span>|</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>|<span class="co">----------------------------------------------------------------------------------------|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>| TCL (<span class="kw">Transaction</span> Control Language) | kontrola transakcji |<span class="kw">COMMIT</span>, <span class="kw">ROLLBACK</span> |</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>🔹 Składnia SQL – podział na podjęzyki:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>### Tworzenie tabel (<span class="kw">DDL</span> – <span class="kw">Data</span> Definition Language)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>Polecenie `CREATE TABLE` służy do utworzenia nowej tabeli w bazie danych.  </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>W tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak `PRIMARY KEY`, `NOT NULL` czy `FOREIGN KEY`.  </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Każda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – <span class="kw">to</span> właśnie klucz główny.  </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>W przykładzie poniżej tworzymy dwie tabele: <span class="op">**</span>Autorzy<span class="op">**</span> i <span class="op">**</span>Ksiazki<span class="op">**</span>, które będą ze sobą powiązane relacją klucz główny–klucz obcy.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>### Przykład w <span class="op">**</span>SQLite<span class="op">**</span> i <span class="op">**</span>PostgreSQL<span class="op">**</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>```sql</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Autorzy (</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    autor_id     <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,         <span class="co">-- w SQLite automatycznie AUTOINCREMENT</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    imie         TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    nazwisko     TEXT <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Ksiazki (</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    ksiazka_id   SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,          <span class="co">-- PostgreSQL: automatyczna numeracja</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    tytul        <span class="dt">VARCHAR</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    rok          <span class="dt">INTEGER</span> <span class="kw">CHECK</span> (rok <span class="op">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    autor_id     <span class="dt">INTEGER</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (autor_id) <span class="kw">REFERENCES</span> Autorzy(autor_id)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>W SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.</li>
 <li>W PostgreSQL SERIAL lub GENERATED ALWAYS AS IDENTITY.</li>
 </ul>
 <p>W powyższym przykładzie tabela Autorzy przechowuje dane o autorach, a tabela Ksiazki – dane o książkach. Kolumna autor_id w tabeli Ksiazki jest kluczem obcym i wskazuje, który autor napisał daną książkę. Dzięki więzom integralności baza pilnuje, aby każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.</p>
 </section>
-</section>
 <section id="modyfikacja-i-usuwanie-tabel" class="level2">
 <h2 class="anchored" data-anchor-id="modyfikacja-i-usuwanie-tabel">5️⃣ Modyfikacja i usuwanie tabel</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> Ksiazki <span class="kw">ADD</span> <span class="kw">COLUMN</span> gatunek TEXT;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> Ksiazki;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="dodawanie-kolumn" class="level3">
+<h3 class="anchored" data-anchor-id="dodawanie-kolumn">🔹 Dodawanie kolumn</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> Ksiazki <span class="kw">ADD</span> <span class="kw">COLUMN</span> gatunek TEXT;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="zmiana-typu-kolumny" class="level3">
+<h3 class="anchored" data-anchor-id="zmiana-typu-kolumny">🔹 Zmiana typu kolumny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> STUDENT <span class="kw">ALTER</span> <span class="kw">COLUMN</span> Kierunek <span class="kw">TYPE</span> <span class="dt">VARCHAR</span>(<span class="dv">100</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="usuwanie-kolumny" class="level3">
+<h3 class="anchored" data-anchor-id="usuwanie-kolumny">🔹 Usuwanie kolumny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> STUDENT <span class="kw">DROP</span> <span class="kw">COLUMN</span> Email;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="usuwanie-tabeli" class="level3">
+<h3 class="anchored" data-anchor-id="usuwanie-tabeli">🔹 Usuwanie tabeli</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> Ksiazki;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 </section>
 <section id="wstawianie-danych-dml-data-manipulation-language" class="level2">
 <h2 class="anchored" data-anchor-id="wstawianie-danych-dml-data-manipulation-language">6️⃣ Wstawianie danych (DML – Data Manipulation Language)</h2>
 <p>Polecenie INSERT INTO służy do wprowadzania nowych wierszy (rekordów) do tabeli. Wartości muszą być zgodne z typami kolumn oraz ograniczeniami (NOT NULL, CHECK, itp.). Można dodać jeden lub wiele rekordów w jednym poleceniu. Poniżej wstawiamy kilku autorów oraz ich książki do utworzonych wcześniej tabel.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Autorzy (imie, nazwisko) <span class="kw">VALUES</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Adam'</span>, <span class="st">'Mickiewicz'</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Henryk'</span>, <span class="st">'Sienkiewicz'</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Bolesław'</span>, <span class="st">'Prus'</span>);</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Ksiazki (tytul, rok, autor_id) <span class="kw">VALUES</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Pan Tadeusz'</span>, <span class="dv">1834</span>, <span class="dv">1</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Quo Vadis'</span>, <span class="dv">1896</span>, <span class="dv">2</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Lalka'</span>, <span class="dv">1890</span>, <span class="dv">3</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Autorzy (imie, nazwisko) <span class="kw">VALUES</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Adam'</span>, <span class="st">'Mickiewicz'</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Henryk'</span>, <span class="st">'Sienkiewicz'</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Bolesław'</span>, <span class="st">'Prus'</span>);</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Ksiazki (tytul, rok, autor_id) <span class="kw">VALUES</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Pan Tadeusz'</span>, <span class="dv">1834</span>, <span class="dv">1</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Quo Vadis'</span>, <span class="dv">1896</span>, <span class="dv">2</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Lalka'</span>, <span class="dv">1890</span>, <span class="dv">3</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Każdy rekord reprezentuje jedną pozycję w tabeli. Polecenie INSERT wymaga podania wartości w tej samej kolejności, w jakiej wymieniono kolumny. Jeśli nie podamy jakiejś kolumny, a ma ona zdefiniowaną wartość domyślną (DEFAULT), baza wstawi ją automatycznie. Dzięki temu możemy stopniowo budować zawartość naszej bazy danych.</p>
 </section>
 <section id="wybieranie-danych-select" class="level2">
@@ -405,24 +477,24 @@ W przykładzie poniżej tworzymy dwie tabele: <strong>Autorzy</strong> i <strong
 <section id="podstawowy-select" class="level3">
 <h3 class="anchored" data-anchor-id="podstawowy-select">🧩 Podstawowy SELECT</h3>
 <p>Polecenie SELECT jest najczęściej używanym poleceniem SQL i służy do pobierania danych z tabel. Pozwala określić, które kolumny chcemy zobaczyć i z których tabel dane mają pochodzić. Jeśli użyjemy gwiazdki *, oznacza to, że wybieramy wszystkie kolumny. Poniższe zapytanie zwraca wszystkich autorów z tabeli Autorzy.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Autorzy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Autorzy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="wybór-konkretnych-kolumn" class="level3">
 <h3 class="anchored" data-anchor-id="wybór-konkretnych-kolumn">🧩 Wybór konkretnych kolumn</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> imie, nazwisko <span class="kw">FROM</span> Autorzy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> imie, nazwisko <span class="kw">FROM</span> Autorzy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wynik to pełna tabela z kolumnami autor_id, imie i nazwisko. Często jednak potrzebujemy tylko części danych, np. imienia i nazwiska – wtedy podajemy konkretne kolumny:</p>
 </section>
 <section id="nadawanie-aliasów" class="level3">
 <h3 class="anchored" data-anchor-id="nadawanie-aliasów">🧩 Nadawanie aliasów</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> imie <span class="kw">AS</span> <span class="ot">"Imię"</span>, nazwisko <span class="kw">AS</span> <span class="ot">"Nazwisko"</span> <span class="kw">FROM</span> Autorzy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> imie <span class="kw">AS</span> <span class="ot">"Imię"</span>, nazwisko <span class="kw">AS</span> <span class="ot">"Nazwisko"</span> <span class="kw">FROM</span> Autorzy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Takie zapytania pomagają ograniczyć ilość danych i zwiększyć czytelność wyników. Warto też nadawać aliasy (AS), które pozwalają zmienić nazwę kolumn w wynikach i nadać im bardziej opisowy wygląd.</p>
 </section>
 </section>
 <section id="filtrowanie-where" class="level2">
 <h2 class="anchored" data-anchor-id="filtrowanie-where">8️⃣ Filtrowanie – WHERE</h2>
 <p>Kiedy chcemy wybrać tylko część danych, używamy klauzuli WHERE. Dzięki niej możemy ustawić warunki, jakie muszą spełniać rekordy, by pojawiły się w wyniku. To bardzo potężne narzędzie, które pozwala np. wyszukiwać książki z konkretnego roku lub autora. W poniższym przykładzie wybieramy książki wydane po roku 1850.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Ksiazki</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rok <span class="op">&gt;</span> <span class="dv">1850</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Ksiazki</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rok <span class="op">&gt;</span> <span class="dv">1850</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="operatory" class="level3">
 <h3 class="anchored" data-anchor-id="operatory">🧠 Operatory:</h3>
 <p>Możemy też stosować inne operatory:</p>
@@ -434,23 +506,23 @@ W przykładzie poniżej tworzymy dwie tabele: <strong>Autorzy</strong> i <strong
 <li>IS NULL, IS NOT NULL</li>
 </ul>
 <p>Na przykład, aby znaleźć wszystkie książki, których tytuł zawiera literę „a”, używamy wzorca z LIKE:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> tytul <span class="kw">FROM</span> Ksiazki <span class="kw">WHERE</span> tytul <span class="kw">LIKE</span> <span class="st">'%a%'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> tytul <span class="kw">FROM</span> Ksiazki <span class="kw">WHERE</span> tytul <span class="kw">LIKE</span> <span class="st">'%a%'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Klauzula WHERE pozwala więc filtrować dane na wiele sposobów, co czyni zapytania SQL bardzo elastycznymi.</p>
 </section>
 </section>
 <section id="sortowanie-order-by" class="level2">
 <h2 class="anchored" data-anchor-id="sortowanie-order-by">9️⃣ Sortowanie – ORDER BY</h2>
 <p>Po pobraniu danych często chcemy uporządkować je według określonego kryterium. Do tego służy klauzula ORDER BY, dzięki której możemy sortować rosnąco (ASC) lub malejąco (DESC). Sortowanie działa na dowolnej kolumnie, także tych, które nie są wyświetlane w wyniku. W przykładzie poniżej porządkujemy książki według roku wydania od najnowszej do najstarszej.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Ksiazki <span class="kw">ORDER</span> <span class="kw">BY</span> rok <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Ksiazki <span class="kw">ORDER</span> <span class="kw">BY</span> rok <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Jeśli nie podamy kierunku sortowania, domyślnie jest to ASC (rosnąco). Można też sortować według kilku kolumn jednocześnie, np. najpierw po autorze, a potem po roku. Sortowanie poprawia czytelność wyników i pozwala szybciej analizować dane.</p>
 </section>
 <section id="grupowanie-i-agregacja-group-by-having" class="level2">
 <h2 class="anchored" data-anchor-id="grupowanie-i-agregacja-group-by-having">🔟 Grupowanie i agregacja – GROUP BY, HAVING</h2>
 <p>Czasem chcemy policzyć, ile danych należy do danej kategorii – np. ilu autorów napisało więcej niż jedną książkę. Do tego służy GROUP BY, które grupuje dane według wybranej kolumny. W połączeniu z funkcjami agregującymi, takimi jak COUNT(), AVG(), SUM(), MIN() czy MAX(), daje duże możliwości analizy. Klauzula HAVING pozwala odfiltrować grupy po obliczeniu agregacji.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> autor_id, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> liczba_ksiazek</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> autor_id</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> autor_id, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> liczba_ksiazek</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> autor_id</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To zapytanie zwraca tylko tych autorów, którzy mają więcej niż jedną książkę. Różnica między WHERE a HAVING polega na tym, że WHERE filtruje pojedyncze wiersze przed grupowaniem, a HAVING filtruje całe grupy po agregacji. Wyniki można potem łączyć z innymi tabelami, by uzyskać bardziej opisowe raporty.</p>
 </section>
 <section id="łączenie-tabel-join" class="level2">
@@ -458,24 +530,24 @@ W przykładzie poniżej tworzymy dwie tabele: <strong>Autorzy</strong> i <strong
 <p>W relacyjnym modelu danych informacje są rozproszone w różnych tabelach, które łączy się przy pomocy kluczy obcych. Polecenie JOIN pozwala zestawić dane z kilku tabel na podstawie wspólnej kolumny. Najczęściej używany jest INNER JOIN, który zwraca tylko rekordy, dla których istnieje dopasowanie w obu tabelach. W przykładzie łączymy tabelę Ksiazki z Autorzy, aby zobaczyć tytuł książki i jej autora.</p>
 <section id="inner-join" class="level3">
 <h3 class="anchored" data-anchor-id="inner-join">🔹 INNER JOIN</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> k.tytul, a.imie, a.nazwisko</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki k</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> Autorzy a <span class="kw">ON</span> k.autor_id <span class="op">=</span> a.autor_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> k.tytul, a.imie, a.nazwisko</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki k</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> Autorzy a <span class="kw">ON</span> k.autor_id <span class="op">=</span> a.autor_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wynikiem będzie lista książek wraz z imieniem i nazwiskiem autora. Jeśli chcemy, aby w wynikach pojawiły się także książki bez autora (lub autorzy bez książek), używamy odpowiednio LEFT JOIN lub RIGHT JOIN. Łączenie tabel to fundament relacyjnych baz danych – dzięki niemu dane są spójne i nie trzeba ich powielać.</p>
 </section>
 <section id="left-join" class="level3">
 <h3 class="anchored" data-anchor-id="left-join">🔹 LEFT JOIN</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> k.tytul, a.imie, a.nazwisko</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki k</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> Autorzy a <span class="kw">ON</span> k.autor_id <span class="op">=</span> a.autor_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> k.tytul, a.imie, a.nazwisko</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki k</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span> Autorzy a <span class="kw">ON</span> k.autor_id <span class="op">=</span> a.autor_id;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="aktualizacja-i-usuwanie-danych" class="level2">
 <h2 class="anchored" data-anchor-id="aktualizacja-i-usuwanie-danych">1️⃣2️⃣ Aktualizacja i usuwanie danych</h2>
 <p>Polecenie UPDATE pozwala modyfikować dane już istniejące w tabeli. Zawsze należy używać klauzuli WHERE, aby zmiana nie objęła wszystkich rekordów. Z kolei DELETE służy do usuwania rekordów – również z warunkiem, by nie usunąć wszystkiego przez pomyłkę. Przykład poniżej pokazuje, jak zmienić rok wydania książki i usunąć starsze pozycje.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Ksiazki <span class="kw">SET</span> rok <span class="op">=</span> <span class="dv">1836</span> <span class="kw">WHERE</span> tytul <span class="op">=</span> <span class="st">'Pan Tadeusz'</span>;</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Ksiazki <span class="kw">WHERE</span> rok <span class="op">&lt;</span> <span class="dv">1850</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Ksiazki <span class="kw">SET</span> rok <span class="op">=</span> <span class="dv">1836</span> <span class="kw">WHERE</span> tytul <span class="op">=</span> <span class="st">'Pan Tadeusz'</span>;</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Ksiazki <span class="kw">WHERE</span> rok <span class="op">&lt;</span> <span class="dv">1850</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>UPDATE pozwala też aktualizować wiele kolumn naraz, a nawet wykonywać obliczenia. Z kolei DELETE usuwa rekordy z tabeli, ale nie zmienia struktury bazy. Warto zawsze testować warunek WHERE wcześniej przy pomocy SELECT, by uniknąć niechcianych usunięć.</p>
 </section>
 <section id="podsumowanie" class="level2">

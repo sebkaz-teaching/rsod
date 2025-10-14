@@ -12,6 +12,8 @@ title: "MODEL RELACYJNY I PODSTAWY SQL"
 - Każda **kolumna (column)** = atrybut  
 - **Dziedzina (domain)** = zbiór dopuszczalnych wartości w kolumnie
 
+Przykład relacji **STUDENT**:
+
 | id | imie | nazwisko | rok_urodzenia |
 |----|-------|------------|----------------|
 | 1  | Adam  | Mickiewicz | 1798 |
@@ -32,6 +34,31 @@ title: "MODEL RELACYJNY I PODSTAWY SQL"
 - `NOT NULL` – kolumna nie może mieć wartości pustej.
 - `CHECK` – warunek logiczny na wartość kolumny.
 
+| Rodzaj klucza | Opis | Przykład |
+|----------------|------|----------|
+| **Klucz główny (Primary Key)** | jednoznacznie identyfikuje rekord | NrIndeksu w STUDENT |
+| **Klucz obcy (Foreign Key)** | tworzy powiązanie między tabelami | KursID w tabeli ZAPIS |
+| **Klucz kandydujący (Candidate Key)** | atrybut lub zestaw atrybutów, który może pełnić rolę klucza głównego | (PESEL), (NrIndeksu) |
+| **Klucz złożony (Composite Key)** | składa się z kilku kolumn | (StudentID, KursID) |
+
+## 2️⃣ Rodzaje związków (relacji) między tabelami
+
+W relacyjnej bazie danych tabele mogą być ze sobą połączone przez **klucze obce**, które tworzą różne typy relacji:
+
+| Typ relacji | Opis | Przykład |
+|--------------|------|----------|
+| **1:1 (jeden do jednego)** | jeden rekord w tabeli A odpowiada dokładnie jednemu rekordowi w tabeli B | Student ↔️ Legitymacja |
+| **1:N (jeden do wielu)** | jeden rekord w tabeli A może być powiązany z wieloma rekordami w tabeli B | Wykładowca ↔️ Kursy |
+| **N:M (wielu do wielu)** | wiele rekordów w A może być powiązanych z wieloma w B | Studenci ↔️ Kursy |
+
+Relację **N:M** realizujemy przez **tabelę pośredniczącą (łączącą)**, np.:
+
+```sql
+STUDENT (NrIndeksu, Imie, Nazwisko)
+KURS (KursID, Nazwa)
+ZAPIS (NrIndeksu, KursID, DataZapisu)
+
+TABELA ZAPIS zawiera klucze obce wskazujące na STUDENT i KURS.
 
 ## 3️⃣ Schemat bazy danych – przykład „Biblioteka”
 
@@ -42,8 +69,22 @@ title: "MODEL RELACYJNY I PODSTAWY SQL"
 ### Relacja:
 - `Ksiazki.autor_id` $\to$ `Autorzy.autor_id` (klucz obcy)
 
+## 4️⃣ Wprowadzenie do języka SQL (Structured Query Language)
 
-## 4️⃣ Tworzenie tabel (DDL – Data Definition Language)
+SQL to standardowy język do definiowania, modyfikowania i pobierania danych w relacyjnych bazach danych.
+
+| DDL (Data Definition Language) | definiuje strukturę bazy |CREATE TABLE, ALTER TABLE, DROP TABLE |
+|---------------------------------------------------------------------------------------|
+| DML (Data Manipulation Language) | operacje na danych | INSERT, UPDATE, DELETE, SELECT |
+|----------------------------------------------------------------------------------------|
+| DCL (Data Control Language) | kontrola dostępu | GRANT, REVOKE|
+|----------------------------------------------------------------------------------------|
+| TCL (Transaction Control Language) | kontrola transakcji |COMMIT, ROLLBACK |
+
+
+🔹 Składnia SQL – podział na podjęzyki:
+
+### Tworzenie tabel (DDL – Data Definition Language)
 
 Polecenie `CREATE TABLE` służy do utworzenia nowej tabeli w bazie danych.  
 W tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak `PRIMARY KEY`, `NOT NULL` czy `FOREIGN KEY`.  
@@ -80,9 +121,25 @@ Takie powiązania są podstawą modelu relacyjnego.
 
 ## 5️⃣ Modyfikacja i usuwanie tabel
 
+### 🔹 Dodawanie kolumn
+
 ```sql
 ALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;
+```
 
+### 🔹 Zmiana typu kolumny
+
+```sql
+ALTER TABLE STUDENT ALTER COLUMN Kierunek TYPE VARCHAR(100);
+```
+### 🔹 Usuwanie kolumny
+
+```sql
+ALTER TABLE STUDENT DROP COLUMN Email;
+
+```
+### 🔹 Usuwanie tabeli
+```sql
 DROP TABLE Ksiazki;
 
 ```

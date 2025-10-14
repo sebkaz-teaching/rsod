@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Normalizacja i projektowanie baz danych – Relacyjne Systemy Organizacji Danych</title>
+<title>WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy – Relacyjne Systemy Organizacji Danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad3.html">Normalizacja i projektowanie baz danych</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/wyklad3.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lectures/wyklad3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Normalizacja i projektowanie baz danych</span></a>
   </div>
 </li>
@@ -207,24 +207,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#temat-jak-uniknąć-błędów-w-projektowaniu" id="toc-temat-jak-uniknąć-błędów-w-projektowaniu" class="nav-link active" data-scroll-target="#temat-jak-uniknąć-błędów-w-projektowaniu">🎯 Temat: Jak uniknąć błędów w projektowaniu?</a></li>
+  <li><a href="#temat-programowanie-w-plsql-i-podstawy-optymalizacji" id="toc-temat-programowanie-w-plsql-i-podstawy-optymalizacji" class="nav-link active" data-scroll-target="#temat-programowanie-w-plsql-i-podstawy-optymalizacji">🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji</a></li>
   <li><a href="#cele-wykładu" id="toc-cele-wykładu" class="nav-link" data-scroll-target="#cele-wykładu">🧠 Cele wykładu</a></li>
-  <li><a href="#problemy-złego-projektu-bazy-danych" id="toc-problemy-złego-projektu-bazy-danych" class="nav-link" data-scroll-target="#problemy-złego-projektu-bazy-danych">1. Problemy złego projektu bazy danych</a></li>
-  <li><a href="#zależności-funkcjonalne" id="toc-zależności-funkcjonalne" class="nav-link" data-scroll-target="#zależności-funkcjonalne">2. Zależności funkcjonalne</a></li>
-  <li><a href="#formy-normalne-1nf-3nf-bcnf" id="toc-formy-normalne-1nf-3nf-bcnf" class="nav-link" data-scroll-target="#formy-normalne-1nf-3nf-bcnf">3. Formy normalne (1NF – 3NF, BCNF)</a></li>
-  <li><a href="#diagramy-erd-entityrelationship-diagram" id="toc-diagramy-erd-entityrelationship-diagram" class="nav-link" data-scroll-target="#diagramy-erd-entityrelationship-diagram">4. Diagramy ERD (Entity–Relationship Diagram)</a></li>
-  <li><a href="#proces-projektowania-bazy-danych" id="toc-proces-projektowania-bazy-danych" class="nav-link" data-scroll-target="#proces-projektowania-bazy-danych">5. Proces projektowania bazy danych</a></li>
-  <li><a href="#akcent-praktyczny" id="toc-akcent-praktyczny" class="nav-link" data-scroll-target="#akcent-praktyczny">6. Akcent praktyczny</a></li>
-  <li><a href="#efekty-uczenia-się" id="toc-efekty-uczenia-się" class="nav-link" data-scroll-target="#efekty-uczenia-się">🎓 Efekty uczenia się</a></li>
+  <li><a href="#wprowadzenie-do-plsql" id="toc-wprowadzenie-do-plsql" class="nav-link" data-scroll-target="#wprowadzenie-do-plsql">1️⃣ Wprowadzenie do PL/SQL</a></li>
+  <li><a href="#operacje-na-danych-w-plsql" id="toc-operacje-na-danych-w-plsql" class="nav-link" data-scroll-target="#operacje-na-danych-w-plsql">2️⃣ Operacje na danych w PL/SQL</a></li>
+  <li><a href="#przetwarzanie-transakcyjne" id="toc-przetwarzanie-transakcyjne" class="nav-link" data-scroll-target="#przetwarzanie-transakcyjne">3️⃣ Przetwarzanie transakcyjne</a></li>
+  <li><a href="#indeksy-w-bazie-danych" id="toc-indeksy-w-bazie-danych" class="nav-link" data-scroll-target="#indeksy-w-bazie-danych">4️⃣ Indeksy w bazie danych</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad3.html">Normalizacja i projektowanie baz danych</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Normalizacja i projektowanie baz danych</h1>
+<h1 class="title">WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy</h1>
 </div>
 
 
@@ -241,202 +238,143 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temat-jak-uniknąć-błędów-w-projektowaniu" class="level2">
-<h2 class="anchored" data-anchor-id="temat-jak-uniknąć-błędów-w-projektowaniu">🎯 Temat: Jak uniknąć błędów w projektowaniu?</h2>
-<p>Celem wykładu jest pokazanie, jak unikać błędów podczas projektowania relacyjnych baz danych poprzez stosowanie zasad <strong>normalizacji</strong>, zrozumienie <strong>zależności funkcjonalnych</strong> oraz wykorzystanie <strong>diagramów ERD</strong> (Entity–Relationship Diagram).</p>
+<section id="temat-programowanie-w-plsql-i-podstawy-optymalizacji" class="level2">
+<h2 class="anchored" data-anchor-id="temat-programowanie-w-plsql-i-podstawy-optymalizacji">🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji</h2>
+<p>Celem wykładu jest wprowadzenie do <strong>języka proceduralnego PL/SQL</strong>, pokazanie zasad <strong>przetwarzania transakcyjnego</strong> w bazach danych oraz omówienie roli <strong>indeksów</strong> w przyspieszaniu wyszukiwania danych.</p>
+<hr>
 </section>
 <section id="cele-wykładu" class="level2">
 <h2 class="anchored" data-anchor-id="cele-wykładu">🧠 Cele wykładu</h2>
+<p>Student po wykładzie będzie potrafił:</p>
 <ul>
-<li>nauczenie zasad <strong>normalizacji</strong> relacyjnych baz danych,<br>
+<li>zrozumieć różnice między SQL a PL/SQL,<br>
 </li>
-<li>zrozumienie pojęcia <strong>zależności funkcjonalnych</strong>,<br>
+<li>pisać proste bloki PL/SQL do operowania na danych,<br>
 </li>
-<li>wprowadzenie do <strong>diagramów ERD</strong> jako narzędzia modelowania danych.</li>
-</ul>
-</section>
-<section id="problemy-złego-projektu-bazy-danych" class="level2">
-<h2 class="anchored" data-anchor-id="problemy-złego-projektu-bazy-danych">1. Problemy złego projektu bazy danych</h2>
-<p>Złe zaprojektowanie struktury bazy danych prowadzi do wielu problemów:</p>
-<section id="redundancja-danych" class="level3">
-<h3 class="anchored" data-anchor-id="redundancja-danych">🔹 Redundancja danych</h3>
-<p>To <strong>powielanie tych samych informacji</strong> w różnych miejscach bazy.</p>
-<p>Przykład: jeśli w każdej tabeli z zamówieniami przechowujemy pełne dane klienta, to zmiana jego adresu wymaga aktualizacji wielu rekordów.</p>
-</section>
-<section id="anomalie-danych" class="level3">
-<h3 class="anchored" data-anchor-id="anomalie-danych">🔹 Anomalie danych</h3>
-<p>Błędy i niekonsekwencje wynikające z nadmiarowej struktury danych.</p>
-<ul>
-<li><p><strong>Anomalia aktualizacji</strong> – zmiana jednej informacji wymaga wielu modyfikacji.<br>
-<em>Np. zmiana nazwiska wykładowcy w kilku wierszach tabeli.</em></p></li>
-<li><p><strong>Anomalia wstawiania</strong> – brak możliwości dodania danych bez istnienia innych.<br>
-<em>Np. nie można dodać nowego kursu, dopóki nie zapisze się na niego student.</em></p></li>
-<li><p><strong>Anomalia usuwania</strong> – usunięcie rekordu powoduje utratę innych informacji.<br>
-<em>Np. usunięcie ostatniego studenta z kursu powoduje utratę danych o samym kursie.</em></p></li>
-</ul>
-<p>👉 <strong>Wniosek:</strong> błędy projektowe utrudniają utrzymanie spójności danych.</p>
-<hr>
-</section>
-</section>
-<section id="zależności-funkcjonalne" class="level2">
-<h2 class="anchored" data-anchor-id="zależności-funkcjonalne">2. Zależności funkcjonalne</h2>
-<section id="definicja" class="level3">
-<h3 class="anchored" data-anchor-id="definicja">🔹 Definicja</h3>
-<p>Zależność funkcjonalna (ang. <em>functional dependency</em>) opisuje <strong>relację między atrybutami</strong> w tabeli.</p>
-<p>Mówimy, że atrybut <em>B</em> jest <strong>funkcyjnie zależny</strong> od atrybutu <em>A</em> (zapis:<br>
-<strong>A → B</strong>), jeśli każdej wartości <em>A</em> odpowiada dokładnie jedna wartość <em>B</em>.</p>
-</section>
-<section id="przykłady" class="level3">
-<h3 class="anchored" data-anchor-id="przykłady">🔹 Przykłady</h3>
-<ul>
-<li>NrIndeksu → Imię, Nazwisko, Kierunek<br>
-(każdy numer indeksu jednoznacznie identyfikuje studenta)</li>
-<li>Kurs → Sala, Prowadzący<br>
-(dany kurs odbywa się zawsze w tej samej sali, prowadzony przez tę samą osobę)</li>
-</ul>
-</section>
-<section id="klucze" class="level3">
-<h3 class="anchored" data-anchor-id="klucze">🔹 Klucze</h3>
-<ul>
-<li><strong>Klucz główny (primary key)</strong> – jednoznacznie identyfikuje wiersz tabeli.<br>
+<li>zarządzać transakcjami (commit, rollback),<br>
 </li>
-<li><strong>Klucz kandydujący (candidate key)</strong> – minimalny zestaw atrybutów, który może być kluczem.<br>
-</li>
-<li><strong>Klucz obcy (foreign key)</strong> – wskazuje na klucz główny w innej tabeli i tworzy powiązanie między tabelami.</li>
-</ul>
-</section>
-<section id="typy-zależności" class="level3">
-<h3 class="anchored" data-anchor-id="typy-zależności">🔹 Typy zależności</h3>
-<ul>
-<li><strong>Zależność pełna</strong> – atrybut zależy od całego klucza złożonego.<br>
-</li>
-<li><strong>Zależność częściowa</strong> – atrybut zależy tylko od części klucza.<br>
-</li>
-<li><strong>Zależność przechodnia</strong> – atrybut zależy pośrednio od klucza (A → B → C).</li>
+<li>rozumieć rolę i zasady tworzenia indeksów w bazie danych.</li>
 </ul>
 <hr>
 </section>
-</section>
-<section id="formy-normalne-1nf-3nf-bcnf" class="level2">
-<h2 class="anchored" data-anchor-id="formy-normalne-1nf-3nf-bcnf">3. Formy normalne (1NF – 3NF, BCNF)</h2>
-<p>Normalizacja to proces przekształcania tabel w taki sposób, aby <strong>usunąć redundancję</strong> i <strong>zapobiec anomaliom</strong>.</p>
-<section id="pierwsza-postać-normalna-1nf" class="level3">
-<h3 class="anchored" data-anchor-id="pierwsza-postać-normalna-1nf">🧩 Pierwsza postać normalna (1NF)</h3>
+<section id="wprowadzenie-do-plsql" class="level2">
+<h2 class="anchored" data-anchor-id="wprowadzenie-do-plsql">1️⃣ Wprowadzenie do PL/SQL</h2>
+<section id="czym-jest-plsql" class="level3">
+<h3 class="anchored" data-anchor-id="czym-jest-plsql">🔹 Czym jest PL/SQL?</h3>
 <ul>
-<li>Wszystkie wartości w tabeli są <strong>atomowe</strong> (niepodzielne).<br>
+<li>PL/SQL to <strong>proceduralny język rozszerzający SQL</strong> w systemach Oracle i kompatybilnych.<br>
 </li>
-<li>Brak list, zbiorów lub kolumn powtarzających się.</li>
+<li>Umożliwia użycie <strong>instrukcji warunkowych, pętli, zmiennych i procedur</strong>, czego SQL nie oferuje w formie deklaratywnej.</li>
 </ul>
-<p>✅ <em>Każda kolumna ma jedną wartość w komórce.</em></p>
-<p><strong>Przykład (naruszenie 1NF):</strong> | Student | NrIndeksu | Kursy | |———-|————|——–| | Jan Nowak | 12345 | Bazy danych, Programowanie |</p>
-<p>✅ <em>Poprawnie:</em><br>
-Tworzymy osobną tabelę STUDENT_KURS, gdzie każdy kurs to osobny rekord.</p>
-<hr>
+<p><strong>Przykład prostego bloku PL/SQL:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Witaj w świecie PL/SQL!'</span>);</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Kod ten uruchamia blok proceduralny, który wypisuje komunikat.</p>
+<p>BEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.</p>
 </section>
-<section id="druga-postać-normalna-2nf" class="level3">
-<h3 class="anchored" data-anchor-id="druga-postać-normalna-2nf">🧩 Druga postać normalna (2NF)</h3>
+<section id="zmienne-i-typy-danych" class="level3">
+<h3 class="anchored" data-anchor-id="zmienne-i-typy-danych">🔹 Zmienne i typy danych</h3>
+<p>PL/SQL pozwala tworzyć zmienne i przypisywać im wartości.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DECLARE</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    v_imie <span class="dt">VARCHAR2</span>(<span class="dv">50</span>);</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    v_wiek <span class="dt">NUMBER</span>;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    v_imie <span class="op">:=</span> <span class="st">'Jan'</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    v_wiek <span class="op">:=</span> <span class="dv">25</span>;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Student: '</span> <span class="op">||</span> v_imie <span class="op">||</span> <span class="st">', wiek: '</span> <span class="op">||</span> v_wiek);</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Zmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.</p>
+</section>
+<section id="instrukcje-warunkowe-i-pętle" class="level3">
+<h3 class="anchored" data-anchor-id="instrukcje-warunkowe-i-pętle">🔹 Instrukcje warunkowe i pętle</h3>
+<p>PL/SQL pozwala na użycie:</p>
 <ul>
-<li>Tabela jest w 1NF <strong>i</strong> wszystkie atrybuty niekluczowe zależą <strong>w pełni</strong> od całego klucza głównego.<br>
-</li>
-<li>Dotyczy tabel z <strong>kluczem złożonym</strong>.</li>
+<li>IF…THEN…ELSE:</li>
 </ul>
-<p><strong>Przykład:</strong></p>
-<p>Tabela ZAPISY(StudentID, KursID, Sala)<br>
-→ atrybut <em>Sala</em> zależy tylko od <em>KursID</em>, a nie od całego klucza (StudentID, KursID).<br>
-Rozwiązanie: wydziel tabelę KURS(KursID, Sala).</p>
-<hr>
-</section>
-<section id="trzecia-postać-normalna-3nf" class="level3">
-<h3 class="anchored" data-anchor-id="trzecia-postać-normalna-3nf">🧩 Trzecia postać normalna (3NF)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">IF</span> v_wiek <span class="op">&gt;=</span> <span class="dv">18</span> <span class="cf">THEN</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Pełnoletni'</span>);</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Niepełnoletni'</span>);</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="cf">IF</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Tabela jest w 2NF <strong>i</strong> nie zawiera zależności przechodnich.<br>
-</li>
-<li>Każdy atrybut niekluczowy zależy bezpośrednio od klucza głównego.</li>
+<li>LOOP, WHILE, FOR – do powtarzania operacji:</li>
 </ul>
-<p><strong>Przykład:</strong></p>
-<p>NrIndeksu → Kierunek, Kierunek → Dziekan<br>
-➡️ <em>Dziekan</em> zależy pośrednio od <em>NrIndeksu</em>.<br>
-Rozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).</p>
-<hr>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">FOR</span> i <span class="kw">IN</span> <span class="dv">1</span><span class="op">..</span><span class="dv">5</span> <span class="cf">LOOP</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Liczba: '</span> <span class="op">||</span> i);</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="cf">LOOP</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Instrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych.</p>
 </section>
-<section id="postać-boycea-codda-bcnf" class="level3">
-<h3 class="anchored" data-anchor-id="postać-boycea-codda-bcnf">🧩 Postać Boyce’a-Codda (BCNF)</h3>
+</section>
+<section id="operacje-na-danych-w-plsql" class="level2">
+<h2 class="anchored" data-anchor-id="operacje-na-danych-w-plsql">2️⃣ Operacje na danych w PL/SQL</h2>
+<p>PL/SQL umożliwia wykonywanie standardowych operacji SQL:</p>
 <ul>
-<li>Dla każdej zależności A → B, zbiór A musi być <strong>kluczem kandydującym</strong>.<br>
-</li>
-<li>Bardziej restrykcyjna niż 3NF – eliminuje wszelkie potencjalne redundancje.</li>
+<li>INSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.</li>
 </ul>
-<hr>
+<p>Przykład aktualizacji studenta:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UPDATE</span> Studenci</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SET</span> Wiek <span class="op">=</span> <span class="dv">26</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> NrIndeksu <span class="op">=</span> <span class="dv">12345</span>;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>można grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.</p>
 </section>
-</section>
-<section id="diagramy-erd-entityrelationship-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="diagramy-erd-entityrelationship-diagram">4. Diagramy ERD (Entity–Relationship Diagram)</h2>
-<p>Diagram ERD jest graficznym sposobem przedstawienia <strong>modelu konceptualnego</strong> bazy danych.</p>
-<section id="główne-elementy-erd" class="level3">
-<h3 class="anchored" data-anchor-id="główne-elementy-erd">🔹 Główne elementy ERD</h3>
+<section id="przetwarzanie-transakcyjne" class="level2">
+<h2 class="anchored" data-anchor-id="przetwarzanie-transakcyjne">3️⃣ Przetwarzanie transakcyjne</h2>
+<section id="co-to-jest-transakcja" class="level3">
+<h3 class="anchored" data-anchor-id="co-to-jest-transakcja">🔹 Co to jest transakcja?</h3>
+<p>Transakcja to jednostka pracy w bazie danych, która:</p>
 <ul>
-<li><strong>Encja (Entity)</strong> – obiekt, o którym przechowujemy dane (np. Student, Kurs).<br>
-</li>
-<li><strong>Atrybut (Attribute)</strong> – właściwość encji (np. Imię, Nazwisko, NrIndeksu).<br>
-</li>
-<li><strong>Relacja (Relationship)</strong> – powiązanie między encjami (np. Student zapisuje się na Kurs).<br>
-</li>
-<li><strong>Kardynalność (Cardinality)</strong> – określa liczność relacji:
-<ul>
-<li>1:1 (jeden do jednego)<br>
-</li>
-<li>1:N (jeden do wielu)<br>
-</li>
-<li>N:M (wielu do wielu)<br>
-</li>
-</ul></li>
-<li><strong>Identyfikator (Primary Key)</strong> – atrybut jednoznacznie identyfikujący encję.</li>
+<li>wykonuje kilka operacji jako całość,</li>
+<li>jest atomowa – albo wszystkie operacje się powiodą, albo żadna,</li>
+<li>zapewnia spójność danych (ACID).</li>
 </ul>
 </section>
-<section id="przykład" class="level3">
-<h3 class="anchored" data-anchor-id="przykład">🔹 Przykład:</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>STUDENT (NrIndeksu, Imię, Nazwisko, Kierunek)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>KURS (KursID, Nazwa, Prowadzący)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ZAPIS (NrIndeksu, KursID, DataZapisu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Relacja między STUDENT a KURS: N:M poprzez encję pośredniczącą ZAPIS.</p>
-<hr>
+<section id="polecenia-transakcyjne" class="level3">
+<h3 class="anchored" data-anchor-id="polecenia-transakcyjne">🔹 Polecenia transakcyjne</h3>
+<ul>
+<li>COMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.</li>
+<li>ROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.</li>
+<li>SAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.</li>
+</ul>
+<p>Przykład użycia transakcji:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> Studenci <span class="kw">VALUES</span>(<span class="dv">12346</span>, <span class="st">'Anna'</span>, <span class="st">'Kowalska'</span>, <span class="dv">21</span>);</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UPDATE</span> Kursy <span class="kw">SET</span> IloscMiejsc <span class="op">=</span> IloscMiejsc <span class="op">-</span> <span class="dv">1</span> <span class="kw">WHERE</span> KursID <span class="op">=</span> <span class="dv">10</span>;</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">COMMIT</span>;</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>obie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.</p>
 </section>
 </section>
-<section id="proces-projektowania-bazy-danych" class="level2">
-<h2 class="anchored" data-anchor-id="proces-projektowania-bazy-danych">5. Proces projektowania bazy danych</h2>
-<p>Projektowanie bazy to proces etapowy:</p>
-<ol type="1">
-<li><strong>Analiza wymagań</strong> – zrozumienie, jakie dane są potrzebne i jakie operacje będą wykonywane.<br>
-</li>
-<li><strong>Model konceptualny</strong> – opis danych w postaci ERD.<br>
-</li>
-<li><strong>Model logiczny</strong> – zamiana modelu ERD na relacyjny schemat tabel.<br>
-</li>
-<li><strong>Model fizyczny</strong> – implementacja w konkretnym systemie DBMS (np. PostgreSQL, MySQL).</li>
-</ol>
-<hr>
+<section id="indeksy-w-bazie-danych" class="level2">
+<h2 class="anchored" data-anchor-id="indeksy-w-bazie-danych">4️⃣ Indeksy w bazie danych</h2>
+<section id="co-to-jest-indeks" class="level3">
+<h3 class="anchored" data-anchor-id="co-to-jest-indeks">🔹 Co to jest indeks?</h3>
+<ul>
+<li>Indeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.</li>
+<li>Działa podobnie jak spis treści w książce.</li>
+</ul>
+<p>Przykład tworzenia indeksu:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_studenci_nazwisko</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> Studenci(Nazwisko);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ndeks przyspiesza wyszukiwanie po kolumnie Nazwisko. Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.</p>
 </section>
-<section id="akcent-praktyczny" class="level2">
-<h2 class="anchored" data-anchor-id="akcent-praktyczny">6. Akcent praktyczny</h2>
-<p><strong>Ćwiczenie (do wykonania na zajęciach):</strong></p>
-<p>Zaprojektuj model bazy danych dla prostego <strong>systemu uczelnianego</strong>, obejmującego: - Studentów, - Kursy, - Wykładowców, - Zapis na kursy.</p>
-<p>Przygotuj: 1. Diagram ERD,<br>
-2. Schemat relacyjny po normalizacji (do 3NF).</p>
-<hr>
-</section>
-<section id="efekty-uczenia-się" class="level2">
-<h2 class="anchored" data-anchor-id="efekty-uczenia-się">🎓 Efekty uczenia się</h2>
-<p>Po zakończeniu wykładu student: - rozumie pojęcia <strong>normalizacji</strong> i <strong>zależności funkcjonalnych</strong>,<br>
-- potrafi rozpoznać błędy projektowe (redundancja, anomalie),<br>
-- potrafi zaprojektować <strong>relacyjną bazę danych</strong> zgodnie z zasadami normalizacji,<br>
-- zna podstawowe elementy <strong>diagramów ERD</strong> i proces projektowania bazy danych.</p>
-<blockquote class="blockquote">
-<p>💡 <strong>Wskazówka dla studentów:</strong><br>
-W praktyce dążymy do uzyskania trzeciej postaci normalnej (3NF).<br>
-Czasami stosuje się <strong>denormalizację</strong> dla poprawy wydajności, ale tylko po wcześniejszym zrozumieniu skutków tego działania.</p>
-</blockquote>
+<section id="rodzaje-indeksów" class="level3">
+<h3 class="anchored" data-anchor-id="rodzaje-indeksów">🔹 Rodzaje indeksów</h3>
+<ul>
+<li>Jedno-kolumnowe – indeks na jednej kolumnie.</li>
+<li>Wielokolumnowe (composite) – indeks na kilku kolumnach razem.</li>
+<li>Unikalne – zapewniają unikalność wartości w kolumnie.</li>
+</ul>
+<p>Dobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

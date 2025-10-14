@@ -2,71 +2,50 @@
 title: " Od pliku do bazy danych"
 ---
 
+#### 🧠 Cele wykładu
 
-## PLAN:
+- poznanie podstawowych pojęć: **dane, informacja, baza danych, DBMS**,  
+- zrozumienie różnicy między **systemem plikowym a bazą danych**,  
+- poznanie **architektury systemu baz danych (ANSI/SPARC)**,  
+- wprowadzenie do **modelu relacyjnego** i idei organizacji danych w tabelach.
 
-### cele
+## 1️⃣ Dane, informacja, baza danych
 
-- zrozumienie pojęcia danych, informacji i wiedzy,
-- poznanie podstawowych form organizacji danych,
-- wprowadzenie do pojęcia systemu bazodanowego.
+### 🔹 Dane
 
-### Zakres treści:
+> Zacznijmy od podstawowego pytania: czym właściwie są dane?
 
-Dane, informacja, wiedza – hierarchia pojęć.
+Dane to surowe fakty, liczby, teksty, symbole — same w sobie nie mają jeszcze znaczenia.  
 
-### Rodzaje danych:
+Przykład: `12345`, `Jan Kowalski`, `Bazy danych`.
 
-- ustrukturyzowane (np. tabele CSV),
-- półustrukturyzowane (JSON, XML),
-- nieustrukturyzowane (obrazy, dźwięk, teksty).
+### 🔹 Informacja
 
-#### Pliki jako forma przechowywania danych:
+To **dane zinterpretowane w kontekście**.  
 
-- pliki płaskie – cechy, wady, zalety,
-- systemy plików, metadane, nazwy, prawa dostępu.
+Przykład:
 
-#### Problemy przy pracy z plikami:
+> „12345” to numer indeksu studenta Jana Kowalskiego zapisującego się na kurs *Bazy danych*.
 
-- redundancja, 
-- niespójność, 
-- brak współbieżności.
+>> Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?
 
-#### Dlaczego bazy danych?
+### 🔹 Baza danych (ang. *Database*)
 
-- idea centralnego repozytorium,
-- korzyści z relacyjnego modelu danych,
-- krótka historia (Codd, model relacyjny).
+To **uporządkowany zbiór danych**, przechowywany w sposób umożliwiający łatwe wyszukiwanie, aktualizację i kontrolę spójności.
 
-### Akcent praktyczny: porównanie pliku CSV z tabelą SQL.
+### 🔹 System zarządzania bazą danych (DBMS)
 
-Efekty uczenia się: rozumie, dlaczego stosuje się bazy danych i jakie problemy rozwiązują.
+DBMS (*Database Management System*) to **oprogramowanie pośredniczące** między użytkownikiem a bazą danych.  
+Odpowiada za:
 
+- definiowanie struktury danych (tworzenie tabel, relacji),
+- przechowywanie i wyszukiwanie danych,
+- bezpieczeństwo i kontrolę dostępu,
+- obsługę wielu użytkowników,
+- zapewnienie spójności transakcji.
 
-## 🧩 1. Dane, informacja, wiedza
+**Przykłady DBMS:** PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server.
 
-🗣 
-
-Zacznijmy od podstawowego pytania: czym właściwie są dane?
-
-Dane to surowe fakty – liczby, znaki, pomiary, które same w sobie nie mają znaczenia, dopóki ich nie zinterpretujemy.
-
-Gdy dane zaczynamy rozumieć w kontekście – powstaje informacja.
-
-A gdy potrafimy z tej informacji wyciągać wnioski i podejmować decyzje – mamy wiedzę.
-
-
-### 📊 Przykład:
-
-Dane: $36.7, 37.1, 38.2$
-
-Informacja: „Temperatura pacjenta w trzech pomiarach w ciągu dnia.”
-
-Wiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”
-
-### 💬 Pytanie:
-
-> Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?
 
 ## 💾 2. Rodzaje danych
 
@@ -74,7 +53,7 @@ Wiedza: „Pacjent ma gorączkę, prawdopodobnie infekcja.”
 
 W świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.
 
-### 📚 Klasyfikacja:
+### 📚 Klasyfikacja danych:
 
 1. Ustrukturyzowane
 
@@ -116,7 +95,6 @@ Takie dane trudno przeszukiwać klasycznymi metodami SQL.
 
 ## 🗂️ 3. Pliki jako forma przechowywania danych
 
-🗣 
 
 Zanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).
 
@@ -189,6 +167,18 @@ zamowienia.txt:
 To działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.
 
 
+
+| Problem | Opis |
+|----------|------|
+| 🔁 Redundancja | Te same dane powielane w wielu plikach |
+| ⚠️ Brak spójności | Aktualizacja w jednym pliku nie zmienia danych w innych |
+| ⛔ Brak współbieżności | Tylko jedna osoba mogła modyfikować dane naraz |
+| ❌ Trudna kontrola dostępu | Brak ról i uprawnień |
+| 🧩 Słaba integracja | Dane rozproszone po różnych plikach i formatach |
+
+**System bazodanowy** rozwiązuje te problemy, centralizując dane i zarządzając nimi przez DBMS.
+
+
 ## 🧮 5. Od pliku do bazy danych
 
 🗣 
@@ -204,7 +194,9 @@ Pomysł był prosty, ale rewolucyjny:
 ### 📚 Pojęcia podstawowe:
 
 1. Baza danych – zbiór danych o określonej strukturze.
+   
 2. System zarządzania bazą danych (DBMS) – oprogramowanie do tworzenia, przechowywania, udostępniania danych.
+   
 3. Użytkownicy – aplikacje, programiści, analitycy, którzy korzystają z danych.
 
 ### 📊 Przykład:
@@ -239,17 +231,39 @@ Zanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposó
 > Dlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?
 
 
-## 🧩 7. Podsumowanie wykładu
 
-### 🔑 Kluczowe pojęcia:
+## 3️⃣ Architektura systemów baz danych (ANSI/SPARC)
 
-Dane vs informacja vs wiedza
+Aby zapewnić **niezależność danych od aplikacji**, opracowano model trójwarstwowy ANSI/SPARC:
 
-Ustrukturyzowane / nieustrukturyzowane dane
+| Poziom | Opis | Przykład |
+|---------|------|----------|
+| **Zewnętrzny** | Punkt widzenia użytkownika – wybrane dane w określonym formacie | Widok „Studenci z kierunku Informatyka” |
+| **Logiczny (koncepcyjny)** | Globalny model danych – struktura tabel, relacje, ograniczenia | Schemat bazy uczelni |
+| **Wewnętrzny (fizyczny)** | Sposób przechowywania danych na dysku | Indeksy, pliki, metody dostępu |
 
-Plik płaski i jego ograniczenia
+Ten model umożliwia:
+- **niezależność logiczną danych** (zmiany struktury nie psują aplikacji),
+- **niezależność fizyczną danych** (zmiany sposobu zapisu nie wpływają na logikę).
 
-Powody wprowadzenia systemów baz danych
+---
+
+## 4️⃣ Typy baz danych
+
+W zależności od sposobu przechowywania i powiązań danych wyróżniamy:
+
+| Typ bazy danych | Opis | Przykład |
+|------------------|------|----------|
+| **Hierarchiczna** | Dane ułożone w strukturę drzewa | IMS, stary system IBM |
+| **Sieciowa** | Wiele połączeń między rekordami (graf zależności) | IDMS |
+| **Relacyjna** | Dane w tabelach (relacjach) – klucze, związki | PostgreSQL, MySQL |
+| **Obiektowa** | Dane jako obiekty (z metodami) | ObjectDB, db4o |
+| **Dokumentowa / NoSQL** | Dane w formacie JSON, brak stałego schematu | MongoDB, CouchDB |
+| **Grafowa** | Dane w formie węzłów i krawędzi | Neo4j |
+
+Najczęściej używanym modelem jest **model relacyjny**, ponieważ łączy prostotę, spójność i matematyczne podstawy (algebra relacji).
+
+
 
 ### 🧭 Wniosek:
 
@@ -306,35 +320,33 @@ Wraz z rozwojem modelu relacyjnego powstał SQL (Structured Query Language) – 
 Dziś SQL jest fundamentem większości systemów: od aplikacji biurowych po duże systemy korporacyjne.
 Nawet współczesne rozwiązania NoSQL często nawiązują do idei relacyjnych.
 
-## Dane, informacja, baza danych i DBMS
-
-### 🔹 Dane a informacja
-
-- Dane – surowe fakty, liczby, teksty, które same w sobie niewiele znaczą.
-👉 np. 25, Warszawa, 12345
-
-- Informacja – dane zinterpretowane i zorganizowane w kontekście.
-👉 np. „25 klientów z Warszawy złożyło zamówienie w ostatnim tygodniu”.
-
-Dane to materiał, informacja to znaczenie.
 
 
-### 🔹 Baza danych
+## 6️⃣ Zalety podejścia relacyjnego
 
-Zorganizowany zbiór danych umożliwiający ich łatwe przeszukiwanie, aktualizację i analizę.
+- brak redundancji danych (dzięki kluczom i relacjom),
+- łatwe wyszukiwanie i łączenie informacji (język SQL),
+- kontrola spójności i integralności,
+- bezpieczeństwo i wielodostępność,
+- niezależność logiczna od aplikacji.
 
-Cechy:
+---
 
-- Strukturalność
-- Centralizacja
-- Trwałość i bezpieczeństwo
+## 7️⃣ Od modelu do języka – wprowadzenie do SQL
 
-Przykłady:
+Język **SQL (Structured Query Language)** został stworzony, by umożliwić:
+- **definiowanie struktur danych** (DDL – *Data Definition Language*),
+- **manipulowanie danymi** (DML – *Data Manipulation Language*),
+- **kontrolę dostępu i transakcji** (DCL, TCL).
 
-- Lista kontaktów w telefonie
-- System rezerwacji hotelowej
-- Sklep internetowy
-
+Przykład:
+```sql
+CREATE TABLE STUDENT (
+  NrIndeksu INT PRIMARY KEY,
+  Imie VARCHAR(30),
+  Nazwisko VARCHAR(30),
+  Kierunek VARCHAR(50)
+);
 
 
 

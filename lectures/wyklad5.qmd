@@ -1,0 +1,125 @@
+---
+title: "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
+---
+
+## 🎯 Temat: Łączenie bazy danych z aplikacją i praktyczne operacje
+
+Celem wykładu jest pokazanie, jak projektować **interfejs do bazy danych** w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych.
+
+---
+
+## 🧠 Cele wykładu
+
+Student po wykładzie będzie potrafił:
+
+- projektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),  
+- korzystać z **połączeń bazodanowych (DB connection)**,  
+- wykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,  
+- rozumieć podstawy zabezpieczania danych i transakcji w aplikacjach.
+
+---
+
+## 1️⃣ Projektowanie interfejsu bazy danych
+
+### 🔹 Co to jest interfejs bazy danych?
+
+- Interfejs to **warstwa komunikacji między aplikacją a bazą danych**.  
+- Pozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.  
+
+### 🔹 Główne elementy interfejsu
+
+1. **Połączenie z bazą danych** – obiekt, który umożliwia komunikację z serwerem DB.  
+2. **Wysyłanie zapytań** – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.  
+3. **Obsługa wyników** – pobieranie danych w formie rekordów lub tabel.  
+4. **Zarządzanie transakcjami** – commit, rollback.  
+
+Opis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane.
+
+---
+
+## 2️⃣ Przykład – połączenie do bazy w Pythonie
+
+```python
+import cx_Oracle
+
+# Nawiązanie połączenia
+conn = cx_Oracle.connect('uzytkownik/haslo@localhost/XE')
+cursor = conn.cursor()
+
+# Wykonanie zapytania SELECT
+cursor.execute("SELECT imie, nazwisko FROM Studenci")
+for row in cursor:
+    print(f"Student: {row[0]} {row[1]}")
+
+# Zamknięcie połączenia
+cursor.close()
+conn.close()
+```
+kod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić.
+
+## 3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji
+
+🔹 Operacje SQL
+
+- INSERT – dodawanie nowych rekordów.
+- UPDATE – modyfikacja istniejących danych.
+- DELETE – usuwanie rekordów.
+
+Przykład:
+```sql
+cursor.execute("INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)")
+conn.commit()
+```
+conn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.
+
+### 🔹 Wywołanie procedury PL/SQL
+```sql
+cursor.callproc("dodaj_studenta", [12348, 'Anna', 'Kowalska', 21])
+conn.commit()
+```
+callproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej.
+
+## 4️⃣ Obsługa transakcji w aplikacjach
+
+- Transakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.
+- Typowy wzorzec:
+	1.	Rozpocznij transakcję
+	2.	Wykonaj operacje (INSERT, UPDATE, DELETE)
+	3.	W razie powodzenia: commit
+	4.	W razie błędu: rollback
+
+Przykład w Pythonie:
+```python
+try:
+    cursor.execute("UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10")
+    cursor.execute("INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)")
+    conn.commit()
+except:
+    conn.rollback()
+    print("Wystąpił błąd, transakcja wycofana")
+
+```
+zięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna.
+
+## 6️⃣ Indeksy i optymalizacja zapytań w aplikacji
+
+- Indeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.
+- W aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.
+
+Przykład w SQL:
+```sql
+CREATE INDEX idx_student_nazwisko ON Studenci(Nazwisko);
+```
+
+indeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE.
+
+## 7️⃣ Podsumowanie wykładu
+
+### 🔑 Kluczowe pojęcia:
+- Interfejs bazy danych – połączenie między aplikacją a DBMS
+- Operacje SQL i PL/SQL z poziomu aplikacji
+- Zarządzanie transakcjami dla spójności danych
+- Indeksy i podstawowe zasady optymalizacji
+
+### 💡 Wskazówka:
+W praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji.

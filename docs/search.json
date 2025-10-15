@@ -225,157 +225,169 @@
   {
     "objectID": "lectures/wyklad2.html",
     "href": "lectures/wyklad2.html",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "title": "Model relacyjny i podstawy SQL",
     "section": "",
-    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\nPrzykład relacji STUDENT:\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
+    "text": "Dane przechowywane są w tabelach (ang. relations).\n\nKażdy wiersz (row) to rekord / krotka.\n\nKażda kolumna (column) to atrybut.\n\nDziedzina (domain) to zbiór dopuszczalnych wartości w danej kolumnie.\n\nPrzykład relacji STUDENT:\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846\n\n\n\n\n Schemat relacji: tabela STUDENT z kolumnami i wierszami\n\n\n\n\n\n\n\n\n\nUnikalnie identyfikuje każdy wiersz w tabeli.\n\nNie może przyjmować wartości NULL.\n\nW tabeli może występować tylko jeden klucz główny.\n\n\n\n\n\nTworzy powiązanie z inną tabelą.\n\nWymusza spójność danych – nie można wprowadzić wartości, której nie ma w tabeli nadrzędnej.\n\n\n\n\n\nUNIQUE – zapewnia unikalność wartości w kolumnie.\n\nNOT NULL – kolumna nie może przyjmować wartości pustych.\n\nCHECK – sprawdza warunek logiczny (np. wiek &gt; 0).\n\n\n\n\n\n\n\n\n\nRodzaj klucza\nOpis\nPrzykład\n\n\n\n\nKlucz główny (Primary Key)\njednoznacznie identyfikuje rekord\nNrIndeksu w STUDENT\n\n\nKlucz obcy (Foreign Key)\ntworzy powiązanie między tabelami\nKursID w tabeli ZAPIS\n\n\nKlucz kandydujący (Candidate Key)\natrybut, który może być kluczem głównym\nPESEL, NrIndeksu\n\n\nKlucz złożony (Composite Key)\nskłada się z kilku kolumn\n(StudentID, KursID)\n\n\n\n\n Schemat: klucz główny i klucz obcy między tabelami STUDENT, KURS, ZAPIS\n\n\n\n\n\n\nW relacyjnych bazach danych tabele łączy się przez klucze obce.\nNa tej podstawie tworzą się różne typy relacji:\n\n\n\n\n\n\n\n\nTyp relacji\nOpis\nPrzykład\n\n\n\n\n1:1 (jeden do jednego)\njeden rekord w tabeli A odpowiada dokładnie jednemu rekordowi w tabeli B\nStudent ↔︎️ Legitymacja\n\n\n1:N (jeden do wielu)\njeden rekord w tabeli A może być powiązany z wieloma rekordami w tabeli B\nWykładowca ↔︎️ Kursy\n\n\nN:M (wielu do wielu)\nwiele rekordów w A może być powiązanych z wieloma w B\nStudenci ↔︎️ Kursy\n\n\n\nRelację N:M realizuje się przez tabelę pośredniczącą, np.:\nSTUDENT (NrIndeksu, Imie, Nazwisko)\nKURS (KursID, Nazwa)\nZAPIS (NrIndeksu, KursID, DataZapisu)\nTabela ZAPIS zawiera klucze obce wskazujące na STUDENT i KURS.\n\n## 4️⃣ Wprowadzenie do języka SQL (Structured Query Language)\nSQL to standardowy język do definiowania, modyfikowania i pobierania danych w relacyjnych bazach danych.\n\n\n\n\n\n\n\n\nPodjęzyk\nOpis\nPrzykłady poleceń\n\n\n\n\nDDL (Data Definition Language)\ndefiniuje strukturę bazy\nCREATE TABLE, ALTER TABLE, DROP TABLE\n\n\nDML (Data Manipulation Language)\noperacje na danych\nINSERT, UPDATE, DELETE, SELECT\n\n\nDCL (Data Control Language)\nkontrola dostępu\nGRANT, REVOKE\n\n\nTCL (Transaction Control Language)\nkontrola transakcji\nCOMMIT, ROLLBACK\n\n\n\n\n\n\nPolecenie CREATE TABLE służy do utworzenia nowej tabeli w bazie danych.\nW tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak PRIMARY KEY, NOT NULL czy FOREIGN KEY.\nKażda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.\nW przykładzie poniżej tworzymy dwie tabele: Autorzy i Ksiazki, które będą ze sobą powiązane relacją klucz główny–klucz obcy.\n\n\n\n\nCREATE TABLE Autorzy (\n    autor_id     INTEGER PRIMARY KEY,         -- w SQLite automatycznie AUTOINCREMENT\n    imie         TEXT NOT NULL,\n    nazwisko     TEXT NOT NULL\n);\n\nCREATE TABLE Ksiazki (\n    ksiazka_id   SERIAL PRIMARY KEY,          -- PostgreSQL: automatyczna numeracja\n    tytul        VARCHAR(200) NOT NULL,\n    rok          INTEGER CHECK (rok &gt; 0),\n    autor_id     INTEGER,\n    FOREIGN KEY (autor_id) REFERENCES Autorzy(autor_id)\n);\n\nW SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.\nW PostgreSQL używamy SERIAL lub GENERATED ALWAYS AS IDENTITY.\n\nW powyższym przykładzie:\n\ntabela Autorzy przechowuje dane o autorach,\ntabela Ksiazki przechowuje dane o książkach,\nkolumna autor_id w Ksiazki to klucz obcy, który wskazuje autora.\n\nDzięki więzom integralności baza pilnuje, by każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.\n\n\n\n\n\n\nALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;\n\n\n\nALTER TABLE STUDENT ALTER COLUMN Kierunek TYPE VARCHAR(100);\n\n\n\nALTER TABLE STUDENT DROP COLUMN Email;\n\n\n\nDROP TABLE Ksiazki;\n\n\n\n\nPolecenie INSERT INTO służy do wprowadzania nowych wierszy (rekordów) do tabeli. Wartości muszą być zgodne z typami kolumn oraz ograniczeniami (NOT NULL, CHECK, itp.).\nMożna dodać jeden lub wiele rekordów w jednym poleceniu.\nINSERT INTO Autorzy (imie, nazwisko) VALUES\n('Adam', 'Mickiewicz'),\n('Henryk', 'Sienkiewicz'),\n('Bolesław', 'Prus');\n\nINSERT INTO Ksiazki (tytul, rok, autor_id) VALUES\n('Pan Tadeusz', 1834, 1),\n('Quo Vadis', 1896, 2),\n('Lalka', 1890, 3);\nKażdy rekord reprezentuje jedną pozycję w tabeli. Polecenie INSERT wymaga podania wartości w tej samej kolejności, w jakiej wymieniono kolumny. Jeśli nie podamy jakiejś kolumny, a ma ona zdefiniowaną wartość domyślną (DEFAULT), baza wstawi ją automatycznie.\n\n\n\n\n\nSELECT * FROM Autorzy;\nPowyższe zapytanie zwraca wszystkich autorów z tabeli Autorzy.\n\n\n\n\nSELECT imie, nazwisko FROM Autorzy;\n\n\n\nSELECT imie AS \"Imię\", nazwisko AS \"Nazwisko\" FROM Autorzy;\nAlias (AS) pozwala nadać kolumnom bardziej opisowe nazwy w wynikach.\n\n\n\n\nSELECT * FROM Ksiazki\nWHERE rok &gt; 1850;\n\n\n\n= , &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=\nLIKE ‘Q%’ → zaczyna się na Q\nIN (…)\nBETWEEN 1800 AND 1900\nIS NULL, IS NOT NULL\n\nPrzykład wyszukiwania książek zawierających literę “a” w tytule:\nSELECT tytul FROM Ksiazki WHERE tytul LIKE '%a%';\n\n\n\n\nSELECT * FROM Ksiazki ORDER BY rok DESC;\nSortowanie wyników można wykonać według dowolnej kolumny. Domyślnie ORDER BY sortuje rosnąco (ASC). Dla kilku kolumn można napisać np.:\nSELECT * FROM Ksiazki ORDER BY autor_id ASC, rok DESC;\n\n\n\nSELECT autor_id, COUNT(*) AS liczba_ksiazek\nFROM Ksiazki\nGROUP BY autor_id\nHAVING COUNT(*) &gt; 1;\nKlauzula GROUP BY grupuje dane, a HAVING filtruje grupy po agregacji. Funkcje agregujące: COUNT(), SUM(), AVG(), MIN(), MAX().\n\n\n\n\n\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nJOIN Autorzy a ON k.autor_id = a.autor_id;\n\n\n\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nLEFT JOIN Autorzy a ON k.autor_id = a.autor_id;\nINNER JOIN zwraca tylko dopasowane rekordy, LEFT JOIN – wszystkie rekordy z lewej tabeli (nawet bez dopasowania).\n\n\n\n\n\n\nUPDATE Ksiazki SET rok = 1836 WHERE tytul = 'Pan Tadeusz';\n\n\n\nDELETE FROM Ksiazki WHERE rok &lt; 1850;\nZawsze należy używać WHERE, aby nie zmodyfikować lub nie usunąć wszystkich rekordów.\n\n\n\n\nSQL jest językiem deklaratywnym – opisujemy co chcemy uzyskać, a nie jak to zrobić. Dzięki temu użytkownik nie musi znać szczegółów działania bazy danych.\nPoznane dziś polecenia:\nCREATE, INSERT, SELECT, UPDATE, DELETE, JOIN, GROUP BY\nto fundament pracy z bazami danych. Opanowanie ich pozwala budować i analizować nawet bardzo złożone systemy informacyjne.\n⸻\n\n\n\n•   Dokumentacja SQLite\n•   Dokumentacja PostgreSQL\n•   A. Silberschatz, H. Korth, S. Sudarshan, Database System Concepts",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#model-relacyjny-przypomnienie-i-pojęcia-podstawowe",
     "href": "lectures/wyklad2.html#model-relacyjny-przypomnienie-i-pojęcia-podstawowe",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
+    "title": "Model relacyjny i podstawy SQL",
     "section": "",
-    "text": "Dane przechowywane w tabelach (relations)\nKażdy wiersz (row) = rekord / krotka\n\nKażda kolumna (column) = atrybut\n\nDziedzina (domain) = zbiór dopuszczalnych wartości w kolumnie\n\nPrzykład relacji STUDENT:\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846",
+    "text": "Dane przechowywane są w tabelach (ang. relations).\n\nKażdy wiersz (row) to rekord / krotka.\n\nKażda kolumna (column) to atrybut.\n\nDziedzina (domain) to zbiór dopuszczalnych wartości w danej kolumnie.\n\nPrzykład relacji STUDENT:\n\n\n\nid\nimie\nnazwisko\nrok_urodzenia\n\n\n\n\n1\nAdam\nMickiewicz\n1798\n\n\n2\nHenryk\nSienkiewicz\n1846\n\n\n\n\n Schemat relacji: tabela STUDENT z kolumnami i wierszami",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#klucze-i-więzy-integralności",
     "href": "lectures/wyklad2.html#klucze-i-więzy-integralności",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "2️⃣ Klucze i więzy integralności",
-    "text": "2️⃣ Klucze i więzy integralności\n\n🔸 Klucz główny (PRIMARY KEY)\n\nUnikalnie identyfikuje każdy wiersz w tabeli.\nNie może być NULL.\n\n\n\n🔸 Klucz obcy (FOREIGN KEY)\n\nOdwołuje się do innej tabeli (relacja między tabelami).\n\n\n\n🔸 Inne więzy:\n\nUNIQUE – unikalność wartości w kolumnie.\nNOT NULL – kolumna nie może mieć wartości pustej.\nCHECK – warunek logiczny na wartość kolumny.\n\n\n\n\n\n\n\n\n\nRodzaj klucza\nOpis\nPrzykład\n\n\n\n\nKlucz główny (Primary Key)\njednoznacznie identyfikuje rekord\nNrIndeksu w STUDENT\n\n\nKlucz obcy (Foreign Key)\ntworzy powiązanie między tabelami\nKursID w tabeli ZAPIS\n\n\nKlucz kandydujący (Candidate Key)\natrybut lub zestaw atrybutów, który może pełnić rolę klucza głównego\n(PESEL), (NrIndeksu)\n\n\nKlucz złożony (Composite Key)\nskłada się z kilku kolumn\n(StudentID, KursID)",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "Unikalnie identyfikuje każdy wiersz w tabeli.\n\nNie może przyjmować wartości NULL.\n\nW tabeli może występować tylko jeden klucz główny.\n\n\n\n\n\nTworzy powiązanie z inną tabelą.\n\nWymusza spójność danych – nie można wprowadzić wartości, której nie ma w tabeli nadrzędnej.\n\n\n\n\n\nUNIQUE – zapewnia unikalność wartości w kolumnie.\n\nNOT NULL – kolumna nie może przyjmować wartości pustych.\n\nCHECK – sprawdza warunek logiczny (np. wiek &gt; 0).\n\n\n\n\n\n\n\n\n\nRodzaj klucza\nOpis\nPrzykład\n\n\n\n\nKlucz główny (Primary Key)\njednoznacznie identyfikuje rekord\nNrIndeksu w STUDENT\n\n\nKlucz obcy (Foreign Key)\ntworzy powiązanie między tabelami\nKursID w tabeli ZAPIS\n\n\nKlucz kandydujący (Candidate Key)\natrybut, który może być kluczem głównym\nPESEL, NrIndeksu\n\n\nKlucz złożony (Composite Key)\nskłada się z kilku kolumn\n(StudentID, KursID)\n\n\n\n\n Schemat: klucz główny i klucz obcy między tabelami STUDENT, KURS, ZAPIS",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#rodzaje-związków-relacji-między-tabelami",
     "href": "lectures/wyklad2.html#rodzaje-związków-relacji-między-tabelami",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "2️⃣ Rodzaje związków (relacji) między tabelami",
-    "text": "2️⃣ Rodzaje związków (relacji) między tabelami\nW relacyjnej bazie danych tabele mogą być ze sobą połączone przez klucze obce, które tworzą różne typy relacji:\n\n\n\n\n\n\n\n\nTyp relacji\nOpis\nPrzykład\n\n\n\n\n1:1 (jeden do jednego)\njeden rekord w tabeli A odpowiada dokładnie jednemu rekordowi w tabeli B\nStudent ↔︎️ Legitymacja\n\n\n1:N (jeden do wielu)\njeden rekord w tabeli A może być powiązany z wieloma rekordami w tabeli B\nWykładowca ↔︎️ Kursy\n\n\nN:M (wielu do wielu)\nwiele rekordów w A może być powiązanych z wieloma w B\nStudenci ↔︎️ Kursy\n\n\n\nRelację N:M realizujemy przez tabelę pośredniczącą (łączącą), np.:\nSTUDENT (NrIndeksu, Imie, Nazwisko)\nKURS (KursID, Nazwa)\nZAPIS (NrIndeksu, KursID, DataZapisu)\n\nTABELA ZAPIS zawiera klucze obce wskazujące na STUDENT i KURS.\n\n## 3️⃣ Schemat bazy danych – przykład „Biblioteka”\n\n### Tabele:\n- **Autorzy** (`autor_id`, `imie`, `nazwisko`)\n- **Ksiazki** (`ksiazka_id`, `tytul`, `rok`, `autor_id`)\n\n### Relacja:\n- `Ksiazki.autor_id` $\\to$ `Autorzy.autor_id` (klucz obcy)\n\n## 4️⃣ Wprowadzenie do języka SQL (Structured Query Language)\n\nSQL to standardowy język do definiowania, modyfikowania i pobierania danych w relacyjnych bazach danych.\n\n| DDL (Data Definition Language) | definiuje strukturę bazy |CREATE TABLE, ALTER TABLE, DROP TABLE |\n|---------------------------------------------------------------------------------------|\n| DML (Data Manipulation Language) | operacje na danych | INSERT, UPDATE, DELETE, SELECT |\n|----------------------------------------------------------------------------------------|\n| DCL (Data Control Language) | kontrola dostępu | GRANT, REVOKE|\n|----------------------------------------------------------------------------------------|\n| TCL (Transaction Control Language) | kontrola transakcji |COMMIT, ROLLBACK |\n\n\n🔹 Składnia SQL – podział na podjęzyki:\n\n### Tworzenie tabel (DDL – Data Definition Language)\n\nPolecenie `CREATE TABLE` służy do utworzenia nowej tabeli w bazie danych.  \nW tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak `PRIMARY KEY`, `NOT NULL` czy `FOREIGN KEY`.  \nKażda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.  \nW przykładzie poniżej tworzymy dwie tabele: **Autorzy** i **Ksiazki**, które będą ze sobą powiązane relacją klucz główny–klucz obcy.\n\n\n\n### Przykład w **SQLite** i **PostgreSQL**\n\n```sql\nCREATE TABLE Autorzy (\n    autor_id     INTEGER PRIMARY KEY,         -- w SQLite automatycznie AUTOINCREMENT\n    imie         TEXT NOT NULL,\n    nazwisko     TEXT NOT NULL\n);\n\nCREATE TABLE Ksiazki (\n    ksiazka_id   SERIAL PRIMARY KEY,          -- PostgreSQL: automatyczna numeracja\n    tytul        VARCHAR(200) NOT NULL,\n    rok          INTEGER CHECK (rok &gt; 0),\n    autor_id     INTEGER,\n    FOREIGN KEY (autor_id) REFERENCES Autorzy(autor_id)\n);\n\nW SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.\nW PostgreSQL SERIAL lub GENERATED ALWAYS AS IDENTITY.\n\nW powyższym przykładzie tabela Autorzy przechowuje dane o autorach, a tabela Ksiazki – dane o książkach. Kolumna autor_id w tabeli Ksiazki jest kluczem obcym i wskazuje, który autor napisał daną książkę. Dzięki więzom integralności baza pilnuje, aby każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "W relacyjnych bazach danych tabele łączy się przez klucze obce.\nNa tej podstawie tworzą się różne typy relacji:\n\n\n\n\n\n\n\n\nTyp relacji\nOpis\nPrzykład\n\n\n\n\n1:1 (jeden do jednego)\njeden rekord w tabeli A odpowiada dokładnie jednemu rekordowi w tabeli B\nStudent ↔︎️ Legitymacja\n\n\n1:N (jeden do wielu)\njeden rekord w tabeli A może być powiązany z wieloma rekordami w tabeli B\nWykładowca ↔︎️ Kursy\n\n\nN:M (wielu do wielu)\nwiele rekordów w A może być powiązanych z wieloma w B\nStudenci ↔︎️ Kursy\n\n\n\nRelację N:M realizuje się przez tabelę pośredniczącą, np.:\nSTUDENT (NrIndeksu, Imie, Nazwisko)\nKURS (KursID, Nazwa)\nZAPIS (NrIndeksu, KursID, DataZapisu)\nTabela ZAPIS zawiera klucze obce wskazujące na STUDENT i KURS.\n\n## 4️⃣ Wprowadzenie do języka SQL (Structured Query Language)\nSQL to standardowy język do definiowania, modyfikowania i pobierania danych w relacyjnych bazach danych.\n\n\n\n\n\n\n\n\nPodjęzyk\nOpis\nPrzykłady poleceń\n\n\n\n\nDDL (Data Definition Language)\ndefiniuje strukturę bazy\nCREATE TABLE, ALTER TABLE, DROP TABLE\n\n\nDML (Data Manipulation Language)\noperacje na danych\nINSERT, UPDATE, DELETE, SELECT\n\n\nDCL (Data Control Language)\nkontrola dostępu\nGRANT, REVOKE\n\n\nTCL (Transaction Control Language)\nkontrola transakcji\nCOMMIT, ROLLBACK\n\n\n\n\n\n\nPolecenie CREATE TABLE służy do utworzenia nowej tabeli w bazie danych.\nW tym poleceniu definiujemy nazwy kolumn, ich typy danych oraz różne więzy integralności, takie jak PRIMARY KEY, NOT NULL czy FOREIGN KEY.\nKażda tabela powinna mieć kolumnę, która jednoznacznie identyfikuje każdy wiersz – to właśnie klucz główny.\nW przykładzie poniżej tworzymy dwie tabele: Autorzy i Ksiazki, które będą ze sobą powiązane relacją klucz główny–klucz obcy.\n\n\n\n\nCREATE TABLE Autorzy (\n    autor_id     INTEGER PRIMARY KEY,         -- w SQLite automatycznie AUTOINCREMENT\n    imie         TEXT NOT NULL,\n    nazwisko     TEXT NOT NULL\n);\n\nCREATE TABLE Ksiazki (\n    ksiazka_id   SERIAL PRIMARY KEY,          -- PostgreSQL: automatyczna numeracja\n    tytul        VARCHAR(200) NOT NULL,\n    rok          INTEGER CHECK (rok &gt; 0),\n    autor_id     INTEGER,\n    FOREIGN KEY (autor_id) REFERENCES Autorzy(autor_id)\n);\n\nW SQLite INTEGER PRIMARY KEY = alias dla AUTOINCREMENT.\nW PostgreSQL używamy SERIAL lub GENERATED ALWAYS AS IDENTITY.\n\nW powyższym przykładzie:\n\ntabela Autorzy przechowuje dane o autorach,\ntabela Ksiazki przechowuje dane o książkach,\nkolumna autor_id w Ksiazki to klucz obcy, który wskazuje autora.\n\nDzięki więzom integralności baza pilnuje, by każda książka miała poprawnego autora. Takie powiązania są podstawą modelu relacyjnego.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#modyfikacja-i-usuwanie-tabel",
     "href": "lectures/wyklad2.html#modyfikacja-i-usuwanie-tabel",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "5️⃣ Modyfikacja i usuwanie tabel",
-    "text": "5️⃣ Modyfikacja i usuwanie tabel\n\n🔹 Dodawanie kolumn\nALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;\n\n\n🔹 Zmiana typu kolumny\nALTER TABLE STUDENT ALTER COLUMN Kierunek TYPE VARCHAR(100);\n\n\n🔹 Usuwanie kolumny\nALTER TABLE STUDENT DROP COLUMN Email;\n\n\n🔹 Usuwanie tabeli\nDROP TABLE Ksiazki;",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "ALTER TABLE Ksiazki ADD COLUMN gatunek TEXT;\n\n\n\nALTER TABLE STUDENT ALTER COLUMN Kierunek TYPE VARCHAR(100);\n\n\n\nALTER TABLE STUDENT DROP COLUMN Email;\n\n\n\nDROP TABLE Ksiazki;",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#wstawianie-danych-dml-data-manipulation-language",
     "href": "lectures/wyklad2.html#wstawianie-danych-dml-data-manipulation-language",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "6️⃣ Wstawianie danych (DML – Data Manipulation Language)",
-    "text": "6️⃣ Wstawianie danych (DML – Data Manipulation Language)\nPolecenie INSERT INTO służy do wprowadzania nowych wierszy (rekordów) do tabeli. Wartości muszą być zgodne z typami kolumn oraz ograniczeniami (NOT NULL, CHECK, itp.). Można dodać jeden lub wiele rekordów w jednym poleceniu. Poniżej wstawiamy kilku autorów oraz ich książki do utworzonych wcześniej tabel.\nINSERT INTO Autorzy (imie, nazwisko) VALUES\n('Adam', 'Mickiewicz'),\n('Henryk', 'Sienkiewicz'),\n('Bolesław', 'Prus');\n\nINSERT INTO Ksiazki (tytul, rok, autor_id) VALUES\n('Pan Tadeusz', 1834, 1),\n('Quo Vadis', 1896, 2),\n('Lalka', 1890, 3);\nKażdy rekord reprezentuje jedną pozycję w tabeli. Polecenie INSERT wymaga podania wartości w tej samej kolejności, w jakiej wymieniono kolumny. Jeśli nie podamy jakiejś kolumny, a ma ona zdefiniowaną wartość domyślną (DEFAULT), baza wstawi ją automatycznie. Dzięki temu możemy stopniowo budować zawartość naszej bazy danych.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "Polecenie INSERT INTO służy do wprowadzania nowych wierszy (rekordów) do tabeli. Wartości muszą być zgodne z typami kolumn oraz ograniczeniami (NOT NULL, CHECK, itp.).\nMożna dodać jeden lub wiele rekordów w jednym poleceniu.\nINSERT INTO Autorzy (imie, nazwisko) VALUES\n('Adam', 'Mickiewicz'),\n('Henryk', 'Sienkiewicz'),\n('Bolesław', 'Prus');\n\nINSERT INTO Ksiazki (tytul, rok, autor_id) VALUES\n('Pan Tadeusz', 1834, 1),\n('Quo Vadis', 1896, 2),\n('Lalka', 1890, 3);\nKażdy rekord reprezentuje jedną pozycję w tabeli. Polecenie INSERT wymaga podania wartości w tej samej kolejności, w jakiej wymieniono kolumny. Jeśli nie podamy jakiejś kolumny, a ma ona zdefiniowaną wartość domyślną (DEFAULT), baza wstawi ją automatycznie.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#wybieranie-danych-select",
     "href": "lectures/wyklad2.html#wybieranie-danych-select",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "7️⃣ Wybieranie danych – SELECT",
-    "text": "7️⃣ Wybieranie danych – SELECT\n\n🧩 Podstawowy SELECT\nPolecenie SELECT jest najczęściej używanym poleceniem SQL i służy do pobierania danych z tabel. Pozwala określić, które kolumny chcemy zobaczyć i z których tabel dane mają pochodzić. Jeśli użyjemy gwiazdki *, oznacza to, że wybieramy wszystkie kolumny. Poniższe zapytanie zwraca wszystkich autorów z tabeli Autorzy.\nSELECT * FROM Autorzy;\n\n\n🧩 Wybór konkretnych kolumn\nSELECT imie, nazwisko FROM Autorzy;\nWynik to pełna tabela z kolumnami autor_id, imie i nazwisko. Często jednak potrzebujemy tylko części danych, np. imienia i nazwiska – wtedy podajemy konkretne kolumny:\n\n\n🧩 Nadawanie aliasów\nSELECT imie AS \"Imię\", nazwisko AS \"Nazwisko\" FROM Autorzy;\nTakie zapytania pomagają ograniczyć ilość danych i zwiększyć czytelność wyników. Warto też nadawać aliasy (AS), które pozwalają zmienić nazwę kolumn w wynikach i nadać im bardziej opisowy wygląd.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "SELECT * FROM Autorzy;\nPowyższe zapytanie zwraca wszystkich autorów z tabeli Autorzy.\n\n\n\n\nSELECT imie, nazwisko FROM Autorzy;\n\n\n\nSELECT imie AS \"Imię\", nazwisko AS \"Nazwisko\" FROM Autorzy;\nAlias (AS) pozwala nadać kolumnom bardziej opisowe nazwy w wynikach.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#filtrowanie-where",
     "href": "lectures/wyklad2.html#filtrowanie-where",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "8️⃣ Filtrowanie – WHERE",
-    "text": "8️⃣ Filtrowanie – WHERE\nKiedy chcemy wybrać tylko część danych, używamy klauzuli WHERE. Dzięki niej możemy ustawić warunki, jakie muszą spełniać rekordy, by pojawiły się w wyniku. To bardzo potężne narzędzie, które pozwala np. wyszukiwać książki z konkretnego roku lub autora. W poniższym przykładzie wybieramy książki wydane po roku 1850.\nSELECT * FROM Ksiazki\nWHERE rok &gt; 1850;\n\n🧠 Operatory:\nMożemy też stosować inne operatory:\n\n=, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=\nLIKE ‘Q%’ → zaczyna się na Q\nIN (…)\nBETWEEN 1800 AND 1900\nIS NULL, IS NOT NULL\n\nNa przykład, aby znaleźć wszystkie książki, których tytuł zawiera literę „a”, używamy wzorca z LIKE:\nSELECT tytul FROM Ksiazki WHERE tytul LIKE '%a%';\nKlauzula WHERE pozwala więc filtrować dane na wiele sposobów, co czyni zapytania SQL bardzo elastycznymi.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "SELECT * FROM Ksiazki\nWHERE rok &gt; 1850;\n\n\n\n= , &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=\nLIKE ‘Q%’ → zaczyna się na Q\nIN (…)\nBETWEEN 1800 AND 1900\nIS NULL, IS NOT NULL\n\nPrzykład wyszukiwania książek zawierających literę “a” w tytule:\nSELECT tytul FROM Ksiazki WHERE tytul LIKE '%a%';",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#sortowanie-order-by",
     "href": "lectures/wyklad2.html#sortowanie-order-by",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "9️⃣ Sortowanie – ORDER BY",
-    "text": "9️⃣ Sortowanie – ORDER BY\nPo pobraniu danych często chcemy uporządkować je według określonego kryterium. Do tego służy klauzula ORDER BY, dzięki której możemy sortować rosnąco (ASC) lub malejąco (DESC). Sortowanie działa na dowolnej kolumnie, także tych, które nie są wyświetlane w wyniku. W przykładzie poniżej porządkujemy książki według roku wydania od najnowszej do najstarszej.\nSELECT * FROM Ksiazki ORDER BY rok DESC;\nJeśli nie podamy kierunku sortowania, domyślnie jest to ASC (rosnąco). Można też sortować według kilku kolumn jednocześnie, np. najpierw po autorze, a potem po roku. Sortowanie poprawia czytelność wyników i pozwala szybciej analizować dane.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "SELECT * FROM Ksiazki ORDER BY rok DESC;\nSortowanie wyników można wykonać według dowolnej kolumny. Domyślnie ORDER BY sortuje rosnąco (ASC). Dla kilku kolumn można napisać np.:\nSELECT * FROM Ksiazki ORDER BY autor_id ASC, rok DESC;",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#grupowanie-i-agregacja-group-by-having",
     "href": "lectures/wyklad2.html#grupowanie-i-agregacja-group-by-having",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "🔟 Grupowanie i agregacja – GROUP BY, HAVING",
-    "text": "🔟 Grupowanie i agregacja – GROUP BY, HAVING\nCzasem chcemy policzyć, ile danych należy do danej kategorii – np. ilu autorów napisało więcej niż jedną książkę. Do tego służy GROUP BY, które grupuje dane według wybranej kolumny. W połączeniu z funkcjami agregującymi, takimi jak COUNT(), AVG(), SUM(), MIN() czy MAX(), daje duże możliwości analizy. Klauzula HAVING pozwala odfiltrować grupy po obliczeniu agregacji.\nSELECT autor_id, COUNT(*) AS liczba_ksiazek\nFROM Ksiazki\nGROUP BY autor_id\nHAVING COUNT(*) &gt; 1;\nTo zapytanie zwraca tylko tych autorów, którzy mają więcej niż jedną książkę. Różnica między WHERE a HAVING polega na tym, że WHERE filtruje pojedyncze wiersze przed grupowaniem, a HAVING filtruje całe grupy po agregacji. Wyniki można potem łączyć z innymi tabelami, by uzyskać bardziej opisowe raporty.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "SELECT autor_id, COUNT(*) AS liczba_ksiazek\nFROM Ksiazki\nGROUP BY autor_id\nHAVING COUNT(*) &gt; 1;\nKlauzula GROUP BY grupuje dane, a HAVING filtruje grupy po agregacji. Funkcje agregujące: COUNT(), SUM(), AVG(), MIN(), MAX().",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#łączenie-tabel-join",
     "href": "lectures/wyklad2.html#łączenie-tabel-join",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "1️⃣1️⃣ Łączenie tabel – JOIN",
-    "text": "1️⃣1️⃣ Łączenie tabel – JOIN\nW relacyjnym modelu danych informacje są rozproszone w różnych tabelach, które łączy się przy pomocy kluczy obcych. Polecenie JOIN pozwala zestawić dane z kilku tabel na podstawie wspólnej kolumny. Najczęściej używany jest INNER JOIN, który zwraca tylko rekordy, dla których istnieje dopasowanie w obu tabelach. W przykładzie łączymy tabelę Ksiazki z Autorzy, aby zobaczyć tytuł książki i jej autora.\n\n🔹 INNER JOIN\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nJOIN Autorzy a ON k.autor_id = a.autor_id;\nWynikiem będzie lista książek wraz z imieniem i nazwiskiem autora. Jeśli chcemy, aby w wynikach pojawiły się także książki bez autora (lub autorzy bez książek), używamy odpowiednio LEFT JOIN lub RIGHT JOIN. Łączenie tabel to fundament relacyjnych baz danych – dzięki niemu dane są spójne i nie trzeba ich powielać.\n\n\n🔹 LEFT JOIN\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nLEFT JOIN Autorzy a ON k.autor_id = a.autor_id;",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "SELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nJOIN Autorzy a ON k.autor_id = a.autor_id;\n\n\n\nSELECT k.tytul, a.imie, a.nazwisko\nFROM Ksiazki k\nLEFT JOIN Autorzy a ON k.autor_id = a.autor_id;\nINNER JOIN zwraca tylko dopasowane rekordy, LEFT JOIN – wszystkie rekordy z lewej tabeli (nawet bez dopasowania).",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#aktualizacja-i-usuwanie-danych",
     "href": "lectures/wyklad2.html#aktualizacja-i-usuwanie-danych",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "1️⃣2️⃣ Aktualizacja i usuwanie danych",
-    "text": "1️⃣2️⃣ Aktualizacja i usuwanie danych\nPolecenie UPDATE pozwala modyfikować dane już istniejące w tabeli. Zawsze należy używać klauzuli WHERE, aby zmiana nie objęła wszystkich rekordów. Z kolei DELETE służy do usuwania rekordów – również z warunkiem, by nie usunąć wszystkiego przez pomyłkę. Przykład poniżej pokazuje, jak zmienić rok wydania książki i usunąć starsze pozycje.\nUPDATE Ksiazki SET rok = 1836 WHERE tytul = 'Pan Tadeusz';\n\nDELETE FROM Ksiazki WHERE rok &lt; 1850;\nUPDATE pozwala też aktualizować wiele kolumn naraz, a nawet wykonywać obliczenia. Z kolei DELETE usuwa rekordy z tabeli, ale nie zmienia struktury bazy. Warto zawsze testować warunek WHERE wcześniej przy pomocy SELECT, by uniknąć niechcianych usunięć.",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "UPDATE Ksiazki SET rok = 1836 WHERE tytul = 'Pan Tadeusz';\n\n\n\nDELETE FROM Ksiazki WHERE rok &lt; 1850;\nZawsze należy używać WHERE, aby nie zmodyfikować lub nie usunąć wszystkich rekordów.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
     "objectID": "lectures/wyklad2.html#podsumowanie",
     "href": "lectures/wyklad2.html#podsumowanie",
-    "title": "MODEL RELACYJNY I PODSTAWY SQL",
-    "section": "Podsumowanie",
-    "text": "Podsumowanie\nSQL jest językiem deklaratywnym – opisujemy co chcemy uzyskać, a nie jak to zrobić. Dzięki temu użytkownik nie musi znać szczegółów działania bazy danych, wystarczy, że opisze warunki i strukturę zapytania. Poznane dziś polecenia (CREATE, INSERT, SELECT, UPDATE, DELETE, JOIN, GROUP BY) to fundament pracy z bazami danych. Opanowanie ich pozwala budować i analizować nawet bardzo złożone systemy informacyjne.\n\nDokumentacja SQLite\nDokumentacja PostgreSQL\nA. Silberschatz, H. Korth, S. Sudarshan, Database System Concepts",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "SQL jest językiem deklaratywnym – opisujemy co chcemy uzyskać, a nie jak to zrobić. Dzięki temu użytkownik nie musi znać szczegółów działania bazy danych.\nPoznane dziś polecenia:\nCREATE, INSERT, SELECT, UPDATE, DELETE, JOIN, GROUP BY\nto fundament pracy z bazami danych. Opanowanie ich pozwala budować i analizować nawet bardzo złożone systemy informacyjne.\n⸻",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "MODEL RELACYJNY I PODSTAWY SQL"
+      "Model relacyjny i podstawy SQL"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad2.html#źródła-i-literatura",
+    "href": "lectures/wyklad2.html#źródła-i-literatura",
+    "title": "Model relacyjny i podstawy SQL",
+    "section": "",
+    "text": "•   Dokumentacja SQLite\n•   Dokumentacja PostgreSQL\n•   A. Silberschatz, H. Korth, S. Sudarshan, Database System Concepts",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Model relacyjny i podstawy SQL"
     ]
   },
   {
@@ -383,7 +395,19 @@
     "href": "lectures/wyklad1.html",
     "title": "Od pliku do bazy danych",
     "section": "",
-    "text": "poznanie podstawowych pojęć: dane, informacja, baza danych, DBMS,\n\nzrozumienie różnicy między systemem plikowym a bazą danych,\n\npoznanie architektury systemu baz danych (ANSI/SPARC),\n\nwprowadzenie do modelu relacyjnego i idei organizacji danych w tabelach.",
+    "text": "W tym module poznasz podstawowe pojęcia związane z danymi i bazami danych. Dowiesz się, czym różni się system plikowy od bazy danych, jak wygląda architektura systemu DBMS oraz dlaczego model relacyjny stał się standardem w przechowywaniu informacji.\nNa końcu wprowadzimy Cię w świat języka SQL – narzędzia, które pozwala komunikować się z bazą danych.\n⸻",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Od pliku do bazy danych"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad1.html#cele-wykładu",
+    "href": "lectures/wyklad1.html#cele-wykładu",
+    "title": "Od pliku do bazy danych",
+    "section": "",
+    "text": "W tym module poznasz podstawowe pojęcia związane z danymi i bazami danych. Dowiesz się, czym różni się system plikowy od bazy danych, jak wygląda architektura systemu DBMS oraz dlaczego model relacyjny stał się standardem w przechowywaniu informacji.\nNa końcu wprowadzimy Cię w świat języka SQL – narzędzia, które pozwala komunikować się z bazą danych.\n⸻",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -395,7 +419,7 @@
     "href": "lectures/wyklad1.html#dane-informacja-baza-danych",
     "title": "Od pliku do bazy danych",
     "section": "1️⃣ Dane, informacja, baza danych",
-    "text": "1️⃣ Dane, informacja, baza danych\n\n🔹 Dane\n\nZacznijmy od podstawowego pytania: czym właściwie są dane?\n\nDane to surowe fakty, liczby, teksty, symbole — same w sobie nie mają jeszcze znaczenia.\nPrzykład: 12345, Jan Kowalski, Bazy danych.\n\n\n🔹 Informacja\nTo dane zinterpretowane w kontekście.\nPrzykład:\n\n„12345” to numer indeksu studenta Jana Kowalskiego zapisującego się na kurs Bazy danych.\n\n\n\nCzy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?\n\n\n\n\n🔹 Baza danych (ang. Database)\nTo uporządkowany zbiór danych, przechowywany w sposób umożliwiający łatwe wyszukiwanie, aktualizację i kontrolę spójności.\n\n\n🔹 System zarządzania bazą danych (DBMS)\nDBMS (Database Management System) to oprogramowanie pośredniczące między użytkownikiem a bazą danych.\nOdpowiada za:\n\ndefiniowanie struktury danych (tworzenie tabel, relacji),\nprzechowywanie i wyszukiwanie danych,\nbezpieczeństwo i kontrolę dostępu,\nobsługę wielu użytkowników,\nzapewnienie spójności transakcji.\n\nPrzykłady DBMS: PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server.",
+    "text": "1️⃣ Dane, informacja, baza danych\n\n🔹 Dane\nNa początku warto zadać pytanie: czym właściwie są dane?\nDane to surowe fakty – liczby, teksty, symbole – które same w sobie nie mają znaczenia. Przykładowo, zapis:\n12345\nJan Kowalski\nBazy danych\nnie mówi nam jeszcze nic o tym, co oznacza. Może to być numer indeksu, nazwisko klienta albo temat zajęć.\n\n (np. piramida DIKW – Data, Information, Knowledge, Wisdom)\n\n\n\n🔹 Informacja\nInformacja powstaje wtedy, gdy dane zostaną zinterpretowane w określonym kontekście. Jeśli wiemy, że „12345” to numer indeksu studenta Jana Kowalskiego, który zapisał się na kurs Bazy danych, mamy już informację.\nW życiu codziennym często mamy mnóstwo danych (np. z mediów społecznościowych), ale niewiele z nich przekłada się na prawdziwą wiedzę.\n⸻\n\n\n🔹 Baza danych\nBaza danych (ang. database) to uporządkowany zbiór danych, przechowywany w sposób umożliwiający szybkie wyszukiwanie, aktualizację i kontrolę spójności. Można ją porównać do dobrze zorganizowanego archiwum, w którym każdy dokument ma swoje miejsce i jest łatwy do odnalezienia.\nWizualizacja bazy danych – zestaw powiązanych tabel w relacyjnym modelu danych.\n\n\n🔹 System zarządzania bazą danych (DBMS)\nSystem zarządzania bazą danych, czyli DBMS (Database Management System), to oprogramowanie pośredniczące między użytkownikiem a bazą danych.\nTo ono umożliwia:\n\ndefiniowanie struktur (np. tabel),\nprzechowywanie i wyszukiwanie danych,\nzapewnienie bezpieczeństwa i spójności,\nobsługę wielu użytkowników jednocześnie.\n\nDo najpopularniejszych DBMS należą: PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -406,8 +430,8 @@
     "objectID": "lectures/wyklad1.html#rodzaje-danych",
     "href": "lectures/wyklad1.html#rodzaje-danych",
     "title": "Od pliku do bazy danych",
-    "section": "💾 2. Rodzaje danych",
-    "text": "💾 2. Rodzaje danych\n🗣\nW świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.\n\n📚 Klasyfikacja danych:\n\nUstrukturyzowane\n\nDane w tabelach, arkuszach, bazach. Każdy wiersz ma taki sam zestaw kolumn.\nPrzykład: tabela klientów w Excelu lub SQL.\n\n\n\nID\nImię\nNazwisko\nMiasto\n\n\n\n\n1\nAnna\nNowak\nKraków\n\n\n2\nJan\nKowalski\nWarszawa\n\n\n\n\nPółustrukturyzowane\n\nZawierają strukturę, ale nie jest ona sztywna.\nPrzykład: pliki JSON, XML.\n{\n  \"imie\": \"Anna\",\n  \"miasto\": \"Kraków\",\n  \"zainteresowania\": [\"sport\", \"muzyka\"]\n}\n\nNieustrukturyzowane\n\nBrak jasno określonej struktury danych.\nPrzykład: obraz, dźwięk, wideo, dokument PDF.\nTakie dane trudno przeszukiwać klasycznymi metodami SQL.\n\n\n💬 Pytanie:\n\nJakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?",
+    "section": "2️⃣ Rodzaje danych",
+    "text": "2️⃣ Rodzaje danych\nW informatyce dane występują w różnych formach. Można je podzielić według stopnia strukturyzacji.\n\n🔸 Dane ustrukturyzowane\nTo dane zapisane w tabelach – każda kolumna ma nazwę i określony typ. Znajdujemy je np. w arkuszach kalkulacyjnych lub relacyjnych bazach danych.\n\n\n\nID\nImię\nNazwisko\nMiasto\n\n\n\n\n1\nAnna\nNowak\nKraków\n\n\n2\nJan\nKowalski\nWarszawa\n\n\n\n\n\n\n🔸 Dane półustrukturyzowane\nMają pewną strukturę, ale nie tak sztywną jak dane tabelaryczne.\nPrzykładem mogą być pliki JSON lub XML:\n{\n  \"imie\": \"Anna\",\n  \"miasto\": \"Kraków\",\n  \"zainteresowania\": [\"sport\", \"muzyka\"]\n}\n\n\n\n🔸 Dane nieustrukturyzowane\nTo dane, które nie mają jasno zdefiniowanej struktury — na przykład obrazy, pliki audio, wideo czy dokumenty PDF. Ich analiza wymaga specjalistycznych narzędzi (np. rozpoznawania obrazów lub przetwarzania języka naturalnego).\n⸻",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -418,20 +442,8 @@
     "objectID": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych",
     "href": "lectures/wyklad1.html#pliki-jako-forma-przechowywania-danych",
     "title": "Od pliku do bazy danych",
-    "section": "🗂️ 3. Pliki jako forma przechowywania danych",
-    "text": "🗂️ 3. Pliki jako forma przechowywania danych\nZanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).\nTo po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.\n📄 Przykład pliku płaskiego (CSV):\nID,Imię,Nazwisko,Miasto\n1,Anna,Nowak,Kraków\n2,Jan,Kowalski,Warszawa\n3,Piotr,Wiśniewski,Poznań\n\n🗃 Co można zauważyć:\nDane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.\nAle… brak:\n\nkontroli nad poprawnością (np. można wpisać błędny numer ID),\nrelacji między danymi (osobna lista klientów i zamówień się nie łączy),\nspójności przy równoczesnym dostępie.\n\n\n\n💬 Pytanie:\n\nCo się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Od pliku do bazy danych"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad1.html#problemy-pracy-z-plikami",
-    "href": "lectures/wyklad1.html#problemy-pracy-z-plikami",
-    "title": "Od pliku do bazy danych",
-    "section": "🧱 4. Problemy pracy z plikami",
-    "text": "🧱 4. Problemy pracy z plikami\n🗣\nWraz ze wzrostem ilości danych zaczynają się problemy.\nSystemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.\n\n⚠️ Typowe problemy:\n\nRedundancja danych – powielanie informacji. np. imię i adres klienta wpisywany przy każdym zamówieniu.\nNiespójność danych – różne wersje tych samych danych w wielu plikach.\nTrudność w aktualizacji – brak jednego miejsca prawdy.\nBrak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.\nBrak bezpieczeństwa i kontroli dostępu.\n\n\n\n🧠 Przykład:\nPlik klienci.txt i zamowienia.txt – brak połączenia między nimi.\nTrudno ustalić, które zamówienie należy do którego klienta.\nklienci.txt:\n1;Anna Nowak;Kraków\n2;Jan Kowalski;Warszawa\n\nzamowienia.txt:\n10;Laptop;1\n11;Monitor;2\n12;Kabel HDMI;1\nTo działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.\n\n\n\n\n\n\n\nProblem\nOpis\n\n\n\n\n🔁 Redundancja\nTe same dane powielane w wielu plikach\n\n\n⚠️ Brak spójności\nAktualizacja w jednym pliku nie zmienia danych w innych\n\n\n⛔ Brak współbieżności\nTylko jedna osoba mogła modyfikować dane naraz\n\n\n❌ Trudna kontrola dostępu\nBrak ról i uprawnień\n\n\n🧩 Słaba integracja\nDane rozproszone po różnych plikach i formatach\n\n\n\nSystem bazodanowy rozwiązuje te problemy, centralizując dane i zarządzając nimi przez DBMS.",
+    "section": "3️⃣ Pliki jako forma przechowywania danych",
+    "text": "3️⃣ Pliki jako forma przechowywania danych\nZanim powstały systemy baz danych, dane przechowywano w prostych plikach tekstowych.\nNa przykład w pliku CSV:\nID,Imię,Nazwisko,Miasto\n1,Anna,Nowak,Kraków\n2,Jan,Kowalski,Warszawa\n3,Piotr,Wiśniewski,Poznań\nChoć taki plik można łatwo otworzyć w Excelu, ma on liczne ograniczenia:\n\nbrak kontroli poprawności danych,\nbrak powiązań między plikami,\nbrak współbieżności przy edycji.\n\n\n## 4️⃣ Problemy pracy z plikami\nSystem plikowy działa poprawnie przy niewielkiej liczbie danych i prostych zastosowaniach. Wraz ze wzrostem ilości informacji i liczbą użytkowników pojawiają się jednak poważne ograniczenia, które utrudniają bezpieczne i efektywne zarządzanie danymi.\n\n⚠️ Typowe problemy\n\n\n\n\n\n\n\nProblem\nOpis\n\n\n\n\n🔁 Redundancja\nTe same dane pojawiają się w wielu miejscach (np. adres klienta powielony w każdym zamówieniu).\n\n\n⚠️ Niespójność\nRóżne wersje tej samej informacji w różnych plikach (np. inny numer telefonu u klienta w dwóch plikach).\n\n\n⛔ Brak współbieżności\nTrudności przy jednoczesnej edycji — ryzyko nadpisania zmian.\n\n\n❌ Brak kontroli dostępu\nBrak ról, uprawnień i mechanizmów audytu.\n\n\n🧩 Słaba integracja\nDane rozproszone po różnych formatach i miejscach, trudne do połączenia.\n\n\n\n\n Schemat: system plików z wieloma niespójnymi plikami vs. centralna baza danych\n\n\nPrzykład (plikowy):\nklienci.txt:\n1;Anna Nowak;Kraków\n2;Jan Kowalski;Warszawa\nzamowienia.txt:\n10;Laptop;1\n11;Monitor;2\n12;Kabel HDMI;1\nDziała to, ale jeśli zmienimy ID klienta lub nazwę produktu, powstaje trudność w utrzymaniu spójności.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -442,8 +454,8 @@
     "objectID": "lectures/wyklad1.html#od-pliku-do-bazy-danych",
     "href": "lectures/wyklad1.html#od-pliku-do-bazy-danych",
     "title": "Od pliku do bazy danych",
-    "section": "🧮 5. Od pliku do bazy danych",
-    "text": "🧮 5. Od pliku do bazy danych\n🗣\nAby rozwiązać te problemy, w latach 70. pojawiła się koncepcja systemu bazodanowego.\nPomysł był prosty, ale rewolucyjny:\n\ndane przechowywane są w jednym centralnym repozytorium,\ndostęp do nich odbywa się przez język zapytań (SQL),\nkontrolowana jest spójność, współbieżność, bezpieczeństwo.\n\n\n📚 Pojęcia podstawowe:\n\nBaza danych – zbiór danych o określonej strukturze.\nSystem zarządzania bazą danych (DBMS) – oprogramowanie do tworzenia, przechowywania, udostępniania danych.\nUżytkownicy – aplikacje, programiści, analitycy, którzy korzystają z danych.\n\n\n\n📊 Przykład:\nPorównanie pliku CSV z tabelą SQL:\n\n\n\n\n\n\n\n\nCecha\nPlik CSV\nBaza danych (SQL)\n\n\n\n\nStruktura danych\nTekstowa, dowolna\nŚciśle zdefiniowana (kolumny, typy)\n\n\nSpójność danych\nNie\nZapewnia DBMS\n\n\nWspółbieżność\nBrak\nObsługiwana\n\n\nWyszukiwanie\nPełne skanowanie\nZapytania, indeksy\n\n\nBezpieczeństwo\nBrak\nKontrola dostępu",
+    "section": "5️⃣ Od pliku do bazy danych",
+    "text": "5️⃣ Od pliku do bazy danych\nAby rozwiązać problemy związane z plikami płaskimi, wprowadzono koncepcję systemu zarządzania bazą danych (DBMS). Główne idee to:\n\ncentralne repozytorium danych,\nkontrolowany dostęp i uprawnienia,\nmechanizmy zapewniające spójność i integralność,\nobsługa współbieżności i transakcji,\nmożliwość zapytań (np. SQL) zamiast pełnego skanowania plików.\n\n\nPorównanie: plik CSV vs baza danych (SQL)\n\n\n\n\n\n\n\n\nCecha\nPlik CSV\nBaza danych (SQL)\n\n\n\n\nStruktura danych\nTekstowa, dowolna\nŚciśle zdefiniowana (kolumny, typy)\n\n\nSpójność danych\nNie\nZapewniana przez DBMS\n\n\nWspółbieżność\nBrak\nObsługiwana\n\n\nWyszukiwanie\nPełne skanowanie\nZapytania, indeksy\n\n\nBezpieczeństwo\nBrak\nKontrola dostępu\n\n\n\n\n Diagram: „Od pliku do bazy” – ewolucja sposobu przechowywania danych",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -454,8 +466,8 @@
     "objectID": "lectures/wyklad1.html#różnice-w-przetwarzaniu-danych-przykład-porównawczy",
     "href": "lectures/wyklad1.html#różnice-w-przetwarzaniu-danych-przykład-porównawczy",
     "title": "Od pliku do bazy danych",
-    "section": "🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy",
-    "text": "🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy\n🗣\nZanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposób ich przetwarzania.\n\n\n\n\n\n\n\n\n\nTyp danych\nPrzykład\nNarzędzie przetwarzania\nTypowe operacje\n\n\n\n\nTabelaryczne\nsprzedaż, klienci\nSQL, Excel\nsortowanie, sumowanie, filtracja\n\n\nTekstowe\nartykuły, maile\nwyszukiwanie pełnotekstowe\nindeksowanie, analiza słów\n\n\nObraz\nzdjęcia, wideo\nbiblioteki CV, AI\nklasyfikacja, rozpoznawanie obiektów\n\n\nDźwięk\nnagrania, mowa\nDSP, ML\nfiltracja, transkrypcja\n\n\n\n\n💬 Pytanie:\n\nDlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?",
+    "section": "6️⃣ Różnice w przetwarzaniu danych – przykład porównawczy",
+    "text": "6️⃣ Różnice w przetwarzaniu danych – przykład porównawczy\nRodzaj przetwarzania zależy od typu danych:\n\n\n\n\n\n\n\n\n\nTyp danych\nPrzykład\nNarzędzie przetwarzania\nTypowe operacje\n\n\n\n\nTabelaryczne\nsprzedaż, klienci\nSQL, Excel\nsortowanie, sumowanie, filtracja\n\n\nTekstowe\nartykuły, maile\nwyszukiwanie pełnotekstowe\nindeksowanie, analiza słów\n\n\nObraz\nzdjęcia, wideo\nbiblioteki CV, AI\nklasyfikacja, rozpoznawanie obiektów\n\n\nDźwięk\nnagrania, mowa\nDSP, ML\nfiltracja, transkrypcja\n\n\n\n\nPytanie do dyskusji: Dlaczego dane tabelaryczne łatwo ująć w relacje, a dźwięk czy obraz — już nie?\n\n\n Ilustracja: porównanie przetwarzania danych tabelarycznych i multimedialnych",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -466,8 +478,8 @@
     "objectID": "lectures/wyklad1.html#architektura-systemów-baz-danych-ansisparc",
     "href": "lectures/wyklad1.html#architektura-systemów-baz-danych-ansisparc",
     "title": "Od pliku do bazy danych",
-    "section": "3️⃣ Architektura systemów baz danych (ANSI/SPARC)",
-    "text": "3️⃣ Architektura systemów baz danych (ANSI/SPARC)\nAby zapewnić niezależność danych od aplikacji, opracowano model trójwarstwowy ANSI/SPARC:\n\n\n\n\n\n\n\n\nPoziom\nOpis\nPrzykład\n\n\n\n\nZewnętrzny\nPunkt widzenia użytkownika – wybrane dane w określonym formacie\nWidok „Studenci z kierunku Informatyka”\n\n\nLogiczny (koncepcyjny)\nGlobalny model danych – struktura tabel, relacje, ograniczenia\nSchemat bazy uczelni\n\n\nWewnętrzny (fizyczny)\nSposób przechowywania danych na dysku\nIndeksy, pliki, metody dostępu\n\n\n\nTen model umożliwia: - niezależność logiczną danych (zmiany struktury nie psują aplikacji), - niezależność fizyczną danych (zmiany sposobu zapisu nie wpływają na logikę).",
+    "section": "7️⃣ Architektura systemów baz danych (ANSI/SPARC)",
+    "text": "7️⃣ Architektura systemów baz danych (ANSI/SPARC)\nAby osiągnąć niezależność danych od aplikacji, wprowadzono model trójwarstwowy ANSI/SPARC:\n\n\n\n\n\n\n\n\nPoziom\nOpis\nPrzykład\n\n\n\n\nZewnętrzny\nWidok użytkownika — sposób, w jaki konkretni użytkownicy widzą dane\nWidok „Studenci z kierunku Informatyka”\n\n\nLogiczny (koncepcyjny)\nGlobalna struktura danych — tabele, relacje, ograniczenia\nSchemat bazy uczelni\n\n\nWewnętrzny (fizyczny)\nFizyczne przechowywanie danych na dysku\nIndeksy, pliki danych, metody dostępu\n\n\n\n\n Schemat trójwarstwowy ANSI/SPARC: użytkownicy ↔︎ DBMS ↔︎ fizyczne dane\n\nKorzyści:\n\nniezależność logiczna danych (zmiana schematu logicznego nie musi wymagać zmian w aplikacjach),\nniezależność fizyczna danych (zmiana sposobu przechowywania nie wpływa na logikę aplikacji).",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -478,8 +490,8 @@
     "objectID": "lectures/wyklad1.html#typy-baz-danych",
     "href": "lectures/wyklad1.html#typy-baz-danych",
     "title": "Od pliku do bazy danych",
-    "section": "4️⃣ Typy baz danych",
-    "text": "4️⃣ Typy baz danych\nW zależności od sposobu przechowywania i powiązań danych wyróżniamy:\n\n\n\n\n\n\n\n\nTyp bazy danych\nOpis\nPrzykład\n\n\n\n\nHierarchiczna\nDane ułożone w strukturę drzewa\nIMS, stary system IBM\n\n\nSieciowa\nWiele połączeń między rekordami (graf zależności)\nIDMS\n\n\nRelacyjna\nDane w tabelach (relacjach) – klucze, związki\nPostgreSQL, MySQL\n\n\nObiektowa\nDane jako obiekty (z metodami)\nObjectDB, db4o\n\n\nDokumentowa / NoSQL\nDane w formacie JSON, brak stałego schematu\nMongoDB, CouchDB\n\n\nGrafowa\nDane w formie węzłów i krawędzi\nNeo4j\n\n\n\nNajczęściej używanym modelem jest model relacyjny, ponieważ łączy prostotę, spójność i matematyczne podstawy (algebra relacji).\n\n🧭 Wniosek:\n\nBazy danych powstały nie dlatego, że ktoś lubił tabele, ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.",
+    "section": "8️⃣ Typy baz danych",
+    "text": "8️⃣ Typy baz danych\nW zależności od modelu danych i sposobu ich użycia wyróżniamy kilka typów baz:\n\n\n\n\n\n\n\n\nTyp bazy\nOpis\nPrzykład\n\n\n\n\nHierarchiczna\nDane ułożone w strukturę drzewa\nIMS (IBM)\n\n\nSieciowa\nRekordy połączone są w złożone grafy\nIDMS\n\n\nRelacyjna\nDane w tabelach, związki przez klucze\nPostgreSQL, MySQL\n\n\nObiektowa\nDane jako obiekty z metodami\nObjectDB\n\n\nDokumentowa (NoSQL)\nDane w formacie dokumentów (JSON)\nMongoDB, CouchDB\n\n\nGrafowa\nModele relacji jako węzły i krawędzie\nNeo4j\n\n\n\n\n Grafika: schematy — drzewo, sieć, tabela, graf\n\nUwaga: Model relacyjny jest najpowszechniej stosowany z uwagi na prostotę i solidne podstawy teoretyczne (algebra relacji).",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -490,8 +502,8 @@
     "objectID": "lectures/wyklad1.html#historia-i-ewolucja-baz-danych",
     "href": "lectures/wyklad1.html#historia-i-ewolucja-baz-danych",
     "title": "Od pliku do bazy danych",
-    "section": "Historia i ewolucja baz danych",
-    "text": "Historia i ewolucja baz danych\nBazy danych nie są wynalazkiem XXI wieku — ich początki sięgają lat 60. XX wieku, gdy organizacje zaczęły gromadzić coraz większe ilości danych.\n\n🔹 Systemy plikowe\nPierwsze systemy przechowywały dane w plikach na dyskach. Choć były proste, miały poważne ograniczenia:\n\nBrak centralnej kontroli nad danymi\nTrudność w utrzymaniu spójności\nBrak uniwersalnych narzędzi do wyszukiwania\n\n💡 Zadanie: Na jakich innych obiektach, oprócz plików, można pracować w systemach operacyjnych?\n\n\n🔹 Wczesne systemy DBMS\nW latach 60. i 70. pojawiły się pierwsze systemy zarządzania bazami danych (DBMS). Zapewniały:\n\ncentralną kontrolę danych,\nintegralność i bezpieczeństwo,\nwydajne przetwarzanie i wyszukiwanie.\n\n\n\n🔹 Modele hierarchiczne i sieciowe\nWczesne systemy wykorzystywały struktury drzewiaste lub grafowe. Były skuteczne, ale trudne w modyfikacji i rozwoju.\n\n\n🔹 Przełom: model relacyjny\nW 1970 roku Edgar F. Codd zaproponował model relacyjny danych, w którym:\n\ndane są przechowywane w tabelach (relacjach),\nkażda tabela ma kolumny (atrybuty) i wiersze (krotki).\n\nZalety:\n\nprostota i przejrzystość,\nelastyczność (łatwo dodawać nowe tabele),\nbezpieczeństwo i spójność danych.\n\n\n\n🔹 SQL – język pracy z danymi\nWraz z rozwojem modelu relacyjnego powstał SQL (Structured Query Language) – język do tworzenia, modyfikowania i pobierania danych.\nDziś SQL jest fundamentem większości systemów: od aplikacji biurowych po duże systemy korporacyjne. Nawet współczesne rozwiązania NoSQL często nawiązują do idei relacyjnych.",
+    "section": "9️⃣ Historia i ewolucja baz danych",
+    "text": "9️⃣ Historia i ewolucja baz danych\nKrótka oś czasu najważniejszych etapów:\n\nSystemy plikowe (lata 50–60) — proste pliki, brak centralnej kontroli.\n\nPierwsze DBMS (lata 60–70) — centralizacja, lepsze zarządzanie danymi.\n\nModele hierarchiczne i sieciowe — stosowane w dużych organizacjach, lecz trudne w utrzymaniu.\n\nModel relacyjny (E. F. Codd, 1970) — rewolucja: tabele, relacje i algebra relacji.\n\nSQL i standaryzacja — język pozwalający na zdefiniowanie i manipulację danymi.\n\nNoSQL i chmura (XXI wiek) — elastyczność, skalowalność, nowe modele danych.\n\n\n Oś czasu: rozwój baz danych od plików do NoSQL i rozwiązań chmurowych",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -502,8 +514,8 @@
     "objectID": "lectures/wyklad1.html#zalety-podejścia-relacyjnego",
     "href": "lectures/wyklad1.html#zalety-podejścia-relacyjnego",
     "title": "Od pliku do bazy danych",
-    "section": "6️⃣ Zalety podejścia relacyjnego",
-    "text": "6️⃣ Zalety podejścia relacyjnego\n\nbrak redundancji danych (dzięki kluczom i relacjom),\nłatwe wyszukiwanie i łączenie informacji (język SQL),\nkontrola spójności i integralności,\nbezpieczeństwo i wielodostępność,\nniezależność logiczna od aplikacji.",
+    "section": "🔟 Zalety podejścia relacyjnego",
+    "text": "🔟 Zalety podejścia relacyjnego\n\nredukcja redundancji poprzez normalizację i klucze,\n\nłatwość łączenia danych (JOINy),\n\nkontrola integralności (ograniczenia, klucze obce),\n\nmechanizmy bezpieczeństwa i wielodostępności,\n\nprzewidywalność i zgodność z formalnymi podstawami matematycznymi.\n\n\n Schemat relacji między tabelami: STUDENT → ZAPISY → KURS",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -511,23 +523,11 @@
     ]
   },
   {
-    "objectID": "lectures/wyklad1.html#od-modelu-do-języka-wprowadzenie-do-sql",
-    "href": "lectures/wyklad1.html#od-modelu-do-języka-wprowadzenie-do-sql",
+    "objectID": "lectures/wyklad1.html#wprowadzenie-do-języka-sql",
+    "href": "lectures/wyklad1.html#wprowadzenie-do-języka-sql",
     "title": "Od pliku do bazy danych",
-    "section": "7️⃣ Od modelu do języka – wprowadzenie do SQL",
-    "text": "7️⃣ Od modelu do języka – wprowadzenie do SQL\nJęzyk SQL (Structured Query Language) został stworzony, by umożliwić: - definiowanie struktur danych (DDL – Data Definition Language), - manipulowanie danymi (DML – Data Manipulation Language), - kontrolę dostępu i transakcji (DCL, TCL).\nPrzykład: ```sql CREATE TABLE STUDENT ( NrIndeksu INT PRIMARY KEY, Imie VARCHAR(30), Nazwisko VARCHAR(30), Kierunek VARCHAR(50) );",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Od pliku do bazy danych"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad1.html#materiały-do-dalszej-lektury",
-    "href": "lectures/wyklad1.html#materiały-do-dalszej-lektury",
-    "title": "Od pliku do bazy danych",
-    "section": "📚 Materiały do dalszej lektury",
-    "text": "📚 Materiały do dalszej lektury\n\nC.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/",
+    "section": "1️⃣1️⃣ Wprowadzenie do języka SQL",
+    "text": "1️⃣1️⃣ Wprowadzenie do języka SQL\nSQL (Structured Query Language) to standardowy język do komunikacji z relacyjnymi bazami danych. Dzieli się na kilka części:\n\nDDL (Data Definition Language) — definiowanie struktur (CREATE, ALTER, DROP),\n\nDML (Data Manipulation Language) — operacje na danych (SELECT, INSERT, UPDATE, DELETE),\n\nDCL (Data Control Language) — kontrola dostępu (GRANT, REVOKE),\n\nTCL (Transaction Control Language) — kontrola transakcji (COMMIT, ROLLBACK).",
     "crumbs": [
       "Książki",
       "Wykłady",

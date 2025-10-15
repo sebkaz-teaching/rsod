@@ -2,78 +2,88 @@
 title: " Od pliku do bazy danych"
 ---
 
-#### 🧠 Cele wykładu
+## 🧠 Cele wykładu
 
-- poznanie podstawowych pojęć: **dane, informacja, baza danych, DBMS**,  
-- zrozumienie różnicy między **systemem plikowym a bazą danych**,  
-- poznanie **architektury systemu baz danych (ANSI/SPARC)**,  
-- wprowadzenie do **modelu relacyjnego** i idei organizacji danych w tabelach.
+W tym module poznasz podstawowe pojęcia związane z danymi i bazami danych. Dowiesz się, czym różni się system plikowy od bazy danych, jak wygląda architektura systemu DBMS oraz dlaczego model relacyjny stał się standardem w przechowywaniu informacji.
+
+Na końcu wprowadzimy Cię w świat języka SQL – narzędzia, które pozwala komunikować się z bazą danych.
+
+⸻
 
 ## 1️⃣ Dane, informacja, baza danych
 
 ### 🔹 Dane
 
-> Zacznijmy od podstawowego pytania: czym właściwie są dane?
+Na początku warto zadać pytanie: czym właściwie są dane?
 
-Dane to surowe fakty, liczby, teksty, symbole — same w sobie nie mają jeszcze znaczenia.  
+Dane to surowe fakty – liczby, teksty, symbole – które same w sobie nie mają znaczenia.
+Przykładowo, zapis:
+```csv
+12345
+Jan Kowalski
+Bazy danych
+```
 
-Przykład: `12345`, `Jan Kowalski`, `Bazy danych`.
+nie mówi nam jeszcze nic o tym, co oznacza. Może to być numer indeksu, nazwisko klienta albo temat zajęć.
+
+> <img alt="Schemat przedstawiający przejście: ,Dane $\to$ Informacja $\to$ Wiedza'"> 
+> (np. piramida DIKW – Data, Information, Knowledge, Wisdom)
 
 ### 🔹 Informacja
 
-To **dane zinterpretowane w kontekście**.  
+Informacja powstaje wtedy, gdy dane zostaną zinterpretowane w określonym kontekście.
+Jeśli wiemy, że „12345” to numer indeksu studenta Jana Kowalskiego, który zapisał się na kurs Bazy danych, mamy już informację.
 
-Przykład:
+W życiu codziennym często mamy mnóstwo danych (np. z mediów społecznościowych), ale niewiele z nich przekłada się na prawdziwą wiedzę.
 
-> „12345” to numer indeksu studenta Jana Kowalskiego zapisującego się na kurs *Bazy danych*.
+⸻
 
->> Czy można mieć dużo danych i żadnej wiedzy? Jakie są przykłady z życia codziennego?
+### 🔹 Baza danych
 
-### 🔹 Baza danych (ang. *Database*)
+Baza danych (ang. database) to uporządkowany zbiór danych, przechowywany w sposób umożliwiający szybkie wyszukiwanie, aktualizację i kontrolę spójności.
+Można ją porównać do dobrze zorganizowanego archiwum, w którym każdy dokument ma swoje miejsce i jest łatwy do odnalezienia.
 
-To **uporządkowany zbiór danych**, przechowywany w sposób umożliwiający łatwe wyszukiwanie, aktualizację i kontrolę spójności.
+ Wizualizacja bazy danych – zestaw powiązanych tabel w relacyjnym modelu danych.
 
-### 🔹 System zarządzania bazą danych (DBMS)
+### 🔹  System zarządzania bazą danych (DBMS)
 
-DBMS (*Database Management System*) to **oprogramowanie pośredniczące** między użytkownikiem a bazą danych.  
-Odpowiada za:
+System zarządzania bazą danych, czyli DBMS (Database Management System), to oprogramowanie pośredniczące między użytkownikiem a bazą danych.
 
-- definiowanie struktury danych (tworzenie tabel, relacji),
+To ono umożliwia:
+
+- definiowanie struktur (np. tabel),
 - przechowywanie i wyszukiwanie danych,
-- bezpieczeństwo i kontrolę dostępu,
-- obsługę wielu użytkowników,
-- zapewnienie spójności transakcji.
+- zapewnienie bezpieczeństwa i spójności,
+- obsługę wielu użytkowników jednocześnie.
 
-**Przykłady DBMS:** PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server.
+Do najpopularniejszych DBMS należą: **PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server**.
 
 
-## 💾 2. Rodzaje danych
+## 2️⃣ Rodzaje danych
 
-🗣
+W informatyce dane występują w różnych formach. Można je podzielić według stopnia strukturyzacji.
 
-W świecie informatyki dane występują w różnych formach. Warto je uporządkować według stopnia strukturyzacji.
+### 🔸 Dane ustrukturyzowane
 
-### 📚 Klasyfikacja danych:
+To dane zapisane w tabelach – każda kolumna ma nazwę i określony typ.
+Znajdujemy je np. w arkuszach kalkulacyjnych lub relacyjnych bazach danych.
 
-1. Ustrukturyzowane
-
-Dane w tabelach, arkuszach, bazach.
-Każdy wiersz ma taki sam zestaw kolumn.
-
-Przykład: tabela klientów w Excelu lub SQL.
 
 | ID | Imię | Nazwisko | Miasto  |
 |----|------|----------|---------|
 | 1  | Anna | Nowak    | Kraków  |
 | 2  | Jan  | Kowalski | Warszawa|
 
-2. Półustrukturyzowane
+<img alt="Grafika pokazująca dane tabelaryczne (np. tabela klientów w SQL lub Excelu)"> 
 
-Zawierają strukturę, ale nie jest ona sztywna.
 
-Przykład: pliki JSON, XML.
 
-```JSON
+### 🔸 Dane półustrukturyzowane
+
+Mają pewną strukturę, ale nie tak sztywną jak dane tabelaryczne.  
+Przykładem mogą być pliki **JSON** lub **XML**:
+
+```json
 {
   "imie": "Anna",
   "miasto": "Kraków",
@@ -81,27 +91,20 @@ Przykład: pliki JSON, XML.
 }
 ```
 
-3. Nieustrukturyzowane
+<img alt=" Ilustracja: porównanie danych JSON i tabeli SQL (elastyczna struktura vs. sztywna)">
 
-Brak jasno określonej struktury danych.
+### 🔸 Dane nieustrukturyzowane
 
-Przykład: obraz, dźwięk, wideo, dokument PDF.
+To dane, które nie mają jasno zdefiniowanej struktury — na przykład obrazy, pliki audio, wideo czy dokumenty PDF.
+Ich analiza wymaga specjalistycznych narzędzi (np. rozpoznawania obrazów lub przetwarzania języka naturalnego).
 
-Takie dane trudno przeszukiwać klasycznymi metodami SQL.
+⸻
 
-### 💬 Pytanie:
+## 3️⃣ Pliki jako forma przechowywania danych
 
-> Jakie dane generujemy codziennie jako użytkownicy internetu? Które z nich są ustrukturyzowane?
+Zanim powstały systemy baz danych, dane przechowywano w prostych plikach tekstowych.
 
-## 🗂️ 3. Pliki jako forma przechowywania danych
-
-
-Zanim powstały bazy danych, dane przechowywano w plikach płaskich (flat files).
-
-To po prostu zbiory rekordów w postaci tekstowej lub binarnej, np. plik .csv lub .txt.
-
-📄 Przykład pliku płaskiego (CSV):
-
+Na przykład w pliku CSV:
 ```csv
 ID,Imię,Nazwisko,Miasto
 1,Anna,Nowak,Kraków
@@ -109,114 +112,74 @@ ID,Imię,Nazwisko,Miasto
 3,Piotr,Wiśniewski,Poznań
 ```
 
-### 🗃 Co można zauważyć:
+Choć taki plik można łatwo otworzyć w Excelu, ma on liczne ograniczenia:
 
-Dane są łatwe do odczytania – można otworzyć w Excelu lub notatniku.
+- brak kontroli poprawności danych,
+- brak powiązań między plikami,
+- brak współbieżności przy edycji.
 
-Ale… brak:
+ <img alt="Grafika: dwa pliki CSV (klienci i zamówienia) – brak relacji między nimi">
 
-- kontroli nad poprawnością (np. można wpisać błędny numer ID),
-- relacji między danymi (osobna lista klientów i zamówień się nie łączy),
-- spójności przy równoczesnym dostępie.
+ ## 4️⃣ Problemy pracy z plikami
 
+System plikowy działa poprawnie przy niewielkiej liczbie danych i prostych zastosowaniach. Wraz ze wzrostem ilości informacji i liczbą użytkowników pojawiają się jednak poważne ograniczenia, które utrudniają bezpieczne i efektywne zarządzanie danymi.
 
-### 💬 Pytanie:
+### ⚠️ Typowe problemy
 
-> Co się stanie, gdy dwie osoby jednocześnie edytują ten sam plik CSV?
+| Problem | Opis |
+|---------|------|
+| 🔁 Redundancja | Te same dane pojawiają się w wielu miejscach (np. adres klienta powielony w każdym zamówieniu). |
+| ⚠️ Niespójność | Różne wersje tej samej informacji w różnych plikach (np. inny numer telefonu u klienta w dwóch plikach). |
+| ⛔ Brak współbieżności | Trudności przy jednoczesnej edycji — ryzyko nadpisania zmian. |
+| ❌ Brak kontroli dostępu | Brak ról, uprawnień i mechanizmów audytu. |
+| 🧩 Słaba integracja | Dane rozproszone po różnych formatach i miejscach, trudne do połączenia. |
 
+> <img> Schemat: system plików z wieloma niespójnymi plikami vs. centralna baza danych
 
-## 🧱 4. Problemy pracy z plikami
-
-🗣 
-
-Wraz ze wzrostem ilości danych zaczynają się problemy.
-
-Systemy plikowe mają ograniczenia, których nie da się przeskoczyć bez bazy danych.
-
-### ⚠️ Typowe problemy:
-
-1. Redundancja danych – powielanie informacji.
-np. imię i adres klienta wpisywany przy każdym zamówieniu.
-
-2. Niespójność danych – różne wersje tych samych danych w wielu plikach.
-
-3. Trudność w aktualizacji – brak jednego miejsca prawdy.
-
-4. Brak współbieżności – tylko jeden użytkownik może bezpiecznie edytować.
-
-5. Brak bezpieczeństwa i kontroli dostępu.
-
-### 🧠 Przykład:
-
-Plik `klienci.txt` i `zamowienia.txt` – brak połączenia między nimi.
-
-Trudno ustalić, które zamówienie należy do którego klienta.
-
+#### Przykład (plikowy):
+`klienci.txt`:
 
 ```txt
-klienci.txt:
 1;Anna Nowak;Kraków
 2;Jan Kowalski;Warszawa
-
-zamowienia.txt:
+```
+`zamowienia.txt`:
+```txt
 10;Laptop;1
 11;Monitor;2
 12;Kabel HDMI;1
 ```
+Działa to, ale jeśli zmienimy ID klienta lub nazwę produktu, powstaje trudność w utrzymaniu spójności.
 
-To działa, ale co jeśli zmienimy ID klienta lub nazwę produktu? Powstaje chaos.
+---
 
+## 5️⃣ Od pliku do bazy danych
 
+Aby rozwiązać problemy związane z plikami płaskimi, wprowadzono koncepcję systemu zarządzania bazą danych (DBMS). Główne idee to:
 
-| Problem | Opis |
-|----------|------|
-| 🔁 Redundancja | Te same dane powielane w wielu plikach |
-| ⚠️ Brak spójności | Aktualizacja w jednym pliku nie zmienia danych w innych |
-| ⛔ Brak współbieżności | Tylko jedna osoba mogła modyfikować dane naraz |
-| ❌ Trudna kontrola dostępu | Brak ról i uprawnień |
-| 🧩 Słaba integracja | Dane rozproszone po różnych plikach i formatach |
+- centralne repozytorium danych,
+- kontrolowany dostęp i uprawnienia,
+- mechanizmy zapewniające spójność i integralność,
+- obsługa współbieżności i transakcji,
+- możliwość zapytań (np. SQL) zamiast pełnego skanowania plików.
 
-**System bazodanowy** rozwiązuje te problemy, centralizując dane i zarządzając nimi przez DBMS.
-
-
-## 🧮 5. Od pliku do bazy danych
-
-🗣 
-
-Aby rozwiązać te problemy, w latach 70. pojawiła się koncepcja systemu bazodanowego.
-
-Pomysł był prosty, ale rewolucyjny:
-
-- dane przechowywane są w jednym centralnym repozytorium,
-- dostęp do nich odbywa się przez język zapytań (SQL),
-- kontrolowana jest spójność, współbieżność, bezpieczeństwo.
-
-### 📚 Pojęcia podstawowe:
-
-1. Baza danych – zbiór danych o określonej strukturze.
-   
-2. System zarządzania bazą danych (DBMS) – oprogramowanie do tworzenia, przechowywania, udostępniania danych.
-   
-3. Użytkownicy – aplikacje, programiści, analitycy, którzy korzystają z danych.
-
-### 📊 Przykład:
-
-Porównanie pliku CSV z tabelą SQL:
+### Porównanie: plik CSV vs baza danych (SQL)
 
 | Cecha            | Plik CSV          | Baza danych (SQL)                   |
 | ---------------- | ----------------- | ----------------------------------- |
 | Struktura danych | Tekstowa, dowolna | Ściśle zdefiniowana (kolumny, typy) |
-| Spójność danych  | Nie               | Zapewnia DBMS                       |
+| Spójność danych  | Nie               | Zapewniana przez DBMS               |
 | Współbieżność    | Brak              | Obsługiwana                         |
 | Wyszukiwanie     | Pełne skanowanie  | Zapytania, indeksy                  |
 | Bezpieczeństwo   | Brak              | Kontrola dostępu                    |
 
+> <img> Diagram: „Od pliku do bazy” – ewolucja sposobu przechowywania danych
 
-## 🧠 6. Różnice w przetwarzaniu danych – przykład porównawczy
+---
 
-🗣 
+## 6️⃣ Różnice w przetwarzaniu danych – przykład porównawczy
 
-Zanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposób ich przetwarzania.
+Rodzaj przetwarzania zależy od typu danych:
 
 | Typ danych   | Przykład          | Narzędzie przetwarzania    | Typowe operacje                      |
 | ------------ | ----------------- | -------------------------- | ------------------------------------ |
@@ -225,133 +188,82 @@ Zanim przejdziemy do SQL, warto zrozumieć, że rodzaj danych determinuje sposó
 | Obraz        | zdjęcia, wideo    | biblioteki CV, AI          | klasyfikacja, rozpoznawanie obiektów |
 | Dźwięk       | nagrania, mowa    | DSP, ML                    | filtracja, transkrypcja              |
 
+> **Pytanie do dyskusji:** Dlaczego dane tabelaryczne łatwo ująć w relacje, a dźwięk czy obraz — już nie?
 
-### 💬 Pytanie:
+> <img> Ilustracja: porównanie przetwarzania danych tabelarycznych i multimedialnych
 
-> Dlaczego dane tabelaryczne można łatwo ująć w relacje, a dźwięk czy obraz – już nie?
+---
 
+## 7️⃣ Architektura systemów baz danych (ANSI/SPARC)
 
-
-## 3️⃣ Architektura systemów baz danych (ANSI/SPARC)
-
-Aby zapewnić **niezależność danych od aplikacji**, opracowano model trójwarstwowy ANSI/SPARC:
+Aby osiągnąć niezależność danych od aplikacji, wprowadzono model trójwarstwowy ANSI/SPARC:
 
 | Poziom | Opis | Przykład |
-|---------|------|----------|
-| **Zewnętrzny** | Punkt widzenia użytkownika – wybrane dane w określonym formacie | Widok „Studenci z kierunku Informatyka” |
-| **Logiczny (koncepcyjny)** | Globalny model danych – struktura tabel, relacje, ograniczenia | Schemat bazy uczelni |
-| **Wewnętrzny (fizyczny)** | Sposób przechowywania danych na dysku | Indeksy, pliki, metody dostępu |
+|--------|------|----------|
+| **Zewnętrzny** | Widok użytkownika — sposób, w jaki konkretni użytkownicy widzą dane | Widok „Studenci z kierunku Informatyka” |
+| **Logiczny (koncepcyjny)** | Globalna struktura danych — tabele, relacje, ograniczenia | Schemat bazy uczelni |
+| **Wewnętrzny (fizyczny)** | Fizyczne przechowywanie danych na dysku | Indeksy, pliki danych, metody dostępu |
 
-Ten model umożliwia:
-- **niezależność logiczną danych** (zmiany struktury nie psują aplikacji),
-- **niezależność fizyczną danych** (zmiany sposobu zapisu nie wpływają na logikę).
+> <img> Schemat trójwarstwowy ANSI/SPARC: użytkownicy ↔ DBMS ↔ fizyczne dane
 
----
+**Korzyści:**
 
-## 4️⃣ Typy baz danych
-
-W zależności od sposobu przechowywania i powiązań danych wyróżniamy:
-
-| Typ bazy danych | Opis | Przykład |
-|------------------|------|----------|
-| **Hierarchiczna** | Dane ułożone w strukturę drzewa | IMS, stary system IBM |
-| **Sieciowa** | Wiele połączeń między rekordami (graf zależności) | IDMS |
-| **Relacyjna** | Dane w tabelach (relacjach) – klucze, związki | PostgreSQL, MySQL |
-| **Obiektowa** | Dane jako obiekty (z metodami) | ObjectDB, db4o |
-| **Dokumentowa / NoSQL** | Dane w formacie JSON, brak stałego schematu | MongoDB, CouchDB |
-| **Grafowa** | Dane w formie węzłów i krawędzi | Neo4j |
-
-Najczęściej używanym modelem jest **model relacyjny**, ponieważ łączy prostotę, spójność i matematyczne podstawy (algebra relacji).
-
-
-
-### 🧭 Wniosek:
-
-> Bazy danych powstały nie dlatego, że ktoś lubił tabele,
-> ale dlatego, że pliki przestały wystarczać do utrzymania spójnych, współdzielonych informacji.
-
-
-## Historia i ewolucja baz danych
-
-Bazy danych nie są wynalazkiem XXI wieku — ich początki sięgają lat 60. XX wieku, gdy organizacje zaczęły gromadzić coraz większe ilości danych.
-
-### 🔹 Systemy plikowe
-
-Pierwsze systemy przechowywały dane w plikach na dyskach.
-Choć były proste, miały poważne ograniczenia:
-
-- Brak centralnej kontroli nad danymi
-- Trudność w utrzymaniu spójności
-- Brak uniwersalnych narzędzi do wyszukiwania
-
-💡 Zadanie: Na jakich innych obiektach, oprócz plików, można pracować w systemach operacyjnych?
-
-### 🔹 Wczesne systemy DBMS
-
-W latach 60. i 70. pojawiły się pierwsze systemy zarządzania bazami danych (DBMS).
-Zapewniały:
-
-- centralną kontrolę danych,
-- integralność i bezpieczeństwo,
-- wydajne przetwarzanie i wyszukiwanie.
-
-### 🔹 Modele hierarchiczne i sieciowe
-
-Wczesne systemy wykorzystywały struktury drzewiaste lub grafowe.
-Były skuteczne, ale trudne w modyfikacji i rozwoju.
-
-### 🔹 Przełom: model relacyjny
-
-W 1970 roku Edgar F. Codd zaproponował model relacyjny danych, w którym:
-
-- dane są przechowywane w tabelach (relacjach),
-- każda tabela ma kolumny (atrybuty) i wiersze (krotki).
-
-Zalety:
-
-- prostota i przejrzystość,
-- elastyczność (łatwo dodawać nowe tabele),
-- bezpieczeństwo i spójność danych.
-
-### 🔹 SQL – język pracy z danymi
-
-Wraz z rozwojem modelu relacyjnego powstał SQL (Structured Query Language) – język do tworzenia, modyfikowania i pobierania danych.
-
-Dziś SQL jest fundamentem większości systemów: od aplikacji biurowych po duże systemy korporacyjne.
-Nawet współczesne rozwiązania NoSQL często nawiązują do idei relacyjnych.
-
-
-
-## 6️⃣ Zalety podejścia relacyjnego
-
-- brak redundancji danych (dzięki kluczom i relacjom),
-- łatwe wyszukiwanie i łączenie informacji (język SQL),
-- kontrola spójności i integralności,
-- bezpieczeństwo i wielodostępność,
-- niezależność logiczna od aplikacji.
+- niezależność logiczna danych (zmiana schematu logicznego nie musi wymagać zmian w aplikacjach),
+- niezależność fizyczna danych (zmiana sposobu przechowywania nie wpływa na logikę aplikacji).
 
 ---
 
-## 7️⃣ Od modelu do języka – wprowadzenie do SQL
+## 8️⃣ Typy baz danych
 
-Język **SQL (Structured Query Language)** został stworzony, by umożliwić:
-- **definiowanie struktur danych** (DDL – *Data Definition Language*),
-- **manipulowanie danymi** (DML – *Data Manipulation Language*),
-- **kontrolę dostępu i transakcji** (DCL, TCL).
+W zależności od modelu danych i sposobu ich użycia wyróżniamy kilka typów baz:
 
-Przykład:
-```sql
-CREATE TABLE STUDENT (
-  NrIndeksu INT PRIMARY KEY,
-  Imie VARCHAR(30),
-  Nazwisko VARCHAR(30),
-  Kierunek VARCHAR(50)
-);
+| Typ bazy | Opis | Przykład |
+|----------|------|----------|
+| Hierarchiczna | Dane ułożone w strukturę drzewa | IMS (IBM) |
+| Sieciowa | Rekordy połączone są w złożone grafy | IDMS |
+| Relacyjna | Dane w tabelach, związki przez klucze | PostgreSQL, MySQL |
+| Obiektowa | Dane jako obiekty z metodami | ObjectDB |
+| Dokumentowa (NoSQL) | Dane w formacie dokumentów (JSON) | MongoDB, CouchDB |
+| Grafowa | Modele relacji jako węzły i krawędzie | Neo4j |
 
+> <img> Grafika: schematy — drzewo, sieć, tabela, graf
 
+**Uwaga:** Model relacyjny jest najpowszechniej stosowany z uwagi na prostotę i solidne podstawy teoretyczne (algebra relacji).
 
-## 📚 Materiały do dalszej lektury
+---
 
-1. C.J. Date, An Introduction to Database Systems
-2. R. Elmasri, S.B. Navathe, Fundamentals of Database Systems
-3. Dokumentacja PostgreSQL: https://www.postgresql.org/docs/
+## 9️⃣ Historia i ewolucja baz danych
+
+Krótka oś czasu najważniejszych etapów:
+
+1. **Systemy plikowe (lata 50–60)** — proste pliki, brak centralnej kontroli.  
+2. **Pierwsze DBMS (lata 60–70)** — centralizacja, lepsze zarządzanie danymi.  
+3. **Modele hierarchiczne i sieciowe** — stosowane w dużych organizacjach, lecz trudne w utrzymaniu.  
+4. **Model relacyjny (E. F. Codd, 1970)** — rewolucja: tabele, relacje i algebra relacji.  
+5. **SQL i standaryzacja** — język pozwalający na zdefiniowanie i manipulację danymi.  
+6. **NoSQL i chmura (XXI wiek)** — elastyczność, skalowalność, nowe modele danych.
+
+> <img> Oś czasu: rozwój baz danych od plików do NoSQL i rozwiązań chmurowych
+
+---
+
+## 🔟 Zalety podejścia relacyjnego
+
+- redukcja redundancji poprzez normalizację i klucze,  
+- łatwość łączenia danych (JOINy),  
+- kontrola integralności (ograniczenia, klucze obce),  
+- mechanizmy bezpieczeństwa i wielodostępności,  
+- przewidywalność i zgodność z formalnymi podstawami matematycznymi.
+
+> <img> Schemat relacji między tabelami: STUDENT → ZAPISY → KURS
+
+---
+
+## 1️⃣1️⃣ Wprowadzenie do języka SQL
+
+**SQL (Structured Query Language)** to standardowy język do komunikacji z relacyjnymi bazami danych. Dzieli się na kilka części:
+
+- **DDL (Data Definition Language)** — definiowanie struktur (CREATE, ALTER, DROP),  
+- **DML (Data Manipulation Language)** — operacje na danych (SELECT, INSERT, UPDATE, DELETE),  
+- **DCL (Data Control Language)** — kontrola dostępu (GRANT, REVOKE),  
+- **TCL (Transaction Control Language)** — kontrola transakcji (COMMIT, ROLLBACK).

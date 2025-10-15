@@ -34,6 +34,6 @@ format:
     toc-title: "**Sections**"
     self-contained-math: true
     code-overflow: wrap
-    highlight-style: github-dark
+    highlight-style: dark
     code-block-background: true
     link-external-newwindow: true

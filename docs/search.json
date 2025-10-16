@@ -574,107 +574,62 @@
     "href": "lectures/wyklad5.html",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "",
-    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych."
   },
   {
     "objectID": "lectures/wyklad5.html#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje",
     "href": "lectures/wyklad5.html#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "",
-    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych."
   },
   {
     "objectID": "lectures/wyklad5.html#cele-wykładu",
     "href": "lectures/wyklad5.html#cele-wykładu",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "🧠 Cele wykładu",
-    "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nprojektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),\n\nkorzystać z połączeń bazodanowych (DB connection),\n\nwykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,\n\nrozumieć podstawy zabezpieczania danych i transakcji w aplikacjach.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nprojektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),\n\nkorzystać z połączeń bazodanowych (DB connection),\n\nwykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,\n\nrozumieć podstawy zabezpieczania danych i transakcji w aplikacjach."
   },
   {
     "objectID": "lectures/wyklad5.html#projektowanie-interfejsu-bazy-danych",
     "href": "lectures/wyklad5.html#projektowanie-interfejsu-bazy-danych",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "1️⃣ Projektowanie interfejsu bazy danych",
-    "text": "1️⃣ Projektowanie interfejsu bazy danych\n\n🔹 Co to jest interfejs bazy danych?\n\nInterfejs to warstwa komunikacji między aplikacją a bazą danych.\n\nPozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.\n\n\n\n🔹 Główne elementy interfejsu\n\nPołączenie z bazą danych – obiekt, który umożliwia komunikację z serwerem DB.\n\nWysyłanie zapytań – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.\n\nObsługa wyników – pobieranie danych w formie rekordów lub tabel.\n\nZarządzanie transakcjami – commit, rollback.\n\nOpis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "1️⃣ Projektowanie interfejsu bazy danych\n\n🔹 Co to jest interfejs bazy danych?\n\nInterfejs to warstwa komunikacji między aplikacją a bazą danych.\n\nPozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.\n\n\n\n🔹 Główne elementy interfejsu\n\nPołączenie z bazą danych – obiekt, który umożliwia komunikację z serwerem DB.\n\nWysyłanie zapytań – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.\n\nObsługa wyników – pobieranie danych w formie rekordów lub tabel.\n\nZarządzanie transakcjami – commit, rollback.\n\nOpis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane."
   },
   {
     "objectID": "lectures/wyklad5.html#przykład-połączenie-do-bazy-w-pythonie",
     "href": "lectures/wyklad5.html#przykład-połączenie-do-bazy-w-pythonie",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "2️⃣ Przykład – połączenie do bazy w Pythonie",
-    "text": "2️⃣ Przykład – połączenie do bazy w Pythonie\nimport cx_Oracle\n\n# Nawiązanie połączenia\nconn = cx_Oracle.connect('uzytkownik/haslo@localhost/XE')\ncursor = conn.cursor()\n\n# Wykonanie zapytania SELECT\ncursor.execute(\"SELECT imie, nazwisko FROM Studenci\")\nfor row in cursor:\n    print(f\"Student: {row[0]} {row[1]}\")\n\n# Zamknięcie połączenia\ncursor.close()\nconn.close()\nkod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "2️⃣ Przykład – połączenie do bazy w Pythonie\nimport cx_Oracle\n\n# Nawiązanie połączenia\nconn = cx_Oracle.connect('uzytkownik/haslo@localhost/XE')\ncursor = conn.cursor()\n\n# Wykonanie zapytania SELECT\ncursor.execute(\"SELECT imie, nazwisko FROM Studenci\")\nfor row in cursor:\n    print(f\"Student: {row[0]} {row[1]}\")\n\n# Zamknięcie połączenia\ncursor.close()\nconn.close()\nkod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić."
   },
   {
     "objectID": "lectures/wyklad5.html#wykonywanie-operacji-sql-i-plsql-w-aplikacji",
     "href": "lectures/wyklad5.html#wykonywanie-operacji-sql-i-plsql-w-aplikacji",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji",
-    "text": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji\n🔹 Operacje SQL\n\nINSERT – dodawanie nowych rekordów.\nUPDATE – modyfikacja istniejących danych.\nDELETE – usuwanie rekordów.\n\nPrzykład:\ncursor.execute(\"INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)\")\nconn.commit()\nconn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.\n\n🔹 Wywołanie procedury PL/SQL\ncursor.callproc(\"dodaj_studenta\", [12348, 'Anna', 'Kowalska', 21])\nconn.commit()\ncallproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji\n🔹 Operacje SQL\n\nINSERT – dodawanie nowych rekordów.\nUPDATE – modyfikacja istniejących danych.\nDELETE – usuwanie rekordów.\n\nPrzykład:\ncursor.execute(\"INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)\")\nconn.commit()\nconn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.\n\n🔹 Wywołanie procedury PL/SQL\ncursor.callproc(\"dodaj_studenta\", [12348, 'Anna', 'Kowalska', 21])\nconn.commit()\ncallproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej."
   },
   {
     "objectID": "lectures/wyklad5.html#obsługa-transakcji-w-aplikacjach",
     "href": "lectures/wyklad5.html#obsługa-transakcji-w-aplikacjach",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "4️⃣ Obsługa transakcji w aplikacjach",
-    "text": "4️⃣ Obsługa transakcji w aplikacjach\n\nTransakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.\nTypowy wzorzec:\n\nRozpocznij transakcję\nWykonaj operacje (INSERT, UPDATE, DELETE)\nW razie powodzenia: commit\nW razie błędu: rollback\n\n\nPrzykład w Pythonie:\ntry:\n    cursor.execute(\"UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10\")\n    cursor.execute(\"INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)\")\n    conn.commit()\nexcept:\n    conn.rollback()\n    print(\"Wystąpił błąd, transakcja wycofana\")\nzięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "4️⃣ Obsługa transakcji w aplikacjach\n\nTransakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.\nTypowy wzorzec:\n\nRozpocznij transakcję\nWykonaj operacje (INSERT, UPDATE, DELETE)\nW razie powodzenia: commit\nW razie błędu: rollback\n\n\nPrzykład w Pythonie:\ntry:\n    cursor.execute(\"UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10\")\n    cursor.execute(\"INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)\")\n    conn.commit()\nexcept:\n    conn.rollback()\n    print(\"Wystąpił błąd, transakcja wycofana\")\nzięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna."
   },
   {
     "objectID": "lectures/wyklad5.html#indeksy-i-optymalizacja-zapytań-w-aplikacji",
     "href": "lectures/wyklad5.html#indeksy-i-optymalizacja-zapytań-w-aplikacji",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji",
-    "text": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji\n\nIndeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.\nW aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.\n\nPrzykład w SQL:\nCREATE INDEX idx_student_nazwisko ON Studenci(Nazwisko);\nindeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji\n\nIndeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.\nW aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.\n\nPrzykład w SQL:\nCREATE INDEX idx_student_nazwisko ON Studenci(Nazwisko);\nindeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE."
   },
   {
     "objectID": "lectures/wyklad5.html#podsumowanie-wykładu",
     "href": "lectures/wyklad5.html#podsumowanie-wykładu",
     "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
     "section": "7️⃣ Podsumowanie wykładu",
-    "text": "7️⃣ Podsumowanie wykładu\n\n🔑 Kluczowe pojęcia:\n\nInterfejs bazy danych – połączenie między aplikacją a DBMS\nOperacje SQL i PL/SQL z poziomu aplikacji\nZarządzanie transakcjami dla spójności danych\nIndeksy i podstawowe zasady optymalizacji\n\n\n\n💡 Wskazówka:\nW praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
-    ]
+    "text": "7️⃣ Podsumowanie wykładu\n\n🔑 Kluczowe pojęcia:\n\nInterfejs bazy danych – połączenie między aplikacją a DBMS\nOperacje SQL i PL/SQL z poziomu aplikacji\nZarządzanie transakcjami dla spójności danych\nIndeksy i podstawowe zasady optymalizacji\n\n\n\n💡 Wskazówka:\nW praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji."
   }
 ]

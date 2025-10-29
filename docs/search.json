@@ -692,73 +692,73 @@
   {
     "objectID": "lectures/wyklad5.html",
     "href": "lectures/wyklad5.html",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "",
     "text": "Celem wykładu jest:\n\npoznanie zasad transakcyjności i właściwości ACID,\nzrozumienie współbieżności i mechanizmów izolacji transakcji,\nzapoznanie się z pojęciem widoków (views) i ich zastosowaniami,\npraktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
     ]
   },
   {
     "objectID": "lectures/wyklad5.html#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków",
     "href": "lectures/wyklad5.html#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "",
     "text": "Celem wykładu jest:\n\npoznanie zasad transakcyjności i właściwości ACID,\nzrozumienie współbieżności i mechanizmów izolacji transakcji,\nzapoznanie się z pojęciem widoków (views) i ich zastosowaniami,\npraktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
     ]
   },
   {
     "objectID": "lectures/wyklad5.html#transakcje-i-ich-właściwości-acid",
     "href": "lectures/wyklad5.html#transakcje-i-ich-właściwości-acid",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "1️⃣ Transakcje i ich właściwości (ACID)",
     "text": "1️⃣ Transakcje i ich właściwości (ACID)\n\n🔹 Co to jest transakcja?\nTransakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.\nTransakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.\nPrzykład:\nBEGIN;\nUPDATE Konta SET Saldo = Saldo - 100 WHERE NrKonta = 101;\nUPDATE Konta SET Saldo = Saldo + 100 WHERE NrKonta = 202;\nCOMMIT;\n➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).\n➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).\n\n\n🔹 Operacje sterujące transakcją\n\nBEGIN / START TRANSACTION – rozpoczęcie transakcji,\nCOMMIT – zatwierdzenie zmian,\nROLLBACK – cofnięcie zmian do stanu początkowego,\nSAVEPOINT – ustawienie punktu częściowego cofnięcia.\n\nBEGIN;\nINSERT INTO Studenci VALUES (1001, 'Anna', 'Nowak', 22);\nSAVEPOINT p1;\nUPDATE Studenci SET Wiek = 23 WHERE NrIndeksu = 1001;\nROLLBACK TO SAVEPOINT p1;\nCOMMIT;\n➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).\n➡️ Wstawienie rekordu pozostało",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
     ]
   },
   {
     "objectID": "lectures/wyklad5.html#współbieżność-i-problemy-spójności",
     "href": "lectures/wyklad5.html#współbieżność-i-problemy-spójności",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "2️⃣ Współbieżność i problemy spójności",
     "text": "2️⃣ Współbieżność i problemy spójności\n\n🔹 Co to jest współbieżność?\nWspółbieżność (ang. concurrency) to sytuacja, gdy wiele transakcji wykonuje się jednocześnie na tej samej bazie danych.\nDzięki współbieżności baza może obsługiwać wielu użytkowników naraz, ale…\n➡️ może dojść do konfliktów, jeśli transakcje modyfikują te same dane.\n\n\n🔹 Przykład konfliktu współbieżności\nTransakcja 1\nBEGIN;\nUPDATE Konto SET Saldo = Saldo - 500 WHERE ID = 1;\nTransakcja 2\nBEGIN;\nUPDATE Konto SET Saldo = Saldo - 300 WHERE ID = 1;\nObie modyfikują ten sam rekord. Jeśli system nie zapewni izolacji — saldo końcowe może być błędne.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
     ]
   },
   {
     "objectID": "lectures/wyklad5.html#poziomy-izolacji-transakcji",
     "href": "lectures/wyklad5.html#poziomy-izolacji-transakcji",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "3️⃣ Poziomy izolacji transakcji",
     "text": "3️⃣ Poziomy izolacji transakcji\nBazy danych zapewniają różne poziomy izolacji, które równoważą spójność danych i wydajność.\n\n🔹 Przykład w PostgreSQL:\nBEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;\nSELECT * FROM Zamowienia WHERE KlientID = 10;\n-- Inna transakcja modyfikuje dane\nSELECT * FROM Zamowienia WHERE KlientID = 10;\nCOMMIT;\n➡️ Na poziomie REPEATABLE READ oba SELECT-y zobaczą ten sam zestaw danych, nawet jeśli inna transakcja je zmieniła w międzyczasie.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
     ]
   },
   {
     "objectID": "lectures/wyklad5.html#widoki-views",
     "href": "lectures/wyklad5.html#widoki-views",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "4️⃣ Widoki (Views)",
     "text": "4️⃣ Widoki (Views)\n\n🔹 Czym jest widok?\nWidok (VIEW) to wirtualna tabela, która prezentuje dane pochodzące z jednej lub wielu tabel. Widok nie przechowuje danych samodzielnie – zawsze opiera się na zapytaniu SQL.\nPrzykład:\nCREATE VIEW StudenciPelnoletni AS\nSELECT Imie, Nazwisko, Wiek\nFROM Studenci\nWHERE Wiek &gt;= 18;\n➡️ Teraz można użyć widoku jak zwykłej tabeli:\nSELECT * FROM StudenciPelnoletni;\n\n\n🔹 Zalety widoków\n\nAbstrakcja danych – użytkownik nie musi znać złożonej struktury tabel.\nBezpieczeństwo – można ograniczyć dostęp do wrażliwych kolumn.\nReużywalność – skomplikowane zapytania można zapisać raz jako widok.\nIzolacja logiki – zmiana struktury tabeli nie wymaga zmiany zapytań użytkowników.\n\n\n\n🔹 Widoki z ograniczeniami (WITH CHECK OPTION)\nJeśli chcesz, aby przez widok można było wstawiać dane tylko zgodne z jego definicją, użyj WITH CHECK OPTION.\nCREATE VIEW StudenciMlodsi AS\nSELECT * FROM Studenci\nWHERE Wiek &lt; 25\nWITH CHECK OPTION;\n➡️ Próba wstawienia studenta starszego niż 25 lat zakończy się błędem:\nINSERT INTO StudenciMlodsi VALUES (1234, 'Jan', 'Kowalski', 30);\n-- ERROR: nie spełnia warunku widoku\n\n\n🔹 Widoki w praktyce – bezpieczeństwo danych\nPrzykład ograniczenia dostępu do poufnych danych:\nCREATE VIEW PracownicyPubliczni AS\nSELECT Imie, Nazwisko, Dzial\nFROM Pracownicy;\nUżytkownicy mogą zobaczyć tylko dane działowe, ale nie np. pensje.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
     ]
   }
 ]

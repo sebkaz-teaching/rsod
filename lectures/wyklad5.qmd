@@ -1,5 +1,5 @@
 ---
-title: "Podstawy PL/SQL, transakcje i indeksy"
+title: "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
 ---
 
 ## 🎯 Temat: Mechanizmy zapewniania spójności danych i wprowadzenie do widoków

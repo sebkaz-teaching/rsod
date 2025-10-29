@@ -1,125 +1,154 @@
 ---
-title: "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL"
+title: "Podstawy PL/SQL, transakcje i indeksy"
 ---
 
-## 🎯 Temat: Łączenie bazy danych z aplikacją i praktyczne operacje
+## 🎯 Temat: Mechanizmy zapewniania spójności danych i wprowadzenie do widoków
 
-Celem wykładu jest pokazanie, jak projektować **interfejs do bazy danych** w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych.
+Celem wykładu jest:
 
----
+- poznanie zasad transakcyjności i właściwości ACID,
+- zrozumienie współbieżności i mechanizmów izolacji transakcji,
+- zapoznanie się z pojęciem widoków (views) i ich zastosowaniami,
+- praktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.
 
-## 🧠 Cele wykładu
+## 1️⃣ Transakcje i ich właściwości (ACID)
 
-Student po wykładzie będzie potrafił:
+### 🔹 Co to jest transakcja?
 
-- projektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),  
-- korzystać z **połączeń bazodanowych (DB connection)**,  
-- wykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,  
-- rozumieć podstawy zabezpieczania danych i transakcji w aplikacjach.
+Transakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.
 
----
-
-## 1️⃣ Projektowanie interfejsu bazy danych
-
-### 🔹 Co to jest interfejs bazy danych?
-
-- Interfejs to **warstwa komunikacji między aplikacją a bazą danych**.  
-- Pozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.  
-
-### 🔹 Główne elementy interfejsu
-
-1. **Połączenie z bazą danych** – obiekt, który umożliwia komunikację z serwerem DB.  
-2. **Wysyłanie zapytań** – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.  
-3. **Obsługa wyników** – pobieranie danych w formie rekordów lub tabel.  
-4. **Zarządzanie transakcjami** – commit, rollback.  
-
-Opis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane.
-
----
-
-## 2️⃣ Przykład – połączenie do bazy w Pythonie
-
-```python
-import cx_Oracle
-
-# Nawiązanie połączenia
-conn = cx_Oracle.connect('uzytkownik/haslo@localhost/XE')
-cursor = conn.cursor()
-
-# Wykonanie zapytania SELECT
-cursor.execute("SELECT imie, nazwisko FROM Studenci")
-for row in cursor:
-    print(f"Student: {row[0]} {row[1]}")
-
-# Zamknięcie połączenia
-cursor.close()
-conn.close()
-```
-kod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić.
-
-## 3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji
-
-🔹 Operacje SQL
-
-- INSERT – dodawanie nowych rekordów.
-- UPDATE – modyfikacja istniejących danych.
-- DELETE – usuwanie rekordów.
+Transakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.
 
 Przykład:
 ```sql
-cursor.execute("INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)")
-conn.commit()
+BEGIN;
+UPDATE Konta SET Saldo = Saldo - 100 WHERE NrKonta = 101;
+UPDATE Konta SET Saldo = Saldo + 100 WHERE NrKonta = 202;
+COMMIT;
 ```
-conn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.
 
-### 🔹 Wywołanie procedury PL/SQL
+➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).
+
+➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).
+
+
+### 🔹 Operacje sterujące transakcją
+
+- BEGIN / START TRANSACTION – rozpoczęcie transakcji,
+- COMMIT – zatwierdzenie zmian,
+- ROLLBACK – cofnięcie zmian do stanu początkowego,
+- SAVEPOINT – ustawienie punktu częściowego cofnięcia.
+
 ```sql
-cursor.callproc("dodaj_studenta", [12348, 'Anna', 'Kowalska', 21])
-conn.commit()
+BEGIN;
+INSERT INTO Studenci VALUES (1001, 'Anna', 'Nowak', 22);
+SAVEPOINT p1;
+UPDATE Studenci SET Wiek = 23 WHERE NrIndeksu = 1001;
+ROLLBACK TO SAVEPOINT p1;
+COMMIT;
 ```
-callproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej.
+➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).
 
-## 4️⃣ Obsługa transakcji w aplikacjach
+➡️ Wstawienie rekordu pozostało
 
-- Transakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.
-- Typowy wzorzec:
-	1.	Rozpocznij transakcję
-	2.	Wykonaj operacje (INSERT, UPDATE, DELETE)
-	3.	W razie powodzenia: commit
-	4.	W razie błędu: rollback
 
-Przykład w Pythonie:
-```python
-try:
-    cursor.execute("UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10")
-    cursor.execute("INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)")
-    conn.commit()
-except:
-    conn.rollback()
-    print("Wystąpił błąd, transakcja wycofana")
+## 2️⃣ Współbieżność i problemy spójności
 
-```
-zięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna.
+### 🔹 Co to jest współbieżność?
 
-## 6️⃣ Indeksy i optymalizacja zapytań w aplikacji
+Współbieżność (ang. concurrency) to sytuacja, gdy wiele transakcji wykonuje się jednocześnie na tej samej bazie danych.
 
-- Indeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.
-- W aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.
+Dzięki współbieżności baza może obsługiwać wielu użytkowników naraz, ale…
 
-Przykład w SQL:
+➡️ może dojść do konfliktów, jeśli transakcje modyfikują te same dane.
+
+### 🔹 Przykład konfliktu współbieżności
+
+Transakcja 1
 ```sql
-CREATE INDEX idx_student_nazwisko ON Studenci(Nazwisko);
+BEGIN;
+UPDATE Konto SET Saldo = Saldo - 500 WHERE ID = 1;
 ```
 
-indeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE.
+Transakcja 2
+```sql
+BEGIN;
+UPDATE Konto SET Saldo = Saldo - 300 WHERE ID = 1;
 
-## 7️⃣ Podsumowanie wykładu
+```
 
-### 🔑 Kluczowe pojęcia:
-- Interfejs bazy danych – połączenie między aplikacją a DBMS
-- Operacje SQL i PL/SQL z poziomu aplikacji
-- Zarządzanie transakcjami dla spójności danych
-- Indeksy i podstawowe zasady optymalizacji
+Obie modyfikują ten sam rekord.
+Jeśli system nie zapewni izolacji — saldo końcowe może być błędne.
 
-### 💡 Wskazówka:
-W praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji.
+
+## 3️⃣ Poziomy izolacji transakcji
+
+Bazy danych zapewniają różne poziomy izolacji, które równoważą spójność danych i wydajność.
+
+### 🔹 Przykład w PostgreSQL:
+
+```sql
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SELECT * FROM Zamowienia WHERE KlientID = 10;
+-- Inna transakcja modyfikuje dane
+SELECT * FROM Zamowienia WHERE KlientID = 10;
+COMMIT;
+
+```
+
+➡️ Na poziomie REPEATABLE READ oba SELECT-y zobaczą ten sam zestaw danych, nawet jeśli inna transakcja je zmieniła w międzyczasie.
+
+## 4️⃣ Widoki (Views)
+
+### 🔹 Czym jest widok?
+
+Widok (VIEW) to wirtualna tabela, która prezentuje dane pochodzące z jednej lub wielu tabel.
+Widok nie przechowuje danych samodzielnie – zawsze opiera się na zapytaniu SQL.
+
+Przykład:
+```sql
+CREATE VIEW StudenciPelnoletni AS
+SELECT Imie, Nazwisko, Wiek
+FROM Studenci
+WHERE Wiek >= 18;
+```
+➡️ Teraz można użyć widoku jak zwykłej tabeli:
+```sql
+SELECT * FROM StudenciPelnoletni;
+```
+### 🔹 Zalety widoków
+
+1.	Abstrakcja danych – użytkownik nie musi znać złożonej struktury tabel.
+2.	Bezpieczeństwo – można ograniczyć dostęp do wrażliwych kolumn.
+3.	Reużywalność – skomplikowane zapytania można zapisać raz jako widok.
+4.	Izolacja logiki – zmiana struktury tabeli nie wymaga zmiany zapytań użytkowników.
+
+
+### 🔹 Widoki z ograniczeniami (WITH CHECK OPTION)
+
+Jeśli chcesz, aby przez widok można było wstawiać dane tylko zgodne z jego definicją, użyj WITH CHECK OPTION.
+
+```sql
+CREATE VIEW StudenciMlodsi AS
+SELECT * FROM Studenci
+WHERE Wiek < 25
+WITH CHECK OPTION;
+```
+
+➡️ Próba wstawienia studenta starszego niż 25 lat zakończy się błędem:
+
+```sql
+INSERT INTO StudenciMlodsi VALUES (1234, 'Jan', 'Kowalski', 30);
+-- ERROR: nie spełnia warunku widoku
+```
+
+### 🔹 Widoki w praktyce – bezpieczeństwo danych
+
+Przykład ograniczenia dostępu do poufnych danych:
+
+```sql
+CREATE VIEW PracownicyPubliczni AS
+SELECT Imie, Nazwisko, Dzial
+FROM Pracownicy;
+```
+Użytkownicy mogą zobaczyć tylko dane działowe, ale nie np. pensje.

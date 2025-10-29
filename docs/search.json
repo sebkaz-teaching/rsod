@@ -9,85 +9,229 @@
   {
     "objectID": "lectures/wyklad4.html",
     "href": "lectures/wyklad4.html",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "",
     "text": "Celem wykładu jest wprowadzenie do języka proceduralnego PL/SQL, pokazanie zasad przetwarzania transakcyjnego w bazach danych oraz omówienie roli indeksów w przyspieszaniu wyszukiwania danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
     "objectID": "lectures/wyklad4.html#temat-programowanie-w-plsql-i-podstawy-optymalizacji",
     "href": "lectures/wyklad4.html#temat-programowanie-w-plsql-i-podstawy-optymalizacji",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "",
     "text": "Celem wykładu jest wprowadzenie do języka proceduralnego PL/SQL, pokazanie zasad przetwarzania transakcyjnego w bazach danych oraz omówienie roli indeksów w przyspieszaniu wyszukiwania danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
     "objectID": "lectures/wyklad4.html#cele-wykładu",
     "href": "lectures/wyklad4.html#cele-wykładu",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "🧠 Cele wykładu",
     "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nzrozumieć różnice między SQL a PL/SQL,\n\npisać proste bloki PL/SQL do operowania na danych,\n\nzarządzać transakcjami (commit, rollback),\n\nrozumieć rolę i zasady tworzenia indeksów w bazie danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
     "objectID": "lectures/wyklad4.html#wprowadzenie-do-plsql",
     "href": "lectures/wyklad4.html#wprowadzenie-do-plsql",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "1️⃣ Wprowadzenie do PL/SQL",
     "text": "1️⃣ Wprowadzenie do PL/SQL\n\n🔹 Czym jest PL/SQL?\n\nPL/SQL to proceduralny język rozszerzający SQL w systemach Oracle i kompatybilnych.\n\nUmożliwia użycie instrukcji warunkowych, pętli, zmiennych i procedur, czego SQL nie oferuje w formie deklaratywnej.\n\nPrzykład prostego bloku PL/SQL:\nBEGIN\n    DBMS_OUTPUT.PUT_LINE('Witaj w świecie PL/SQL!');\nEND;\n/\nKod ten uruchamia blok proceduralny, który wypisuje komunikat.\nBEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.\n\n\n🔹 Zmienne i typy danych\nPL/SQL pozwala tworzyć zmienne i przypisywać im wartości.\nDECLARE\n    v_imie VARCHAR2(50);\n    v_wiek NUMBER;\nBEGIN\n    v_imie := 'Jan';\n    v_wiek := 25;\n    DBMS_OUTPUT.PUT_LINE('Student: ' || v_imie || ', wiek: ' || v_wiek);\nEND;\n/\nZmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.\n\n\n🔹 Instrukcje warunkowe i pętle\nPL/SQL pozwala na użycie:\n\nIF…THEN…ELSE:\n\nIF v_wiek &gt;= 18 THEN\n    DBMS_OUTPUT.PUT_LINE('Pełnoletni');\nELSE\n    DBMS_OUTPUT.PUT_LINE('Niepełnoletni');\nEND IF;\n\nLOOP, WHILE, FOR – do powtarzania operacji:\n\nFOR i IN 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);\nEND LOOP;\nInstrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
     "objectID": "lectures/wyklad4.html#operacje-na-danych-w-plsql",
     "href": "lectures/wyklad4.html#operacje-na-danych-w-plsql",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "2️⃣ Operacje na danych w PL/SQL",
     "text": "2️⃣ Operacje na danych w PL/SQL\nPL/SQL umożliwia wykonywanie standardowych operacji SQL:\n\nINSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.\n\nPrzykład aktualizacji studenta:\nBEGIN\n    UPDATE Studenci\n    SET Wiek = 26\n    WHERE NrIndeksu = 12345;\nEND;\n/\nmożna grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
     "objectID": "lectures/wyklad4.html#przetwarzanie-transakcyjne",
     "href": "lectures/wyklad4.html#przetwarzanie-transakcyjne",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "3️⃣ Przetwarzanie transakcyjne",
-    "text": "3️⃣ Przetwarzanie transakcyjne\n\n🔹 Co to jest transakcja?\nTransakcja to jednostka pracy w bazie danych, która:\n\nwykonuje kilka operacji jako całość,\njest atomowa – albo wszystkie operacje się powiodą, albo żadna,\nzapewnia spójność danych (ACID).\n\n\n\n🔹 Polecenia transakcyjne\n\nCOMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.\nROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.\nSAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.\n\nPrzykład użycia transakcji:\nBEGIN\n    INSERT INTO Studenci VALUES(12346, 'Anna', 'Kowalska', 21);\n    UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10;\n    COMMIT;\nEND;\n/\nobie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.",
+    "text": "3️⃣ Przetwarzanie transakcyjne\n\n🔹 Co to jest transakcja?\nTransakcja to jednostka pracy w bazie danych, która:\n\nwykonuje kilka operacji jako całość,\njest atomowa – albo wszystkie operacje się powiodą, albo żadna,\nzapewnia spójność danych (ACID).\n\n\n\n🔹 Polecenia transakcyjne\n\nCOMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.\nROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.\nSAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.\n\nPrzykład użycia transakcji:\nBEGIN\n    INSERT INTO Studenci VALUES(12346, 'Anna', 'Kowalska', 21);\n    UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10;\n    COMMIT;\nEND;\n/\nobie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie.\nJeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
     "objectID": "lectures/wyklad4.html#indeksy-w-bazie-danych",
     "href": "lectures/wyklad4.html#indeksy-w-bazie-danych",
-    "title": "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "4️⃣ Indeksy w bazie danych",
     "text": "4️⃣ Indeksy w bazie danych\n\n🔹 Co to jest indeks?\n\nIndeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.\nDziała podobnie jak spis treści w książce.\n\nPrzykład tworzenia indeksu:\nCREATE INDEX idx_studenci_nazwisko\nON Studenci(Nazwisko);\nndeks przyspiesza wyszukiwanie po kolumnie Nazwisko. Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.\n\n\n🔹 Rodzaje indeksów\n\nJedno-kolumnowe – indeks na jednej kolumnie.\nWielokolumnowe (composite) – indeks na kilku kolumnach razem.\nUnikalne – zapewniają unikalność wartości w kolumnie.\n\nDobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.",
     "crumbs": [
       "Książki",
       "Wykłady",
-      "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#dlaczego-optymalizacja-jest-ważna",
+    "href": "lectures/wyklad4.html#dlaczego-optymalizacja-jest-ważna",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "💡 Dlaczego optymalizacja jest ważna?",
+    "text": "💡 Dlaczego optymalizacja jest ważna?\nOptymalizacja zapytań SQL to jeden z najważniejszych elementów pracy z bazami danych.\nDotyczy zarówno programistów aplikacji, jak i administratorów baz danych (DBA).\nCelem jest takie przygotowanie zapytań, struktur danych i indeksów, aby uzyskać maksymalną wydajność przy minimalnym obciążeniu systemu.\nKażde zapytanie SQL, nawet najprostsze, wymaga od silnika bazy danych wykonania określonych operacji: odczytu danych z dysku, przetworzenia warunków WHERE, wykonania JOIN, GROUP BY, ORDER BY, a następnie zwrócenia wyników użytkownikowi.\nJeśli baza danych zawiera miliony rekordów, to nawet niewielkie różnice w sposobie wykonania zapytania mogą oznaczać:\n\nróżnicę między milisekundami a sekundami,\n\nobciążenie jednego wątku zamiast całego serwera,\n\nlub zużycie gigabajtów pamięci i I/O bez potrzeby.\n\n\n🧠 „Optymalizacja zapytań SQL to nie sztuka pisania krótszego kodu,\nlecz umiejętność zmuszenia silnika bazy danych do pracy mądrze, a nie ciężko.”",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#jak-działa-zapytanie-w-silniku-bazy-danych",
+    "href": "lectures/wyklad4.html#jak-działa-zapytanie-w-silniku-bazy-danych",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "⚙️ Jak działa zapytanie w silniku bazy danych?",
+    "text": "⚙️ Jak działa zapytanie w silniku bazy danych?\nAby zrozumieć optymalizację, musimy wiedzieć, co dzieje się z zapytaniem od momentu jego wysłania do bazy danych.\nSilnik SQL analizuje składnię zapytania, przepisuje je logicznie, wybiera najtańszy plan wykonania i dopiero wtedy odczytuje dane.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#co-wpływa-na-wydajność-zapytań-sql",
+    "href": "lectures/wyklad4.html#co-wpływa-na-wydajność-zapytań-sql",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🧩 Co wpływa na wydajność zapytań SQL?",
+    "text": "🧩 Co wpływa na wydajność zapytań SQL?\nWydajność zapytań zależy zarówno od tego, jak zapytanie jest napisane, jak i od tego, jak zorganizowane są dane w bazie:\n\n🔹 Struktura zapytania\n\nZłożoność klauzul WHERE, JOIN, ORDER BY\nZagnieżdżone podzapytania (subqueries)\nUżycie funkcji agregujących (COUNT, SUM, AVG)\n\n\n\n🔹 Architektura danych\n\nIlość danych w tabelach\n\nIndeksy (ich liczba, rodzaj i aktualność)\n\nKlucze główne i obce (PRIMARY KEY, FOREIGN KEY)\n\nStopień normalizacji lub denormalizacji danych\n\n\n\n🔹 Stan środowiska bazy\n\nDostępna pamięć RAM\n\nBuforowanie i cache dyskowy\n\nStatystyki tabel (ANALYZE, UPDATE STATISTICS)\n\nObciążenie serwera (inne procesy, sesje, transakcje)",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#przykład-znaczenia-optymalizacji",
+    "href": "lectures/wyklad4.html#przykład-znaczenia-optymalizacji",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "📊 Przykład znaczenia optymalizacji",
+    "text": "📊 Przykład znaczenia optymalizacji\nWyobraźmy sobie tabelę orders z 10 milionami zamówień.\nChcemy znaleźć wszystkie zamówienia z ostatnich 30 dni:\nSELECT * FROM orders WHERE order_date &gt;= CURRENT_DATE - INTERVAL '30 days';\n\nScenariusz A – brak indeksu\nSilnik musi przeskanować całą tabelę (tzw. Seq Scan). Każdy wiersz jest sprawdzany, czy spełnia warunek order_date &gt;= ....\n\n⏱️ Czas wykonania: ~3.2 s\n\n💾 Operacje I/O: wysokie\n\n\n\nScenariusz B – z indeksem\nDodajemy indeks:\nCREATE INDEX idx_orders_date ON orders(order_date);\nSilnik teraz korzysta z Index Scan, czyli odczytu tylko fragmentu danych pasujących do warunku.\n\n⏱️ Czas wykonania: ~0.03 s\n\n💾 Operacje I/O: minimalne\n\n➡️ 100× szybsze zapytanie – bez zmiany jednej linijki logiki, tylko dzięki optymalizacji struktury danych.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#czym-jest-optymalizator-zapytań",
+    "href": "lectures/wyklad4.html#czym-jest-optymalizator-zapytań",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🧠 Czym jest optymalizator zapytań?",
+    "text": "🧠 Czym jest optymalizator zapytań?\nOptymalizator analizuje zapytanie i decyduje, w jaki sposób najlepiej pobrać dane.\nNie zmienia logiki zapytania, ale może całkowicie zmienić:\n\nkolejność operacji,\n\nsposób łączenia tabel (JOIN order),\n\nwybór indeksów,\n\nmetodę sortowania lub agregacji.\n\n\n💡 Optymalizator to planista — nie wykonuje zapytania sam,\nale układa plan działania tak, by wynik uzyskać jak najszybciej i najtaniej.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#etapy-przetwarzania-zapytania",
+    "href": "lectures/wyklad4.html#etapy-przetwarzania-zapytania",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🔄 Etapy przetwarzania zapytania",
+    "text": "🔄 Etapy przetwarzania zapytania\nDla przykładu:\nSELECT name, salary \nFROM employees \nWHERE department_id = 10 AND salary &gt; 5000;\nSilnik przechodzi przez kilka logicznych etapów:\n\n1. Parsing (analiza składniowa)\n\nsprawdza poprawność składni SQL,\n\nweryfikuje istnienie tabel i kolumn,\n\ntworzy drzewo zapytania (parse tree).\n\n\n\n2. Rewriting (przepisanie logiczne)\n\nupraszcza warunki (WHERE TRUE, podwójne filtry),\n\nzamienia IN na EXISTS,\n\nłączy filtry logiczne (AND, OR),\n\nmoże przenosić warunki do podzapytań (predicate pushdown).\n\n\n\n3. Optimization (planowanie kosztowe)\nOptymalizator analizuje różne plany wykonania: - który indeks użyć,\n- w jakiej kolejności łączyć tabele,\n- jakiego algorytmu użyć (hash join, merge join, nested loop).\nKażdy plan ma przypisany koszt (cost estimate) oparty na: - liczbie wierszy,\n- selektywności warunków,\n- dostępnych indeksach,\n- statystykach i kosztach I/O oraz CPU.\n\n🧮 Optymalizator nie wykonuje zapytań — symuluje scenariusze i wybiera ten o najniższym koszcie.\n\n\n\n4. Execution Plan (plan wykonania)\nPo wyborze najlepszego planu, optymalizator przekazuje go do modułu wykonawczego.\nPlan opisuje krok po kroku, jak dane zostaną pobrane i przetworzone.\nMożemy go podejrzeć poleceniem:\nEXPLAIN SELECT ...\nlub\nEXPLAIN ANALYZE SELECT ...",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#co-to-jest-plan-zapytania",
+    "href": "lectures/wyklad4.html#co-to-jest-plan-zapytania",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "⚙️ Co to jest plan zapytania?",
+    "text": "⚙️ Co to jest plan zapytania?\nPlan zapytania to opis kroków, jakie silnik bazy danych musi wykonać, by uzyskać wynik.\nKażdy krok reprezentuje konkretną operację — np.: - Scan (odczyt danych z tabeli lub indeksu), - Join (łączenie danych z kilku tabel), - Sort (sortowanie wyników), - Aggregate (sumowanie, grupowanie, liczenie).\nKażdy z tych kroków ma przypisany szacowany koszt — liczbową wartość określającą, ile operacji CPU, I/O lub pamięci wymaga jego wykonanie.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#składnia-polecenia-explain",
+    "href": "lectures/wyklad4.html#składnia-polecenia-explain",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🧩 Składnia polecenia EXPLAIN",
+    "text": "🧩 Składnia polecenia EXPLAIN\nW większości systemów baz danych można użyć EXPLAIN na początku dowolnego zapytania:\nEXPLAIN SELECT * FROM employees WHERE department_id = 10;\nAby uzyskać więcej szczegółów, można dodać:\nEXPLAIN ANALYZE SELECT * FROM employees WHERE department_id = 10;\n📊 Różnica:\n\nEXPLAIN — pokazuje plan teoretyczny (na podstawie statystyk i kosztów),\nEXPLAIN ANALYZE — faktycznie wykonuje zapytanie i pokazuje rzeczywisty czas oraz liczbę przetworzonych wierszy.\n\n\n🧠 Przykład w PostgreSQL\nZałóżmy, że mamy tabelę:\nCREATE TABLE orders (\n  id SERIAL PRIMARY KEY,\n  customer_id INTEGER,\n  order_date DATE,\n  total DECIMAL\n);\n\nCREATE INDEX idx_orders_customer ON orders(customer_id);\ni wykonujemy zapytanie:\nEXPLAIN ANALYZE\nSELECT * FROM orders WHERE customer_id = 42;\n\n\n🔹 Wynik (plan zapytania):\nIndex Scan using idx_orders_customer on orders  (cost=0.29..8.50 rows=3 width=48)\n  Index Cond: (customer_id = 42)\nPlanning Time: 0.100 ms\nExecution Time: 0.030 ms\n\n\n\n\n\n\n\nElement\nZnaczenie\n\n\n\n\nIndex Scan\nBaza odczytuje dane przy użyciu indeksu (nie pełny skan tabeli).\n\n\nidx_orders_customer\nNazwa użytego indeksu.\n\n\ncost=0.29..8.50\nSzacowany koszt (startowy i całkowity). Im mniejszy, tym lepiej.\n\n\nrows=3\nSzacowana liczba wierszy, które spełnią warunek.\n\n\nwidth=48\nŚredni rozmiar jednego wiersza (w bajtach).\n\n\nIndex Cond\nWarunek, który został użyty do przeszukania indeksu.\n\n\nExecution Time\nFaktyczny czas wykonania (tylko w EXPLAIN ANALYZE).\n\n\n\n\n\n🔎 Porównanie: brak indeksu\nJeśli usuniemy indeks i uruchomimy to samo zapytanie:\nEXPLAIN ANALYZE\nSELECT * FROM orders WHERE customer_id = 42;\notrzymamy:\nSeq Scan on orders  (cost=0.00..450.00 rows=3 width=48)\n  Filter: (customer_id = 42)\nExecution Time: 22.5 ms\n📉 Różnica:\n\nBaza musi przeskanować całą tabelę (Seq Scan),\nPomimo tego, że wynik jest ten sam, wykonanie jest znacznie wolniejsze.\n\n💬 EXPLAIN pokazuje, że problemem nie jest zapytanie, lecz brak indeksu.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#jak-korzystać-z-explain-w-praktyce",
+    "href": "lectures/wyklad4.html#jak-korzystać-z-explain-w-praktyce",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🧮 Jak korzystać z EXPLAIN w praktyce",
+    "text": "🧮 Jak korzystać z EXPLAIN w praktyce\n\nSprawdzaj, czy używany jest indeks\n\nJeśli widzisz Seq Scan lub SCAN TABLE, to znak, że indeks nie jest wykorzystywany.\n\nZwracaj uwagę na kolejność JOINów\n\nCzasami odwrócenie kolejności tabel w zapytaniu może dać inny plan i lepszy czas.\n\nAnalizuj koszty (cost=…)\n\nPorównuj plany z różnymi indeksami i filtrami — wybieraj ten o niższym koszcie.\n\nUżywaj EXPLAIN ANALYZE tylko testowo\n\nW środowisku produkcyjnym EXPLAIN ANALYZE faktycznie wykonuje zapytanie, więc może być kosztowne.\n\nPorównuj teoretyczny i rzeczywisty plan\n\nJeśli szacunki (rows, cost) mocno różnią się od rzeczywistego czasu, oznacza to:\n\nbrak aktualnych statystyk,\nzły indeks,\nlub błędne założenia optymalizatora.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#indeksy-w-sql",
+    "href": "lectures/wyklad4.html#indeksy-w-sql",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "🗂️ Indeksy w SQL",
+    "text": "🗂️ Indeksy w SQL\nIndeksy to podstawowe narzędzie optymalizacji zapytań, które pozwala bazie danych szybko znaleźć potrzebne wiersze, bez konieczności skanowania całej tabeli.\nMożna je porównać do spisu treści w książce — zamiast czytać każdy rozdział, patrzymy od razu na właściwą stronę.\n\n🔹 Dlaczego indeksy są ważne?\nBez indeksu baza danych musi sprawdzić każdy wiersz tabeli, by znaleźć pasujące rekordy (sequential scan).\nZ indeksem, silnik może odczytać tylko te dane, które spełniają warunek — znacznie szybciej i przy mniejszym zużyciu zasobów.\nKorzyści z indeksów:\n\n⏱️ Szybsze wyszukiwanie danych, szczególnie w dużych tabelach\n\n💾 Ograniczenie operacji I/O, bo baza czyta mniej bloków z dysku\n\n🔄 Przyspieszenie sortowania i łączenia tabel (JOIN), jeśli indeks obejmuje kolumny używane w warunkach\n\n\n\n🔹 Rodzaje indeksów\nNajczęściej spotykane:\n\nB-Tree (balanced tree) – najpopularniejszy typ, sprawdza się w większości wyszukiwań, zakresów i sortowań\n\nHash – szybki dostęp po dokładnej wartości (nie obsługuje zakresów)\n\nBitmap – efektywny dla kolumn o małej liczbie unikalnych wartości, np. płeć lub status\n\nKompozytowe – obejmują kilka kolumn, przydatne przy filtrach i sortowaniach wielokolumnowych\n\n\n\n🔹 Co indeksuje?\n\nKolumny używane w WHERE – aby szybciej wyszukać dane\n\nKolumny używane w JOIN – przyspiesza łączenie tabel\n\nKolumny w ORDER BY lub GROUP BY – pomaga szybciej sortować i grupować wyniki\n\nKolumny unikalne lub klucze główne – zapewnia integralność danych i przyspiesza wyszukiwanie\n\n\n\n🔹 Wady nadmiaru indeksów\nIndeksy przyspieszają odczyt, ale mają też koszty:\n\n🔄 Spowolnienie operacji INSERT/UPDATE/DELETE, bo indeksy trzeba aktualizować\n\n💾 Zwiększone zużycie pamięci i przestrzeni dyskowej\n\n⚖️ Trzeba wybrać optymalny zestaw indeksów, żeby nie pogorszyć ogólnej wydajności",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#praktyczne-aspekty-użycia-indeksów",
+    "href": "lectures/wyklad4.html#praktyczne-aspekty-użycia-indeksów",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "Praktyczne aspekty użycia indeksów",
+    "text": "Praktyczne aspekty użycia indeksów\nW tej sekcji rozszerzamy temat indeksów, unikając powtórzenia wcześniejszych przykładów z SELECT po customer_id.\nPrzy łączeniu tabel indeksy znacząco przyspieszają zapytania:\nSELECT o.id, c.name\nFROM orders o\nJOIN customers c ON o.customer_id = c.id\nWHERE c.region = 'Europe';\n\nIndeks na customers.id i orders.customer_id przyspiesza JOIN\nIndeks na customers.region przyspiesza filtrowanie po regionie",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad4.html#indeksy-a-sortowanie-i-grupowanie",
+    "href": "lectures/wyklad4.html#indeksy-a-sortowanie-i-grupowanie",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "Indeksy a sortowanie i grupowanie",
+    "text": "Indeksy a sortowanie i grupowanie\nIndeksy na kolumnach używanych w ORDER BY lub GROUP BY pozwalają uniknąć kosztownych operacji sortowania w pamięci:\nSELECT customer_id, SUM(total) \nFROM orders \nGROUP BY customer_id \nORDER BY SUM(total) DESC;\n\nIndeks na customer_id może przyspieszyć agregację\nIndeks kompozytowy z kolumną używaną w ORDER BY może wyeliminować dodatkowe sortowanie\n\n🔹 Wpływ indeksów na modyfikacje danych\n\nOperacje INSERT, UPDATE, DELETE wymagają aktualizacji indeksów\nZbyt wiele indeksów może spowolnić zapis danych\nW praktyce wybieramy najbardziej potrzebne indeksy i monitorujemy ich wpływ\n\n🔹 Wskazówki praktyczne\n\nTwórz indeksy tylko na kolumnach często filtrowanych lub sortowanych\nAnalizuj plany wykonania (EXPLAIN, EXPLAIN ANALYZE)\nZwracaj uwagę na koszt operacji (cost=…) i liczbę wierszy (rows=…)\nRównoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
     ]
   },
   {
@@ -155,7 +299,7 @@
     "href": "lectures/wyklad3.html#formy-normalne-1nf-3nf-bcnf",
     "title": "Normalizacja i projektowanie baz danych",
     "section": "3. Formy normalne (1NF – 3NF, BCNF)",
-    "text": "3. Formy normalne (1NF – 3NF, BCNF)\nNormalizacja to proces przekształcania tabel w taki sposób, aby usunąć redundancję i zapobiec anomaliom.\n\n🧩 Pierwsza postać normalna (1NF)\n\nWszystkie wartości w tabeli są atomowe (niepodzielne).\n\nBrak list, zbiorów lub kolumn powtarzających się.\n\n✅ Każda kolumna ma jedną wartość w komórce.\nPrzykład (naruszenie 1NF): | Student | NrIndeksu | Kursy | |———-|————|——–| | Jan Nowak | 12345 | Bazy danych, Programowanie |\n✅ Poprawnie:\nTworzymy osobną tabelę STUDENT_KURS, gdzie każdy kurs to osobny rekord.\n\n\n\n🧩 Druga postać normalna (2NF)\n\nTabela jest w 1NF i wszystkie atrybuty niekluczowe zależą w pełni od całego klucza głównego.\n\nDotyczy tabel z kluczem złożonym.\n\nPrzykład:\nTabela ZAPISY(StudentID, KursID, Sala)\n→ atrybut Sala zależy tylko od KursID, a nie od całego klucza (StudentID, KursID).\nRozwiązanie: wydziel tabelę KURS(KursID, Sala).\n\n\n\n🧩 Trzecia postać normalna (3NF)\n\nTabela jest w 2NF i nie zawiera zależności przechodnich.\n\nKażdy atrybut niekluczowy zależy bezpośrednio od klucza głównego.\n\nPrzykład:\nNrIndeksu → Kierunek, Kierunek → Dziekan\n➡️ Dziekan zależy pośrednio od NrIndeksu.\nRozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).\n\n\n\n🧩 Postać Boyce’a-Codda (BCNF)\n\nDla każdej zależności A → B, zbiór A musi być kluczem kandydującym.\n\nBardziej restrykcyjna niż 3NF – eliminuje wszelkie potencjalne redundancje.",
+    "text": "3. Formy normalne (1NF – 3NF, BCNF)\nNormalizacja to proces przekształcania tabel w taki sposób, aby usunąć redundancję i zapobiec anomaliom.\n\n🧩 Pierwsza postać normalna (1NF)\n\nWszystkie wartości w tabeli są atomowe (niepodzielne).\n\nBrak list, zbiorów lub kolumn powtarzających się.\n\n✅ Każda kolumna ma jedną wartość w komórce.\nPrzykład (naruszenie 1NF):\n\n\n\nStudent\nNrIndeksu\nKursy\n\n\n\n\nJan Nowak\n12345\nBazy danych, Programowanie\n\n\n\n✅ Poprawnie:\nTworzymy osobną tabelę STUDENT_KURS, gdzie każdy kurs to osobny rekord.\n\n\n\n🧩 Druga postać normalna (2NF)\n\nTabela jest w 1NF i wszystkie atrybuty niekluczowe zależą w pełni od całego klucza głównego.\n\nDotyczy tabel z kluczem złożonym.\n\nPrzykład:\nTabela ZAPISY(StudentID, KursID, Sala)\n→ atrybut Sala zależy tylko od KursID, a nie od całego klucza (StudentID, KursID).\nRozwiązanie: wydziel tabelę KURS(KursID, Sala).\n\n\n\n🧩 Trzecia postać normalna (3NF)\n\nTabela jest w 2NF i nie zawiera zależności przechodnich.\n\nKażdy atrybut niekluczowy zależy bezpośrednio od klucza głównego.\n\nPrzykład:\nNrIndeksu → Kierunek, Kierunek → Dziekan\n➡️ Dziekan zależy pośrednio od NrIndeksu.\nRozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -180,30 +324,6 @@
     "title": "Normalizacja i projektowanie baz danych",
     "section": "5. Proces projektowania bazy danych",
     "text": "5. Proces projektowania bazy danych\nProjektowanie bazy to proces etapowy:\n\nAnaliza wymagań – zrozumienie, jakie dane są potrzebne i jakie operacje będą wykonywane.\n\nModel konceptualny – opis danych w postaci ERD.\n\nModel logiczny – zamiana modelu ERD na relacyjny schemat tabel.\n\nModel fizyczny – implementacja w konkretnym systemie DBMS (np. PostgreSQL, MySQL).",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Normalizacja i projektowanie baz danych"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad3.html#akcent-praktyczny",
-    "href": "lectures/wyklad3.html#akcent-praktyczny",
-    "title": "Normalizacja i projektowanie baz danych",
-    "section": "6. Akcent praktyczny",
-    "text": "6. Akcent praktyczny\nĆwiczenie (do wykonania na zajęciach):\nZaprojektuj model bazy danych dla prostego systemu uczelnianego, obejmującego: - Studentów, - Kursy, - Wykładowców, - Zapis na kursy.\nPrzygotuj: 1. Diagram ERD,\n2. Schemat relacyjny po normalizacji (do 3NF).",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Normalizacja i projektowanie baz danych"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad3.html#efekty-uczenia-się",
-    "href": "lectures/wyklad3.html#efekty-uczenia-się",
-    "title": "Normalizacja i projektowanie baz danych",
-    "section": "🎓 Efekty uczenia się",
-    "text": "🎓 Efekty uczenia się\nPo zakończeniu wykładu student: - rozumie pojęcia normalizacji i zależności funkcjonalnych,\n- potrafi rozpoznać błędy projektowe (redundancja, anomalie),\n- potrafi zaprojektować relacyjną bazę danych zgodnie z zasadami normalizacji,\n- zna podstawowe elementy diagramów ERD i proces projektowania bazy danych.\n\n💡 Wskazówka dla studentów:\nW praktyce dążymy do uzyskania trzeciej postaci normalnej (3NF).\nCzasami stosuje się denormalizację dla poprawy wydajności, ale tylko po wcześniejszym zrozumieniu skutków tego działania.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -572,64 +692,73 @@
   {
     "objectID": "lectures/wyklad5.html",
     "href": "lectures/wyklad5.html",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "",
-    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych."
+    "text": "Celem wykładu jest:\n\npoznanie zasad transakcyjności i właściwości ACID,\nzrozumienie współbieżności i mechanizmów izolacji transakcji,\nzapoznanie się z pojęciem widoków (views) i ich zastosowaniami,\npraktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
   },
   {
-    "objectID": "lectures/wyklad5.html#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje",
-    "href": "lectures/wyklad5.html#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
+    "objectID": "lectures/wyklad5.html#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków",
+    "href": "lectures/wyklad5.html#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "",
-    "text": "Celem wykładu jest pokazanie, jak projektować interfejs do bazy danych w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych."
+    "text": "Celem wykładu jest:\n\npoznanie zasad transakcyjności i właściwości ACID,\nzrozumienie współbieżności i mechanizmów izolacji transakcji,\nzapoznanie się z pojęciem widoków (views) i ich zastosowaniami,\npraktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
   },
   {
-    "objectID": "lectures/wyklad5.html#cele-wykładu",
-    "href": "lectures/wyklad5.html#cele-wykładu",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "🧠 Cele wykładu",
-    "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nprojektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),\n\nkorzystać z połączeń bazodanowych (DB connection),\n\nwykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,\n\nrozumieć podstawy zabezpieczania danych i transakcji w aplikacjach."
+    "objectID": "lectures/wyklad5.html#transakcje-i-ich-właściwości-acid",
+    "href": "lectures/wyklad5.html#transakcje-i-ich-właściwości-acid",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "1️⃣ Transakcje i ich właściwości (ACID)",
+    "text": "1️⃣ Transakcje i ich właściwości (ACID)\n\n🔹 Co to jest transakcja?\nTransakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.\nTransakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.\nPrzykład:\nBEGIN;\nUPDATE Konta SET Saldo = Saldo - 100 WHERE NrKonta = 101;\nUPDATE Konta SET Saldo = Saldo + 100 WHERE NrKonta = 202;\nCOMMIT;\n➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).\n➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).\n\n\n🔹 Operacje sterujące transakcją\n\nBEGIN / START TRANSACTION – rozpoczęcie transakcji,\nCOMMIT – zatwierdzenie zmian,\nROLLBACK – cofnięcie zmian do stanu początkowego,\nSAVEPOINT – ustawienie punktu częściowego cofnięcia.\n\nBEGIN;\nINSERT INTO Studenci VALUES (1001, 'Anna', 'Nowak', 22);\nSAVEPOINT p1;\nUPDATE Studenci SET Wiek = 23 WHERE NrIndeksu = 1001;\nROLLBACK TO SAVEPOINT p1;\nCOMMIT;\n➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).\n➡️ Wstawienie rekordu pozostało",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
   },
   {
-    "objectID": "lectures/wyklad5.html#projektowanie-interfejsu-bazy-danych",
-    "href": "lectures/wyklad5.html#projektowanie-interfejsu-bazy-danych",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "1️⃣ Projektowanie interfejsu bazy danych",
-    "text": "1️⃣ Projektowanie interfejsu bazy danych\n\n🔹 Co to jest interfejs bazy danych?\n\nInterfejs to warstwa komunikacji między aplikacją a bazą danych.\n\nPozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.\n\n\n\n🔹 Główne elementy interfejsu\n\nPołączenie z bazą danych – obiekt, który umożliwia komunikację z serwerem DB.\n\nWysyłanie zapytań – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.\n\nObsługa wyników – pobieranie danych w formie rekordów lub tabel.\n\nZarządzanie transakcjami – commit, rollback.\n\nOpis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane."
+    "objectID": "lectures/wyklad5.html#współbieżność-i-problemy-spójności",
+    "href": "lectures/wyklad5.html#współbieżność-i-problemy-spójności",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "2️⃣ Współbieżność i problemy spójności",
+    "text": "2️⃣ Współbieżność i problemy spójności\n\n🔹 Co to jest współbieżność?\nWspółbieżność (ang. concurrency) to sytuacja, gdy wiele transakcji wykonuje się jednocześnie na tej samej bazie danych.\nDzięki współbieżności baza może obsługiwać wielu użytkowników naraz, ale…\n➡️ może dojść do konfliktów, jeśli transakcje modyfikują te same dane.\n\n\n🔹 Przykład konfliktu współbieżności\nTransakcja 1\nBEGIN;\nUPDATE Konto SET Saldo = Saldo - 500 WHERE ID = 1;\nTransakcja 2\nBEGIN;\nUPDATE Konto SET Saldo = Saldo - 300 WHERE ID = 1;\nObie modyfikują ten sam rekord. Jeśli system nie zapewni izolacji — saldo końcowe może być błędne.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
   },
   {
-    "objectID": "lectures/wyklad5.html#przykład-połączenie-do-bazy-w-pythonie",
-    "href": "lectures/wyklad5.html#przykład-połączenie-do-bazy-w-pythonie",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "2️⃣ Przykład – połączenie do bazy w Pythonie",
-    "text": "2️⃣ Przykład – połączenie do bazy w Pythonie\nimport cx_Oracle\n\n# Nawiązanie połączenia\nconn = cx_Oracle.connect('uzytkownik/haslo@localhost/XE')\ncursor = conn.cursor()\n\n# Wykonanie zapytania SELECT\ncursor.execute(\"SELECT imie, nazwisko FROM Studenci\")\nfor row in cursor:\n    print(f\"Student: {row[0]} {row[1]}\")\n\n# Zamknięcie połączenia\ncursor.close()\nconn.close()\nkod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić."
+    "objectID": "lectures/wyklad5.html#poziomy-izolacji-transakcji",
+    "href": "lectures/wyklad5.html#poziomy-izolacji-transakcji",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "3️⃣ Poziomy izolacji transakcji",
+    "text": "3️⃣ Poziomy izolacji transakcji\nBazy danych zapewniają różne poziomy izolacji, które równoważą spójność danych i wydajność.\n\n🔹 Przykład w PostgreSQL:\nBEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;\nSELECT * FROM Zamowienia WHERE KlientID = 10;\n-- Inna transakcja modyfikuje dane\nSELECT * FROM Zamowienia WHERE KlientID = 10;\nCOMMIT;\n➡️ Na poziomie REPEATABLE READ oba SELECT-y zobaczą ten sam zestaw danych, nawet jeśli inna transakcja je zmieniła w międzyczasie.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
   },
   {
-    "objectID": "lectures/wyklad5.html#wykonywanie-operacji-sql-i-plsql-w-aplikacji",
-    "href": "lectures/wyklad5.html#wykonywanie-operacji-sql-i-plsql-w-aplikacji",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji",
-    "text": "3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji\n🔹 Operacje SQL\n\nINSERT – dodawanie nowych rekordów.\nUPDATE – modyfikacja istniejących danych.\nDELETE – usuwanie rekordów.\n\nPrzykład:\ncursor.execute(\"INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)\")\nconn.commit()\nconn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.\n\n🔹 Wywołanie procedury PL/SQL\ncursor.callproc(\"dodaj_studenta\", [12348, 'Anna', 'Kowalska', 21])\nconn.commit()\ncallproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej."
-  },
-  {
-    "objectID": "lectures/wyklad5.html#obsługa-transakcji-w-aplikacjach",
-    "href": "lectures/wyklad5.html#obsługa-transakcji-w-aplikacjach",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "4️⃣ Obsługa transakcji w aplikacjach",
-    "text": "4️⃣ Obsługa transakcji w aplikacjach\n\nTransakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.\nTypowy wzorzec:\n\nRozpocznij transakcję\nWykonaj operacje (INSERT, UPDATE, DELETE)\nW razie powodzenia: commit\nW razie błędu: rollback\n\n\nPrzykład w Pythonie:\ntry:\n    cursor.execute(\"UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10\")\n    cursor.execute(\"INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)\")\n    conn.commit()\nexcept:\n    conn.rollback()\n    print(\"Wystąpił błąd, transakcja wycofana\")\nzięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna."
-  },
-  {
-    "objectID": "lectures/wyklad5.html#indeksy-i-optymalizacja-zapytań-w-aplikacji",
-    "href": "lectures/wyklad5.html#indeksy-i-optymalizacja-zapytań-w-aplikacji",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji",
-    "text": "6️⃣ Indeksy i optymalizacja zapytań w aplikacji\n\nIndeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.\nW aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.\n\nPrzykład w SQL:\nCREATE INDEX idx_student_nazwisko ON Studenci(Nazwisko);\nindeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE."
-  },
-  {
-    "objectID": "lectures/wyklad5.html#podsumowanie-wykładu",
-    "href": "lectures/wyklad5.html#podsumowanie-wykładu",
-    "title": "WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL",
-    "section": "7️⃣ Podsumowanie wykładu",
-    "text": "7️⃣ Podsumowanie wykładu\n\n🔑 Kluczowe pojęcia:\n\nInterfejs bazy danych – połączenie między aplikacją a DBMS\nOperacje SQL i PL/SQL z poziomu aplikacji\nZarządzanie transakcjami dla spójności danych\nIndeksy i podstawowe zasady optymalizacji\n\n\n\n💡 Wskazówka:\nW praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji."
+    "objectID": "lectures/wyklad5.html#widoki-views",
+    "href": "lectures/wyklad5.html#widoki-views",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "4️⃣ Widoki (Views)",
+    "text": "4️⃣ Widoki (Views)\n\n🔹 Czym jest widok?\nWidok (VIEW) to wirtualna tabela, która prezentuje dane pochodzące z jednej lub wielu tabel. Widok nie przechowuje danych samodzielnie – zawsze opiera się na zapytaniu SQL.\nPrzykład:\nCREATE VIEW StudenciPelnoletni AS\nSELECT Imie, Nazwisko, Wiek\nFROM Studenci\nWHERE Wiek &gt;= 18;\n➡️ Teraz można użyć widoku jak zwykłej tabeli:\nSELECT * FROM StudenciPelnoletni;\n\n\n🔹 Zalety widoków\n\nAbstrakcja danych – użytkownik nie musi znać złożonej struktury tabel.\nBezpieczeństwo – można ograniczyć dostęp do wrażliwych kolumn.\nReużywalność – skomplikowane zapytania można zapisać raz jako widok.\nIzolacja logiki – zmiana struktury tabeli nie wymaga zmiany zapytań użytkowników.\n\n\n\n🔹 Widoki z ograniczeniami (WITH CHECK OPTION)\nJeśli chcesz, aby przez widok można było wstawiać dane tylko zgodne z jego definicją, użyj WITH CHECK OPTION.\nCREATE VIEW StudenciMlodsi AS\nSELECT * FROM Studenci\nWHERE Wiek &lt; 25\nWITH CHECK OPTION;\n➡️ Próba wstawienia studenta starszego niż 25 lat zakończy się błędem:\nINSERT INTO StudenciMlodsi VALUES (1234, 'Jan', 'Kowalski', 30);\n-- ERROR: nie spełnia warunku widoku\n\n\n🔹 Widoki w praktyce – bezpieczeństwo danych\nPrzykład ograniczenia dostępu do poufnych danych:\nCREATE VIEW PracownicyPubliczni AS\nSELECT Imie, Nazwisko, Dzial\nFROM Pracownicy;\nUżytkownicy mogą zobaczyć tylko dane działowe, ale nie np. pensje.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
   }
 ]

@@ -82,7 +82,8 @@ Normalizacja to proces przekształcania tabel w taki sposób, aby **usunąć red
 ✅ *Każda kolumna ma jedną wartość w komórce.*
 
 **Przykład (naruszenie 1NF):**
-| Student | NrIndeksu | Kursy |
+
+| Student  | NrIndeksu  | Kursy |
 |----------|------------|--------|
 | Jan Nowak | 12345 | Bazy danych, Programowanie |
 
@@ -115,14 +116,6 @@ NrIndeksu → Kierunek, Kierunek → Dziekan
 ➡️ *Dziekan* zależy pośrednio od *NrIndeksu*.  
 Rozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).
 
----
-
-### 🧩 Postać Boyce’a-Codda (BCNF)
-
-- Dla każdej zależności A → B, zbiór A musi być **kluczem kandydującym**.  
-- Bardziej restrykcyjna niż 3NF – eliminuje wszelkie potencjalne redundancje.
-
----
 
 ## 4. Diagramy ERD (Entity–Relationship Diagram)
 
@@ -160,34 +153,3 @@ Projektowanie bazy to proces etapowy:
 2. **Model konceptualny** – opis danych w postaci ERD.  
 3. **Model logiczny** – zamiana modelu ERD na relacyjny schemat tabel.  
 4. **Model fizyczny** – implementacja w konkretnym systemie DBMS (np. PostgreSQL, MySQL).
-
----
-
-## 6. Akcent praktyczny
-
-**Ćwiczenie (do wykonania na zajęciach):**  
-
-Zaprojektuj model bazy danych dla prostego **systemu uczelnianego**, obejmującego:
-- Studentów,
-- Kursy,
-- Wykładowców,
-- Zapis na kursy.
-
-Przygotuj:
-1. Diagram ERD,  
-2. Schemat relacyjny po normalizacji (do 3NF).
-
----
-
-## 🎓 Efekty uczenia się
-
-Po zakończeniu wykładu student:
-- rozumie pojęcia **normalizacji** i **zależności funkcjonalnych**,  
-- potrafi rozpoznać błędy projektowe (redundancja, anomalie),  
-- potrafi zaprojektować **relacyjną bazę danych** zgodnie z zasadami normalizacji,  
-- zna podstawowe elementy **diagramów ERD** i proces projektowania bazy danych.
-
-
-> 💡 **Wskazówka dla studentów:**  
-> W praktyce dążymy do uzyskania trzeciej postaci normalnej (3NF).  
-> Czasami stosuje się **denormalizację** dla poprawy wydajności, ale tylko po wcześniejszym zrozumieniu skutków tego działania.

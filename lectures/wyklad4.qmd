@@ -1,5 +1,5 @@
 ---
-title: "WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy"
+title: "Podstawy PL/SQL, transakcje i indeksy"
 ---
 
 ## 🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji
@@ -125,7 +125,9 @@ END;
 /
 
 ```
-obie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.
+obie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. 
+
+Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.
 
 ## 4️⃣ Indeksy w bazie danych
 
@@ -150,3 +152,413 @@ Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia opera
 - Unikalne – zapewniają unikalność wartości w kolumnie.
 
 Dobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.
+
+## 💡 Dlaczego optymalizacja jest ważna?
+
+Optymalizacja zapytań SQL to jeden z najważniejszych elementów pracy z bazami danych.  
+Dotyczy zarówno programistów aplikacji, jak i administratorów baz danych (DBA).  
+Celem jest takie przygotowanie zapytań, struktur danych i indeksów, aby **uzyskać maksymalną wydajność przy minimalnym obciążeniu systemu**.
+
+Każde zapytanie SQL, nawet najprostsze, wymaga od silnika bazy danych wykonania określonych operacji: odczytu danych z dysku, przetworzenia warunków `WHERE`, wykonania `JOIN`, `GROUP BY`, `ORDER BY`, a następnie zwrócenia wyników użytkownikowi.
+
+Jeśli baza danych zawiera **miliony rekordów**, to nawet niewielkie różnice w sposobie wykonania zapytania mogą oznaczać:
+
+- różnicę między **milisekundami a sekundami**,  
+- obciążenie **jednego wątku** zamiast całego serwera,  
+- lub zużycie **gigabajtów pamięci i I/O** bez potrzeby.
+
+> 🧠 *„Optymalizacja zapytań SQL to nie sztuka pisania krótszego kodu,  
+> lecz umiejętność zmuszenia silnika bazy danych do pracy mądrze, a nie ciężko.”*
+
+
+## ⚙️ Jak działa zapytanie w silniku bazy danych?
+
+Aby zrozumieć optymalizację, musimy wiedzieć, **co dzieje się z zapytaniem od momentu jego wysłania do bazy danych**.  
+Silnik SQL analizuje składnię zapytania, przepisuje je logicznie, wybiera najtańszy plan wykonania i dopiero wtedy odczytuje dane.  
+
+
+## 🧩 Co wpływa na wydajność zapytań SQL?
+
+Wydajność zapytań zależy zarówno od **tego, jak zapytanie jest napisane**, jak i **od tego, jak zorganizowane są dane w bazie**:
+
+### 🔹 Struktura zapytania
+- Złożoność klauzul `WHERE`, `JOIN`, `ORDER BY`
+- Zagnieżdżone podzapytania (`subqueries`)
+- Użycie funkcji agregujących (`COUNT`, `SUM`, `AVG`)
+
+### 🔹 Architektura danych
+- Ilość danych w tabelach  
+- Indeksy (ich liczba, rodzaj i aktualność)  
+- Klucze główne i obce (`PRIMARY KEY`, `FOREIGN KEY`)  
+- Stopień normalizacji lub denormalizacji danych  
+
+### 🔹 Stan środowiska bazy
+- Dostępna pamięć RAM  
+- Buforowanie i cache dyskowy  
+- Statystyki tabel (`ANALYZE`, `UPDATE STATISTICS`)  
+- Obciążenie serwera (inne procesy, sesje, transakcje)
+
+---
+
+## 📊 Przykład znaczenia optymalizacji
+
+Wyobraźmy sobie tabelę **`orders`** z 10 milionami zamówień.  
+Chcemy znaleźć wszystkie zamówienia z ostatnich 30 dni:
+
+```sql
+SELECT * FROM orders WHERE order_date >= CURRENT_DATE - INTERVAL '30 days';
+```
+
+### Scenariusz A – brak indeksu
+Silnik musi przeskanować całą tabelę (tzw. **Seq Scan**).
+Każdy wiersz jest sprawdzany, czy spełnia warunek `order_date >= ...`.
+
+- ⏱️ Czas wykonania: ~3.2 s  
+- 💾 Operacje I/O: wysokie  
+
+### Scenariusz B – z indeksem
+
+Dodajemy indeks:
+```sql
+CREATE INDEX idx_orders_date ON orders(order_date);
+```
+
+Silnik teraz korzysta z **Index Scan**, czyli odczytu tylko fragmentu danych pasujących do warunku.
+
+- ⏱️ Czas wykonania: ~0.03 s  
+- 💾 Operacje I/O: minimalne  
+
+➡️ **100× szybsze zapytanie** – bez zmiany jednej linijki logiki, tylko dzięki optymalizacji struktury danych.
+
+---
+
+# ⚙️ Jak działa optymalizator zapytań SQL
+
+Każde zapytanie SQL, które wysyłasz do bazy danych, przechodzi **proces planowania i wykonania**.  
+Silnik SQL **nie wykonuje zapytania dokładnie tak, jak je napisałeś** — najpierw szuka **najbardziej efektywnego sposobu** uzyskania tego samego wyniku.
+
+Tym właśnie zajmuje się **optymalizator zapytań (Query Optimizer)**.
+
+---
+
+## 🧠 Czym jest optymalizator zapytań?
+
+Optymalizator analizuje zapytanie i decyduje, **w jaki sposób najlepiej pobrać dane**.  
+Nie zmienia logiki zapytania, ale może całkowicie zmienić:
+
+- kolejność operacji,  
+- sposób łączenia tabel (`JOIN order`),  
+- wybór indeksów,  
+- metodę sortowania lub agregacji.
+
+> 💡 *Optymalizator to planista — nie wykonuje zapytania sam,  
+> ale układa plan działania tak, by wynik uzyskać jak najszybciej i najtaniej.*
+
+---
+
+## 🔄 Etapy przetwarzania zapytania
+
+Dla przykładu:
+
+```sql
+SELECT name, salary 
+FROM employees 
+WHERE department_id = 10 AND salary > 5000;
+```
+
+Silnik przechodzi przez kilka logicznych etapów:
+
+### 1. Parsing (analiza składniowa)
+- sprawdza poprawność składni SQL,  
+- weryfikuje istnienie tabel i kolumn,  
+- tworzy drzewo zapytania (*parse tree*).
+
+### 2. Rewriting (przepisanie logiczne)
+- upraszcza warunki (`WHERE TRUE`, podwójne filtry),  
+- zamienia `IN` na `EXISTS`,  
+- łączy filtry logiczne (`AND`, `OR`),  
+- może przenosić warunki do podzapytań (*predicate pushdown*).
+
+### 3. Optimization (planowanie kosztowe)
+Optymalizator analizuje różne plany wykonania:
+- który indeks użyć,  
+- w jakiej kolejności łączyć tabele,  
+- jakiego algorytmu użyć (`hash join`, `merge join`, `nested loop`).
+
+Każdy plan ma przypisany **koszt (cost estimate)** oparty na:
+- liczbie wierszy,  
+- selektywności warunków,  
+- dostępnych indeksach,  
+- statystykach i kosztach I/O oraz CPU.
+
+> 🧮 Optymalizator nie wykonuje zapytań — **symuluje scenariusze** i wybiera ten o najniższym koszcie.
+
+### 4. Execution Plan (plan wykonania)
+Po wyborze najlepszego planu, optymalizator przekazuje go do modułu wykonawczego.  
+Plan opisuje krok po kroku, jak dane zostaną pobrane i przetworzone.
+
+Możemy go podejrzeć poleceniem:
+```sql
+EXPLAIN SELECT ...
+```
+lub
+```sql
+EXPLAIN ANALYZE SELECT ...
+```
+
+---
+
+# 🔍 Analiza planu zapytania (EXPLAIN)
+
+Jednym z najważniejszych narzędzi w optymalizacji SQL jest komenda **`EXPLAIN`**.  
+Pozwala „zajrzeć do środka” silnika bazy danych i zobaczyć, **jak zapytanie zostało zaplanowane i wykonane**.
+
+Dzięki niej możemy:
+- zrozumieć, dlaczego zapytanie działa wolno,  
+- sprawdzić, czy używany jest indeks,  
+- ocenić, ile operacji baza musi wykonać, by uzyskać wynik.
+
+> 🧠 *Nie zgaduj, dlaczego Twoje zapytanie jest wolne — zobacz plan wykonania i sprawdź, co naprawdę robi baza.*
+
+
+## ⚙️ Co to jest plan zapytania?
+
+Plan zapytania to **opis kroków**, jakie silnik bazy danych musi wykonać, by uzyskać wynik.  
+Każdy krok reprezentuje konkretną operację — np.:
+- **Scan** (odczyt danych z tabeli lub indeksu),
+- **Join** (łączenie danych z kilku tabel),
+- **Sort** (sortowanie wyników),
+- **Aggregate** (sumowanie, grupowanie, liczenie).
+
+Każdy z tych kroków ma przypisany **szacowany koszt** — liczbową wartość określającą, ile operacji CPU, I/O lub pamięci wymaga jego wykonanie.
+
+
+## 🧩 Składnia polecenia `EXPLAIN`
+
+W większości systemów baz danych można użyć `EXPLAIN` na początku dowolnego zapytania:
+
+```sql
+EXPLAIN SELECT * FROM employees WHERE department_id = 10;
+```
+
+Aby uzyskać więcej szczegółów, można dodać:
+```sql
+EXPLAIN ANALYZE SELECT * FROM employees WHERE department_id = 10;
+```
+
+📊 Różnica:
+
+- EXPLAIN — pokazuje plan teoretyczny (na podstawie statystyk i kosztów),
+- EXPLAIN ANALYZE — faktycznie wykonuje zapytanie i pokazuje rzeczywisty czas oraz liczbę przetworzonych wierszy.
+
+### 🧠 Przykład w PostgreSQL
+
+Załóżmy, że mamy tabelę:
+```sql
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER,
+  order_date DATE,
+  total DECIMAL
+);
+
+CREATE INDEX idx_orders_customer ON orders(customer_id);
+
+```
+i wykonujemy zapytanie:
+```sql
+EXPLAIN ANALYZE
+SELECT * FROM orders WHERE customer_id = 42;
+```
+### 🔹 Wynik (plan zapytania):
+
+```sql
+Index Scan using idx_orders_customer on orders  (cost=0.29..8.50 rows=3 width=48)
+  Index Cond: (customer_id = 42)
+Planning Time: 0.100 ms
+Execution Time: 0.030 ms
+```
+
+
+| Element              | Znaczenie                                                                 |
+|-----------------------|---------------------------------------------------------------------------|
+| **Index Scan**        | Baza odczytuje dane przy użyciu indeksu (nie pełny skan tabeli).          |
+| **idx_orders_customer** | Nazwa użytego indeksu.                                                   |
+| **cost=0.29..8.50**   | Szacowany koszt (startowy i całkowity). Im mniejszy, tym lepiej.         |
+| **rows=3**            | Szacowana liczba wierszy, które spełnią warunek.                         |
+| **width=48**          | Średni rozmiar jednego wiersza (w bajtach).                              |
+| **Index Cond**        | Warunek, który został użyty do przeszukania indeksu.                     |
+| **Execution Time**    | Faktyczny czas wykonania (tylko w `EXPLAIN ANALYZE`).   
+
+
+
+
+### 🔎 Porównanie: brak indeksu
+
+Jeśli usuniemy indeks i uruchomimy to samo zapytanie:
+
+```sql
+EXPLAIN ANALYZE
+SELECT * FROM orders WHERE customer_id = 42;
+```
+
+otrzymamy:
+
+```sql
+Seq Scan on orders  (cost=0.00..450.00 rows=3 width=48)
+  Filter: (customer_id = 42)
+Execution Time: 22.5 ms
+```
+
+📉 Różnica:
+
+- Baza musi przeskanować całą tabelę (Seq Scan),
+- Pomimo tego, że wynik jest ten sam, wykonanie jest znacznie wolniejsze.
+
+💬 EXPLAIN pokazuje, że problemem nie jest zapytanie, lecz brak indeksu.
+
+<!-- 
+### 🪶 Przykład w SQLite
+
+SQLite również wspiera EXPLAIN QUERY PLAN, choć w uproszczonej formie.
+
+```sql
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  email TEXT
+);
+
+CREATE INDEX idx_users_email ON users(email);
+
+EXPLAIN QUERY PLAN
+SELECT * FROM users WHERE email = 'john@example.com';
+```
+### 🔹 Wynik:
+
+```sql
+SEARCH users USING INDEX idx_users_email (email=?)
+```
+
+Lub — jeśli nie ma indeksu:
+
+```sql
+SCAN users
+```
+
+
+Proste, ale bardzo czytelne:
+
+- SCAN oznacza pełne przeszukiwanie tabeli,
+- SEARCH ... USING INDEX oznacza, że baza użyła indeksu. -->
+
+## 🧮 Jak korzystać z EXPLAIN w praktyce
+
+1. Sprawdzaj, czy używany jest indeks
+
+Jeśli widzisz Seq Scan lub SCAN TABLE, to znak, że indeks nie jest wykorzystywany.
+
+2. Zwracaj uwagę na kolejność JOINów
+
+Czasami odwrócenie kolejności tabel w zapytaniu może dać inny plan i lepszy czas.
+
+3. Analizuj koszty (cost=...)
+
+Porównuj plany z różnymi indeksami i filtrami — wybieraj ten o niższym koszcie.
+
+4. Używaj EXPLAIN ANALYZE tylko testowo
+
+W środowisku produkcyjnym EXPLAIN ANALYZE faktycznie wykonuje zapytanie, więc może być kosztowne.
+
+5. Porównuj teoretyczny i rzeczywisty plan
+
+Jeśli szacunki (rows, cost) mocno różnią się od rzeczywistego czasu, oznacza to:
+
+- brak aktualnych statystyk,
+- zły indeks,
+- lub błędne założenia optymalizatora.
+
+
+## 🗂️ Indeksy w SQL
+
+Indeksy to **podstawowe narzędzie optymalizacji zapytań**, które pozwala bazie danych szybko znaleźć potrzebne wiersze, bez konieczności skanowania całej tabeli.  
+Można je porównać do **spisu treści w książce** — zamiast czytać każdy rozdział, patrzymy od razu na właściwą stronę.
+
+### 🔹 Dlaczego indeksy są ważne?
+
+Bez indeksu baza danych musi sprawdzić każdy wiersz tabeli, by znaleźć pasujące rekordy (**sequential scan**).  
+Z indeksem, silnik może odczytać **tylko te dane**, które spełniają warunek — znacznie szybciej i przy mniejszym zużyciu zasobów.
+
+Korzyści z indeksów:
+
+- ⏱️ **Szybsze wyszukiwanie** danych, szczególnie w dużych tabelach  
+- 💾 **Ograniczenie operacji I/O**, bo baza czyta mniej bloków z dysku  
+- 🔄 **Przyspieszenie sortowania i łączenia tabel** (`JOIN`), jeśli indeks obejmuje kolumny używane w warunkach
+
+### 🔹 Rodzaje indeksów
+
+Najczęściej spotykane:
+
+1. **B-Tree (balanced tree)** – najpopularniejszy typ, sprawdza się w większości wyszukiwań, zakresów i sortowań  
+2. **Hash** – szybki dostęp po dokładnej wartości (nie obsługuje zakresów)  
+3. **Bitmap** – efektywny dla kolumn o małej liczbie unikalnych wartości, np. płeć lub status  
+4. **Kompozytowe** – obejmują kilka kolumn, przydatne przy filtrach i sortowaniach wielokolumnowych
+
+### 🔹 Co indeksuje?
+
+- **Kolumny używane w WHERE** – aby szybciej wyszukać dane  
+- **Kolumny używane w JOIN** – przyspiesza łączenie tabel  
+- **Kolumny w ORDER BY lub GROUP BY** – pomaga szybciej sortować i grupować wyniki  
+- **Kolumny unikalne lub klucze główne** – zapewnia integralność danych i przyspiesza wyszukiwanie
+
+### 🔹 Wady nadmiaru indeksów
+
+Indeksy przyspieszają odczyt, ale mają też koszty:
+
+- 🔄 **Spowolnienie operacji INSERT/UPDATE/DELETE**, bo indeksy trzeba aktualizować  
+- 💾 **Zwiększone zużycie pamięci i przestrzeni dyskowej**  
+- ⚖️ Trzeba wybrać **optymalny zestaw indeksów**, żeby nie pogorszyć ogólnej wydajności
+
+## Praktyczne aspekty użycia indeksów
+
+W tej sekcji rozszerzamy temat indeksów, unikając powtórzenia wcześniejszych przykładów z SELECT po `customer_id`.
+
+Przy łączeniu tabel indeksy znacząco przyspieszają zapytania:
+
+```sql
+SELECT o.id, c.name
+FROM orders o
+JOIN customers c ON o.customer_id = c.id
+WHERE c.region = 'Europe';
+```
+
+- Indeks na customers.id i orders.customer_id przyspiesza JOIN
+- Indeks na customers.region przyspiesza filtrowanie po regionie
+
+
+## Indeksy a sortowanie i grupowanie
+
+Indeksy na kolumnach używanych w ORDER BY lub GROUP BY pozwalają uniknąć kosztownych operacji sortowania w pamięci:
+```sql
+SELECT customer_id, SUM(total) 
+FROM orders 
+GROUP BY customer_id 
+ORDER BY SUM(total) DESC;
+```
+
+- Indeks na customer_id może przyspieszyć agregację
+- Indeks kompozytowy z kolumną używaną w ORDER BY może wyeliminować dodatkowe sortowanie
+
+🔹 Wpływ indeksów na modyfikacje danych
+
+- Operacje INSERT, UPDATE, DELETE wymagają aktualizacji indeksów
+- Zbyt wiele indeksów może spowolnić zapis danych
+- W praktyce wybieramy najbardziej potrzebne indeksy i monitorujemy ich wpływ
+
+🔹 Wskazówki praktyczne
+
+- Twórz indeksy tylko na kolumnach często filtrowanych lub sortowanych
+- Analizuj plany wykonania (EXPLAIN, EXPLAIN ANALYZE)
+- Zwracaj uwagę na koszt operacji (cost=…) i liczbę wierszy (rows=...)
+- Równoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny
+---

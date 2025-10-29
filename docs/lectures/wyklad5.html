@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL – Relacyjne Systemy Organizacji Danych</title>
+<title>Podstawy PL/SQL, transakcje i indeksy – Relacyjne Systemy Organizacji Danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad5.html">Podstawy PL/SQL, transakcje i indeksy</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -193,7 +193,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/wyklad4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy</span></a>
+ <span class="menu-text">Podstawy PL/SQL, transakcje i indeksy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Podstawy PL/SQL, transakcje i indeksy</span></a>
   </div>
 </li>
       </ul>
@@ -212,23 +218,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje" id="toc-temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje" class="nav-link active" data-scroll-target="#temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje">🎯 Temat: Łączenie bazy danych z aplikacją i praktyczne operacje</a></li>
-  <li><a href="#cele-wykładu" id="toc-cele-wykładu" class="nav-link" data-scroll-target="#cele-wykładu">🧠 Cele wykładu</a></li>
-  <li><a href="#projektowanie-interfejsu-bazy-danych" id="toc-projektowanie-interfejsu-bazy-danych" class="nav-link" data-scroll-target="#projektowanie-interfejsu-bazy-danych">1️⃣ Projektowanie interfejsu bazy danych</a></li>
-  <li><a href="#przykład-połączenie-do-bazy-w-pythonie" id="toc-przykład-połączenie-do-bazy-w-pythonie" class="nav-link" data-scroll-target="#przykład-połączenie-do-bazy-w-pythonie">2️⃣ Przykład – połączenie do bazy w Pythonie</a></li>
-  <li><a href="#wykonywanie-operacji-sql-i-plsql-w-aplikacji" id="toc-wykonywanie-operacji-sql-i-plsql-w-aplikacji" class="nav-link" data-scroll-target="#wykonywanie-operacji-sql-i-plsql-w-aplikacji">3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji</a></li>
-  <li><a href="#obsługa-transakcji-w-aplikacjach" id="toc-obsługa-transakcji-w-aplikacjach" class="nav-link" data-scroll-target="#obsługa-transakcji-w-aplikacjach">4️⃣ Obsługa transakcji w aplikacjach</a></li>
-  <li><a href="#indeksy-i-optymalizacja-zapytań-w-aplikacji" id="toc-indeksy-i-optymalizacja-zapytań-w-aplikacji" class="nav-link" data-scroll-target="#indeksy-i-optymalizacja-zapytań-w-aplikacji">6️⃣ Indeksy i optymalizacja zapytań w aplikacji</a></li>
-  <li><a href="#podsumowanie-wykładu" id="toc-podsumowanie-wykładu" class="nav-link" data-scroll-target="#podsumowanie-wykładu">7️⃣ Podsumowanie wykładu</a></li>
+  <li><a href="#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków" id="toc-temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków" class="nav-link active" data-scroll-target="#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków">🎯 Temat: Mechanizmy zapewniania spójności danych i wprowadzenie do widoków</a></li>
+  <li><a href="#transakcje-i-ich-właściwości-acid" id="toc-transakcje-i-ich-właściwości-acid" class="nav-link" data-scroll-target="#transakcje-i-ich-właściwości-acid">1️⃣ Transakcje i ich właściwości (ACID)</a></li>
+  <li><a href="#współbieżność-i-problemy-spójności" id="toc-współbieżność-i-problemy-spójności" class="nav-link" data-scroll-target="#współbieżność-i-problemy-spójności">2️⃣ Współbieżność i problemy spójności</a></li>
+  <li><a href="#poziomy-izolacji-transakcji" id="toc-poziomy-izolacji-transakcji" class="nav-link" data-scroll-target="#poziomy-izolacji-transakcji">3️⃣ Poziomy izolacji transakcji</a></li>
+  <li><a href="#widoki-views" id="toc-widoki-views" class="nav-link" data-scroll-target="#widoki-views">4️⃣ Widoki (Views)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad5.html">Podstawy PL/SQL, transakcje i indeksy</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">WYKŁAD 5 – Projektowanie interfejsu bazy danych i praktyczne wykorzystanie SQL/PL/SQL</h1>
+<h1 class="title">Podstawy PL/SQL, transakcje i indeksy</h1>
 </div>
 
 
@@ -245,133 +248,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje" class="level2">
-<h2 class="anchored" data-anchor-id="temat-łączenie-bazy-danych-z-aplikacją-i-praktyczne-operacje">🎯 Temat: Łączenie bazy danych z aplikacją i praktyczne operacje</h2>
-<p>Celem wykładu jest pokazanie, jak projektować <strong>interfejs do bazy danych</strong> w środowisku programistycznym, integrować SQL i PL/SQL w aplikacjach oraz wykonywać typowe operacje na danych.</p>
-<hr>
-</section>
-<section id="cele-wykładu" class="level2">
-<h2 class="anchored" data-anchor-id="cele-wykładu">🧠 Cele wykładu</h2>
-<p>Student po wykładzie będzie potrafił:</p>
+<section id="temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków" class="level2">
+<h2 class="anchored" data-anchor-id="temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków">🎯 Temat: Mechanizmy zapewniania spójności danych i wprowadzenie do widoków</h2>
+<p>Celem wykładu jest:</p>
 <ul>
-<li>projektować podstawowy interfejs do bazy danych w wybranym środowisku (np. Python, Java, C#),<br>
-</li>
-<li>korzystać z <strong>połączeń bazodanowych (DB connection)</strong>,<br>
-</li>
-<li>wykonywać zapytania SQL i bloki PL/SQL z poziomu aplikacji,<br>
-</li>
-<li>rozumieć podstawy zabezpieczania danych i transakcji w aplikacjach.</li>
-</ul>
-<hr>
-</section>
-<section id="projektowanie-interfejsu-bazy-danych" class="level2">
-<h2 class="anchored" data-anchor-id="projektowanie-interfejsu-bazy-danych">1️⃣ Projektowanie interfejsu bazy danych</h2>
-<section id="co-to-jest-interfejs-bazy-danych" class="level3">
-<h3 class="anchored" data-anchor-id="co-to-jest-interfejs-bazy-danych">🔹 Co to jest interfejs bazy danych?</h3>
-<ul>
-<li>Interfejs to <strong>warstwa komunikacji między aplikacją a bazą danych</strong>.<br>
-</li>
-<li>Pozwala aplikacji wysyłać zapytania SQL, odbierać wyniki i przetwarzać je w logice biznesowej.</li>
+<li>poznanie zasad transakcyjności i właściwości ACID,</li>
+<li>zrozumienie współbieżności i mechanizmów izolacji transakcji,</li>
+<li>zapoznanie się z pojęciem widoków (views) i ich zastosowaniami,</li>
+<li>praktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.</li>
 </ul>
 </section>
-<section id="główne-elementy-interfejsu" class="level3">
-<h3 class="anchored" data-anchor-id="główne-elementy-interfejsu">🔹 Główne elementy interfejsu</h3>
-<ol type="1">
-<li><strong>Połączenie z bazą danych</strong> – obiekt, który umożliwia komunikację z serwerem DB.<br>
-</li>
-<li><strong>Wysyłanie zapytań</strong> – wykonanie SELECT, INSERT, UPDATE, DELETE lub wywołań procedur PL/SQL.<br>
-</li>
-<li><strong>Obsługa wyników</strong> – pobieranie danych w formie rekordów lub tabel.<br>
-</li>
-<li><strong>Zarządzanie transakcjami</strong> – commit, rollback.</li>
-</ol>
-<p>Opis słowny: interfejs bazy działa jak most między programem a fizyczną bazą danych. Bez niego aplikacja nie „wie”, gdzie i jak przechowywane są dane.</p>
-<hr>
-</section>
-</section>
-<section id="przykład-połączenie-do-bazy-w-pythonie" class="level2">
-<h2 class="anchored" data-anchor-id="przykład-połączenie-do-bazy-w-pythonie">2️⃣ Przykład – połączenie do bazy w Pythonie</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cx_Oracle</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Nawiązanie połączenia</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> cx_Oracle.<span class="ex">connect</span>(<span class="st">'uzytkownik/haslo@localhost/XE'</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> conn.cursor()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Wykonanie zapytania SELECT</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cursor.execute(<span class="st">"SELECT imie, nazwisko FROM Studenci"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> cursor:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Student: </span><span class="sc">{</span>row[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>row[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Zamknięcie połączenia</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>cursor.close()</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>kod pokazuje, jak w Pythonie połączyć się z bazą Oracle, pobrać dane i je wyświetlić.</p>
-</section>
-<section id="wykonywanie-operacji-sql-i-plsql-w-aplikacji" class="level2">
-<h2 class="anchored" data-anchor-id="wykonywanie-operacji-sql-i-plsql-w-aplikacji">3️⃣ Wykonywanie operacji SQL i PL/SQL w aplikacji</h2>
-<p>🔹 Operacje SQL</p>
-<ul>
-<li>INSERT – dodawanie nowych rekordów.</li>
-<li>UPDATE – modyfikacja istniejących danych.</li>
-<li>DELETE – usuwanie rekordów.</li>
-</ul>
+<section id="transakcje-i-ich-właściwości-acid" class="level2">
+<h2 class="anchored" data-anchor-id="transakcje-i-ich-właściwości-acid">1️⃣ Transakcje i ich właściwości (ACID)</h2>
+<section id="co-to-jest-transakcja" class="level3">
+<h3 class="anchored" data-anchor-id="co-to-jest-transakcja">🔹 Co to jest transakcja?</h3>
+<p>Transakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.</p>
+<p>Transakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.</p>
 <p>Przykład:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cursor</span>.<span class="kw">execute</span>(<span class="ot">"INSERT INTO Studenci VALUES (12347, 'Piotr', 'Nowak', 22)"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>conn.<span class="kw">commit</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>conn.commit() zatwierdza zmiany w bazie. Bez commit zmiany nie będą trwałe.</p>
-<section id="wywołanie-procedury-plsql" class="level3">
-<h3 class="anchored" data-anchor-id="wywołanie-procedury-plsql">🔹 Wywołanie procedury PL/SQL</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cursor</span>.callproc(<span class="ot">"dodaj_studenta"</span>, [<span class="dv">12348</span>, <span class="st">'Anna'</span>, <span class="st">'Kowalska'</span>, <span class="dv">21</span>])</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>conn.<span class="kw">commit</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>callproc pozwala wywołać procedury zapisane w bazie, co umożliwia automatyzację logiki biznesowej.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span>;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Konta <span class="kw">SET</span> Saldo <span class="op">=</span> Saldo <span class="op">-</span> <span class="dv">100</span> <span class="kw">WHERE</span> NrKonta <span class="op">=</span> <span class="dv">101</span>;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Konta <span class="kw">SET</span> Saldo <span class="op">=</span> Saldo <span class="op">+</span> <span class="dv">100</span> <span class="kw">WHERE</span> NrKonta <span class="op">=</span> <span class="dv">202</span>;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).</p>
+<p>➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).</p>
 </section>
-</section>
-<section id="obsługa-transakcji-w-aplikacjach" class="level2">
-<h2 class="anchored" data-anchor-id="obsługa-transakcji-w-aplikacjach">4️⃣ Obsługa transakcji w aplikacjach</h2>
+<section id="operacje-sterujące-transakcją" class="level3">
+<h3 class="anchored" data-anchor-id="operacje-sterujące-transakcją">🔹 Operacje sterujące transakcją</h3>
 <ul>
-<li>Transakcje zapewniają spójność danych, nawet gdy aplikacja wykonuje wiele operacji jednocześnie.</li>
-<li>Typowy wzorzec:
+<li>BEGIN / START TRANSACTION – rozpoczęcie transakcji,</li>
+<li>COMMIT – zatwierdzenie zmian,</li>
+<li>ROLLBACK – cofnięcie zmian do stanu początkowego,</li>
+<li>SAVEPOINT – ustawienie punktu częściowego cofnięcia.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> Studenci <span class="kw">VALUES</span> (<span class="dv">1001</span>, <span class="st">'Anna'</span>, <span class="st">'Nowak'</span>, <span class="dv">22</span>);</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SAVEPOINT</span> p1;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Studenci <span class="kw">SET</span> Wiek <span class="op">=</span> <span class="dv">23</span> <span class="kw">WHERE</span> NrIndeksu <span class="op">=</span> <span class="dv">1001</span>;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ROLLBACK</span> <span class="kw">TO</span> <span class="kw">SAVEPOINT</span> p1;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).</p>
+<p>➡️ Wstawienie rekordu pozostało</p>
+</section>
+</section>
+<section id="współbieżność-i-problemy-spójności" class="level2">
+<h2 class="anchored" data-anchor-id="współbieżność-i-problemy-spójności">2️⃣ Współbieżność i problemy spójności</h2>
+<section id="co-to-jest-współbieżność" class="level3">
+<h3 class="anchored" data-anchor-id="co-to-jest-współbieżność">🔹 Co to jest współbieżność?</h3>
+<p>Współbieżność (ang. concurrency) to sytuacja, gdy wiele transakcji wykonuje się jednocześnie na tej samej bazie danych.</p>
+<p>Dzięki współbieżności baza może obsługiwać wielu użytkowników naraz, ale…</p>
+<p>➡️ może dojść do konfliktów, jeśli transakcje modyfikują te same dane.</p>
+</section>
+<section id="przykład-konfliktu-współbieżności" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-konfliktu-współbieżności">🔹 Przykład konfliktu współbieżności</h3>
+<p>Transakcja 1</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Konto <span class="kw">SET</span> Saldo <span class="op">=</span> Saldo <span class="op">-</span> <span class="dv">500</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Transakcja 2</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span>;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Konto <span class="kw">SET</span> Saldo <span class="op">=</span> Saldo <span class="op">-</span> <span class="dv">300</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Obie modyfikują ten sam rekord. Jeśli system nie zapewni izolacji — saldo końcowe może być błędne.</p>
+</section>
+</section>
+<section id="poziomy-izolacji-transakcji" class="level2">
+<h2 class="anchored" data-anchor-id="poziomy-izolacji-transakcji">3️⃣ Poziomy izolacji transakcji</h2>
+<p>Bazy danych zapewniają różne poziomy izolacji, które równoważą spójność danych i wydajność.</p>
+<section id="przykład-w-postgresql" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-w-postgresql">🔹 Przykład w PostgreSQL:</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span> <span class="kw">TRANSACTION</span> <span class="kw">ISOLATION</span> <span class="kw">LEVEL</span> REPEATABLE <span class="kw">READ</span>;</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Zamowienia <span class="kw">WHERE</span> KlientID <span class="op">=</span> <span class="dv">10</span>;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Inna transakcja modyfikuje dane</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Zamowienia <span class="kw">WHERE</span> KlientID <span class="op">=</span> <span class="dv">10</span>;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>➡️ Na poziomie REPEATABLE READ oba SELECT-y zobaczą ten sam zestaw danych, nawet jeśli inna transakcja je zmieniła w międzyczasie.</p>
+</section>
+</section>
+<section id="widoki-views" class="level2">
+<h2 class="anchored" data-anchor-id="widoki-views">4️⃣ Widoki (Views)</h2>
+<section id="czym-jest-widok" class="level3">
+<h3 class="anchored" data-anchor-id="czym-jest-widok">🔹 Czym jest widok?</h3>
+<p>Widok (VIEW) to wirtualna tabela, która prezentuje dane pochodzące z jednej lub wielu tabel. Widok nie przechowuje danych samodzielnie – zawsze opiera się na zapytaniu SQL.</p>
+<p>Przykład:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> StudenciPelnoletni <span class="kw">AS</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Imie, Nazwisko, Wiek</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Studenci</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Wiek <span class="op">&gt;=</span> <span class="dv">18</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>➡️ Teraz można użyć widoku jak zwykłej tabeli:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> StudenciPelnoletni;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="zalety-widoków" class="level3">
+<h3 class="anchored" data-anchor-id="zalety-widoków">🔹 Zalety widoków</h3>
 <ol type="1">
-<li>Rozpocznij transakcję</li>
-<li>Wykonaj operacje (INSERT, UPDATE, DELETE)</li>
-<li>W razie powodzenia: commit</li>
-<li>W razie błędu: rollback</li>
-</ol></li>
-</ul>
-<p>Przykład w Pythonie:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    cursor.execute(<span class="st">"UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    cursor.execute(<span class="st">"INSERT INTO Studenci VALUES (12349, 'Kasia', 'Wiśniewska', 20)"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    conn.commit()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    conn.rollback()</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Wystąpił błąd, transakcja wycofana"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>zięki transakcji zmiany są atomowe – albo wszystkie operacje się powiodą, albo żadna.</p>
+<li>Abstrakcja danych – użytkownik nie musi znać złożonej struktury tabel.</li>
+<li>Bezpieczeństwo – można ograniczyć dostęp do wrażliwych kolumn.</li>
+<li>Reużywalność – skomplikowane zapytania można zapisać raz jako widok.</li>
+<li>Izolacja logiki – zmiana struktury tabeli nie wymaga zmiany zapytań użytkowników.</li>
+</ol>
 </section>
-<section id="indeksy-i-optymalizacja-zapytań-w-aplikacji" class="level2">
-<h2 class="anchored" data-anchor-id="indeksy-i-optymalizacja-zapytań-w-aplikacji">6️⃣ Indeksy i optymalizacja zapytań w aplikacji</h2>
-<ul>
-<li>Indeksy przyspieszają wyszukiwanie i filtrowanie danych w tabelach.</li>
-<li>W aplikacji warto zwracać uwagę na kolumny, po których najczęściej wyszukujemy.</li>
-</ul>
-<p>Przykład w SQL:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_student_nazwisko <span class="kw">ON</span> Studenci(Nazwisko);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>indeks może znacząco przyspieszyć SELECT w aplikacjach o dużych zbiorach danych, ale spowalnia INSERT/UPDATE.</p>
+<section id="widoki-z-ograniczeniami-with-check-option" class="level3">
+<h3 class="anchored" data-anchor-id="widoki-z-ograniczeniami-with-check-option">🔹 Widoki z ograniczeniami (WITH CHECK OPTION)</h3>
+<p>Jeśli chcesz, aby przez widok można było wstawiać dane tylko zgodne z jego definicją, użyj WITH CHECK OPTION.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> StudenciMlodsi <span class="kw">AS</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Studenci</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Wiek <span class="op">&lt;</span> <span class="dv">25</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>➡️ Próba wstawienia studenta starszego niż 25 lat zakończy się błędem:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> StudenciMlodsi <span class="kw">VALUES</span> (<span class="dv">1234</span>, <span class="st">'Jan'</span>, <span class="st">'Kowalski'</span>, <span class="dv">30</span>);</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- ERROR: nie spełnia warunku widoku</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="podsumowanie-wykładu" class="level2">
-<h2 class="anchored" data-anchor-id="podsumowanie-wykładu">7️⃣ Podsumowanie wykładu</h2>
-<section id="kluczowe-pojęcia" class="level3">
-<h3 class="anchored" data-anchor-id="kluczowe-pojęcia">🔑 Kluczowe pojęcia:</h3>
-<ul>
-<li>Interfejs bazy danych – połączenie między aplikacją a DBMS</li>
-<li>Operacje SQL i PL/SQL z poziomu aplikacji</li>
-<li>Zarządzanie transakcjami dla spójności danych</li>
-<li>Indeksy i podstawowe zasady optymalizacji</li>
-</ul>
-</section>
-<section id="wskazówka" class="level3">
-<h3 class="anchored" data-anchor-id="wskazówka">💡 Wskazówka:</h3>
-<p>W praktyce projektowanie interfejsu wymaga zarówno znajomości bazy danych, jak i języka programowania. Dobrze zaprojektowana komunikacja z bazą zmniejsza liczbę błędów i zwiększa wydajność aplikacji.</p>
+<section id="widoki-w-praktyce-bezpieczeństwo-danych" class="level3">
+<h3 class="anchored" data-anchor-id="widoki-w-praktyce-bezpieczeństwo-danych">🔹 Widoki w praktyce – bezpieczeństwo danych</h3>
+<p>Przykład ograniczenia dostępu do poufnych danych:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> PracownicyPubliczni <span class="kw">AS</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Imie, Nazwisko, Dzial</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Pracownicy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Użytkownicy mogą zobaczyć tylko dane działowe, ale nie np. pensje.</p>
 
 
 </section>

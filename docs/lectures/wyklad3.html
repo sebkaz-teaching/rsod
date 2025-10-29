@@ -193,7 +193,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/wyklad4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WYKŁAD 4 – Podstawy PL/SQL, transakcje i indeksy</span></a>
+ <span class="menu-text">Podstawy PL/SQL, transakcje i indeksy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Podstawy PL/SQL, transakcje i indeksy</span></a>
   </div>
 </li>
       </ul>
@@ -219,8 +225,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#formy-normalne-1nf-3nf-bcnf" id="toc-formy-normalne-1nf-3nf-bcnf" class="nav-link" data-scroll-target="#formy-normalne-1nf-3nf-bcnf">3. Formy normalne (1NF – 3NF, BCNF)</a></li>
   <li><a href="#diagramy-erd-entityrelationship-diagram" id="toc-diagramy-erd-entityrelationship-diagram" class="nav-link" data-scroll-target="#diagramy-erd-entityrelationship-diagram">4. Diagramy ERD (Entity–Relationship Diagram)</a></li>
   <li><a href="#proces-projektowania-bazy-danych" id="toc-proces-projektowania-bazy-danych" class="nav-link" data-scroll-target="#proces-projektowania-bazy-danych">5. Proces projektowania bazy danych</a></li>
-  <li><a href="#akcent-praktyczny" id="toc-akcent-praktyczny" class="nav-link" data-scroll-target="#akcent-praktyczny">6. Akcent praktyczny</a></li>
-  <li><a href="#efekty-uczenia-się" id="toc-efekty-uczenia-się" class="nav-link" data-scroll-target="#efekty-uczenia-się">🎓 Efekty uczenia się</a></li>
   </ul>
 </nav>
     </div>
@@ -333,7 +337,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Brak list, zbiorów lub kolumn powtarzających się.</li>
 </ul>
 <p>✅ <em>Każda kolumna ma jedną wartość w komórce.</em></p>
-<p><strong>Przykład (naruszenie 1NF):</strong> | Student | NrIndeksu | Kursy | |———-|————|——–| | Jan Nowak | 12345 | Bazy danych, Programowanie |</p>
+<p><strong>Przykład (naruszenie 1NF):</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Student</th>
+<th>NrIndeksu</th>
+<th>Kursy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jan Nowak</td>
+<td>12345</td>
+<td>Bazy danych, Programowanie</td>
+</tr>
+</tbody>
+</table>
 <p>✅ <em>Poprawnie:</em><br>
 Tworzymy osobną tabelę STUDENT_KURS, gdzie każdy kurs to osobny rekord.</p>
 <hr>
@@ -362,16 +382,6 @@ Rozwiązanie: wydziel tabelę KURS(KursID, Sala).</p>
 <p>NrIndeksu → Kierunek, Kierunek → Dziekan<br>
 ➡️ <em>Dziekan</em> zależy pośrednio od <em>NrIndeksu</em>.<br>
 Rozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).</p>
-<hr>
-</section>
-<section id="postać-boycea-codda-bcnf" class="level3">
-<h3 class="anchored" data-anchor-id="postać-boycea-codda-bcnf">🧩 Postać Boyce’a-Codda (BCNF)</h3>
-<ul>
-<li>Dla każdej zależności A → B, zbiór A musi być <strong>kluczem kandydującym</strong>.<br>
-</li>
-<li>Bardziej restrykcyjna niż 3NF – eliminuje wszelkie potencjalne redundancje.</li>
-</ul>
-<hr>
 </section>
 </section>
 <section id="diagramy-erd-entityrelationship-diagram" class="level2">
@@ -419,27 +429,6 @@ Rozwiązanie: osobna tabela KIERUNEK(Dziekan, Kierunek).</p>
 </li>
 <li><strong>Model fizyczny</strong> – implementacja w konkretnym systemie DBMS (np. PostgreSQL, MySQL).</li>
 </ol>
-<hr>
-</section>
-<section id="akcent-praktyczny" class="level2">
-<h2 class="anchored" data-anchor-id="akcent-praktyczny">6. Akcent praktyczny</h2>
-<p><strong>Ćwiczenie (do wykonania na zajęciach):</strong></p>
-<p>Zaprojektuj model bazy danych dla prostego <strong>systemu uczelnianego</strong>, obejmującego: - Studentów, - Kursy, - Wykładowców, - Zapis na kursy.</p>
-<p>Przygotuj: 1. Diagram ERD,<br>
-2. Schemat relacyjny po normalizacji (do 3NF).</p>
-<hr>
-</section>
-<section id="efekty-uczenia-się" class="level2">
-<h2 class="anchored" data-anchor-id="efekty-uczenia-się">🎓 Efekty uczenia się</h2>
-<p>Po zakończeniu wykładu student: - rozumie pojęcia <strong>normalizacji</strong> i <strong>zależności funkcjonalnych</strong>,<br>
-- potrafi rozpoznać błędy projektowe (redundancja, anomalie),<br>
-- potrafi zaprojektować <strong>relacyjną bazę danych</strong> zgodnie z zasadami normalizacji,<br>
-- zna podstawowe elementy <strong>diagramów ERD</strong> i proces projektowania bazy danych.</p>
-<blockquote class="blockquote">
-<p>💡 <strong>Wskazówka dla studentów:</strong><br>
-W praktyce dążymy do uzyskania trzeciej postaci normalnej (3NF).<br>
-Czasami stosuje się <strong>denormalizację</strong> dla poprawy wydajności, ale tylko po wcześniejszym zrozumieniu skutków tego działania.</p>
-</blockquote>
 
 
 </section>

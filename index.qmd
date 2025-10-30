@@ -15,8 +15,8 @@ Semestr: letni
 1. <del>09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)</del>
 2. <del>14.10.2025 Wtorek   Wykład 2 - b. 61 sala 116 (9-10)</del>
 3. <del>15.10.2025 Środa    Wykład 3 - b. 61 sala 116 (3-4)</del>
-4. 29.10.2025 Środa    Wykład 4 - b. 61 sala 116 (9-10)
-5. 30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)
+4. <del>29.10.2025 Środa    Wykład 4 - b. 61 sala 116 (9-10)</del>
+5. <del>30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)</del>
 
 
 ### Laboratorium grupa WEL23EV1S0: 

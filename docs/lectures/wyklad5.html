@@ -218,11 +218,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków" id="toc-temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków" class="nav-link active" data-scroll-target="#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków">🎯 Temat: Mechanizmy zapewniania spójności danych i wprowadzenie do widoków</a></li>
-  <li><a href="#transakcje-i-ich-właściwości-acid" id="toc-transakcje-i-ich-właściwości-acid" class="nav-link" data-scroll-target="#transakcje-i-ich-właściwości-acid">1️⃣ Transakcje i ich właściwości (ACID)</a></li>
+  <li><a href="#transakcje-i-ich-właściwości-acid" id="toc-transakcje-i-ich-właściwości-acid" class="nav-link active" data-scroll-target="#transakcje-i-ich-właściwości-acid">1️⃣ Transakcje i ich właściwości (ACID)</a></li>
   <li><a href="#współbieżność-i-problemy-spójności" id="toc-współbieżność-i-problemy-spójności" class="nav-link" data-scroll-target="#współbieżność-i-problemy-spójności">2️⃣ Współbieżność i problemy spójności</a></li>
   <li><a href="#poziomy-izolacji-transakcji" id="toc-poziomy-izolacji-transakcji" class="nav-link" data-scroll-target="#poziomy-izolacji-transakcji">3️⃣ Poziomy izolacji transakcji</a></li>
+  <li><a href="#podzapytania-subqueries-w-sql" id="toc-podzapytania-subqueries-w-sql" class="nav-link" data-scroll-target="#podzapytania-subqueries-w-sql">1️⃣3️⃣ Podzapytania (Subqueries) w SQL</a>
+  <ul class="collapse">
+  <li><a href="#podzapytanie-w-klauzuli-where-jednowartościowe" id="toc-podzapytanie-w-klauzuli-where-jednowartościowe" class="nav-link" data-scroll-target="#podzapytanie-w-klauzuli-where-jednowartościowe">🔹 1. Podzapytanie w klauzuli WHERE (jednowartościowe)</a></li>
+  <li><a href="#podzapytanie-zwracające-wiele-wartości-operator-in" id="toc-podzapytanie-zwracające-wiele-wartości-operator-in" class="nav-link" data-scroll-target="#podzapytanie-zwracające-wiele-wartości-operator-in">🔹 2. Podzapytanie zwracające wiele wartości (operator IN)</a></li>
+  <li><a href="#podzapytanie-w-klauzuli-select" id="toc-podzapytanie-w-klauzuli-select" class="nav-link" data-scroll-target="#podzapytanie-w-klauzuli-select">🔹 3. Podzapytanie w klauzuli SELECT</a></li>
+  <li><a href="#podzapytanie-w-klauzuli-from-tabela-pochodna" id="toc-podzapytanie-w-klauzuli-from-tabela-pochodna" class="nav-link" data-scroll-target="#podzapytanie-w-klauzuli-from-tabela-pochodna">🔹 4. Podzapytanie w klauzuli FROM (tabela pochodna)</a></li>
+  <li><a href="#korelowane-podzapytanie-correlated-subquery" id="toc-korelowane-podzapytanie-correlated-subquery" class="nav-link" data-scroll-target="#korelowane-podzapytanie-correlated-subquery">🔹 5. Korelowane podzapytanie (correlated subquery)</a></li>
+  <li><a href="#podzapytanie-z-exists" id="toc-podzapytanie-z-exists" class="nav-link" data-scroll-target="#podzapytanie-z-exists">🔹 6. Podzapytanie z EXISTS</a></li>
+  <li><a href="#porównania-z-all-any" id="toc-porównania-z-all-any" class="nav-link" data-scroll-target="#porównania-z-all-any">🔹 7. Porównania z ALL / ANY</a></li>
   <li><a href="#widoki-views" id="toc-widoki-views" class="nav-link" data-scroll-target="#widoki-views">4️⃣ Widoki (Views)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -248,16 +257,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków" class="level2">
-<h2 class="anchored" data-anchor-id="temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków">🎯 Temat: Mechanizmy zapewniania spójności danych i wprowadzenie do widoków</h2>
-<p>Celem wykładu jest:</p>
-<ul>
-<li>poznanie zasad transakcyjności i właściwości ACID,</li>
-<li>zrozumienie współbieżności i mechanizmów izolacji transakcji,</li>
-<li>zapoznanie się z pojęciem widoków (views) i ich zastosowaniami,</li>
-<li>praktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.</li>
-</ul>
-</section>
 <section id="transakcje-i-ich-właściwości-acid" class="level2">
 <h2 class="anchored" data-anchor-id="transakcje-i-ich-właściwości-acid">1️⃣ Transakcje i ich właściwości (ACID)</h2>
 <section id="co-to-jest-transakcja" class="level3">
@@ -322,18 +321,265 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>➡️ Na poziomie REPEATABLE READ oba SELECT-y zobaczą ten sam zestaw danych, nawet jeśli inna transakcja je zmieniła w międzyczasie.</p>
 </section>
 </section>
+<section id="podzapytania-subqueries-w-sql" class="level1">
+<h1>1️⃣3️⃣ Podzapytania (Subqueries) w SQL</h1>
+<p>Podzapytanie to <strong>zapytanie wewnątrz innego zapytania SQL</strong>. Służy do wykonywania bardziej złożonych operacji, kiedy jedno zapytanie potrzebuje wyników innego.<br>
+Możemy je traktować jak „mini-zapytania”, które dostarczają danych do zapytania głównego.</p>
+<p>Podzapytania mogą występować w różnych miejscach:</p>
+<ul>
+<li>w klauzuli <strong>WHERE</strong> – do filtrowania danych,</li>
+<li>w klauzuli <strong>FROM</strong> – jako tymczasowa tabela,</li>
+<li>w klauzuli <strong>SELECT</strong> – do obliczeń w każdej krotce,</li>
+<li>w konstrukcjach <strong>EXISTS</strong>, <strong>IN</strong>, <strong>ALL</strong>, <strong>ANY</strong> – do testowania warunków logicznych.</li>
+</ul>
+<section id="podzapytanie-w-klauzuli-where-jednowartościowe" class="level2">
+<h2 class="anchored" data-anchor-id="podzapytanie-w-klauzuli-where-jednowartościowe">🔹 1. Podzapytanie w klauzuli WHERE (jednowartościowe)</h2>
+<p>To najczęstszy typ podzapytania.<br>
+Zapytanie główne wybiera dane na podstawie <strong>wartości zwróconej przez podzapytanie</strong>.</p>
+<section id="przykład" class="level3">
+<h3 class="anchored" data-anchor-id="przykład">🧩 Przykład:</h3>
+<p>Znajdź książki napisane przez autora o nazwisku <em>Sienkiewicz</em>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> tytul, rok</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> autor_id <span class="op">=</span> (</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> autor_id</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Autorzy</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> nazwisko <span class="op">=</span> <span class="st">'Sienkiewicz'</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania">📘 Opis działania:</h3>
+<ol type="1">
+<li>Podzapytanie wewnętrzne szuka identyfikatora autora autor_id, którego nazwisko to Sienkiewicz.</li>
+<li>Zapytanie główne wybiera z tabeli Ksiazki tylko te rekordy, w których autor_id jest równy wynikowi podzapytania.</li>
+</ol>
+<blockquote class="blockquote">
+<p>🔸 Takie podzapytanie musi zwrócić jedną wartość (scalar subquery) – w przeciwnym razie wystąpi błąd.</p>
+</blockquote>
+</section>
+</section>
+<section id="podzapytanie-zwracające-wiele-wartości-operator-in" class="level2">
+<h2 class="anchored" data-anchor-id="podzapytanie-zwracające-wiele-wartości-operator-in">🔹 2. Podzapytanie zwracające wiele wartości (operator IN)</h2>
+<p>Jeśli podzapytanie zwraca więcej niż jeden rekord, używamy operatora IN.</p>
+<section id="przykład-1" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-1">🧩 Przykład:</h3>
+<p>Znajdź wszystkie książki autorów, których nazwiska zaczynają się na literę M.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> tytul, rok</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> autor_id <span class="kw">IN</span> (</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> autor_id</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Autorzy</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> nazwisko <span class="kw">LIKE</span> <span class="st">'M%'</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania-1" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania-1">📘 Opis działania:</h3>
+<ul>
+<li>Podzapytanie wewnętrzne zwraca listę identyfikatorów autorów, np. [1, 5, 7].</li>
+<li>Zapytanie główne wybiera książki, których autor_id znajduje się na tej liście.</li>
+</ul>
+<blockquote class="blockquote">
+<p>🔸 Operator IN można traktować jak porównanie z „wieloma wartościami jednocześnie”.</p>
+</blockquote>
+</section>
+</section>
+<section id="podzapytanie-w-klauzuli-select" class="level2">
+<h2 class="anchored" data-anchor-id="podzapytanie-w-klauzuli-select">🔹 3. Podzapytanie w klauzuli SELECT</h2>
+<p>Podzapytanie może też zwracać pojedynczą wartość (skalarną) i być użyte w liście kolumn.</p>
+<section id="przykład-2" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-2">🧩 Przykład:</h3>
+<p>Wyświetl listę autorów wraz z liczbą ich książek.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    a.imie,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    a.nazwisko,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    (</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">FROM</span> Ksiazki k</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">WHERE</span> k.autor_id <span class="op">=</span> a.autor_id</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="kw">AS</span> liczba_ksiazek</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Autorzy a;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania-2" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania-2">📘 Opis działania:</h3>
+<ul>
+<li>Dla każdego autora (a.autor_id) wykonuje się osobne podzapytanie, które liczy książki przypisane do tego autora.</li>
+<li>Wynik jest dodawany jako nowa kolumna liczba_ksiazek.</li>
+</ul>
+<blockquote class="blockquote">
+<p>🔸 To tzw. podzapytanie skorelowane (correlated subquery), ponieważ odnosi się do kolumny z zapytania głównego.</p>
+</blockquote>
+</section>
+</section>
+<section id="podzapytanie-w-klauzuli-from-tabela-pochodna" class="level2">
+<h2 class="anchored" data-anchor-id="podzapytanie-w-klauzuli-from-tabela-pochodna">🔹 4. Podzapytanie w klauzuli FROM (tabela pochodna)</h2>
+<p>Podzapytanie może tworzyć tymczasową tabelę w sekcji FROM. Takie rozwiązanie nazywa się derived table i pozwala na pracę z przetworzonymi danymi.</p>
+<section id="przykład-3" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-3">🧩 Przykład:</h3>
+<p>Policz średni rok wydania książek, a następnie wybierz te, które są starsze od średniej.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> tytul, rok</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Ksiazki</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> K</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> K.rok <span class="op">&lt;</span> (</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="fu">AVG</span>(rok) <span class="kw">FROM</span> Ksiazki</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania-3" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania-3">📘 Opis działania:</h3>
+<ul>
+<li>Podzapytanie w FROM tworzy tymczasową tabelę K.</li>
+<li>W klauzuli WHERE używamy innego podzapytania, które liczy średni rok wydania.</li>
+<li>Wynik to książki starsze od średniej publikacji.</li>
+</ul>
+</section>
+</section>
+<section id="korelowane-podzapytanie-correlated-subquery" class="level2">
+<h2 class="anchored" data-anchor-id="korelowane-podzapytanie-correlated-subquery">🔹 5. Korelowane podzapytanie (correlated subquery)</h2>
+<p>To podzapytanie, które odwołuje się do kolumn z zapytania głównego. Wykonuje się dla każdego wiersza osobno – dlatego bywa wolniejsze, ale bardzo elastyczne.</p>
+<section id="przykład-4" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-4">🧩 Przykład:</h3>
+<p>Znajdź najstarszą książkę każdego autora.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> k.tytul, k.rok, a.nazwisko</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki k</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> Autorzy a <span class="kw">ON</span> k.autor_id <span class="op">=</span> a.autor_id</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> k.rok <span class="op">=</span> (</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="fu">MIN</span>(rok)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Ksiazki</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> autor_id <span class="op">=</span> k.autor_id</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania-4" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania-4">📘 Opis działania:</h3>
+<ul>
+<li>Dla każdego wiersza w tabeli Ksiazki podzapytanie szuka najmniejszego roku dla tego samego autora.</li>
+<li>Porównanie k.rok = (MIN(rok)) sprawia, że zostaje tylko najstarsza książka każdego autora.</li>
+</ul>
+</section>
+</section>
+<section id="podzapytanie-z-exists" class="level2">
+<h2 class="anchored" data-anchor-id="podzapytanie-z-exists">🔹 6. Podzapytanie z EXISTS</h2>
+<p>Operator EXISTS sprawdza, czy podzapytanie zwróciło jakiekolwiek wiersze. Nie liczy ich — interesuje nas jedynie, czy wynik istnieje (TRUE/FALSE).</p>
+<section id="przykład-5" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-5">🧩 Przykład:</h3>
+<p>Znajdź autorów, którzy napisali przynajmniej jedną książkę.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> imie, nazwisko</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Autorzy a</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="kw">EXISTS</span> (</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="dv">1</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Ksiazki k</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> k.autor_id <span class="op">=</span> a.autor_id</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania-5" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania-5">📘 Opis działania:</h3>
+<ul>
+<li>Dla każdego autora sprawdzane jest, czy istnieje co najmniej jeden wiersz w tabeli Ksiazki z tym samym autor_id.</li>
+<li>Jeśli tak — warunek EXISTS zwraca TRUE, a autor pojawia się w wyniku.</li>
+</ul>
+</section>
+</section>
+<section id="porównania-z-all-any" class="level2">
+<h2 class="anchored" data-anchor-id="porównania-z-all-any">🔹 7. Porównania z ALL / ANY</h2>
+<p>Operator ALL wymaga, aby warunek był spełniony dla wszystkich wyników podzapytania. Operator ANY (lub SOME) – aby warunek był spełniony dla przynajmniej jednego.</p>
+<section id="przykład-6" class="level3">
+<h3 class="anchored" data-anchor-id="przykład-6">🧩 Przykład:</h3>
+<p>Znajdź książki wydane wcześniej niż wszystkie książki Prusa.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> tytul, rok</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Ksiazki</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rok <span class="op">&lt;</span> <span class="kw">ALL</span> (</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> rok</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Ksiazki</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> autor_id <span class="op">=</span> (</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">SELECT</span> autor_id <span class="kw">FROM</span> Autorzy <span class="kw">WHERE</span> nazwisko <span class="op">=</span> <span class="st">'Prus'</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="opis-działania-6" class="level3">
+<h3 class="anchored" data-anchor-id="opis-działania-6">📘 Opis działania:</h3>
+<ul>
+<li>Podzapytanie wewnętrzne zwraca lata publikacji książek Prusa.</li>
+<li>Zapytanie główne wybiera tylko te książki, których rok jest mniejszy niż wszystkie te wartości.</li>
+</ul>
+</section>
+<section id="podsumowanie-typów-podzapytań-w-sql" class="level3">
+<h3 class="anchored" data-anchor-id="podsumowanie-typów-podzapytań-w-sql">🧮 Podsumowanie typów podzapytań w SQL</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 19%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Typ podzapytania</strong></th>
+<th><strong>Miejsce użycia</strong></th>
+<th><strong>Zwracany wynik</strong></th>
+<th><strong>Typowe operatory</strong></th>
+<th><strong>Przykład zastosowania</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Jednowartościowe (scalar)</strong></td>
+<td><code>WHERE</code>, <code>SELECT</code></td>
+<td>Pojedyncza wartość (1 rekord, 1 kolumna)</td>
+<td><code>=</code>, <code>&lt;</code>, <code>&gt;</code></td>
+<td>Autor o nazwisku „Sienkiewicz”</td>
+</tr>
+<tr class="even">
+<td><strong>Wielowartościowe (multivalue)</strong></td>
+<td><code>WHERE</code></td>
+<td>Lista wartości (wiele rekordów)</td>
+<td><code>IN</code>, <code>NOT IN</code></td>
+<td>Autorzy, których nazwisko zaczyna się na „M”</td>
+</tr>
+<tr class="odd">
+<td><strong>Korelowane (correlated)</strong></td>
+<td><code>WHERE</code>, <code>SELECT</code></td>
+<td>Zmienny wynik dla każdego wiersza</td>
+<td><code>=</code>, <code>EXISTS</code></td>
+<td>Najstarsza książka danego autora</td>
+</tr>
+<tr class="even">
+<td><strong>Zagnieżdżone w FROM (tabela pochodna)</strong></td>
+<td><code>FROM</code></td>
+<td>Zbiór wierszy (tymczasowa tabela)</td>
+<td>—</td>
+<td>Średni rok wydania książek i porównanie ze średnią</td>
+</tr>
+<tr class="odd">
+<td><strong>Z operatorem EXISTS / NOT EXISTS</strong></td>
+<td><code>WHERE</code></td>
+<td>Prawda / Fałsz (czy istnieje wynik)</td>
+<td><code>EXISTS</code>, <code>NOT EXISTS</code></td>
+<td>Autorzy, którzy napisali przynajmniej jedną książkę</td>
+</tr>
+<tr class="even">
+<td><strong>Z operatorem ALL / ANY / SOME</strong></td>
+<td><code>WHERE</code></td>
+<td>Porównanie z wieloma wartościami</td>
+<td><code>ALL</code>, <code>ANY</code>, <code>SOME</code></td>
+<td>Książki starsze niż wszystkie książki Prusa</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="widoki-views" class="level2">
 <h2 class="anchored" data-anchor-id="widoki-views">4️⃣ Widoki (Views)</h2>
 <section id="czym-jest-widok" class="level3">
 <h3 class="anchored" data-anchor-id="czym-jest-widok">🔹 Czym jest widok?</h3>
 <p>Widok (VIEW) to wirtualna tabela, która prezentuje dane pochodzące z jednej lub wielu tabel. Widok nie przechowuje danych samodzielnie – zawsze opiera się na zapytaniu SQL.</p>
 <p>Przykład:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> StudenciPelnoletni <span class="kw">AS</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Imie, Nazwisko, Wiek</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Studenci</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Wiek <span class="op">&gt;=</span> <span class="dv">18</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> StudenciPelnoletni <span class="kw">AS</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Imie, Nazwisko, Wiek</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Studenci</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Wiek <span class="op">&gt;=</span> <span class="dv">18</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>➡️ Teraz można użyć widoku jak zwykłej tabeli:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> StudenciPelnoletni;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> StudenciPelnoletni;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zalety-widoków" class="level3">
 <h3 class="anchored" data-anchor-id="zalety-widoków">🔹 Zalety widoków</h3>
@@ -347,23 +593,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="widoki-z-ograniczeniami-with-check-option" class="level3">
 <h3 class="anchored" data-anchor-id="widoki-z-ograniczeniami-with-check-option">🔹 Widoki z ograniczeniami (WITH CHECK OPTION)</h3>
 <p>Jeśli chcesz, aby przez widok można było wstawiać dane tylko zgodne z jego definicją, użyj WITH CHECK OPTION.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> StudenciMlodsi <span class="kw">AS</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Studenci</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Wiek <span class="op">&lt;</span> <span class="dv">25</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> StudenciMlodsi <span class="kw">AS</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> Studenci</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Wiek <span class="op">&lt;</span> <span class="dv">25</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>➡️ Próba wstawienia studenta starszego niż 25 lat zakończy się błędem:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> StudenciMlodsi <span class="kw">VALUES</span> (<span class="dv">1234</span>, <span class="st">'Jan'</span>, <span class="st">'Kowalski'</span>, <span class="dv">30</span>);</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- ERROR: nie spełnia warunku widoku</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> StudenciMlodsi <span class="kw">VALUES</span> (<span class="dv">1234</span>, <span class="st">'Jan'</span>, <span class="st">'Kowalski'</span>, <span class="dv">30</span>);</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- ERROR: nie spełnia warunku widoku</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="widoki-w-praktyce-bezpieczeństwo-danych" class="level3">
 <h3 class="anchored" data-anchor-id="widoki-w-praktyce-bezpieczeństwo-danych">🔹 Widoki w praktyce – bezpieczeństwo danych</h3>
 <p>Przykład ograniczenia dostępu do poufnych danych:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> PracownicyPubliczni <span class="kw">AS</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Imie, Nazwisko, Dzial</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Pracownicy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">VIEW</span> PracownicyPubliczni <span class="kw">AS</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Imie, Nazwisko, Dzial</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Pracownicy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Użytkownicy mogą zobaczyć tylko dane działowe, ale nie np. pensje.</p>
 
 
+</section>
 </section>
 </section>
 

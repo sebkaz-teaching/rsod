@@ -2,23 +2,6 @@
 title: "Podstawy PL/SQL, transakcje i indeksy"
 ---
 
-## 🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji
-
-Celem wykładu jest wprowadzenie do **języka proceduralnego PL/SQL**, pokazanie zasad **przetwarzania transakcyjnego** w bazach danych oraz omówienie roli **indeksów** w przyspieszaniu wyszukiwania danych.
-
----
-
-## 🧠 Cele wykładu
-
-Student po wykładzie będzie potrafił:
-
-- zrozumieć różnice między SQL a PL/SQL,  
-- pisać proste bloki PL/SQL do operowania na danych,  
-- zarządzać transakcjami (commit, rollback),  
-- rozumieć rolę i zasady tworzenia indeksów w bazie danych.
-
----
-
 ## 1️⃣ Wprowadzenie do PL/SQL
 
 ### 🔹 Czym jest PL/SQL?
@@ -37,7 +20,7 @@ END;
 
 Kod ten uruchamia blok proceduralny, który wypisuje komunikat. 
 
-BEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.
+`BEGIN` rozpoczyna blok, `END;` kończy, a `/` uruchamia go w SQL*Plus.
 
 ### 🔹 Zmienne i typy danych
 
@@ -61,7 +44,7 @@ Zmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania pro
 
 PL/SQL pozwala na użycie:
 
-- IF…THEN…ELSE:
+> IF…THEN…ELSE:
 
 ```sql
 IF v_wiek >= 18 THEN
@@ -71,7 +54,8 @@ ELSE
 END IF;
 ```
 
-- LOOP, WHILE, FOR – do powtarzania operacji:
+> LOOP, WHILE, FOR – do powtarzania operacji:
+  
 ```sql
 FOR i IN 1..5 LOOP
     DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);
@@ -84,9 +68,9 @@ Instrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie d
 
 PL/SQL umożliwia wykonywanie standardowych operacji SQL:
 
-- INSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.
+> INSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.
 
-Przykład aktualizacji studenta:
+Przykład aktualizacji danych:
 
 ```sql
 BEGIN
@@ -99,59 +83,6 @@ END;
 
 można grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.
 
-## 3️⃣ Przetwarzanie transakcyjne
-
-### 🔹 Co to jest transakcja?
-
-Transakcja to jednostka pracy w bazie danych, która:
-
-- wykonuje kilka operacji jako całość,
-- jest atomowa – albo wszystkie operacje się powiodą, albo żadna,
-- zapewnia spójność danych (ACID).
-
-### 🔹 Polecenia transakcyjne
-
-- COMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.
-- ROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.
-- SAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.
-
-Przykład użycia transakcji:
-```sql
-BEGIN
-    INSERT INTO Studenci VALUES(12346, 'Anna', 'Kowalska', 21);
-    UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10;
-    COMMIT;
-END;
-/
-
-```
-obie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie. 
-
-Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.
-
-## 4️⃣ Indeksy w bazie danych
-
-### 🔹 Co to jest indeks?
-
-- Indeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.
-- Działa podobnie jak spis treści w książce.
-
-Przykład tworzenia indeksu:
-```sql
-CREATE INDEX idx_studenci_nazwisko
-ON Studenci(Nazwisko);
-```
-
-ndeks przyspiesza wyszukiwanie po kolumnie Nazwisko.
-Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.
-
-### 🔹 Rodzaje indeksów
-
-- Jedno-kolumnowe – indeks na jednej kolumnie.
-- Wielokolumnowe (composite) – indeks na kilku kolumnach razem.
-- Unikalne – zapewniają unikalność wartości w kolumnie.
-
-Dobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.
 
 ## 💡 Dlaczego optymalizacja jest ważna?
 
@@ -182,17 +113,20 @@ Silnik SQL analizuje składnię zapytania, przepisuje je logicznie, wybiera najt
 Wydajność zapytań zależy zarówno od **tego, jak zapytanie jest napisane**, jak i **od tego, jak zorganizowane są dane w bazie**:
 
 ### 🔹 Struktura zapytania
+
 - Złożoność klauzul `WHERE`, `JOIN`, `ORDER BY`
 - Zagnieżdżone podzapytania (`subqueries`)
 - Użycie funkcji agregujących (`COUNT`, `SUM`, `AVG`)
 
 ### 🔹 Architektura danych
+
 - Ilość danych w tabelach  
 - Indeksy (ich liczba, rodzaj i aktualność)  
 - Klucze główne i obce (`PRIMARY KEY`, `FOREIGN KEY`)  
 - Stopień normalizacji lub denormalizacji danych  
 
 ### 🔹 Stan środowiska bazy
+
 - Dostępna pamięć RAM  
 - Buforowanie i cache dyskowy  
 - Statystyki tabel (`ANALYZE`, `UPDATE STATISTICS`)  
@@ -210,6 +144,7 @@ SELECT * FROM orders WHERE order_date >= CURRENT_DATE - INTERVAL '30 days';
 ```
 
 ### Scenariusz A – brak indeksu
+
 Silnik musi przeskanować całą tabelę (tzw. **Seq Scan**).
 Każdy wiersz jest sprawdzany, czy spełnia warunek `order_date >= ...`.
 
@@ -230,16 +165,14 @@ Silnik teraz korzysta z **Index Scan**, czyli odczytu tylko fragmentu danych pas
 
 ➡️ **100× szybsze zapytanie** – bez zmiany jednej linijki logiki, tylko dzięki optymalizacji struktury danych.
 
----
 
-# ⚙️ Jak działa optymalizator zapytań SQL
+## ⚙️ Jak działa optymalizator zapytań SQL
 
 Każde zapytanie SQL, które wysyłasz do bazy danych, przechodzi **proces planowania i wykonania**.  
 Silnik SQL **nie wykonuje zapytania dokładnie tak, jak je napisałeś** — najpierw szuka **najbardziej efektywnego sposobu** uzyskania tego samego wyniku.
 
 Tym właśnie zajmuje się **optymalizator zapytań (Query Optimizer)**.
 
----
 
 ## 🧠 Czym jest optymalizator zapytań?
 
@@ -254,7 +187,6 @@ Nie zmienia logiki zapytania, ale może całkowicie zmienić:
 > 💡 *Optymalizator to planista — nie wykonuje zapytania sam,  
 > ale układa plan działania tak, by wynik uzyskać jak najszybciej i najtaniej.*
 
----
 
 ## 🔄 Etapy przetwarzania zapytania
 
@@ -269,23 +201,28 @@ WHERE department_id = 10 AND salary > 5000;
 Silnik przechodzi przez kilka logicznych etapów:
 
 ### 1. Parsing (analiza składniowa)
+
 - sprawdza poprawność składni SQL,  
 - weryfikuje istnienie tabel i kolumn,  
 - tworzy drzewo zapytania (*parse tree*).
 
 ### 2. Rewriting (przepisanie logiczne)
+
 - upraszcza warunki (`WHERE TRUE`, podwójne filtry),  
 - zamienia `IN` na `EXISTS`,  
 - łączy filtry logiczne (`AND`, `OR`),  
 - może przenosić warunki do podzapytań (*predicate pushdown*).
 
 ### 3. Optimization (planowanie kosztowe)
+
 Optymalizator analizuje różne plany wykonania:
+
 - który indeks użyć,  
 - w jakiej kolejności łączyć tabele,  
 - jakiego algorytmu użyć (`hash join`, `merge join`, `nested loop`).
 
 Każdy plan ma przypisany **koszt (cost estimate)** oparty na:
+
 - liczbie wierszy,  
 - selektywności warunków,  
 - dostępnych indeksach,  
@@ -294,10 +231,12 @@ Każdy plan ma przypisany **koszt (cost estimate)** oparty na:
 > 🧮 Optymalizator nie wykonuje zapytań — **symuluje scenariusze** i wybiera ten o najniższym koszcie.
 
 ### 4. Execution Plan (plan wykonania)
+
 Po wyborze najlepszego planu, optymalizator przekazuje go do modułu wykonawczego.  
 Plan opisuje krok po kroku, jak dane zostaną pobrane i przetworzone.
 
 Możemy go podejrzeć poleceniem:
+
 ```sql
 EXPLAIN SELECT ...
 ```
@@ -306,14 +245,13 @@ lub
 EXPLAIN ANALYZE SELECT ...
 ```
 
----
-
 # 🔍 Analiza planu zapytania (EXPLAIN)
 
 Jednym z najważniejszych narzędzi w optymalizacji SQL jest komenda **`EXPLAIN`**.  
 Pozwala „zajrzeć do środka” silnika bazy danych i zobaczyć, **jak zapytanie zostało zaplanowane i wykonane**.
 
 Dzięki niej możemy:
+
 - zrozumieć, dlaczego zapytanie działa wolno,  
 - sprawdzić, czy używany jest indeks,  
 - ocenić, ile operacji baza musi wykonać, by uzyskać wynik.
@@ -325,6 +263,7 @@ Dzięki niej możemy:
 
 Plan zapytania to **opis kroków**, jakie silnik bazy danych musi wykonać, by uzyskać wynik.  
 Każdy krok reprezentuje konkretną operację — np.:
+
 - **Scan** (odczyt danych z tabeli lub indeksu),
 - **Join** (łączenie danych z kilku tabel),
 - **Sort** (sortowanie wyników),
@@ -389,8 +328,6 @@ Execution Time: 0.030 ms
 | **width=48**          | Średni rozmiar jednego wiersza (w bajtach).                              |
 | **Index Cond**        | Warunek, który został użyty do przeszukania indeksu.                     |
 | **Execution Time**    | Faktyczny czas wykonania (tylko w `EXPLAIN ANALYZE`).   
-
-
 
 
 ### 🔎 Porównanie: brak indeksu
@@ -549,16 +486,16 @@ ORDER BY SUM(total) DESC;
 - Indeks na customer_id może przyspieszyć agregację
 - Indeks kompozytowy z kolumną używaną w ORDER BY może wyeliminować dodatkowe sortowanie
 
-🔹 Wpływ indeksów na modyfikacje danych
+### 🔹 Wpływ indeksów na modyfikacje danych
 
 - Operacje INSERT, UPDATE, DELETE wymagają aktualizacji indeksów
 - Zbyt wiele indeksów może spowolnić zapis danych
 - W praktyce wybieramy najbardziej potrzebne indeksy i monitorujemy ich wpływ
 
-🔹 Wskazówki praktyczne
+### 🔹 Wskazówki praktyczne
 
 - Twórz indeksy tylko na kolumnach często filtrowanych lub sortowanych
 - Analizuj plany wykonania (EXPLAIN, EXPLAIN ANALYZE)
 - Zwracaj uwagę na koszt operacji (cost=…) i liczbę wierszy (rows=...)
 - Równoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny
----
+

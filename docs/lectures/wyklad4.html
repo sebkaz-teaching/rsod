@@ -218,21 +218,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#temat-programowanie-w-plsql-i-podstawy-optymalizacji" id="toc-temat-programowanie-w-plsql-i-podstawy-optymalizacji" class="nav-link active" data-scroll-target="#temat-programowanie-w-plsql-i-podstawy-optymalizacji">🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji</a></li>
-  <li><a href="#cele-wykładu" id="toc-cele-wykładu" class="nav-link" data-scroll-target="#cele-wykładu">🧠 Cele wykładu</a></li>
-  <li><a href="#wprowadzenie-do-plsql" id="toc-wprowadzenie-do-plsql" class="nav-link" data-scroll-target="#wprowadzenie-do-plsql">1️⃣ Wprowadzenie do PL/SQL</a></li>
+  <li><a href="#wprowadzenie-do-plsql" id="toc-wprowadzenie-do-plsql" class="nav-link active" data-scroll-target="#wprowadzenie-do-plsql">1️⃣ Wprowadzenie do PL/SQL</a></li>
   <li><a href="#operacje-na-danych-w-plsql" id="toc-operacje-na-danych-w-plsql" class="nav-link" data-scroll-target="#operacje-na-danych-w-plsql">2️⃣ Operacje na danych w PL/SQL</a></li>
-  <li><a href="#przetwarzanie-transakcyjne" id="toc-przetwarzanie-transakcyjne" class="nav-link" data-scroll-target="#przetwarzanie-transakcyjne">3️⃣ Przetwarzanie transakcyjne</a></li>
-  <li><a href="#indeksy-w-bazie-danych" id="toc-indeksy-w-bazie-danych" class="nav-link" data-scroll-target="#indeksy-w-bazie-danych">4️⃣ Indeksy w bazie danych</a></li>
   <li><a href="#dlaczego-optymalizacja-jest-ważna" id="toc-dlaczego-optymalizacja-jest-ważna" class="nav-link" data-scroll-target="#dlaczego-optymalizacja-jest-ważna">💡 Dlaczego optymalizacja jest ważna?</a></li>
   <li><a href="#jak-działa-zapytanie-w-silniku-bazy-danych" id="toc-jak-działa-zapytanie-w-silniku-bazy-danych" class="nav-link" data-scroll-target="#jak-działa-zapytanie-w-silniku-bazy-danych">⚙️ Jak działa zapytanie w silniku bazy danych?</a></li>
   <li><a href="#co-wpływa-na-wydajność-zapytań-sql" id="toc-co-wpływa-na-wydajność-zapytań-sql" class="nav-link" data-scroll-target="#co-wpływa-na-wydajność-zapytań-sql">🧩 Co wpływa na wydajność zapytań SQL?</a></li>
   <li><a href="#przykład-znaczenia-optymalizacji" id="toc-przykład-znaczenia-optymalizacji" class="nav-link" data-scroll-target="#przykład-znaczenia-optymalizacji">📊 Przykład znaczenia optymalizacji</a></li>
-  <li><a href="#jak-działa-optymalizator-zapytań-sql" id="toc-jak-działa-optymalizator-zapytań-sql" class="nav-link" data-scroll-target="#jak-działa-optymalizator-zapytań-sql">⚙️ Jak działa optymalizator zapytań SQL</a>
-  <ul class="collapse">
+  <li><a href="#jak-działa-optymalizator-zapytań-sql" id="toc-jak-działa-optymalizator-zapytań-sql" class="nav-link" data-scroll-target="#jak-działa-optymalizator-zapytań-sql">⚙️ Jak działa optymalizator zapytań SQL</a></li>
   <li><a href="#czym-jest-optymalizator-zapytań" id="toc-czym-jest-optymalizator-zapytań" class="nav-link" data-scroll-target="#czym-jest-optymalizator-zapytań">🧠 Czym jest optymalizator zapytań?</a></li>
   <li><a href="#etapy-przetwarzania-zapytania" id="toc-etapy-przetwarzania-zapytania" class="nav-link" data-scroll-target="#etapy-przetwarzania-zapytania">🔄 Etapy przetwarzania zapytania</a></li>
-  </ul></li>
   <li><a href="#analiza-planu-zapytania-explain" id="toc-analiza-planu-zapytania-explain" class="nav-link" data-scroll-target="#analiza-planu-zapytania-explain">🔍 Analiza planu zapytania (EXPLAIN)</a>
   <ul class="collapse">
   <li><a href="#co-to-jest-plan-zapytania" id="toc-co-to-jest-plan-zapytania" class="nav-link" data-scroll-target="#co-to-jest-plan-zapytania">⚙️ Co to jest plan zapytania?</a></li>
@@ -267,25 +261,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="temat-programowanie-w-plsql-i-podstawy-optymalizacji" class="level2">
-<h2 class="anchored" data-anchor-id="temat-programowanie-w-plsql-i-podstawy-optymalizacji">🎯 Temat: Programowanie w PL/SQL i podstawy optymalizacji</h2>
-<p>Celem wykładu jest wprowadzenie do <strong>języka proceduralnego PL/SQL</strong>, pokazanie zasad <strong>przetwarzania transakcyjnego</strong> w bazach danych oraz omówienie roli <strong>indeksów</strong> w przyspieszaniu wyszukiwania danych.</p>
-<hr>
-</section>
-<section id="cele-wykładu" class="level2">
-<h2 class="anchored" data-anchor-id="cele-wykładu">🧠 Cele wykładu</h2>
-<p>Student po wykładzie będzie potrafił:</p>
-<ul>
-<li>zrozumieć różnice między SQL a PL/SQL,<br>
-</li>
-<li>pisać proste bloki PL/SQL do operowania na danych,<br>
-</li>
-<li>zarządzać transakcjami (commit, rollback),<br>
-</li>
-<li>rozumieć rolę i zasady tworzenia indeksów w bazie danych.</li>
-</ul>
-<hr>
-</section>
 <section id="wprowadzenie-do-plsql" class="level2">
 <h2 class="anchored" data-anchor-id="wprowadzenie-do-plsql">1️⃣ Wprowadzenie do PL/SQL</h2>
 <section id="czym-jest-plsql" class="level3">
@@ -301,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Kod ten uruchamia blok proceduralny, który wypisuje komunikat.</p>
-<p>BEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.</p>
+<p><code>BEGIN</code> rozpoczyna blok, <code>END;</code> kończy, a <code>/</code> uruchamia go w SQL*Plus.</p>
 </section>
 <section id="zmienne-i-typy-danych" class="level3">
 <h3 class="anchored" data-anchor-id="zmienne-i-typy-danych">🔹 Zmienne i typy danych</h3>
@@ -320,17 +295,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="instrukcje-warunkowe-i-pętle" class="level3">
 <h3 class="anchored" data-anchor-id="instrukcje-warunkowe-i-pętle">🔹 Instrukcje warunkowe i pętle</h3>
 <p>PL/SQL pozwala na użycie:</p>
-<ul>
-<li>IF…THEN…ELSE:</li>
-</ul>
+<blockquote class="blockquote">
+<p>IF…THEN…ELSE:</p>
+</blockquote>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">IF</span> v_wiek <span class="op">&gt;=</span> <span class="dv">18</span> <span class="cf">THEN</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Pełnoletni'</span>);</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">ELSE</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Niepełnoletni'</span>);</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="cf">IF</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>LOOP, WHILE, FOR – do powtarzania operacji:</li>
-</ul>
+<blockquote class="blockquote">
+<p>LOOP, WHILE, FOR – do powtarzania operacji:</p>
+</blockquote>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">FOR</span> i <span class="kw">IN</span> <span class="dv">1</span><span class="op">..</span><span class="dv">5</span> <span class="cf">LOOP</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    DBMS_OUTPUT.PUT_LINE(<span class="st">'Liczba: '</span> <span class="op">||</span> i);</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> <span class="cf">LOOP</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -340,10 +315,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="operacje-na-danych-w-plsql" class="level2">
 <h2 class="anchored" data-anchor-id="operacje-na-danych-w-plsql">2️⃣ Operacje na danych w PL/SQL</h2>
 <p>PL/SQL umożliwia wykonywanie standardowych operacji SQL:</p>
-<ul>
-<li>INSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.</li>
-</ul>
-<p>Przykład aktualizacji studenta:</p>
+<blockquote class="blockquote">
+<p>INSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.</p>
+</blockquote>
+<p>Przykład aktualizacji danych:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UPDATE</span> Studenci</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SET</span> Wiek <span class="op">=</span> <span class="dv">26</span></span>
@@ -351,58 +326,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>można grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.</p>
-</section>
-<section id="przetwarzanie-transakcyjne" class="level2">
-<h2 class="anchored" data-anchor-id="przetwarzanie-transakcyjne">3️⃣ Przetwarzanie transakcyjne</h2>
-<section id="co-to-jest-transakcja" class="level3">
-<h3 class="anchored" data-anchor-id="co-to-jest-transakcja">🔹 Co to jest transakcja?</h3>
-<p>Transakcja to jednostka pracy w bazie danych, która:</p>
-<ul>
-<li>wykonuje kilka operacji jako całość,</li>
-<li>jest atomowa – albo wszystkie operacje się powiodą, albo żadna,</li>
-<li>zapewnia spójność danych (ACID).</li>
-</ul>
-</section>
-<section id="polecenia-transakcyjne" class="level3">
-<h3 class="anchored" data-anchor-id="polecenia-transakcyjne">🔹 Polecenia transakcyjne</h3>
-<ul>
-<li>COMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.</li>
-<li>ROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.</li>
-<li>SAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.</li>
-</ul>
-<p>Przykład użycia transakcji:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> Studenci <span class="kw">VALUES</span>(<span class="dv">12346</span>, <span class="st">'Anna'</span>, <span class="st">'Kowalska'</span>, <span class="dv">21</span>);</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">UPDATE</span> Kursy <span class="kw">SET</span> IloscMiejsc <span class="op">=</span> IloscMiejsc <span class="op">-</span> <span class="dv">1</span> <span class="kw">WHERE</span> KursID <span class="op">=</span> <span class="dv">10</span>;</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">COMMIT</span>;</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>obie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie.</p>
-<p>Jeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.</p>
-</section>
-</section>
-<section id="indeksy-w-bazie-danych" class="level2">
-<h2 class="anchored" data-anchor-id="indeksy-w-bazie-danych">4️⃣ Indeksy w bazie danych</h2>
-<section id="co-to-jest-indeks" class="level3">
-<h3 class="anchored" data-anchor-id="co-to-jest-indeks">🔹 Co to jest indeks?</h3>
-<ul>
-<li>Indeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.</li>
-<li>Działa podobnie jak spis treści w książce.</li>
-</ul>
-<p>Przykład tworzenia indeksu:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_studenci_nazwisko</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> Studenci(Nazwisko);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>ndeks przyspiesza wyszukiwanie po kolumnie Nazwisko. Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.</p>
-</section>
-<section id="rodzaje-indeksów" class="level3">
-<h3 class="anchored" data-anchor-id="rodzaje-indeksów">🔹 Rodzaje indeksów</h3>
-<ul>
-<li>Jedno-kolumnowe – indeks na jednej kolumnie.</li>
-<li>Wielokolumnowe (composite) – indeks na kilku kolumnach razem.</li>
-<li>Unikalne – zapewniają unikalność wartości w kolumnie.</li>
-</ul>
-<p>Dobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.</p>
-</section>
 </section>
 <section id="dlaczego-optymalizacja-jest-ważna" class="level2">
 <h2 class="anchored" data-anchor-id="dlaczego-optymalizacja-jest-ważna">💡 Dlaczego optymalizacja jest ważna?</h2>
@@ -469,7 +392,7 @@ Silnik SQL analizuje składnię zapytania, przepisuje je logicznie, wybiera najt
 <h2 class="anchored" data-anchor-id="przykład-znaczenia-optymalizacji">📊 Przykład znaczenia optymalizacji</h2>
 <p>Wyobraźmy sobie tabelę <strong><code>orders</code></strong> z 10 milionami zamówień.<br>
 Chcemy znaleźć wszystkie zamówienia z ostatnich 30 dni:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> orders <span class="kw">WHERE</span> order_date <span class="op">&gt;=</span> <span class="fu">CURRENT_DATE</span> <span class="op">-</span> <span class="dt">INTERVAL</span> <span class="st">'30 days'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> orders <span class="kw">WHERE</span> order_date <span class="op">&gt;=</span> <span class="fu">CURRENT_DATE</span> <span class="op">-</span> <span class="dt">INTERVAL</span> <span class="st">'30 days'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="scenariusz-a-brak-indeksu" class="level3">
 <h3 class="anchored" data-anchor-id="scenariusz-a-brak-indeksu">Scenariusz A – brak indeksu</h3>
 <p>Silnik musi przeskanować całą tabelę (tzw. <strong>Seq Scan</strong>). Każdy wiersz jest sprawdzany, czy spełnia warunek <code>order_date &gt;= ...</code>.</p>
@@ -482,7 +405,7 @@ Chcemy znaleźć wszystkie zamówienia z ostatnich 30 dni:</p>
 <section id="scenariusz-b-z-indeksem" class="level3">
 <h3 class="anchored" data-anchor-id="scenariusz-b-z-indeksem">Scenariusz B – z indeksem</h3>
 <p>Dodajemy indeks:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_orders_date <span class="kw">ON</span> orders(order_date);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_orders_date <span class="kw">ON</span> orders(order_date);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Silnik teraz korzysta z <strong>Index Scan</strong>, czyli odczytu tylko fragmentu danych pasujących do warunku.</p>
 <ul>
 <li>⏱️ Czas wykonania: ~0.03 s<br>
@@ -490,15 +413,14 @@ Chcemy znaleźć wszystkie zamówienia z ostatnich 30 dni:</p>
 <li>💾 Operacje I/O: minimalne</li>
 </ul>
 <p>➡️ <strong>100× szybsze zapytanie</strong> – bez zmiany jednej linijki logiki, tylko dzięki optymalizacji struktury danych.</p>
-<hr>
 </section>
 </section>
-<section id="jak-działa-optymalizator-zapytań-sql" class="level1">
-<h1>⚙️ Jak działa optymalizator zapytań SQL</h1>
+<section id="jak-działa-optymalizator-zapytań-sql" class="level2">
+<h2 class="anchored" data-anchor-id="jak-działa-optymalizator-zapytań-sql">⚙️ Jak działa optymalizator zapytań SQL</h2>
 <p>Każde zapytanie SQL, które wysyłasz do bazy danych, przechodzi <strong>proces planowania i wykonania</strong>.<br>
 Silnik SQL <strong>nie wykonuje zapytania dokładnie tak, jak je napisałeś</strong> — najpierw szuka <strong>najbardziej efektywnego sposobu</strong> uzyskania tego samego wyniku.</p>
 <p>Tym właśnie zajmuje się <strong>optymalizator zapytań (Query Optimizer)</strong>.</p>
-<hr>
+</section>
 <section id="czym-jest-optymalizator-zapytań" class="level2">
 <h2 class="anchored" data-anchor-id="czym-jest-optymalizator-zapytań">🧠 Czym jest optymalizator zapytań?</h2>
 <p>Optymalizator analizuje zapytanie i decyduje, <strong>w jaki sposób najlepiej pobrać dane</strong>.<br>
@@ -516,14 +438,13 @@ Nie zmienia logiki zapytania, ale może całkowicie zmienić:</p>
 <p>💡 <em>Optymalizator to planista — nie wykonuje zapytania sam,<br>
 ale układa plan działania tak, by wynik uzyskać jak najszybciej i najtaniej.</em></p>
 </blockquote>
-<hr>
 </section>
 <section id="etapy-przetwarzania-zapytania" class="level2">
 <h2 class="anchored" data-anchor-id="etapy-przetwarzania-zapytania">🔄 Etapy przetwarzania zapytania</h2>
 <p>Dla przykładu:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, salary </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> employees </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> department_id <span class="op">=</span> <span class="dv">10</span> <span class="kw">AND</span> salary <span class="op">&gt;</span> <span class="dv">5000</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, salary </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> employees </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> department_id <span class="op">=</span> <span class="dv">10</span> <span class="kw">AND</span> salary <span class="op">&gt;</span> <span class="dv">5000</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Silnik przechodzi przez kilka logicznych etapów:</p>
 <section id="parsing-analiza-składniowa" class="level3">
 <h3 class="anchored" data-anchor-id="parsing-analiza-składniowa">1. Parsing (analiza składniowa)</h3>
@@ -549,13 +470,24 @@ ale układa plan działania tak, by wynik uzyskać jak najszybciej i najtaniej.<
 </section>
 <section id="optimization-planowanie-kosztowe" class="level3">
 <h3 class="anchored" data-anchor-id="optimization-planowanie-kosztowe">3. Optimization (planowanie kosztowe)</h3>
-<p>Optymalizator analizuje różne plany wykonania: - który indeks użyć,<br>
-- w jakiej kolejności łączyć tabele,<br>
-- jakiego algorytmu użyć (<code>hash join</code>, <code>merge join</code>, <code>nested loop</code>).</p>
-<p>Każdy plan ma przypisany <strong>koszt (cost estimate)</strong> oparty na: - liczbie wierszy,<br>
-- selektywności warunków,<br>
-- dostępnych indeksach,<br>
-- statystykach i kosztach I/O oraz CPU.</p>
+<p>Optymalizator analizuje różne plany wykonania:</p>
+<ul>
+<li>który indeks użyć,<br>
+</li>
+<li>w jakiej kolejności łączyć tabele,<br>
+</li>
+<li>jakiego algorytmu użyć (<code>hash join</code>, <code>merge join</code>, <code>nested loop</code>).</li>
+</ul>
+<p>Każdy plan ma przypisany <strong>koszt (cost estimate)</strong> oparty na:</p>
+<ul>
+<li>liczbie wierszy,<br>
+</li>
+<li>selektywności warunków,<br>
+</li>
+<li>dostępnych indeksach,<br>
+</li>
+<li>statystykach i kosztach I/O oraz CPU.</li>
+</ul>
 <blockquote class="blockquote">
 <p>🧮 Optymalizator nie wykonuje zapytań — <strong>symuluje scenariusze</strong> i wybiera ten o najniższym koszcie.</p>
 </blockquote>
@@ -565,35 +497,44 @@ ale układa plan działania tak, by wynik uzyskać jak najszybciej i najtaniej.<
 <p>Po wyborze najlepszego planu, optymalizator przekazuje go do modułu wykonawczego.<br>
 Plan opisuje krok po kroku, jak dane zostaną pobrane i przetworzone.</p>
 <p>Możemy go podejrzeć poleceniem:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> <span class="op">..</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> <span class="op">..</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>lub</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span> <span class="kw">SELECT</span> <span class="op">..</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span> <span class="kw">SELECT</span> <span class="op">..</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="analiza-planu-zapytania-explain" class="level1">
 <h1>🔍 Analiza planu zapytania (EXPLAIN)</h1>
 <p>Jednym z najważniejszych narzędzi w optymalizacji SQL jest komenda <strong><code>EXPLAIN</code></strong>.<br>
 Pozwala „zajrzeć do środka” silnika bazy danych i zobaczyć, <strong>jak zapytanie zostało zaplanowane i wykonane</strong>.</p>
-<p>Dzięki niej możemy: - zrozumieć, dlaczego zapytanie działa wolno,<br>
-- sprawdzić, czy używany jest indeks,<br>
-- ocenić, ile operacji baza musi wykonać, by uzyskać wynik.</p>
+<p>Dzięki niej możemy:</p>
+<ul>
+<li>zrozumieć, dlaczego zapytanie działa wolno,<br>
+</li>
+<li>sprawdzić, czy używany jest indeks,<br>
+</li>
+<li>ocenić, ile operacji baza musi wykonać, by uzyskać wynik.</li>
+</ul>
 <blockquote class="blockquote">
 <p>🧠 <em>Nie zgaduj, dlaczego Twoje zapytanie jest wolne — zobacz plan wykonania i sprawdź, co naprawdę robi baza.</em></p>
 </blockquote>
 <section id="co-to-jest-plan-zapytania" class="level2">
 <h2 class="anchored" data-anchor-id="co-to-jest-plan-zapytania">⚙️ Co to jest plan zapytania?</h2>
 <p>Plan zapytania to <strong>opis kroków</strong>, jakie silnik bazy danych musi wykonać, by uzyskać wynik.<br>
-Każdy krok reprezentuje konkretną operację — np.: - <strong>Scan</strong> (odczyt danych z tabeli lub indeksu), - <strong>Join</strong> (łączenie danych z kilku tabel), - <strong>Sort</strong> (sortowanie wyników), - <strong>Aggregate</strong> (sumowanie, grupowanie, liczenie).</p>
+Każdy krok reprezentuje konkretną operację — np.:</p>
+<ul>
+<li><strong>Scan</strong> (odczyt danych z tabeli lub indeksu),</li>
+<li><strong>Join</strong> (łączenie danych z kilku tabel),</li>
+<li><strong>Sort</strong> (sortowanie wyników),</li>
+<li><strong>Aggregate</strong> (sumowanie, grupowanie, liczenie).</li>
+</ul>
 <p>Każdy z tych kroków ma przypisany <strong>szacowany koszt</strong> — liczbową wartość określającą, ile operacji CPU, I/O lub pamięci wymaga jego wykonanie.</p>
 </section>
 <section id="składnia-polecenia-explain" class="level2">
 <h2 class="anchored" data-anchor-id="składnia-polecenia-explain">🧩 Składnia polecenia <code>EXPLAIN</code></h2>
 <p>W większości systemów baz danych można użyć <code>EXPLAIN</code> na początku dowolnego zapytania:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> employees <span class="kw">WHERE</span> department_id <span class="op">=</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> employees <span class="kw">WHERE</span> department_id <span class="op">=</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Aby uzyskać więcej szczegółów, można dodać:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> employees <span class="kw">WHERE</span> department_id <span class="op">=</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span> <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> employees <span class="kw">WHERE</span> department_id <span class="op">=</span> <span class="dv">10</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>📊 Różnica:</p>
 <ul>
 <li>EXPLAIN — pokazuje plan teoretyczny (na podstawie statystyk i kosztów),</li>
@@ -602,24 +543,24 @@ Każdy krok reprezentuje konkretną operację — np.: - <strong>Scan</strong> (
 <section id="przykład-w-postgresql" class="level3">
 <h3 class="anchored" data-anchor-id="przykład-w-postgresql">🧠 Przykład w PostgreSQL</h3>
 <p>Załóżmy, że mamy tabelę:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> orders (</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  customer_id <span class="dt">INTEGER</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  order_date <span class="dt">DATE</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  total <span class="dt">DECIMAL</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_orders_customer <span class="kw">ON</span> orders(customer_id);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> orders (</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">id</span> SERIAL <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  customer_id <span class="dt">INTEGER</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  order_date <span class="dt">DATE</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  total <span class="dt">DECIMAL</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_orders_customer <span class="kw">ON</span> orders(customer_id);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>i wykonujemy zapytanie:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> orders <span class="kw">WHERE</span> customer_id <span class="op">=</span> <span class="dv">42</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> orders <span class="kw">WHERE</span> customer_id <span class="op">=</span> <span class="dv">42</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="wynik-plan-zapytania" class="level3">
 <h3 class="anchored" data-anchor-id="wynik-plan-zapytania">🔹 Wynik (plan zapytania):</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">Index</span> <span class="kw">Scan</span> <span class="kw">using</span> idx_orders_customer <span class="kw">on</span> orders  (<span class="kw">cost</span><span class="op">=</span><span class="dv">0</span>.<span class="dv">29</span><span class="op">..</span><span class="fl">8.50</span> <span class="kw">rows</span><span class="op">=</span><span class="dv">3</span> width<span class="op">=</span><span class="dv">48</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Index</span> Cond: (customer_id <span class="op">=</span> <span class="dv">42</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Planning <span class="dt">Time</span>: <span class="fl">0.100</span> ms</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>Execution <span class="dt">Time</span>: <span class="fl">0.030</span> ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">Index</span> <span class="kw">Scan</span> <span class="kw">using</span> idx_orders_customer <span class="kw">on</span> orders  (<span class="kw">cost</span><span class="op">=</span><span class="dv">0</span>.<span class="dv">29</span><span class="op">..</span><span class="fl">8.50</span> <span class="kw">rows</span><span class="op">=</span><span class="dv">3</span> width<span class="op">=</span><span class="dv">48</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Index</span> Cond: (customer_id <span class="op">=</span> <span class="dv">42</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>Planning <span class="dt">Time</span>: <span class="fl">0.100</span> ms</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>Execution <span class="dt">Time</span>: <span class="fl">0.030</span> ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -666,12 +607,12 @@ Każdy krok reprezentuje konkretną operację — np.: - <strong>Scan</strong> (
 <section id="porównanie-brak-indeksu" class="level3">
 <h3 class="anchored" data-anchor-id="porównanie-brak-indeksu">🔎 Porównanie: brak indeksu</h3>
 <p>Jeśli usuniemy indeks i uruchomimy to samo zapytanie:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> orders <span class="kw">WHERE</span> customer_id <span class="op">=</span> <span class="dv">42</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> orders <span class="kw">WHERE</span> customer_id <span class="op">=</span> <span class="dv">42</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>otrzymamy:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Seq <span class="kw">Scan</span> <span class="kw">on</span> orders  (<span class="kw">cost</span><span class="op">=</span><span class="dv">0</span>.<span class="dv">00</span><span class="op">..</span><span class="fl">450.00</span> <span class="kw">rows</span><span class="op">=</span><span class="dv">3</span> width<span class="op">=</span><span class="dv">48</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Filter</span>: (customer_id <span class="op">=</span> <span class="dv">42</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Execution <span class="dt">Time</span>: <span class="fl">22.5</span> ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Seq <span class="kw">Scan</span> <span class="kw">on</span> orders  (<span class="kw">cost</span><span class="op">=</span><span class="dv">0</span>.<span class="dv">00</span><span class="op">..</span><span class="fl">450.00</span> <span class="kw">rows</span><span class="op">=</span><span class="dv">3</span> width<span class="op">=</span><span class="dv">48</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">Filter</span>: (customer_id <span class="op">=</span> <span class="dv">42</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Execution <span class="dt">Time</span>: <span class="fl">22.5</span> ms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>📉 Różnica:</p>
 <ul>
 <li>Baza musi przeskanować całą tabelę (Seq Scan),</li>
@@ -759,8 +700,8 @@ Z indeksem, silnik może odczytać <strong>tylko te dane</strong>, które spełn
 <li>🔄 <strong>Przyspieszenie sortowania i łączenia tabel</strong> (<code>JOIN</code>), jeśli indeks obejmuje kolumny używane w warunkach</li>
 </ul>
 </section>
-<section id="rodzaje-indeksów-1" class="level3">
-<h3 class="anchored" data-anchor-id="rodzaje-indeksów-1">🔹 Rodzaje indeksów</h3>
+<section id="rodzaje-indeksów" class="level3">
+<h3 class="anchored" data-anchor-id="rodzaje-indeksów">🔹 Rodzaje indeksów</h3>
 <p>Najczęściej spotykane:</p>
 <ol type="1">
 <li><strong>B-Tree (balanced tree)</strong> – najpopularniejszy typ, sprawdza się w większości wyszukiwań, zakresów i sortowań<br>
@@ -800,10 +741,10 @@ Z indeksem, silnik może odczytać <strong>tylko te dane</strong>, które spełn
 <h2 class="anchored" data-anchor-id="praktyczne-aspekty-użycia-indeksów">Praktyczne aspekty użycia indeksów</h2>
 <p>W tej sekcji rozszerzamy temat indeksów, unikając powtórzenia wcześniejszych przykładów z SELECT po <code>customer_id</code>.</p>
 <p>Przy łączeniu tabel indeksy znacząco przyspieszają zapytania:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> o.<span class="kw">id</span>, c.name</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> orders o</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> customers c <span class="kw">ON</span> o.customer_id <span class="op">=</span> c.<span class="kw">id</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> c.region <span class="op">=</span> <span class="st">'Europe'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> o.<span class="kw">id</span>, c.name</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> orders o</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> customers c <span class="kw">ON</span> o.customer_id <span class="op">=</span> c.<span class="kw">id</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> c.region <span class="op">=</span> <span class="st">'Europe'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Indeks na customers.id i orders.customer_id przyspiesza JOIN</li>
 <li>Indeks na customers.region przyspiesza filtrowanie po regionie</li>
@@ -812,29 +753,33 @@ Z indeksem, silnik może odczytać <strong>tylko te dane</strong>, które spełn
 <section id="indeksy-a-sortowanie-i-grupowanie" class="level2">
 <h2 class="anchored" data-anchor-id="indeksy-a-sortowanie-i-grupowanie">Indeksy a sortowanie i grupowanie</h2>
 <p>Indeksy na kolumnach używanych w ORDER BY lub GROUP BY pozwalają uniknąć kosztownych operacji sortowania w pamięci:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> customer_id, <span class="fu">SUM</span>(total) </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> orders </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> customer_id </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">SUM</span>(total) <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> customer_id, <span class="fu">SUM</span>(total) </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> orders </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> customer_id </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> <span class="fu">SUM</span>(total) <span class="kw">DESC</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Indeks na customer_id może przyspieszyć agregację</li>
 <li>Indeks kompozytowy z kolumną używaną w ORDER BY może wyeliminować dodatkowe sortowanie</li>
 </ul>
-<p>🔹 Wpływ indeksów na modyfikacje danych</p>
+<section id="wpływ-indeksów-na-modyfikacje-danych" class="level3">
+<h3 class="anchored" data-anchor-id="wpływ-indeksów-na-modyfikacje-danych">🔹 Wpływ indeksów na modyfikacje danych</h3>
 <ul>
 <li>Operacje INSERT, UPDATE, DELETE wymagają aktualizacji indeksów</li>
 <li>Zbyt wiele indeksów może spowolnić zapis danych</li>
 <li>W praktyce wybieramy najbardziej potrzebne indeksy i monitorujemy ich wpływ</li>
 </ul>
-<p>🔹 Wskazówki praktyczne</p>
+</section>
+<section id="wskazówki-praktyczne" class="level3">
+<h3 class="anchored" data-anchor-id="wskazówki-praktyczne">🔹 Wskazówki praktyczne</h3>
 <ul>
 <li>Twórz indeksy tylko na kolumnach często filtrowanych lub sortowanych</li>
 <li>Analizuj plany wykonania (EXPLAIN, EXPLAIN ANALYZE)</li>
 <li>Zwracaj uwagę na koszt operacji (cost=…) i liczbę wierszy (rows=…)</li>
-<li><h2 id="równoważ-czas-odczytu-i-zapis-danych-nie-każdy-indeks-jest-opłacalny" class="anchored">Równoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny</h2></li>
+<li>Równoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny</li>
 </ul>
 
 
+</section>
 </section>
 </section>
 

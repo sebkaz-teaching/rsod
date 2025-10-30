@@ -11,31 +11,7 @@
     "href": "lectures/wyklad4.html",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "",
-    "text": "Celem wykładu jest wprowadzenie do języka proceduralnego PL/SQL, pokazanie zasad przetwarzania transakcyjnego w bazach danych oraz omówienie roli indeksów w przyspieszaniu wyszukiwania danych.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad4.html#temat-programowanie-w-plsql-i-podstawy-optymalizacji",
-    "href": "lectures/wyklad4.html#temat-programowanie-w-plsql-i-podstawy-optymalizacji",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
-    "section": "",
-    "text": "Celem wykładu jest wprowadzenie do języka proceduralnego PL/SQL, pokazanie zasad przetwarzania transakcyjnego w bazach danych oraz omówienie roli indeksów w przyspieszaniu wyszukiwania danych.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad4.html#cele-wykładu",
-    "href": "lectures/wyklad4.html#cele-wykładu",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
-    "section": "🧠 Cele wykładu",
-    "text": "🧠 Cele wykładu\nStudent po wykładzie będzie potrafił:\n\nzrozumieć różnice między SQL a PL/SQL,\n\npisać proste bloki PL/SQL do operowania na danych,\n\nzarządzać transakcjami (commit, rollback),\n\nrozumieć rolę i zasady tworzenia indeksów w bazie danych.",
+    "text": "PL/SQL to proceduralny język rozszerzający SQL w systemach Oracle i kompatybilnych.\n\nUmożliwia użycie instrukcji warunkowych, pętli, zmiennych i procedur, czego SQL nie oferuje w formie deklaratywnej.\n\nPrzykład prostego bloku PL/SQL:\nBEGIN\n    DBMS_OUTPUT.PUT_LINE('Witaj w świecie PL/SQL!');\nEND;\n/\nKod ten uruchamia blok proceduralny, który wypisuje komunikat.\nBEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.\n\n\n\nPL/SQL pozwala tworzyć zmienne i przypisywać im wartości.\nDECLARE\n    v_imie VARCHAR2(50);\n    v_wiek NUMBER;\nBEGIN\n    v_imie := 'Jan';\n    v_wiek := 25;\n    DBMS_OUTPUT.PUT_LINE('Student: ' || v_imie || ', wiek: ' || v_wiek);\nEND;\n/\nZmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.\n\n\n\nPL/SQL pozwala na użycie:\n\nIF…THEN…ELSE:\n\nIF v_wiek &gt;= 18 THEN\n    DBMS_OUTPUT.PUT_LINE('Pełnoletni');\nELSE\n    DBMS_OUTPUT.PUT_LINE('Niepełnoletni');\nEND IF;\n\nLOOP, WHILE, FOR – do powtarzania operacji:\n\nFOR i IN 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);\nEND LOOP;\nInstrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -46,8 +22,8 @@
     "objectID": "lectures/wyklad4.html#wprowadzenie-do-plsql",
     "href": "lectures/wyklad4.html#wprowadzenie-do-plsql",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
-    "section": "1️⃣ Wprowadzenie do PL/SQL",
-    "text": "1️⃣ Wprowadzenie do PL/SQL\n\n🔹 Czym jest PL/SQL?\n\nPL/SQL to proceduralny język rozszerzający SQL w systemach Oracle i kompatybilnych.\n\nUmożliwia użycie instrukcji warunkowych, pętli, zmiennych i procedur, czego SQL nie oferuje w formie deklaratywnej.\n\nPrzykład prostego bloku PL/SQL:\nBEGIN\n    DBMS_OUTPUT.PUT_LINE('Witaj w świecie PL/SQL!');\nEND;\n/\nKod ten uruchamia blok proceduralny, który wypisuje komunikat.\nBEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.\n\n\n🔹 Zmienne i typy danych\nPL/SQL pozwala tworzyć zmienne i przypisywać im wartości.\nDECLARE\n    v_imie VARCHAR2(50);\n    v_wiek NUMBER;\nBEGIN\n    v_imie := 'Jan';\n    v_wiek := 25;\n    DBMS_OUTPUT.PUT_LINE('Student: ' || v_imie || ', wiek: ' || v_wiek);\nEND;\n/\nZmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.\n\n\n🔹 Instrukcje warunkowe i pętle\nPL/SQL pozwala na użycie:\n\nIF…THEN…ELSE:\n\nIF v_wiek &gt;= 18 THEN\n    DBMS_OUTPUT.PUT_LINE('Pełnoletni');\nELSE\n    DBMS_OUTPUT.PUT_LINE('Niepełnoletni');\nEND IF;\n\nLOOP, WHILE, FOR – do powtarzania operacji:\n\nFOR i IN 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);\nEND LOOP;\nInstrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych.",
+    "section": "",
+    "text": "PL/SQL to proceduralny język rozszerzający SQL w systemach Oracle i kompatybilnych.\n\nUmożliwia użycie instrukcji warunkowych, pętli, zmiennych i procedur, czego SQL nie oferuje w formie deklaratywnej.\n\nPrzykład prostego bloku PL/SQL:\nBEGIN\n    DBMS_OUTPUT.PUT_LINE('Witaj w świecie PL/SQL!');\nEND;\n/\nKod ten uruchamia blok proceduralny, który wypisuje komunikat.\nBEGIN rozpoczyna blok, END; kończy, a / uruchamia go w SQL*Plus.\n\n\n\nPL/SQL pozwala tworzyć zmienne i przypisywać im wartości.\nDECLARE\n    v_imie VARCHAR2(50);\n    v_wiek NUMBER;\nBEGIN\n    v_imie := 'Jan';\n    v_wiek := 25;\n    DBMS_OUTPUT.PUT_LINE('Student: ' || v_imie || ', wiek: ' || v_wiek);\nEND;\n/\nZmienne umożliwiają przechowywanie danych tymczasowo w trakcie wykonywania programu.\n\n\n\nPL/SQL pozwala na użycie:\n\nIF…THEN…ELSE:\n\nIF v_wiek &gt;= 18 THEN\n    DBMS_OUTPUT.PUT_LINE('Pełnoletni');\nELSE\n    DBMS_OUTPUT.PUT_LINE('Niepełnoletni');\nEND IF;\n\nLOOP, WHILE, FOR – do powtarzania operacji:\n\nFOR i IN 1..5 LOOP\n    DBMS_OUTPUT.PUT_LINE('Liczba: ' || i);\nEND LOOP;\nInstrukcje warunkowe i pętle pozwalają w pełni programować logikę w bazie danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -59,31 +35,7 @@
     "href": "lectures/wyklad4.html#operacje-na-danych-w-plsql",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "2️⃣ Operacje na danych w PL/SQL",
-    "text": "2️⃣ Operacje na danych w PL/SQL\nPL/SQL umożliwia wykonywanie standardowych operacji SQL:\n\nINSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.\n\nPrzykład aktualizacji studenta:\nBEGIN\n    UPDATE Studenci\n    SET Wiek = 26\n    WHERE NrIndeksu = 12345;\nEND;\n/\nmożna grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad4.html#przetwarzanie-transakcyjne",
-    "href": "lectures/wyklad4.html#przetwarzanie-transakcyjne",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
-    "section": "3️⃣ Przetwarzanie transakcyjne",
-    "text": "3️⃣ Przetwarzanie transakcyjne\n\n🔹 Co to jest transakcja?\nTransakcja to jednostka pracy w bazie danych, która:\n\nwykonuje kilka operacji jako całość,\njest atomowa – albo wszystkie operacje się powiodą, albo żadna,\nzapewnia spójność danych (ACID).\n\n\n\n🔹 Polecenia transakcyjne\n\nCOMMIT – zatwierdza wszystkie zmiany wykonane w transakcji.\nROLLBACK – wycofuje wszystkie zmiany od ostatniego commit.\nSAVEPOINT – pozwala ustawić punkt częściowego cofnięcia.\n\nPrzykład użycia transakcji:\nBEGIN\n    INSERT INTO Studenci VALUES(12346, 'Anna', 'Kowalska', 21);\n    UPDATE Kursy SET IloscMiejsc = IloscMiejsc - 1 WHERE KursID = 10;\n    COMMIT;\nEND;\n/\nobie operacje – wstawienie studenta i zmniejszenie liczby miejsc – zostaną zatwierdzone jednocześnie.\nJeśli jedna się nie powiedzie, można użyć ROLLBACK, aby przywrócić stan poprzedni.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Podstawy PL/SQL, transakcje i indeksy"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad4.html#indeksy-w-bazie-danych",
-    "href": "lectures/wyklad4.html#indeksy-w-bazie-danych",
-    "title": "Podstawy PL/SQL, transakcje i indeksy",
-    "section": "4️⃣ Indeksy w bazie danych",
-    "text": "4️⃣ Indeksy w bazie danych\n\n🔹 Co to jest indeks?\n\nIndeks to struktura danych, która przyspiesza wyszukiwanie rekordów w tabeli.\nDziała podobnie jak spis treści w książce.\n\nPrzykład tworzenia indeksu:\nCREATE INDEX idx_studenci_nazwisko\nON Studenci(Nazwisko);\nndeks przyspiesza wyszukiwanie po kolumnie Nazwisko. Nie zawsze każdy indeks jest potrzebny – zbyt wiele indeksów spowalnia operacje INSERT/UPDATE/DELETE.\n\n\n🔹 Rodzaje indeksów\n\nJedno-kolumnowe – indeks na jednej kolumnie.\nWielokolumnowe (composite) – indeks na kilku kolumnach razem.\nUnikalne – zapewniają unikalność wartości w kolumnie.\n\nDobór indeksów wymaga analizy typowych zapytań w systemie, aby zwiększyć wydajność.",
+    "text": "2️⃣ Operacje na danych w PL/SQL\nPL/SQL umożliwia wykonywanie standardowych operacji SQL:\n\nINSERT, UPDATE, DELETE – bezpośrednio w blokach proceduralnych.\n\nPrzykład aktualizacji danych:\nBEGIN\n    UPDATE Studenci\n    SET Wiek = 26\n    WHERE NrIndeksu = 12345;\nEND;\n/\nmożna grupować wiele operacji w jednym bloku, co ułatwia zarządzanie spójnością danych.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -139,6 +91,18 @@
     ]
   },
   {
+    "objectID": "lectures/wyklad4.html#jak-działa-optymalizator-zapytań-sql",
+    "href": "lectures/wyklad4.html#jak-działa-optymalizator-zapytań-sql",
+    "title": "Podstawy PL/SQL, transakcje i indeksy",
+    "section": "⚙️ Jak działa optymalizator zapytań SQL",
+    "text": "⚙️ Jak działa optymalizator zapytań SQL\nKażde zapytanie SQL, które wysyłasz do bazy danych, przechodzi proces planowania i wykonania.\nSilnik SQL nie wykonuje zapytania dokładnie tak, jak je napisałeś — najpierw szuka najbardziej efektywnego sposobu uzyskania tego samego wyniku.\nTym właśnie zajmuje się optymalizator zapytań (Query Optimizer).",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Podstawy PL/SQL, transakcje i indeksy"
+    ]
+  },
+  {
     "objectID": "lectures/wyklad4.html#czym-jest-optymalizator-zapytań",
     "href": "lectures/wyklad4.html#czym-jest-optymalizator-zapytań",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
@@ -155,7 +119,7 @@
     "href": "lectures/wyklad4.html#etapy-przetwarzania-zapytania",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "🔄 Etapy przetwarzania zapytania",
-    "text": "🔄 Etapy przetwarzania zapytania\nDla przykładu:\nSELECT name, salary \nFROM employees \nWHERE department_id = 10 AND salary &gt; 5000;\nSilnik przechodzi przez kilka logicznych etapów:\n\n1. Parsing (analiza składniowa)\n\nsprawdza poprawność składni SQL,\n\nweryfikuje istnienie tabel i kolumn,\n\ntworzy drzewo zapytania (parse tree).\n\n\n\n2. Rewriting (przepisanie logiczne)\n\nupraszcza warunki (WHERE TRUE, podwójne filtry),\n\nzamienia IN na EXISTS,\n\nłączy filtry logiczne (AND, OR),\n\nmoże przenosić warunki do podzapytań (predicate pushdown).\n\n\n\n3. Optimization (planowanie kosztowe)\nOptymalizator analizuje różne plany wykonania: - który indeks użyć,\n- w jakiej kolejności łączyć tabele,\n- jakiego algorytmu użyć (hash join, merge join, nested loop).\nKażdy plan ma przypisany koszt (cost estimate) oparty na: - liczbie wierszy,\n- selektywności warunków,\n- dostępnych indeksach,\n- statystykach i kosztach I/O oraz CPU.\n\n🧮 Optymalizator nie wykonuje zapytań — symuluje scenariusze i wybiera ten o najniższym koszcie.\n\n\n\n4. Execution Plan (plan wykonania)\nPo wyborze najlepszego planu, optymalizator przekazuje go do modułu wykonawczego.\nPlan opisuje krok po kroku, jak dane zostaną pobrane i przetworzone.\nMożemy go podejrzeć poleceniem:\nEXPLAIN SELECT ...\nlub\nEXPLAIN ANALYZE SELECT ...",
+    "text": "🔄 Etapy przetwarzania zapytania\nDla przykładu:\nSELECT name, salary \nFROM employees \nWHERE department_id = 10 AND salary &gt; 5000;\nSilnik przechodzi przez kilka logicznych etapów:\n\n1. Parsing (analiza składniowa)\n\nsprawdza poprawność składni SQL,\n\nweryfikuje istnienie tabel i kolumn,\n\ntworzy drzewo zapytania (parse tree).\n\n\n\n2. Rewriting (przepisanie logiczne)\n\nupraszcza warunki (WHERE TRUE, podwójne filtry),\n\nzamienia IN na EXISTS,\n\nłączy filtry logiczne (AND, OR),\n\nmoże przenosić warunki do podzapytań (predicate pushdown).\n\n\n\n3. Optimization (planowanie kosztowe)\nOptymalizator analizuje różne plany wykonania:\n\nktóry indeks użyć,\n\nw jakiej kolejności łączyć tabele,\n\njakiego algorytmu użyć (hash join, merge join, nested loop).\n\nKażdy plan ma przypisany koszt (cost estimate) oparty na:\n\nliczbie wierszy,\n\nselektywności warunków,\n\ndostępnych indeksach,\n\nstatystykach i kosztach I/O oraz CPU.\n\n\n🧮 Optymalizator nie wykonuje zapytań — symuluje scenariusze i wybiera ten o najniższym koszcie.\n\n\n\n4. Execution Plan (plan wykonania)\nPo wyborze najlepszego planu, optymalizator przekazuje go do modułu wykonawczego.\nPlan opisuje krok po kroku, jak dane zostaną pobrane i przetworzone.\nMożemy go podejrzeć poleceniem:\nEXPLAIN SELECT ...\nlub\nEXPLAIN ANALYZE SELECT ...",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -167,7 +131,7 @@
     "href": "lectures/wyklad4.html#co-to-jest-plan-zapytania",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "⚙️ Co to jest plan zapytania?",
-    "text": "⚙️ Co to jest plan zapytania?\nPlan zapytania to opis kroków, jakie silnik bazy danych musi wykonać, by uzyskać wynik.\nKażdy krok reprezentuje konkretną operację — np.: - Scan (odczyt danych z tabeli lub indeksu), - Join (łączenie danych z kilku tabel), - Sort (sortowanie wyników), - Aggregate (sumowanie, grupowanie, liczenie).\nKażdy z tych kroków ma przypisany szacowany koszt — liczbową wartość określającą, ile operacji CPU, I/O lub pamięci wymaga jego wykonanie.",
+    "text": "⚙️ Co to jest plan zapytania?\nPlan zapytania to opis kroków, jakie silnik bazy danych musi wykonać, by uzyskać wynik.\nKażdy krok reprezentuje konkretną operację — np.:\n\nScan (odczyt danych z tabeli lub indeksu),\nJoin (łączenie danych z kilku tabel),\nSort (sortowanie wyników),\nAggregate (sumowanie, grupowanie, liczenie).\n\nKażdy z tych kroków ma przypisany szacowany koszt — liczbową wartość określającą, ile operacji CPU, I/O lub pamięci wymaga jego wykonanie.",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -227,7 +191,7 @@
     "href": "lectures/wyklad4.html#indeksy-a-sortowanie-i-grupowanie",
     "title": "Podstawy PL/SQL, transakcje i indeksy",
     "section": "Indeksy a sortowanie i grupowanie",
-    "text": "Indeksy a sortowanie i grupowanie\nIndeksy na kolumnach używanych w ORDER BY lub GROUP BY pozwalają uniknąć kosztownych operacji sortowania w pamięci:\nSELECT customer_id, SUM(total) \nFROM orders \nGROUP BY customer_id \nORDER BY SUM(total) DESC;\n\nIndeks na customer_id może przyspieszyć agregację\nIndeks kompozytowy z kolumną używaną w ORDER BY może wyeliminować dodatkowe sortowanie\n\n🔹 Wpływ indeksów na modyfikacje danych\n\nOperacje INSERT, UPDATE, DELETE wymagają aktualizacji indeksów\nZbyt wiele indeksów może spowolnić zapis danych\nW praktyce wybieramy najbardziej potrzebne indeksy i monitorujemy ich wpływ\n\n🔹 Wskazówki praktyczne\n\nTwórz indeksy tylko na kolumnach często filtrowanych lub sortowanych\nAnalizuj plany wykonania (EXPLAIN, EXPLAIN ANALYZE)\nZwracaj uwagę na koszt operacji (cost=…) i liczbę wierszy (rows=…)\nRównoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny",
+    "text": "Indeksy a sortowanie i grupowanie\nIndeksy na kolumnach używanych w ORDER BY lub GROUP BY pozwalają uniknąć kosztownych operacji sortowania w pamięci:\nSELECT customer_id, SUM(total) \nFROM orders \nGROUP BY customer_id \nORDER BY SUM(total) DESC;\n\nIndeks na customer_id może przyspieszyć agregację\nIndeks kompozytowy z kolumną używaną w ORDER BY może wyeliminować dodatkowe sortowanie\n\n\n🔹 Wpływ indeksów na modyfikacje danych\n\nOperacje INSERT, UPDATE, DELETE wymagają aktualizacji indeksów\nZbyt wiele indeksów może spowolnić zapis danych\nW praktyce wybieramy najbardziej potrzebne indeksy i monitorujemy ich wpływ\n\n\n\n🔹 Wskazówki praktyczne\n\nTwórz indeksy tylko na kolumnach często filtrowanych lub sortowanych\nAnalizuj plany wykonania (EXPLAIN, EXPLAIN ANALYZE)\nZwracaj uwagę na koszt operacji (cost=…) i liczbę wierszy (rows=…)\nRównoważ czas odczytu i zapis danych – nie każdy indeks jest opłacalny",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -357,7 +321,7 @@
     "href": "index.html#kalendarz",
     "title": "Informacje ogólne",
     "section": "Kalendarz",
-    "text": "Kalendarz\n\nWykład dla grup: WEL23EV1S0, WEL23EA1S0\n\n\n09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)\n\n\n14.10.2025 Wtorek Wykład 2 - b. 61 sala 116 (9-10)\n\n\n15.10.2025 Środa Wykład 3 - b. 61 sala 116 (3-4)\n\n29.10.2025 Środa Wykład 4 - b. 61 sala 116 (9-10)\n30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)\n\n\n\nLaboratorium grupa WEL23EV1S0:\n\n25.11.2025 Wtorek - b. 61 sala 116\n04.12.2025 czwartek - b. 61 sala 116\n18.12.2025 czwartek - b. 61 sala 116\n08.01.2026 Czwartek - b. 61 sala 116\n22.01.2026 czwartek - b. 61 sala 116\n\n\n\nLaboratorium grupa WEL23EA1S0:\n\n13.11.2025 Czwartek Lab - b. 61 sala 116\n26.11.2025 środa Lab - b. 61 sala 116\n11.12.2025 czwartek - b. 61 sala 116\n15.01.2026 czwartek - b. 61 sala 116\n21.01.2026 środa - b. 61 sala 116",
+    "text": "Kalendarz\n\nWykład dla grup: WEL23EV1S0, WEL23EA1S0\n\n\n09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)\n\n\n14.10.2025 Wtorek Wykład 2 - b. 61 sala 116 (9-10)\n\n\n15.10.2025 Środa Wykład 3 - b. 61 sala 116 (3-4)\n\n\n29.10.2025 Środa Wykład 4 - b. 61 sala 116 (9-10)\n\n\n30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)\n\n\n\n\nLaboratorium grupa WEL23EV1S0:\n\n25.11.2025 Wtorek - b. 61 sala 116\n04.12.2025 czwartek - b. 61 sala 116\n18.12.2025 czwartek - b. 61 sala 116\n08.01.2026 Czwartek - b. 61 sala 116\n22.01.2026 czwartek - b. 61 sala 116\n\n\n\nLaboratorium grupa WEL23EA1S0:\n\n13.11.2025 Czwartek Lab - b. 61 sala 116\n26.11.2025 środa Lab - b. 61 sala 116\n11.12.2025 czwartek - b. 61 sala 116\n15.01.2026 czwartek - b. 61 sala 116\n21.01.2026 środa - b. 61 sala 116",
     "crumbs": [
       "Książki",
       "Informacje ogólne"
@@ -694,19 +658,7 @@
     "href": "lectures/wyklad5.html",
     "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "",
-    "text": "Celem wykładu jest:\n\npoznanie zasad transakcyjności i właściwości ACID,\nzrozumienie współbieżności i mechanizmów izolacji transakcji,\nzapoznanie się z pojęciem widoków (views) i ich zastosowaniami,\npraktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.",
-    "crumbs": [
-      "Książki",
-      "Wykłady",
-      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
-    ]
-  },
-  {
-    "objectID": "lectures/wyklad5.html#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków",
-    "href": "lectures/wyklad5.html#temat-mechanizmy-zapewniania-spójności-danych-i-wprowadzenie-do-widoków",
-    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
-    "section": "",
-    "text": "Celem wykładu jest:\n\npoznanie zasad transakcyjności i właściwości ACID,\nzrozumienie współbieżności i mechanizmów izolacji transakcji,\nzapoznanie się z pojęciem widoków (views) i ich zastosowaniami,\npraktyczne zastosowanie transakcji i widoków w SQL / PL/SQL.",
+    "text": "Transakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.\nTransakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.\nPrzykład:\nBEGIN;\nUPDATE Konta SET Saldo = Saldo - 100 WHERE NrKonta = 101;\nUPDATE Konta SET Saldo = Saldo + 100 WHERE NrKonta = 202;\nCOMMIT;\n➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).\n➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).\n\n\n\n\nBEGIN / START TRANSACTION – rozpoczęcie transakcji,\nCOMMIT – zatwierdzenie zmian,\nROLLBACK – cofnięcie zmian do stanu początkowego,\nSAVEPOINT – ustawienie punktu częściowego cofnięcia.\n\nBEGIN;\nINSERT INTO Studenci VALUES (1001, 'Anna', 'Nowak', 22);\nSAVEPOINT p1;\nUPDATE Studenci SET Wiek = 23 WHERE NrIndeksu = 1001;\nROLLBACK TO SAVEPOINT p1;\nCOMMIT;\n➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).\n➡️ Wstawienie rekordu pozostało",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -717,8 +669,8 @@
     "objectID": "lectures/wyklad5.html#transakcje-i-ich-właściwości-acid",
     "href": "lectures/wyklad5.html#transakcje-i-ich-właściwości-acid",
     "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
-    "section": "1️⃣ Transakcje i ich właściwości (ACID)",
-    "text": "1️⃣ Transakcje i ich właściwości (ACID)\n\n🔹 Co to jest transakcja?\nTransakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.\nTransakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.\nPrzykład:\nBEGIN;\nUPDATE Konta SET Saldo = Saldo - 100 WHERE NrKonta = 101;\nUPDATE Konta SET Saldo = Saldo + 100 WHERE NrKonta = 202;\nCOMMIT;\n➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).\n➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).\n\n\n🔹 Operacje sterujące transakcją\n\nBEGIN / START TRANSACTION – rozpoczęcie transakcji,\nCOMMIT – zatwierdzenie zmian,\nROLLBACK – cofnięcie zmian do stanu początkowego,\nSAVEPOINT – ustawienie punktu częściowego cofnięcia.\n\nBEGIN;\nINSERT INTO Studenci VALUES (1001, 'Anna', 'Nowak', 22);\nSAVEPOINT p1;\nUPDATE Studenci SET Wiek = 23 WHERE NrIndeksu = 1001;\nROLLBACK TO SAVEPOINT p1;\nCOMMIT;\n➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).\n➡️ Wstawienie rekordu pozostało",
+    "section": "",
+    "text": "Transakcja to logiczna jednostka pracy w bazie danych, składająca się z jednej lub wielu operacji (INSERT, UPDATE, DELETE, itp.), które powinny być wykonane całościowo.\nTransakcja to zbiór operacji, które albo wszystkie się powiodą, albo żadna – nie ma stanu pośredniego.\nPrzykład:\nBEGIN;\nUPDATE Konta SET Saldo = Saldo - 100 WHERE NrKonta = 101;\nUPDATE Konta SET Saldo = Saldo + 100 WHERE NrKonta = 202;\nCOMMIT;\n➡️ Jeśli obie aktualizacje się powiodą – zmiany zostaną zatwierdzone (COMMIT).\n➡️ Jeśli jedna z operacji się nie uda – baza może przywrócić stan sprzed transakcji (ROLLBACK).\n\n\n\n\nBEGIN / START TRANSACTION – rozpoczęcie transakcji,\nCOMMIT – zatwierdzenie zmian,\nROLLBACK – cofnięcie zmian do stanu początkowego,\nSAVEPOINT – ustawienie punktu częściowego cofnięcia.\n\nBEGIN;\nINSERT INTO Studenci VALUES (1001, 'Anna', 'Nowak', 22);\nSAVEPOINT p1;\nUPDATE Studenci SET Wiek = 23 WHERE NrIndeksu = 1001;\nROLLBACK TO SAVEPOINT p1;\nCOMMIT;\n➡️ Zmieniono wiek Anny, ale cofnięto tylko ostatnią operację (ROLLBACK TO p1).\n➡️ Wstawienie rekordu pozostało",
     "crumbs": [
       "Książki",
       "Wykłady",
@@ -743,6 +695,90 @@
     "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
     "section": "3️⃣ Poziomy izolacji transakcji",
     "text": "3️⃣ Poziomy izolacji transakcji\nBazy danych zapewniają różne poziomy izolacji, które równoważą spójność danych i wydajność.\n\n🔹 Przykład w PostgreSQL:\nBEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;\nSELECT * FROM Zamowienia WHERE KlientID = 10;\n-- Inna transakcja modyfikuje dane\nSELECT * FROM Zamowienia WHERE KlientID = 10;\nCOMMIT;\n➡️ Na poziomie REPEATABLE READ oba SELECT-y zobaczą ten sam zestaw danych, nawet jeśli inna transakcja je zmieniła w międzyczasie.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#podzapytanie-w-klauzuli-where-jednowartościowe",
+    "href": "lectures/wyklad5.html#podzapytanie-w-klauzuli-where-jednowartościowe",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 1. Podzapytanie w klauzuli WHERE (jednowartościowe)",
+    "text": "🔹 1. Podzapytanie w klauzuli WHERE (jednowartościowe)\nTo najczęstszy typ podzapytania.\nZapytanie główne wybiera dane na podstawie wartości zwróconej przez podzapytanie.\n\n🧩 Przykład:\nZnajdź książki napisane przez autora o nazwisku Sienkiewicz.\nSELECT tytul, rok\nFROM Ksiazki\nWHERE autor_id = (\n    SELECT autor_id\n    FROM Autorzy\n    WHERE nazwisko = 'Sienkiewicz'\n);\n\n\n📘 Opis działania:\n\nPodzapytanie wewnętrzne szuka identyfikatora autora autor_id, którego nazwisko to Sienkiewicz.\nZapytanie główne wybiera z tabeli Ksiazki tylko te rekordy, w których autor_id jest równy wynikowi podzapytania.\n\n\n🔸 Takie podzapytanie musi zwrócić jedną wartość (scalar subquery) – w przeciwnym razie wystąpi błąd.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#podzapytanie-zwracające-wiele-wartości-operator-in",
+    "href": "lectures/wyklad5.html#podzapytanie-zwracające-wiele-wartości-operator-in",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 2. Podzapytanie zwracające wiele wartości (operator IN)",
+    "text": "🔹 2. Podzapytanie zwracające wiele wartości (operator IN)\nJeśli podzapytanie zwraca więcej niż jeden rekord, używamy operatora IN.\n\n🧩 Przykład:\nZnajdź wszystkie książki autorów, których nazwiska zaczynają się na literę M.\nSELECT tytul, rok\nFROM Ksiazki\nWHERE autor_id IN (\n    SELECT autor_id\n    FROM Autorzy\n    WHERE nazwisko LIKE 'M%'\n);\n\n\n📘 Opis działania:\n\nPodzapytanie wewnętrzne zwraca listę identyfikatorów autorów, np. [1, 5, 7].\nZapytanie główne wybiera książki, których autor_id znajduje się na tej liście.\n\n\n🔸 Operator IN można traktować jak porównanie z „wieloma wartościami jednocześnie”.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#podzapytanie-w-klauzuli-select",
+    "href": "lectures/wyklad5.html#podzapytanie-w-klauzuli-select",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 3. Podzapytanie w klauzuli SELECT",
+    "text": "🔹 3. Podzapytanie w klauzuli SELECT\nPodzapytanie może też zwracać pojedynczą wartość (skalarną) i być użyte w liście kolumn.\n\n🧩 Przykład:\nWyświetl listę autorów wraz z liczbą ich książek.\nSELECT\n    a.imie,\n    a.nazwisko,\n    (\n        SELECT COUNT(*)\n        FROM Ksiazki k\n        WHERE k.autor_id = a.autor_id\n    ) AS liczba_ksiazek\nFROM Autorzy a;\n\n\n📘 Opis działania:\n\nDla każdego autora (a.autor_id) wykonuje się osobne podzapytanie, które liczy książki przypisane do tego autora.\nWynik jest dodawany jako nowa kolumna liczba_ksiazek.\n\n\n🔸 To tzw. podzapytanie skorelowane (correlated subquery), ponieważ odnosi się do kolumny z zapytania głównego.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#podzapytanie-w-klauzuli-from-tabela-pochodna",
+    "href": "lectures/wyklad5.html#podzapytanie-w-klauzuli-from-tabela-pochodna",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 4. Podzapytanie w klauzuli FROM (tabela pochodna)",
+    "text": "🔹 4. Podzapytanie w klauzuli FROM (tabela pochodna)\nPodzapytanie może tworzyć tymczasową tabelę w sekcji FROM. Takie rozwiązanie nazywa się derived table i pozwala na pracę z przetworzonymi danymi.\n\n🧩 Przykład:\nPolicz średni rok wydania książek, a następnie wybierz te, które są starsze od średniej.\nSELECT tytul, rok\nFROM (\n    SELECT *\n    FROM Ksiazki\n) AS K\nWHERE K.rok &lt; (\n    SELECT AVG(rok) FROM Ksiazki\n);\n\n\n📘 Opis działania:\n\nPodzapytanie w FROM tworzy tymczasową tabelę K.\nW klauzuli WHERE używamy innego podzapytania, które liczy średni rok wydania.\nWynik to książki starsze od średniej publikacji.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#korelowane-podzapytanie-correlated-subquery",
+    "href": "lectures/wyklad5.html#korelowane-podzapytanie-correlated-subquery",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 5. Korelowane podzapytanie (correlated subquery)",
+    "text": "🔹 5. Korelowane podzapytanie (correlated subquery)\nTo podzapytanie, które odwołuje się do kolumn z zapytania głównego. Wykonuje się dla każdego wiersza osobno – dlatego bywa wolniejsze, ale bardzo elastyczne.\n\n🧩 Przykład:\nZnajdź najstarszą książkę każdego autora.\nSELECT k.tytul, k.rok, a.nazwisko\nFROM Ksiazki k\nJOIN Autorzy a ON k.autor_id = a.autor_id\nWHERE k.rok = (\n    SELECT MIN(rok)\n    FROM Ksiazki\n    WHERE autor_id = k.autor_id\n);\n\n\n📘 Opis działania:\n\nDla każdego wiersza w tabeli Ksiazki podzapytanie szuka najmniejszego roku dla tego samego autora.\nPorównanie k.rok = (MIN(rok)) sprawia, że zostaje tylko najstarsza książka każdego autora.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#podzapytanie-z-exists",
+    "href": "lectures/wyklad5.html#podzapytanie-z-exists",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 6. Podzapytanie z EXISTS",
+    "text": "🔹 6. Podzapytanie z EXISTS\nOperator EXISTS sprawdza, czy podzapytanie zwróciło jakiekolwiek wiersze. Nie liczy ich — interesuje nas jedynie, czy wynik istnieje (TRUE/FALSE).\n\n🧩 Przykład:\nZnajdź autorów, którzy napisali przynajmniej jedną książkę.\nSELECT imie, nazwisko\nFROM Autorzy a\nWHERE EXISTS (\n    SELECT 1\n    FROM Ksiazki k\n    WHERE k.autor_id = a.autor_id\n);\n\n\n📘 Opis działania:\n\nDla każdego autora sprawdzane jest, czy istnieje co najmniej jeden wiersz w tabeli Ksiazki z tym samym autor_id.\nJeśli tak — warunek EXISTS zwraca TRUE, a autor pojawia się w wyniku.",
+    "crumbs": [
+      "Książki",
+      "Wykłady",
+      "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków"
+    ]
+  },
+  {
+    "objectID": "lectures/wyklad5.html#porównania-z-all-any",
+    "href": "lectures/wyklad5.html#porównania-z-all-any",
+    "title": "Mechanizmy zapewniania spójności danych i wprowadzenie do widoków",
+    "section": "🔹 7. Porównania z ALL / ANY",
+    "text": "🔹 7. Porównania z ALL / ANY\nOperator ALL wymaga, aby warunek był spełniony dla wszystkich wyników podzapytania. Operator ANY (lub SOME) – aby warunek był spełniony dla przynajmniej jednego.\n\n🧩 Przykład:\nZnajdź książki wydane wcześniej niż wszystkie książki Prusa.\nSELECT tytul, rok\nFROM Ksiazki\nWHERE rok &lt; ALL (\n    SELECT rok\n    FROM Ksiazki\n    WHERE autor_id = (\n        SELECT autor_id FROM Autorzy WHERE nazwisko = 'Prus'\n    )\n);\n\n\n📘 Opis działania:\n\nPodzapytanie wewnętrzne zwraca lata publikacji książek Prusa.\nZapytanie główne wybiera tylko te książki, których rok jest mniejszy niż wszystkie te wartości.\n\n\n\n🧮 Podsumowanie typów podzapytań w SQL\n\n\n\n\n\n\n\n\n\n\nTyp podzapytania\nMiejsce użycia\nZwracany wynik\nTypowe operatory\nPrzykład zastosowania\n\n\n\n\nJednowartościowe (scalar)\nWHERE, SELECT\nPojedyncza wartość (1 rekord, 1 kolumna)\n=, &lt;, &gt;\nAutor o nazwisku „Sienkiewicz”\n\n\nWielowartościowe (multivalue)\nWHERE\nLista wartości (wiele rekordów)\nIN, NOT IN\nAutorzy, których nazwisko zaczyna się na „M”\n\n\nKorelowane (correlated)\nWHERE, SELECT\nZmienny wynik dla każdego wiersza\n=, EXISTS\nNajstarsza książka danego autora\n\n\nZagnieżdżone w FROM (tabela pochodna)\nFROM\nZbiór wierszy (tymczasowa tabela)\n—\nŚredni rok wydania książek i porównanie ze średnią\n\n\nZ operatorem EXISTS / NOT EXISTS\nWHERE\nPrawda / Fałsz (czy istnieje wynik)\nEXISTS, NOT EXISTS\nAutorzy, którzy napisali przynajmniej jedną książkę\n\n\nZ operatorem ALL / ANY / SOME\nWHERE\nPorównanie z wieloma wartościami\nALL, ANY, SOME\nKsiążki starsze niż wszystkie książki Prusa",
     "crumbs": [
       "Książki",
       "Wykłady",

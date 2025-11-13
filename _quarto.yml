@@ -19,7 +19,7 @@ website:
           - lectures/wyklad5.qmd
       - section: "Laboratorium"
         contents:
-          # - cwiczenia/cw1.ipynb
+          - cwiczenia/cw1.ipynb
   navbar:
     left:
           - href: ksiazki.qmd

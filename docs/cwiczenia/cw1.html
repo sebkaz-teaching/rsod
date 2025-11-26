@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>📘 Wprowadzenie: od prostych plików do systemów zarządzania bazami danych – Relacyjne Systemy Organizacji Danych</title>
+<title>📘 Od plików płaskich do systemów zarządzania bazami danych – Relacyjne Systemy Organizacji Danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">📘 Wprowadzenie: od prostych plików do systemów zarządzania bazami danych</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">📘 Od plików płaskich do systemów zarządzania bazami danych</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cwiczenia/cw1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">📘 Wprowadzenie: od prostych plików do systemów zarządzania bazami danych</span></a>
+ <span class="menu-text">📘 Od plików płaskich do systemów zarządzania bazami danych</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#sqlite" id="toc-sqlite" class="nav-link active" data-scroll-target="#sqlite">SQLite</a></li>
+  <li><a href="#plikowa-baza-danych---sqlite" id="toc-plikowa-baza-danych---sqlite" class="nav-link active" data-scroll-target="#plikowa-baza-danych---sqlite">Plikowa baza danych - SQLite</a></li>
   <li><a href="#ddl-w-sqlite" id="toc-ddl-w-sqlite" class="nav-link" data-scroll-target="#ddl-w-sqlite">DDL w SQLite</a></li>
   <li><a href="#pierwsza-postać-normalna-1nf-analiza-tabeli-klienci" id="toc-pierwsza-postać-normalna-1nf-analiza-tabeli-klienci" class="nav-link" data-scroll-target="#pierwsza-postać-normalna-1nf-analiza-tabeli-klienci">Pierwsza Postać Normalna (1NF) – analiza tabeli klienci</a></li>
   <li><a href="#serwer-baz-danych" id="toc-serwer-baz-danych" class="nav-link" data-scroll-target="#serwer-baz-danych">Serwer baz danych</a></li>
@@ -250,9 +250,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">📘 Wprowadzenie: od prostych plików do systemów zarządzania bazami danych</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">📘 Od plików płaskich do systemów zarządzania bazami danych</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">📘 Wprowadzenie: od prostych plików do systemów zarządzania bazami danych</h1>
+<h1 class="title">📘 Od plików płaskich do systemów zarządzania bazami danych</h1>
 </div>
 
 
@@ -279,10 +279,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>problemy przy równoczesnym dostępie wielu użytkowników.</li>
 </ul>
 <p>Relacyjne systemy baz danych, takie jak PostgreSQL czy SQLite, rozwiązują te problemy. Dane są tam przechowywane w tabelach o jasno określonej strukturze (kolumny, typy danych), a system dba o integralność i spójność informacji. Zanim jednak przejdziemy do PostgreSQL, przyjrzyjmy się, jak wygląda „prosta baza plikowa” i jak można ją przekształcić w prawdziwą bazę danych.</p>
-<section id="sqlite" class="level2">
-<h2 class="anchored" data-anchor-id="sqlite">SQLite</h2>
+<section id="plikowa-baza-danych---sqlite" class="level2">
+<h2 class="anchored" data-anchor-id="plikowa-baza-danych---sqlite">Plikowa baza danych - SQLite</h2>
 <p>Jak wspomniano na wykładzie, dane można gromadzić w różnego rodzaju bazach danych. Często jednak potrzebne jest nam szybkie i łatwe rozwiązanie, bez konieczności mozolnego budowania architektury klient-serwer. Chcemy bowiem przechowywać dane w prostym pliku i edytować je równie łatwo jak w przypadku dokumentu tekstowego, takiego jak w programie Word. W takich przypadkach najbardziej optymalne jest użycie właśnie SQLite. SQLite jest najczęściej wykorzystywanym na świecie systemem zarządzania bazą danych. Został zastosowany w iPhonach, iPadach, w urządzeniach z systemem operacyjnym Android i Windows Mobile. Znajdziesz go również w termostatach, a także w samochodowych systemach komputerowych. Jest też wykorzystywany w satelitach i w wielu innych nowoczesnych urządzeniach, w przypadku których konieczne jest przechowywanie danych i proste ich przeszukiwanie. Z SQLite korzysta w dużym stopniu zarówno system operacyjny Windows, jak i system samolotu Airbus A350 XWB. Jest on więc stosowany wszędzie tam, gdzie istotna jest łatwość korzystania z niego oraz niskie koszty stałe. Jest również doskonały do przygotowywania prototypów baz danych dla przedsiębiorstw. Jednak coś za coś — z uwagi na brak serwera zarządzającego dostępem do bazy danych SQLite nie może być jednocześnie wykorzystywany przez wielu użytkowników. Nie jest bowiem możliwe edytowanie tego samego pliku przez wiele osób w tym samym czasie. Ten system zarządzania bazą danych nadaje się natomiast świetnie do celów szkoleniowych.</p>
-<p><a href="https://sqlitestudio.pl/?act=download">sqlite studio</a></p>
+<p><a href="https://sqlitestudio.pl/?act=download">Edytor bazy SQLite - sqlite studio</a></p>
 <div id="8a3846b0" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
@@ -429,7 +429,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zamknięcie połączenia</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><img src="../img/intro.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/intro.png" class="img-fluid figure-img"></p>
+<figcaption>obrazek</figcaption>
+</figure>
+</div>
 <ol type="1">
 <li>Nowa baza “wyklikana”</li>
 <li>Nowa baza z pliku</li>
@@ -446,73 +451,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">NOT</span> <span class="kw">EXISTS</span> klienci (</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    dane_osobowe TEXT,    <span class="co">-- pole z imieniem i nazwiskiem</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    adres TEXT,           <span class="co">-- pole z pełnym adresem</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    produkty TEXT         <span class="co">-- pole z produktami, w wersji nienormalizowanej (lista w jednej komórce)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    dane_osobowe TEXT,    <span class="co">-- pole z imieniem i nazwiskiem</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    adres TEXT,           <span class="co">-- pole z pełnym adresem</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    produkty TEXT         <span class="co">-- pole z produktami, w wersji nienormalizowanej (lista w jednej komórce)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>INSERT przykładowego rekordu do demonstracji działania</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> klienci (dane_osobowe, adres, produkty)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>, <span class="st">'Laptop, Telefon'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Sprawdzenie zawartości tabeli SELECT * FROM klienci;</li>
+<li>Sprawdzenie zawartości tabeli</li>
+<li></li>
 </ul>
-</section>
-<section id="dodanie-kolumny-z-kluczem-głównym" class="level3">
-<h3 class="anchored" data-anchor-id="dodanie-kolumny-z-kluczem-głównym">2. Dodanie kolumny z kluczem głównym</h3>
-<p>– Dodajemy kolumnę “id” jako PRIMARY KEY</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci <span class="kw">ADD</span> <span class="kw">COLUMN</span> <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Pokazujemy efekt dodania kolumny</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>PRAGMA table_info(klienci);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> klienci;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="dodanie-dodatkowej-kolumny" class="level3">
-<h3 class="anchored" data-anchor-id="dodanie-dodatkowej-kolumny">3. Dodanie dodatkowej kolumny</h3>
+<h3 class="anchored" data-anchor-id="dodanie-dodatkowej-kolumny">2. Dodanie dodatkowej kolumny</h3>
 <ul>
 <li>Dodajemy kolumnę “typ” (np. kategoria klienta: standard/premium)</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci <span class="kw">ADD</span> <span class="kw">COLUMN</span> typ TEXT;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci <span class="kw">ADD</span> <span class="kw">COLUMN</span> typ TEXT;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Wstawiamy przykładowe wartości dla nowych rekordów</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> klienci <span class="kw">SET</span> typ <span class="op">=</span> <span class="st">'standard'</span> <span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> klienci <span class="kw">SET</span> typ <span class="op">=</span> <span class="st">'standard'</span> <span class="kw">WHERE</span> <span class="kw">id</span> <span class="op">=</span> <span class="dv">1</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Sprawdzamy aktualną tabelę</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> klienci;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> klienci;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tworzenie-indeksu" class="level3">
-<h3 class="anchored" data-anchor-id="tworzenie-indeksu">4. Tworzenie indeksu</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_klienci_nazwisko <span class="kw">ON</span> klienci(dane_osobowe);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 class="anchored" data-anchor-id="tworzenie-indeksu">3. Tworzenie indeksu</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_klienci_nazwisko <span class="kw">ON</span> klienci(dane_osobowe);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="usuwanie-kolumny-ograniczenia-sqlite" class="level3">
-<h3 class="anchored" data-anchor-id="usuwanie-kolumny-ograniczenia-sqlite">5. Usuwanie kolumny (ograniczenia SQLite)</h3>
+<h3 class="anchored" data-anchor-id="usuwanie-kolumny-ograniczenia-sqlite">4. Usuwanie kolumny (ograniczenia SQLite)</h3>
 <ul>
 <li>Uwaga! - SQLite nie pozwala bezpośrednio usunąć kolumny</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. Tworzymy nową tabelę bez kolumny "typ"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> klienci_nowa <span class="kw">AS</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">id</span>, dane_osobowe, adres, produkty</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> klienci;</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. Usuwamy starą tabelę</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> klienci;</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. Zmieniamy nazwę nowej tabeli na starą</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci_nowa <span class="kw">RENAME</span> <span class="kw">TO</span> klienci;</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- Sprawdzamy strukturę tabeli po usunięciu kolumny</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>PRAGMA table_info(klienci);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- 1. Tworzymy nową tabelę bez kolumny "typ"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> klienci_nowa <span class="kw">AS</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">id</span>, dane_osobowe, adres, produkty</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> klienci;</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- 2. Usuwamy starą tabelę</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> klienci;</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- 3. Zmieniamy nazwę nowej tabeli na starą</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci_nowa <span class="kw">RENAME</span> <span class="kw">TO</span> klienci;</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- Sprawdzamy strukturę tabeli po usunięciu kolumny</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>PRAGMA table_info(klienci);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zmiana-nazwy-tabeli" class="level3">
-<h3 class="anchored" data-anchor-id="zmiana-nazwy-tabeli">6. Zmiana nazwy tabeli</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci <span class="kw">RENAME</span> <span class="kw">TO</span> klienci_stara;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 class="anchored" data-anchor-id="zmiana-nazwy-tabeli">5. Zmiana nazwy tabeli</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci <span class="kw">RENAME</span> <span class="kw">TO</span> klienci_stara;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="usunięcie-tabeli" class="level3">
-<h3 class="anchored" data-anchor-id="usunięcie-tabeli">7. Usunięcie tabeli</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> klienci;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h3 class="anchored" data-anchor-id="usunięcie-tabeli">6. Usunięcie tabeli</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> klienci;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Problemy nienormalizowanej tabeli:</p>
 <ul>
 <li>Kolumna produkty zawiera wiele wartości (1–4 produkty w jednej komórce).</li>
@@ -533,7 +532,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="krok-0-dodanie-klucza-głównego" class="level3">
 <h3 class="anchored" data-anchor-id="krok-0-dodanie-klucza-głównego">Krok 0: Dodanie klucza głównego</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> klienci <span class="kw">ADD</span> <span class="kw">COLUMN</span> <span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>uwaga w SQLite taką kolumnę można dodać tylko podczas tworzenia tabeli.</li>
+<li></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">id</span> <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> AUTOINCREMENT;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Każdy rekord ma teraz unikalny identyfikator id.</li>
 <li>Można bezpiecznie rozdzielać produkty w kolejnych krokach.</li>
@@ -543,57 +546,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="krok-1-pierwsza-postać-normalna-1nf">Krok 1 – Pierwsza Postać Normalna (1NF)</h3>
 <p>Cel: rozdzielamy wielowartościowe kolumny (produkty) na osobne wiersze.</p>
 <p>Tabela 1NF – przykładowe rekordy:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> klienci_1nf (</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="dt">INTEGER</span>,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    dane_osobowe TEXT,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    adres TEXT,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    produkt TEXT</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Wstawienie przykładowych danych</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> klienci_1nf (klient_id, dane_osobowe, adres, produkt) <span class="kw">VALUES</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>, <span class="st">'Laptop'</span>),</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>, <span class="st">'Telefon'</span>),</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">'Anna Nowak'</span>, <span class="st">'ul. Długa 7, Kraków'</span>, <span class="st">'Monitor'</span>),</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>, <span class="st">'Tablet'</span>),</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>, <span class="st">'Mysz'</span>),</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>, <span class="st">'Klawiatura'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> klienci_1nf (</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="dt">INTEGER</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    dane_osobowe TEXT,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    adres TEXT,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    produkt TEXT</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Wstawienie przykładowych danych</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> klienci_1nf (klient_id, dane_osobowe, adres, produkt) <span class="kw">VALUES</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>, <span class="st">'Laptop'</span>),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>, <span class="st">'Telefon'</span>),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">'Anna Nowak'</span>, <span class="st">'ul. Długa 7, Kraków'</span>, <span class="st">'Monitor'</span>),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>, <span class="st">'Tablet'</span>),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>, <span class="st">'Mysz'</span>),</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>, <span class="st">'Klawiatura'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Efekt dydaktyczny:</p>
 <ul>
 <li>Każdy wiersz zawiera jedną wartość produktu.</li>
 <li>Możemy wyszukiwać klientów po produkcie:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> dane_osobowe, adres <span class="kw">FROM</span> klienci_1nf <span class="kw">WHERE</span> produkt<span class="op">=</span><span class="st">'Laptop'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> dane_osobowe, adres <span class="kw">FROM</span> klienci_1nf <span class="kw">WHERE</span> produkt<span class="op">=</span><span class="st">'Laptop'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="krok-2-druga-postać-normalna-2nf" class="level3">
 <h3 class="anchored" data-anchor-id="krok-2-druga-postać-normalna-2nf">Krok 2 – Druga Postać Normalna (2NF)</h3>
 <p>Cel: usuwamy redundancję zależności częściowych</p>
 <p>– dane, które zależą tylko od klienta (adres, imię/nazwisko), przenosimy do osobnej tabeli klienci.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> klienci_2nf (</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    dane_osobowe TEXT,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    adres TEXT</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> zakupy (</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="dt">INTEGER</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    produkt TEXT,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (klient_id) <span class="kw">REFERENCES</span> klienci_2nf(klient_id)</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Wstawienie przykładowych danych</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> klienci_2nf (klient_id, dane_osobowe, adres) <span class="kw">VALUES</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>),</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">'Anna Nowak'</span>, <span class="st">'ul. Długa 7, Kraków'</span>),</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>);</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> zakupy (klient_id, produkt) <span class="kw">VALUES</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Laptop'</span>),</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Telefon'</span>),</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">'Monitor'</span>),</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Tablet'</span>),</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Mysz'</span>),</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Klawiatura'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> klienci_2nf (</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="dt">INTEGER</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    dane_osobowe TEXT,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    adres TEXT</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> zakupy (</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="dt">INTEGER</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    produkt TEXT,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (klient_id) <span class="kw">REFERENCES</span> klienci_2nf(klient_id)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- Wstawienie przykładowych danych</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> klienci_2nf (klient_id, dane_osobowe, adres) <span class="kw">VALUES</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>),</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">'Anna Nowak'</span>, <span class="st">'ul. Długa 7, Kraków'</span>),</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Piotr Wiśniewski'</span>, <span class="st">'ul. Parkowa 3, Łódź'</span>);</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> zakupy (klient_id, produkt) <span class="kw">VALUES</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Laptop'</span>),</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span>, <span class="st">'Telefon'</span>),</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span>, <span class="st">'Monitor'</span>),</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Tablet'</span>),</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Mysz'</span>),</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="st">'Klawiatura'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Efekt:</p>
 <ul>
 <li>Klient pojawia się tylko raz w tabeli klienci.</li>
@@ -605,100 +608,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="krok-3-trzecia-postać-normalna-3nf">Krok 3 – Trzecia Postać Normalna (3NF)</h3>
 <p>Cel: pełna atomizacja danych – dzielimy adres na ulicę, numer, kod, miasto.</p>
 <div id="65baf83a" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie CSV</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'klienci_produkty_v2.csv'</span>)  <span class="co"># kolumny: dane_osobowe, adres, produkty</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Utworzenie połączenia z bazą SQLite</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'klienci_normalizacja.db'</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>cur <span class="op">=</span> conn.cursor()</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Tworzymy tabele w 3NF</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">'''</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS adresy (</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="st">    ulica TEXT,</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="st">    numer TEXT,</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="st">    kod TEXT,</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="st">    miasto TEXT</span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">'''</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS klienci (</span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="st">    dane_osobowe TEXT,</span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER,</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (adres_id) REFERENCES adresy(adres_id)</span></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">'''</span></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS zakupy (</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER,</span></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="st">    produkt TEXT,</span></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (klient_id) REFERENCES klienci(klient_id)</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>conn.commit()</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Wypełnienie tabel</span></span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Pomocnicza funkcja do rozdzielania adresu</span></span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rozdziel_adres(adres):</span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># zakładamy format: "ul. Lipowa 12, 00-001 Warszawa"</span></span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>        czesci <span class="op">=</span> adres.split(<span class="st">','</span>)</span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>        ulica_numer <span class="op">=</span> czesci[<span class="dv">0</span>].strip().rsplit(<span class="st">' '</span>, <span class="dv">1</span>)</span>
-<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>        ulica <span class="op">=</span> ulica_numer[<span class="dv">0</span>]</span>
-<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>        numer <span class="op">=</span> ulica_numer[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(ulica_numer) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
-<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a>        kod_miasto <span class="op">=</span> czesci[<span class="dv">1</span>].strip().split(<span class="st">' '</span>, <span class="dv">1</span>) <span class="cf">if</span> <span class="bu">len</span>(czesci) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> [<span class="st">''</span>, <span class="st">''</span>]</span>
-<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>        kod <span class="op">=</span> kod_miasto[<span class="dv">0</span>]</span>
-<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>        miasto <span class="op">=</span> kod_miasto[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(kod_miasto) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
-<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ulica, numer, kod, miasto</span>
-<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span></span>
-<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Dodanie adresów i przypisanie adres_id</span></span>
-<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>adres_map <span class="op">=</span> {}  <span class="co"># mapowanie pełnego adresu na adres_id</span></span>
-<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> df.iterrows():</span>
-<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>    adres <span class="op">=</span> row[<span class="st">'adres'</span>]</span>
-<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> adres <span class="kw">not</span> <span class="kw">in</span> adres_map:</span>
-<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>        ulica, numer, kod, miasto <span class="op">=</span> rozdziel_adres(adres)</span>
-<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>        cur.execute(<span class="st">'''</span></span>
-<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a><span class="st">            INSERT INTO adresy (ulica, numer, kod, miasto)</span></span>
-<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a><span class="st">            VALUES (?, ?, ?, ?)</span></span>
-<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a><span class="st">        '''</span>, (ulica, numer, kod, miasto))</span>
-<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a>        adres_id <span class="op">=</span> cur.lastrowid</span>
-<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>        adres_map[adres] <span class="op">=</span> adres_id</span>
-<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dodanie klienta</span></span>
-<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>    cur.execute(<span class="st">'''</span></span>
-<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a><span class="st">        INSERT INTO klienci (dane_osobowe, adres_id)</span></span>
-<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a><span class="st">        VALUES (?, ?)</span></span>
-<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a><span class="st">    '''</span>, (row[<span class="st">'dane_osobowe'</span>], adres_map[adres]))</span>
-<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="op">=</span> cur.lastrowid</span>
-<span id="cb20-81"><a href="#cb20-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-82"><a href="#cb20-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rozdzielenie produktów i dodanie do zakupy</span></span>
-<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a>    produkty <span class="op">=</span> [p.strip() <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">str</span>(row[<span class="st">'produkty'</span>]).split(<span class="st">','</span>)]</span>
-<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> produkt <span class="kw">in</span> produkty:</span>
-<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> produkt:  <span class="co"># pomijamy puste</span></span>
-<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>            cur.execute(<span class="st">'''</span></span>
-<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a><span class="st">                INSERT INTO zakupy (klient_id, produkt)</span></span>
-<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a><span class="st">                VALUES (?, ?)</span></span>
-<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a><span class="st">            '''</span>, (klient_id, produkt))</span>
-<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a>conn.commit()</span>
-<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>conn.close()</span>
-<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Import i normalizacja zakończone!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie CSV</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'klienci_produkty_v2.csv'</span>)  <span class="co"># kolumny: dane_osobowe, adres, produkty</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Utworzenie połączenia z bazą SQLite</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'klienci_normalizacja.db'</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>cur <span class="op">=</span> conn.cursor()</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Tworzymy tabele w 3NF</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">'''</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS adresy (</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="st">    ulica TEXT,</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="st">    numer TEXT,</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="st">    kod TEXT,</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="st">    miasto TEXT</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">'''</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS klienci (</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="st">    dane_osobowe TEXT,</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER,</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (adres_id) REFERENCES adresy(adres_id)</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>cur.execute(<span class="st">'''</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS zakupy (</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER,</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a><span class="st">    produkt TEXT,</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (klient_id) REFERENCES klienci(klient_id)</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a><span class="st">'''</span>)</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>conn.commit()</span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Wypełnienie tabel</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Pomocnicza funkcja do rozdzielania adresu</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rozdziel_adres(adres):</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># zakładamy format: "ul. Lipowa 12, 00-001 Warszawa"</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>        czesci <span class="op">=</span> adres.split(<span class="st">','</span>)</span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>        ulica_numer <span class="op">=</span> czesci[<span class="dv">0</span>].strip().rsplit(<span class="st">' '</span>, <span class="dv">1</span>)</span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>        ulica <span class="op">=</span> ulica_numer[<span class="dv">0</span>]</span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>        numer <span class="op">=</span> ulica_numer[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(ulica_numer) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a>        kod_miasto <span class="op">=</span> czesci[<span class="dv">1</span>].strip().split(<span class="st">' '</span>, <span class="dv">1</span>) <span class="cf">if</span> <span class="bu">len</span>(czesci) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> [<span class="st">''</span>, <span class="st">''</span>]</span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>        kod <span class="op">=</span> kod_miasto[<span class="dv">0</span>]</span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>        miasto <span class="op">=</span> kod_miasto[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(kod_miasto) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ulica, numer, kod, miasto</span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Dodanie adresów i przypisanie adres_id</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>adres_map <span class="op">=</span> {}  <span class="co"># mapowanie pełnego adresu na adres_id</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    adres <span class="op">=</span> row[<span class="st">'adres'</span>]</span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> adres <span class="kw">not</span> <span class="kw">in</span> adres_map:</span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>        ulica, numer, kod, miasto <span class="op">=</span> rozdziel_adres(adres)</span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>        cur.execute(<span class="st">'''</span></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a><span class="st">            INSERT INTO adresy (ulica, numer, kod, miasto)</span></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a><span class="st">            VALUES (?, ?, ?, ?)</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a><span class="st">        '''</span>, (ulica, numer, kod, miasto))</span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>        adres_id <span class="op">=</span> cur.lastrowid</span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>        adres_map[adres] <span class="op">=</span> adres_id</span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dodanie klienta</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a>    cur.execute(<span class="st">'''</span></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a><span class="st">        INSERT INTO klienci (dane_osobowe, adres_id)</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a><span class="st">        VALUES (?, ?)</span></span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a><span class="st">    '''</span>, (row[<span class="st">'dane_osobowe'</span>], adres_map[adres]))</span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    klient_id <span class="op">=</span> cur.lastrowid</span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rozdzielenie produktów i dodanie do zakupy</span></span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>    produkty <span class="op">=</span> [p.strip() <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">str</span>(row[<span class="st">'produkty'</span>]).split(<span class="st">','</span>)]</span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> produkt <span class="kw">in</span> produkty:</span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> produkt:  <span class="co"># pomijamy puste</span></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a>            cur.execute(<span class="st">'''</span></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a><span class="st">                INSERT INTO zakupy (klient_id, produkt)</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a><span class="st">                VALUES (?, ?)</span></span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a><span class="st">            '''</span>, (klient_id, produkt))</span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a>conn.commit()</span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>conn.close()</span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Import i normalizacja zakończone!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Import i normalizacja zakończone!</code></pre>
 </div>
@@ -711,14 +714,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Każdy klient ma unikalny klient_id, więc jeśli kupił kilka produktów, w zakupy będzie kilka wierszy.</li>
 </ol>
 <div id="23ce7bf5" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'klienci_normalizacja.db'</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetlenie 10 pierwszych klientów</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df_klienci <span class="op">=</span> pd.read_sql(<span class="st">'SELECT * FROM klienci LIMIT 10'</span>, conn)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>df_klienci.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'klienci_normalizacja.db'</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetlenie 10 pierwszych klientów</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>df_klienci <span class="op">=</span> pd.read_sql(<span class="st">'SELECT * FROM klienci LIMIT 10'</span>, conn)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>df_klienci.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
 
@@ -800,9 +803,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="292369a3" class="cell" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetlenie 10 pierwszych zakupów</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df_zakupy <span class="op">=</span> pd.read_sql(<span class="st">'SELECT * FROM zakupy LIMIT 10'</span>, conn)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>df_zakupy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wyświetlenie 10 pierwszych zakupów</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>df_zakupy <span class="op">=</span> pd.read_sql(<span class="st">'SELECT * FROM zakupy LIMIT 10'</span>, conn)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>df_zakupy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
@@ -873,7 +876,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="9de3c725" class="cell" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Normalizacja tabeli klienci – pełne podsumowanie</p>
 <p>Tabela początkowa (przed normalizacją)</p>
@@ -915,83 +918,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>zakupy.klient_id → klienci.klient_id (1:N)</li>
 </ul>
 <div id="76eba709" class="cell" data-execution_count="25">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie CSV</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'klienci_produkty_v2.csv'</span>)  <span class="co"># kolumny: dane_osobowe, adres, produkty</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plik wynikowy SQL</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>sql_file <span class="op">=</span> <span class="bu">open</span>(<span class="st">'klienci_3nf.sql'</span>, <span class="st">'w'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Tworzenie tabel</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>sql_file.write(<span class="st">"""</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="st">-- Tabele w 3NF</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS adresy (</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="st">    ulica TEXT,</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="st">    numer TEXT,</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="st">    kod TEXT,</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="st">    miasto TEXT</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS klienci (</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="st">    dane_osobowe TEXT,</span></span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER,</span></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (adres_id) REFERENCES adresy(adres_id)</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS zakupy (</span></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER,</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="st">    produkt TEXT,</span></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (klient_id) REFERENCES klienci(klient_id)</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Generowanie INSERT dla wszystkich danych</span></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>adres_map <span class="op">=</span> {}  <span class="co"># mapowanie pełnego adresu na adres_id</span></span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>adres_id_counter <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>klient_id_counter <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rozdziel_adres(adres):</span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>        czesci <span class="op">=</span> adres.split(<span class="st">','</span>)</span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>        ulica_numer <span class="op">=</span> czesci[<span class="dv">0</span>].strip().rsplit(<span class="st">' '</span>, <span class="dv">1</span>)</span>
-<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>        ulica <span class="op">=</span> ulica_numer[<span class="dv">0</span>]</span>
-<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>        numer <span class="op">=</span> ulica_numer[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(ulica_numer) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
-<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>        kod_miasto <span class="op">=</span> czesci[<span class="dv">1</span>].strip().split(<span class="st">' '</span>, <span class="dv">1</span>) <span class="cf">if</span> <span class="bu">len</span>(czesci) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> [<span class="st">''</span>, <span class="st">''</span>]</span>
-<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>        kod <span class="op">=</span> kod_miasto[<span class="dv">0</span>]</span>
-<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>        miasto <span class="op">=</span> kod_miasto[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(kod_miasto) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
-<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ulica, numer, kod, miasto</span>
-<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span></span>
-<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> df.iterrows():</span>
-<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>    adres <span class="op">=</span> row[<span class="st">'adres'</span>]</span>
-<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> adres <span class="kw">not</span> <span class="kw">in</span> adres_map:</span>
-<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a>        ulica, numer, kod, miasto <span class="op">=</span> rozdziel_adres(adres)</span>
-<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>        sql_file.write(<span class="ss">f"INSERT INTO adresy (adres_id, ulica, numer, kod, miasto) VALUES (</span><span class="sc">{</span>adres_id_counter<span class="sc">}</span><span class="ss">, '</span><span class="sc">{</span>ulica<span class="sc">.</span>replace(<span class="st">'</span><span class="ch">\'</span><span class="st">'</span>,<span class="st">'</span><span class="ch">\'\'</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">', '</span><span class="sc">{</span>numer<span class="sc">}</span><span class="ss">', '</span><span class="sc">{</span>kod<span class="sc">}</span><span class="ss">', '</span><span class="sc">{</span>miasto<span class="sc">}</span><span class="ss">');</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>        adres_map[adres] <span class="op">=</span> adres_id_counter</span>
-<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a>        adres_id_counter <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dodanie klienta</span></span>
-<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a>    sql_file.write(<span class="ss">f"INSERT INTO klienci (klient_id, dane_osobowe, adres_id) VALUES (</span><span class="sc">{</span>klient_id_counter<span class="sc">}</span><span class="ss">, '</span><span class="sc">{</span>row[<span class="st">'dane_osobowe'</span>]<span class="sc">.</span>replace(<span class="st">'</span><span class="ch">\'</span><span class="st">'</span>,<span class="st">'</span><span class="ch">\'\'</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">', </span><span class="sc">{</span>adres_map[adres]<span class="sc">}</span><span class="ss">);</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rozdzielenie produktów</span></span>
-<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a>    produkty <span class="op">=</span> [p.strip() <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">str</span>(row[<span class="st">'produkty'</span>]).split(<span class="st">','</span>)]</span>
-<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> produkt <span class="kw">in</span> produkty:</span>
-<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> produkt:</span>
-<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a>            sql_file.write(<span class="ss">f"INSERT INTO zakupy (klient_id, produkt) VALUES (</span><span class="sc">{</span>klient_id_counter<span class="sc">}</span><span class="ss">, '</span><span class="sc">{</span>produkt<span class="sc">.</span>replace(<span class="st">'</span><span class="ch">\'</span><span class="st">'</span>,<span class="st">'</span><span class="ch">\'\'</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">');</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-74"><a href="#cb25-74" aria-hidden="true" tabindex="-1"></a>    klient_id_counter <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb25-75"><a href="#cb25-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a>sql_file.close()</span>
-<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Plik SQL 'klienci_3nf.sql' został wygenerowany!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie CSV</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'klienci_produkty_v2.csv'</span>)  <span class="co"># kolumny: dane_osobowe, adres, produkty</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plik wynikowy SQL</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>sql_file <span class="op">=</span> <span class="bu">open</span>(<span class="st">'klienci_3nf.sql'</span>, <span class="st">'w'</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Tworzenie tabel</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>sql_file.write(<span class="st">"""</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="st">-- Tabele w 3NF</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS adresy (</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="st">    ulica TEXT,</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="st">    numer TEXT,</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="st">    kod TEXT,</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="st">    miasto TEXT</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS klienci (</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER PRIMARY KEY AUTOINCREMENT,</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="st">    dane_osobowe TEXT,</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="st">    adres_id INTEGER,</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (adres_id) REFERENCES adresy(adres_id)</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE IF NOT EXISTS zakupy (</span></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="st">    klient_id INTEGER,</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="st">    produkt TEXT,</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="st">    FOREIGN KEY (klient_id) REFERENCES klienci(klient_id)</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Generowanie INSERT dla wszystkich danych</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="co"># ===================================================</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>adres_map <span class="op">=</span> {}  <span class="co"># mapowanie pełnego adresu na adres_id</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>adres_id_counter <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>klient_id_counter <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rozdziel_adres(adres):</span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>        czesci <span class="op">=</span> adres.split(<span class="st">','</span>)</span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>        ulica_numer <span class="op">=</span> czesci[<span class="dv">0</span>].strip().rsplit(<span class="st">' '</span>, <span class="dv">1</span>)</span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>        ulica <span class="op">=</span> ulica_numer[<span class="dv">0</span>]</span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>        numer <span class="op">=</span> ulica_numer[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(ulica_numer) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>        kod_miasto <span class="op">=</span> czesci[<span class="dv">1</span>].strip().split(<span class="st">' '</span>, <span class="dv">1</span>) <span class="cf">if</span> <span class="bu">len</span>(czesci) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> [<span class="st">''</span>, <span class="st">''</span>]</span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>        kod <span class="op">=</span> kod_miasto[<span class="dv">0</span>]</span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>        miasto <span class="op">=</span> kod_miasto[<span class="dv">1</span>] <span class="cf">if</span> <span class="bu">len</span>(kod_miasto) <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">''</span></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> ulica, numer, kod, miasto</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span></span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a>    adres <span class="op">=</span> row[<span class="st">'adres'</span>]</span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> adres <span class="kw">not</span> <span class="kw">in</span> adres_map:</span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>        ulica, numer, kod, miasto <span class="op">=</span> rozdziel_adres(adres)</span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>        sql_file.write(<span class="ss">f"INSERT INTO adresy (adres_id, ulica, numer, kod, miasto) VALUES (</span><span class="sc">{</span>adres_id_counter<span class="sc">}</span><span class="ss">, '</span><span class="sc">{</span>ulica<span class="sc">.</span>replace(<span class="st">'</span><span class="ch">\'</span><span class="st">'</span>,<span class="st">'</span><span class="ch">\'\'</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">', '</span><span class="sc">{</span>numer<span class="sc">}</span><span class="ss">', '</span><span class="sc">{</span>kod<span class="sc">}</span><span class="ss">', '</span><span class="sc">{</span>miasto<span class="sc">}</span><span class="ss">');</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>        adres_map[adres] <span class="op">=</span> adres_id_counter</span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a>        adres_id_counter <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dodanie klienta</span></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>    sql_file.write(<span class="ss">f"INSERT INTO klienci (klient_id, dane_osobowe, adres_id) VALUES (</span><span class="sc">{</span>klient_id_counter<span class="sc">}</span><span class="ss">, '</span><span class="sc">{</span>row[<span class="st">'dane_osobowe'</span>]<span class="sc">.</span>replace(<span class="st">'</span><span class="ch">\'</span><span class="st">'</span>,<span class="st">'</span><span class="ch">\'\'</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">', </span><span class="sc">{</span>adres_map[adres]<span class="sc">}</span><span class="ss">);</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rozdzielenie produktów</span></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>    produkty <span class="op">=</span> [p.strip() <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">str</span>(row[<span class="st">'produkty'</span>]).split(<span class="st">','</span>)]</span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> produkt <span class="kw">in</span> produkty:</span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> produkt:</span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>            sql_file.write(<span class="ss">f"INSERT INTO zakupy (klient_id, produkt) VALUES (</span><span class="sc">{</span>klient_id_counter<span class="sc">}</span><span class="ss">, '</span><span class="sc">{</span>produkt<span class="sc">.</span>replace(<span class="st">'</span><span class="ch">\'</span><span class="st">'</span>,<span class="st">'</span><span class="ch">\'\'</span><span class="st">'</span>)<span class="sc">}</span><span class="ss">');</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>    klient_id_counter <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>sql_file.close()</span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Plik SQL 'klienci_3nf.sql' został wygenerowany!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Plik SQL 'klienci_3nf.sql' został wygenerowany!</code></pre>
 </div>

@@ -450,6 +450,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Wskazówka: W małej tabeli (jak teachers) zysk z indeksu może być niezauważalny, a nawet może nie zostać użyty przez optymalizator. Indeksy są najbardziej efektywne w tabelach liczących tysiące/miliony wierszy.</p>
 </blockquote>
+<section id="test-a" class="level4">
+<h4 class="anchored" data-anchor-id="test-a">TEST A</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">INDEX</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> idx_teachers_school;</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">INDEX</span> <span class="cf">IF</span> <span class="kw">EXISTS</span> idx_teachers_last_name;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>usun indeksy na tabeli teachers - uwaga nazwy mogą się różnić.</p>
+<p>Uruchom test wyszukiwania dla jednej z kolumn używając EXPLAIN ANALYZE:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> teachers</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> school <span class="op">=</span> <span class="st">'Lincoln High School'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>W wynikach EXPLAIN ANALYZE zobaczysz Seq Scan (skan sekwencyjny). Zanotuj czas Execution Time.</p>
+</section>
+<section id="test-b-z-indeksem-test-optymalizacji" class="level4">
+<h4 class="anchored" data-anchor-id="test-b-z-indeksem-test-optymalizacji">Test B: Z Indeksem (Test Optymalizacji)</h4>
+<p>Załaduj 500 tyś wierszy z generatora.</p>
+<p>Utwórz indeks na kolumnie, którą testowałeś (school):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_teachers_school <span class="kw">ON</span> teachers (school);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Powtórz dokładnie to samo zapytanie z EXPLAIN ANALYZE:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">EXPLAIN</span> <span class="kw">ANALYZE</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> teachers</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> school <span class="op">=</span> <span class="st">'Lincoln High School'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>W wynikach EXPLAIN ANALYZE powinieneś zobaczyć Index Scan lub Bitmap Heap Scan. Zanotuj nowy czas Execution Time. Będzie on znacząco krótszy niż w Teście A, co udowodni efektywność indeksu.</p>
+</section>
 </section>
 </section>
 <section id="systemowe-rzeczy-w-postgresql" class="level2">
@@ -458,18 +482,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="przeglądanie-metadanych-katalog-systemowy" class="level3">
 <h3 class="anchored" data-anchor-id="przeglądanie-metadanych-katalog-systemowy">Przeglądanie Metadanych (Katalog Systemowy)</h3>
 <p>Lista wszystkich tabel w bieżącym schemacie:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> table_name <span class="kw">FROM</span> information_schema.<span class="kw">tables</span> <span class="kw">WHERE</span> table_schema <span class="op">=</span> <span class="st">'public'</span> <span class="kw">ORDER</span> <span class="kw">BY</span> table_name;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> table_name <span class="kw">FROM</span> information_schema.<span class="kw">tables</span> <span class="kw">WHERE</span> table_schema <span class="op">=</span> <span class="st">'public'</span> <span class="kw">ORDER</span> <span class="kw">BY</span> table_name;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Szczegóły kolumn w tabeli teachers:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> column_name, data_type, is_nullable <span class="kw">FROM</span> information_schema.<span class="kw">columns</span> <span class="kw">WHERE</span> table_name <span class="op">=</span> <span class="st">'teachers'</span> <span class="kw">AND</span> table_schema <span class="op">=</span> <span class="st">'public'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> column_name, data_type, is_nullable <span class="kw">FROM</span> information_schema.<span class="kw">columns</span> <span class="kw">WHERE</span> table_name <span class="op">=</span> <span class="st">'teachers'</span> <span class="kw">AND</span> table_schema <span class="op">=</span> <span class="st">'public'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="monitorowanie-wydajności" class="level3">
 <h3 class="anchored" data-anchor-id="monitorowanie-wydajności">Monitorowanie Wydajności</h3>
 <p>Aktualnie uruchomione zapytania (sesje) i ich stan:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> pid, usename, datname, <span class="kw">query</span>, state <span class="kw">FROM</span> pg_stat_activity <span class="kw">WHERE</span> datname <span class="op">=</span> current_database();</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> pid, usename, datname, <span class="kw">query</span>, state <span class="kw">FROM</span> pg_stat_activity <span class="kw">WHERE</span> datname <span class="op">=</span> current_database();</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Statystyki użycia indeksów (czy indeksy są używane):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch <span class="kw">FROM</span> pg_stat_user_indexes <span class="kw">WHERE</span> relname <span class="op">=</span> <span class="st">'teachers'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch <span class="kw">FROM</span> pg_stat_user_indexes <span class="kw">WHERE</span> relname <span class="op">=</span> <span class="st">'teachers'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>idx_scan: Liczba skanowań indeksu (im wyższa, tym lepiej, bo znaczy, że indeks jest używany).</li>
 </ul>

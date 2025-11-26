@@ -20,7 +20,7 @@ website:
       - section: "Laboratorium"
         contents:
           - cwiczenia/cw1.ipynb
-          - cwiczenia/cw.ipynb
+          - cwiczenia/cw2.ipynb
   navbar:
     left:
           - href: ksiazki.qmd

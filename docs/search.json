@@ -355,20 +355,6 @@
     ]
   },
   {
-    "objectID": "ksiazki.html",
-    "href": "ksiazki.html",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
-  },
-  {
-    "objectID": "ksiazki.html#książki",
-    "href": "ksiazki.html#książki",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Informacje ogólne",
@@ -400,6 +386,90 @@
       "Książki",
       "Informacje ogólne"
     ]
+  },
+  {
+    "objectID": "ksiazki.html",
+    "href": "ksiazki.html",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
+    "objectID": "ksiazki.html#książki",
+    "href": "ksiazki.html#książki",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
+    "objectID": "cwiczenia/cw2.html",
+    "href": "cwiczenia/cw2.html",
+    "title": "Serwer baz danych",
+    "section": "",
+    "text": "PostgreSQL to relacyjny system zarządzania bazą danych (RDBMS – Relational Database Management System), należący do najbardziej zaawansowanych i niezawodnych rozwiązań typu open source. Umożliwia on tworzenie, przechowywanie i przetwarzanie danych w sposób zgodny z zasadami modelu relacyjnego, zapewniając jednocześnie obsługę transakcji, integralność danych, bezpieczeństwo oraz wysoką wydajność.\nDo pracy z PostgreSQL często wykorzystuje się narzędzie pgAdmin – graficzny interfejs użytkownika (GUI), który pozwala w wygodny sposób zarządzać serwerem i bazami danych, wykonywać zapytania SQL, projektować struktury tabel oraz analizować dane. Dzięki pgAdmin użytkownik może łączyć się z serwerem PostgreSQL, przeglądać obiekty bazy (schematy, tabele, widoki, funkcje), a także monitorować jej działanie.\nPostgreSQL działa w architekturze klient–serwer. Oznacza to, że serwer baz danych (program postgres) działa w tle i odpowiada za przechowywanie oraz zarządzanie danymi, natomiast klienci (np. pgAdmin, aplikacje webowe, skrypty w Pythonie) łączą się z nim za pomocą sieciowego protokołu i wysyłają polecenia SQL. Serwer przetwarza te polecenia, wykonuje operacje na danych i zwraca wyniki do klienta. Takie rozwiązanie pozwala wielu użytkownikom lub aplikacjom jednocześnie korzystać z tej samej bazy danych w sposób bezpieczny i kontrolowany.\nW trakcie laboratorium będziemy korzystać z PostgreSQL i pgAdmin, aby poznać zasady działania relacyjnych systemów baz danych – od projektowania schematów danych, poprzez tworzenie tabel i relacji, aż po wykonywanie zapytań SQL i analizę wyników."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#analiza-bazy-danych-i-ćwiczenia-sql-postgresql",
+    "href": "cwiczenia/cw2.html#analiza-bazy-danych-i-ćwiczenia-sql-postgresql",
+    "title": "Serwer baz danych",
+    "section": "📊 Analiza Bazy Danych i Ćwiczenia SQL (PostgreSQL)",
+    "text": "📊 Analiza Bazy Danych i Ćwiczenia SQL (PostgreSQL)\nPoniższy materiał omawia podstawowe operacje na bazie danych, wykorzystując przykładową tabelę teachers. Zawiera również propozycje bardziej zaawansowanych ćwiczeń, w tym tworzenie indeksów i wykorzystanie zagnieżdżonych zapytań (Subqueries), oraz odniesienia do funkcji systemowych PostgreSQL.\nPolecenie SQL,Opis CREATE TABLE teachers,Tworzy tabelę przechowującą dane o nauczycielach. INSERT INTO teachers,Dodaje rekordy (wiersze) do tabeli. SELECT * FROM teachers,Wyświetla wszystkie dane ze wszystkich kolumn w tabeli.\nCREATE TABLE teachers (\n    id bigserial,\n    first_name varchar(25),\n    last_name varchar(50),\n    school varchar(50),\n    hire_date date,\n    salary numeric\n);\n\n2. Filtrowanie i Sortowanie Danych\n\n2.1. Filtrowanie Kolumn (SELECT)\nWybranie tylko konkretnych kolumn jest pierwszą zasadą optymalizacji zapytań – wybieraj tylko to, co jest potrzebne.\nSELECT last_name, first_name, salary FROM teachers;\n\n\n\n2.2. Sortowanie (ORDER BY)\nPozwala uporządkować wyniki. DESC (Descending) oznacza malejąco, ASC (Ascending) oznacza rosnąco (domyślne). Sortowanie można wykonać po nazwie kolumny, lub po jej numerze porządkowym (licząc od 1).\n\nSortowanie malejąco po pensji.\nSELECT first_name, last_name, salary FROM teachers ORDER BY salary DESC;\n\n\nSortowanie malejąco po trzeciej kolumnie (salary).\nSELECT first_name, last_name, salary FROM teachers ORDER BY 3 DESC;\n\n\nSortowanie po wielu kolumnach: najpierw rosnąco wg szkoły, a w ramach szkoły malejąco wg daty zatrudnienia.\nSELECT last_name, school, hire_date FROM teachers ORDER BY school ASC, hire_date DESC;\n\n\n\n2.3. Eliminacja Duplikatów (DISTINCT)\nUżywane do wyświetlenia unikalnych wartości.\n-- Wyświetl unikalne nazwy szkół\nSELECT DISTINCT school FROM teachers ORDER BY school;\n\n-- Wyświetl unikalne kombinacje szkoły i pensji\nSELECT DISTINCT school, salary FROM teachers ORDER BY school, salary;\n\n\n3. Filtrowanie Wierszy (WHERE)\nKlucz do precyzyjnego pobierania danych.\n\nRówność (=),\nWHERE school = 'Myers Middle School';\nWybiera nauczycieli z konkretnej szkoły.\n\n\nRóżność (&lt;&gt; lub !=),\nWHERE school &lt;&gt; 'F.D. Roosevelt HS';\nWybiera nauczycieli ze wszystkich szkół oprócz podanej.\n\n\nPorównanie (&lt;, &gt;, &lt;=, &gt;=)\nWHERE hire_date &lt; '2000-01-01';\n,Wybiera zatrudnionych przed 2000 rokiem.\n\n\nZakres (BETWEEN)\nWHERE salary BETWEEN 40000 AND 65000\n,Wybiera pensje włącznie z krańcami zakresu (równoważne: salary &gt;= 40000 AND salary &lt;= 65000).\n\n\nWzorce (LIKE / ILIKE)\nWHERE first_name LIKE 'sam%'\nlub\nWHERE first_name ILIKE 'sam%'\n,LIKE jest czułe na wielkość liter;\nILIKE jest nieczułe na wielkość liter (preferowane w PostgreSQL).\n% oznacza dowolną liczbę znaków.\n\n\n\n3.1. Operatory Logiczne (AND, OR)\n-- AND: Oba warunki muszą być spełnione\nSELECT * FROM teachers\nWHERE school = 'Myers Middle School'\nAND salary &lt; 40000;\n\n-- OR: Wystarczy, że jeden warunek jest spełniony\nSELECT * FROM teachers\nWHERE last_name = 'Cole'\nOR last_name = 'Bush';\n\n-- Łączenie AND i OR (nawiasy są kluczowe!)\nSELECT * FROM teachers\nWHERE school = 'F.D. Roosevelt HS'\nAND (salary &lt; 38000 OR salary &gt; 40000);\n\n\n3.2. Wyszukiwanie z Wzorem (LIKE z %)\nSELECT first_name, last_name, school, hire_date, salary\nFROM teachers\nWHERE school LIKE '%Roos%' -- Znajduje szkoły, w których nazwie występuje 'Roos'\nORDER BY hire_date DESC;"
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#zaawansowane-subqueries-joins-indexing",
+    "href": "cwiczenia/cw2.html#zaawansowane-subqueries-joins-indexing",
+    "title": "Serwer baz danych",
+    "section": "🚀 Zaawansowane (Subqueries, JOINs, Indexing)",
+    "text": "🚀 Zaawansowane (Subqueries, JOINs, Indexing)\n\nProponowane Nowe Tabele\nAby umożliwić ćwiczenie relacji i zapytań zagnieżdżonych, dodajmy tabelę students (studenci) i tabelę classes (przedmioty/klasy).\n-- Tabela Przedmiotów (Classes)\nCREATE TABLE classes (\n    class_id serial PRIMARY KEY,\n    class_name varchar(100) NOT NULL,\n    teacher_id bigint REFERENCES teachers(id), -- Klucz obcy do tabeli teachers\n    grade_level varchar(10)\n);\n\n-- Przykładowe dane do classes\nINSERT INTO classes (class_name, teacher_id, grade_level) VALUES\n('Mathematics 101', 2, '10th'),\n('English Literature', 1, '9th'),\n('World History', 3, '11th');\n\n-- Tabela Studentów (Students)\nCREATE TABLE students (\n    student_id bigserial PRIMARY KEY,\n    first_name varchar(25),\n    last_name varchar(50),\n    enrollment_date date,\n    class_id bigint REFERENCES classes(class_id) -- Klucz obcy do tabeli classes\n);\n\n-- Przykładowe dane do students\nINSERT INTO students (first_name, last_name, enrollment_date, class_id) VALUES\n('Anna', 'Kowalska', '2023-09-01', 1),\n('Piotr', 'Nowak', '2023-09-01', 1),\n('Ewa', 'Wiśniewska', '2023-09-01', 2);\n\n\nZapytania w Zapytaniach (Subqueries)\nZapytanie wewnętrzne (subquery) jest wykonywane jako pierwsze i zwraca wynik, który jest używany przez zapytanie zewnętrzne.\n\nZnalezienie nauczycieli z najwyższą pensją:\n\nSELECT first_name, last_name FROM teachers WHERE salary = (SELECT MAX(salary) FROM teachers);\n\nZnalezienie nauczycieli, którzy prowadzą klasy dla ‘10th’ grade:,\n\nSELECT first_name, last_name FROM teachers WHERE id IN (SELECT teacher_id FROM classes WHERE grade_level = '10th');\n\nWyświetlenie studentów, których nauczyciel ma pensję powyżej średniej:\n\nSELECT s.first_name, s.last_name FROM students s JOIN classes c ON s.class_id = c.class_id JOIN teachers t ON c.teacher_id = t.id WHERE t.salary &gt; (SELECT AVG(salary) FROM teachers);"
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#indeksowanie-w-postgresql",
+    "href": "cwiczenia/cw2.html#indeksowanie-w-postgresql",
+    "title": "Serwer baz danych",
+    "section": "💡 Indeksowanie w PostgreSQL",
+    "text": "💡 Indeksowanie w PostgreSQL\nIndeksy służą do szybszego wyszukiwania danych, działając podobnie do spisu treści w książce. Są kluczowe dla optymalizacji wydajności, zwłaszcza w dużych tabelach.\n\nTworzenie Indeksu\nZaleca się tworzenie indeksów na kolumnach często używanych w klauzulach WHERE, JOIN i ORDER BY.\n-- Tworzenie indeksu na kolumnie school w tabeli teachers\nCREATE INDEX idx_teachers_school ON teachers (school);\n\n\nWeryfikacja Działania Indeksu (EXPLAIN ANALYZE)\nAby sprawdzić, czy PostgreSQL używa indeksu i jak wpływa to na czas wykonania zapytania, użyj polecenia EXPLAIN ANALYZE.\n\nWeryfikacja przyspieszenia po indeksowaniu:\n\nEXPLAIN ANALYZE SELECT * FROM teachers WHERE school = 'Myers Middle School';\nAnaliza zapytania bez użycia indeksu:,\n“Po wykonaniu EXPLAIN ANALYZE, poszukaj w wynikach fraz takich jak”“Index Scan”” (indeks został użyty) lub ““Seq Scan”” (skan sekwencyjny/całej tabeli - indeks nie został użyty).”\n\nWskazówka: W małej tabeli (jak teachers) zysk z indeksu może być niezauważalny, a nawet może nie zostać użyty przez optymalizator. Indeksy są najbardziej efektywne w tabelach liczących tysiące/miliony wierszy."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#systemowe-rzeczy-w-postgresql",
+    "href": "cwiczenia/cw2.html#systemowe-rzeczy-w-postgresql",
+    "title": "Serwer baz danych",
+    "section": "⚙️ Systemowe Rzeczy w PostgreSQL",
+    "text": "⚙️ Systemowe Rzeczy w PostgreSQL\nPostgreSQL oferuje wiele widoków i funkcji systemowych do monitorowania i zarządzania.\n\nPrzeglądanie Metadanych (Katalog Systemowy)\nLista wszystkich tabel w bieżącym schemacie:\nSELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name;\n\nSzczegóły kolumn w tabeli teachers:\n\nSELECT column_name, data_type, is_nullable FROM information_schema.columns WHERE table_name = 'teachers' AND table_schema = 'public';\n\n\nMonitorowanie Wydajności\nAktualnie uruchomione zapytania (sesje) i ich stan:\nSELECT pid, usename, datname, query, state FROM pg_stat_activity WHERE datname = current_database();\nStatystyki użycia indeksów (czy indeksy są używane):\nSELECT relname, indexrelname, idx_scan, idx_tup_read, idx_tup_fetch FROM pg_stat_user_indexes WHERE relname = 'teachers';\n\nidx_scan: Liczba skanowań indeksu (im wyższa, tym lepiej, bo znaczy, że indeks jest używany)."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#zadanie-1-podstawowe-filtrowanie-i-łączenie",
+    "href": "cwiczenia/cw2.html#zadanie-1-podstawowe-filtrowanie-i-łączenie",
+    "title": "Serwer baz danych",
+    "section": "Zadanie 1: Podstawowe Filtrowanie i Łączenie",
+    "text": "Zadanie 1: Podstawowe Filtrowanie i Łączenie\n\nCel: Użycie klauzuli WHERE, ORDER BY i operatora ILIKE.\n\nZnajdź imiona, nazwiska i pensje wszystkich nauczycieli, których nazwisko zaczyna się na literę ‘S’ (niezależnie od wielkości liter).\nPosortuj wyniki malejąco według daty zatrudnienia."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#zadanie-2-zapytanie-zagnieżdżone-subquery",
+    "href": "cwiczenia/cw2.html#zadanie-2-zapytanie-zagnieżdżone-subquery",
+    "title": "Serwer baz danych",
+    "section": "Zadanie 2: Zapytanie Zagnieżdżone (Subquery)",
+    "text": "Zadanie 2: Zapytanie Zagnieżdżone (Subquery)\n\nCel: Użycie podzapytania do wyznaczenia wartości porównawczej.\n\nWyświetl imiona i nazwiska tych nauczycieli, których pensja jest wyższa niż średnia pensja wszystkich nauczycieli w bazie."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#zadanie-3-łączenie-tabela-join-i-agregacja",
+    "href": "cwiczenia/cw2.html#zadanie-3-łączenie-tabela-join-i-agregacja",
+    "title": "Serwer baz danych",
+    "section": "Zadanie 3: Łączenie Tabela (JOIN) i Agregacja",
+    "text": "Zadanie 3: Łączenie Tabela (JOIN) i Agregacja\n\nCel: Łączenie wielu tabel (JOIN) i użycie funkcji agregującej (COUNT).\n\nDla każdego przedmiotu (class_name) wyświetl:\n\nNazwę przedmiotu.\nNazwisko i imię nauczyciela prowadzącego.\nLiczbę studentów zapisanych do tego przedmiotu (COUNT).\n\nPosortuj wyniki malejąco według liczby studentów."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#zadanie-4-porównanie-dat-i-wieloaspektowe-filtrowanie",
+    "href": "cwiczenia/cw2.html#zadanie-4-porównanie-dat-i-wieloaspektowe-filtrowanie",
+    "title": "Serwer baz danych",
+    "section": "Zadanie 4: Porównanie Dat i Wieloaspektowe Filtrowanie",
+    "text": "Zadanie 4: Porównanie Dat i Wieloaspektowe Filtrowanie\n\nCel: Użycie funkcji na datach (EXTRACT), operatora AND / OR i zakresu.\n\nZnajdź imiona i nazwiska wszystkich studentów, którzy:\n\nZostali zapisani w 2023 roku (EXTRACT(YEAR FROM enrollment_date)) LUB uczęszczają na zajęcia prowadzone przez nauczyciela z pensją w zakresie 30000 do 40000."
+  },
+  {
+    "objectID": "cwiczenia/cw2.html#zadanie-5-weryfikacja-indeksu-ćwiczenie-w-pgadmin",
+    "href": "cwiczenia/cw2.html#zadanie-5-weryfikacja-indeksu-ćwiczenie-w-pgadmin",
+    "title": "Serwer baz danych",
+    "section": "Zadanie 5: Weryfikacja Indeksu (Ćwiczenie w pgAdmin)",
+    "text": "Zadanie 5: Weryfikacja Indeksu (Ćwiczenie w pgAdmin)\n\nCel: Zrozumienie, jak PostgreSQL wykonuje zapytania i testowanie efektywności indeksów.\n\n\nStwórz indeks na kolumnie last_name w tabeli teachers.\nUruchom poniższe zapytanie, używając funkcji systemowej EXPLAIN ANALYZE w pgAdmin.\n\nW raporcie zwróć uwagę na:\nPlanning Time i Execution Time.\nCzy pojawiła się fraza Index Scan lub Bitmap Heap Scan z odwołaniem do idx_teachers_last_name? Jeśli tak, indeks został użyty.\nGdybyś usunął indeks (DROP INDEX idx_teachers_last_name;) i powtórzył zapytanie, w raporcie prawdopodobnie pojawiłoby się Seq Scan (skan sekwencyjny). Porównaj czasy wykonania."
   },
   {
     "objectID": "lectures/wyklad2.html",

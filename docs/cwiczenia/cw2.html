@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#analiza-bazy-danych-i-ćwiczenia-sql-postgresql" id="toc-analiza-bazy-danych-i-ćwiczenia-sql-postgresql" class="nav-link active" data-scroll-target="#analiza-bazy-danych-i-ćwiczenia-sql-postgresql">📊 Analiza Bazy Danych i Ćwiczenia SQL (PostgreSQL)</a></li>
   <li><a href="#zaawansowane-subqueries-joins-indexing" id="toc-zaawansowane-subqueries-joins-indexing" class="nav-link" data-scroll-target="#zaawansowane-subqueries-joins-indexing">🚀 Zaawansowane (Subqueries, JOINs, Indexing)</a></li>
-  <li><a href="#indeksowanie-w-postgresql" id="toc-indeksowanie-w-postgresql" class="nav-link" data-scroll-target="#indeksowanie-w-postgresql">💡 Indeksowanie w PostgreSQL</a></li>
+  <li><a href="#indeksowanie-w-postgresql" id="toc-indeksowanie-w-postgresql" class="nav-link" data-scroll-target="#indeksowanie-w-postgresql">💡 Indeksowanie w postgreSQL</a></li>
   <li><a href="#systemowe-rzeczy-w-postgresql" id="toc-systemowe-rzeczy-w-postgresql" class="nav-link" data-scroll-target="#systemowe-rzeczy-w-postgresql">⚙️ Systemowe Rzeczy w PostgreSQL</a></li>
   <li><a href="#zadanie-1-podstawowe-filtrowanie-i-łączenie" id="toc-zadanie-1-podstawowe-filtrowanie-i-łączenie" class="nav-link" data-scroll-target="#zadanie-1-podstawowe-filtrowanie-i-łączenie">Zadanie 1: Podstawowe Filtrowanie i Łączenie</a></li>
   <li><a href="#zadanie-2-zapytanie-zagnieżdżone-subquery" id="toc-zadanie-2-zapytanie-zagnieżdżone-subquery" class="nav-link" data-scroll-target="#zadanie-2-zapytanie-zagnieżdżone-subquery">Zadanie 2: Zapytanie Zagnieżdżone (Subquery)</a></li>
@@ -278,9 +278,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="analiza-bazy-danych-i-ćwiczenia-sql-postgresql" class="level2">
 <h2 class="anchored" data-anchor-id="analiza-bazy-danych-i-ćwiczenia-sql-postgresql">📊 Analiza Bazy Danych i Ćwiczenia SQL (PostgreSQL)</h2>
 <p>Poniższy materiał omawia podstawowe operacje na bazie danych, wykorzystując przykładową tabelę teachers. Zawiera również propozycje bardziej zaawansowanych ćwiczeń, w tym tworzenie indeksów i wykorzystanie zagnieżdżonych zapytań (Subqueries), oraz odniesienia do funkcji systemowych PostgreSQL.</p>
-<p>Polecenie SQL,Opis CREATE TABLE teachers,Tworzy tabelę przechowującą dane o nauczycielach. INSERT INTO teachers,Dodaje rekordy (wiersze) do tabeli. SELECT * FROM teachers,Wyświetla wszystkie dane ze wszystkich kolumn w tabeli.</p>
+<p><code>CREATE TABLE teachers</code>,Tworzy tabelę przechowującą dane o nauczycielach.</p>
+<p><code>INSERT INTO teachers</code>,Dodaje rekordy (wiersze) do tabeli.</p>
+<p><code>SELECT * FROM teachers</code>,Wyświetla wszystkie dane ze wszystkich kolumn w tabeli.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> teachers (</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> bigserial,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> bigserial <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    first_name <span class="dt">varchar</span>(<span class="dv">25</span>),</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    last_name <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    school <span class="dt">varchar</span>(<span class="dv">50</span>),</span>
@@ -296,15 +298,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Betty'</span>, <span class="st">'Diaz'</span>, <span class="st">'Myers Middle School'</span>, <span class="st">'2005-08-30'</span>, <span class="dv">43500</span>),</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Kathleen'</span>, <span class="st">'Roush'</span>, <span class="st">'F.D. Roosevelt HS'</span>, <span class="st">'2010-10-22'</span>, <span class="dv">38500</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="filtrowanie-i-sortowanie-danych" class="level3">
-<h3 class="anchored" data-anchor-id="filtrowanie-i-sortowanie-danych">2. Filtrowanie i Sortowanie Danych</h3>
+<h3 class="anchored" data-anchor-id="filtrowanie-i-sortowanie-danych">Filtrowanie i sortowanie danych</h3>
 <section id="filtrowanie-kolumn-select" class="level4">
-<h4 class="anchored" data-anchor-id="filtrowanie-kolumn-select">2.1. Filtrowanie Kolumn (SELECT)</h4>
+<h4 class="anchored" data-anchor-id="filtrowanie-kolumn-select">Filtrowanie kolumn (SELECT)</h4>
 <p>Wybranie tylko konkretnych kolumn jest pierwszą zasadą optymalizacji zapytań – wybieraj tylko to, co jest potrzebne.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> last_name, first_name, salary <span class="kw">FROM</span> teachers;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="sortowanie-order-by" class="level3">
-<h3 class="anchored" data-anchor-id="sortowanie-order-by">2.2. Sortowanie (ORDER BY)</h3>
+<h3 class="anchored" data-anchor-id="sortowanie-order-by">Sortowanie (ORDER BY)</h3>
 <p>Pozwala uporządkować wyniki. DESC (Descending) oznacza malejąco, ASC (Ascending) oznacza rosnąco (domyślne). Sortowanie można wykonać po nazwie kolumny, lub po jej numerze porządkowym (licząc od 1).</p>
 <section id="sortowanie-malejąco-po-pensji." class="level4">
 <h4 class="anchored" data-anchor-id="sortowanie-malejąco-po-pensji.">Sortowanie malejąco po pensji.</h4>
@@ -320,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="eliminacja-duplikatów-distinct" class="level3">
-<h3 class="anchored" data-anchor-id="eliminacja-duplikatów-distinct">2.3. Eliminacja Duplikatów (DISTINCT)</h3>
+<h3 class="anchored" data-anchor-id="eliminacja-duplikatów-distinct">Eliminacja duplikatów (DISTINCT)</h3>
 <p>Używane do wyświetlenia unikalnych wartości.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Wyświetl unikalne nazwy szkół</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> school <span class="kw">FROM</span> teachers <span class="kw">ORDER</span> <span class="kw">BY</span> school;</span>
@@ -329,40 +331,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> school, salary <span class="kw">FROM</span> teachers <span class="kw">ORDER</span> <span class="kw">BY</span> school, salary;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="filtrowanie-wierszy-where" class="level3">
-<h3 class="anchored" data-anchor-id="filtrowanie-wierszy-where">3. Filtrowanie Wierszy (WHERE)</h3>
+<h3 class="anchored" data-anchor-id="filtrowanie-wierszy-where">Filtrowanie wierszy (WHERE)</h3>
 <p>Klucz do precyzyjnego pobierania danych.</p>
 <section id="równość" class="level4">
 <h4 class="anchored" data-anchor-id="równość">Równość (=),</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> school <span class="op">=</span> <span class="st">'Myers Middle School'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wybiera nauczycieli z konkretnej szkoły.</p>
+<p>wybiera nauczycieli z konkretnej szkoły.</p>
 </section>
 <section id="różność-lub" class="level4">
 <h4 class="anchored" data-anchor-id="różność-lub">Różność (&lt;&gt; lub !=),</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> school <span class="op">&lt;&gt;</span> <span class="st">'F.D. Roosevelt HS'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wybiera nauczycieli ze wszystkich szkół oprócz podanej.</p>
+<p>wybiera nauczycieli ze wszystkich szkół oprócz podanej.</p>
 </section>
 <section id="porównanie" class="level4">
 <h4 class="anchored" data-anchor-id="porównanie">Porównanie (&lt;, &gt;, &lt;=, &gt;=)</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> hire_date <span class="op">&lt;</span> <span class="st">'2000-01-01'</span>;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>,Wybiera zatrudnionych przed 2000 rokiem.</p>
+<p>wybiera zatrudnionych przed 2000 rokiem.</p>
 </section>
 <section id="zakres-between" class="level4">
 <h4 class="anchored" data-anchor-id="zakres-between">Zakres (BETWEEN)</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> salary <span class="kw">BETWEEN</span> <span class="dv">40000</span> <span class="kw">AND</span> <span class="dv">65000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>,Wybiera pensje włącznie z krańcami zakresu (równoważne: salary &gt;= 40000 AND salary &lt;= 65000).</p>
+<p>wybiera pensje włącznie z krańcami zakresu (równoważne: salary &gt;= 40000 AND salary &lt;= 65000).</p>
 </section>
 <section id="wzorce-like-ilike" class="level4">
 <h4 class="anchored" data-anchor-id="wzorce-like-ilike">Wzorce (LIKE / ILIKE)</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> first_name <span class="kw">LIKE</span> <span class="st">'sam%'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>lub</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> first_name ILIKE <span class="st">'sam%'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>,LIKE jest czułe na wielkość liter;</p>
-<p>ILIKE jest nieczułe na wielkość liter (preferowane w PostgreSQL).</p>
-<p>% oznacza dowolną liczbę znaków.</p>
+<p><code>LIKE</code> jest czułe na wielkość liter;</p>
+<p><code>ILIKE</code> jest nieczułe na wielkość liter (preferowane w PostgreSQL).</p>
+<p><code>%</code> oznacza dowolną liczbę znaków.</p>
 </section>
 </section>
 <section id="operatory-logiczne-and-or" class="level3">
-<h3 class="anchored" data-anchor-id="operatory-logiczne-and-or">3.1. Operatory Logiczne (AND, OR)</h3>
+<h3 class="anchored" data-anchor-id="operatory-logiczne-and-or">Operatory Logiczne (AND, OR)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- AND: Oba warunki muszą być spełnione</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> teachers</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> school <span class="op">=</span> <span class="st">'Myers Middle School'</span></span>
@@ -379,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> (salary <span class="op">&lt;</span> <span class="dv">38000</span> <span class="kw">OR</span> salary <span class="op">&gt;</span> <span class="dv">40000</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="wyszukiwanie-z-wzorem-like-z" class="level3">
-<h3 class="anchored" data-anchor-id="wyszukiwanie-z-wzorem-like-z">3.2. Wyszukiwanie z Wzorem (LIKE z %)</h3>
+<h3 class="anchored" data-anchor-id="wyszukiwanie-z-wzorem-like-z">Wyszukiwanie z Wzorem (LIKE z %)</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> first_name, last_name, school, hire_date, salary</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> teachers</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> school <span class="kw">LIKE</span> <span class="st">'%Roos%'</span> <span class="co">-- Znajduje szkoły, w których nazwie występuje 'Roos'</span></span>
@@ -389,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="zaawansowane-subqueries-joins-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="zaawansowane-subqueries-joins-indexing">🚀 Zaawansowane (Subqueries, JOINs, Indexing)</h2>
 <section id="proponowane-nowe-tabele" class="level3">
-<h3 class="anchored" data-anchor-id="proponowane-nowe-tabele">Proponowane Nowe Tabele</h3>
+<h3 class="anchored" data-anchor-id="proponowane-nowe-tabele">Proponowane nowe tabele</h3>
 <p>Aby umożliwić ćwiczenie relacji i zapytań zagnieżdżonych, dodajmy tabelę students (studenci) i tabelę classes (przedmioty/klasy).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tabela Przedmiotów (Classes)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> classes (</span>
@@ -421,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>(<span class="st">'Ewa'</span>, <span class="st">'Wiśniewska'</span>, <span class="st">'2023-09-01'</span>, <span class="dv">2</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="zapytania-w-zapytaniach-subqueries" class="level3">
-<h3 class="anchored" data-anchor-id="zapytania-w-zapytaniach-subqueries">Zapytania w Zapytaniach (Subqueries)</h3>
+<h3 class="anchored" data-anchor-id="zapytania-w-zapytaniach-subqueries">Zapytania w zapytaniach (Subqueries)</h3>
 <p>Zapytanie wewnętrzne (subquery) jest wykonywane jako pierwsze i zwraca wynik, który jest używany przez zapytanie zewnętrzne.</p>
 <blockquote class="blockquote">
 <p>Znalezienie nauczycieli z najwyższą pensją:</p>
@@ -438,16 +440,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="indeksowanie-w-postgresql" class="level2">
-<h2 class="anchored" data-anchor-id="indeksowanie-w-postgresql">💡 Indeksowanie w PostgreSQL</h2>
+<h2 class="anchored" data-anchor-id="indeksowanie-w-postgresql">💡 Indeksowanie w postgreSQL</h2>
 <p>Indeksy służą do szybszego wyszukiwania danych, działając podobnie do spisu treści w książce. Są kluczowe dla optymalizacji wydajności, zwłaszcza w dużych tabelach.</p>
 <section id="tworzenie-indeksu" class="level3">
-<h3 class="anchored" data-anchor-id="tworzenie-indeksu">Tworzenie Indeksu</h3>
+<h3 class="anchored" data-anchor-id="tworzenie-indeksu">Tworzenie indeksu</h3>
 <p>Zaleca się tworzenie indeksów na kolumnach często używanych w klauzulach WHERE, JOIN i ORDER BY.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Tworzenie indeksu na kolumnie school w tabeli teachers</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> idx_teachers_school <span class="kw">ON</span> teachers (school);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="weryfikacja-działania-indeksu-explain-analyze" class="level3">
-<h3 class="anchored" data-anchor-id="weryfikacja-działania-indeksu-explain-analyze">Weryfikacja Działania Indeksu (EXPLAIN ANALYZE)</h3>
+<h3 class="anchored" data-anchor-id="weryfikacja-działania-indeksu-explain-analyze">Weryfikacja działania indeksu (EXPLAIN ANALYZE)</h3>
 <p>Aby sprawdzić, czy PostgreSQL używa indeksu i jak wpływa to na czas wykonania zapytania, użyj polecenia EXPLAIN ANALYZE.</p>
 <blockquote class="blockquote">
 <p>Weryfikacja przyspieszenia po indeksowaniu:</p>

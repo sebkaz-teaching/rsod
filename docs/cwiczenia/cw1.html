@@ -243,7 +243,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#plikowa-baza-danych---sqlite" id="toc-plikowa-baza-danych---sqlite" class="nav-link active" data-scroll-target="#plikowa-baza-danych---sqlite">Plikowa baza danych - SQLite</a></li>
   <li><a href="#ddl-w-sqlite" id="toc-ddl-w-sqlite" class="nav-link" data-scroll-target="#ddl-w-sqlite">DDL w SQLite</a></li>
   <li><a href="#pierwsza-postać-normalna-1nf-analiza-tabeli-klienci" id="toc-pierwsza-postać-normalna-1nf-analiza-tabeli-klienci" class="nav-link" data-scroll-target="#pierwsza-postać-normalna-1nf-analiza-tabeli-klienci">Pierwsza Postać Normalna (1NF) – analiza tabeli klienci</a></li>
-  <li><a href="#serwer-baz-danych" id="toc-serwer-baz-danych" class="nav-link" data-scroll-target="#serwer-baz-danych">Serwer baz danych</a></li>
   </ul>
 </nav>
     </div>
@@ -463,7 +462,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span> (<span class="st">'Jan Kowalski'</span>, <span class="st">'ul. Lipowa 12, 00-001 Warszawa'</span>, <span class="st">'Laptop, Telefon'</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Sprawdzenie zawartości tabeli</li>
-<li></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> klienci;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
@@ -878,7 +876,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="9de3c725" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Normalizacja tabeli klienci – pełne podsumowanie</p>
+<section id="normalizacja-tabeli-klienci-pełne-podsumowanie" class="level4">
+<h4 class="anchored" data-anchor-id="normalizacja-tabeli-klienci-pełne-podsumowanie">Normalizacja tabeli klienci – pełne podsumowanie</h4>
 <p>Tabela początkowa (przed normalizacją)</p>
 <ul>
 <li>Nazwa tabeli: klienci</li>
@@ -890,8 +889,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Imię/nazwisko i adres w jednej kolumnie → brak pełnej atomowości.</li>
 <li>Trudności w analizie i wyszukiwaniu.</li>
 </ul>
-<p>⸻</p>
-<p>Proces normalizacji krok po kroku</p>
+</section>
+</section>
+<section id="proces-normalizacji-krok-po-kroku" class="level3">
+<h3 class="anchored" data-anchor-id="proces-normalizacji-krok-po-kroku">Proces normalizacji krok po kroku</h3>
 <p>Krok 0 – Dodanie klucza głównego</p>
 <ul>
 <li>Kolumna id jako PRIMARY KEY.</li>
@@ -999,16 +1000,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Plik SQL 'klienci_3nf.sql' został wygenerowany!</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="serwer-baz-danych" class="level2">
-<h2 class="anchored" data-anchor-id="serwer-baz-danych">Serwer baz danych</h2>
-<p>PostgreSQL to relacyjny system zarządzania bazą danych (RDBMS – Relational Database Management System), należący do najbardziej zaawansowanych i niezawodnych rozwiązań typu open source. Umożliwia on tworzenie, przechowywanie i przetwarzanie danych w sposób zgodny z zasadami modelu relacyjnego, zapewniając jednocześnie obsługę transakcji, integralność danych, bezpieczeństwo oraz wysoką wydajność.</p>
-<p>Do pracy z PostgreSQL często wykorzystuje się narzędzie pgAdmin – graficzny interfejs użytkownika (GUI), który pozwala w wygodny sposób zarządzać serwerem i bazami danych, wykonywać zapytania SQL, projektować struktury tabel oraz analizować dane. Dzięki pgAdmin użytkownik może łączyć się z serwerem PostgreSQL, przeglądać obiekty bazy (schematy, tabele, widoki, funkcje), a także monitorować jej działanie.</p>
-<p>PostgreSQL działa w architekturze klient–serwer. Oznacza to, że serwer baz danych (program postgres) działa w tle i odpowiada za przechowywanie oraz zarządzanie danymi, natomiast klienci (np. pgAdmin, aplikacje webowe, skrypty w Pythonie) łączą się z nim za pomocą sieciowego protokołu i wysyłają polecenia SQL. Serwer przetwarza te polecenia, wykonuje operacje na danych i zwraca wyniki do klienta. Takie rozwiązanie pozwala wielu użytkownikom lub aplikacjom jednocześnie korzystać z tej samej bazy danych w sposób bezpieczny i kontrolowany.</p>
-<p>W trakcie laboratorium będziemy korzystać z PostgreSQL i pgAdmin, aby poznać zasady działania relacyjnych systemów baz danych – od projektowania schematów danych, poprzez tworzenie tabel i relacji, aż po wykonywanie zapytań SQL i analizę wyników.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

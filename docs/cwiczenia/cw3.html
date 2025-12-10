@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Od pliku do bazy danych – Relacyjne Systemy Organizacji Danych</title>
+<title>cw3 – Relacyjne Systemy Organizacji Danych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Od pliku do bazy danych</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw3.html">Zadania Ćwiczenia 3</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/wyklad1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../lectures/wyklad1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Od pliku do bazy danych</span></a>
   </div>
 </li>
@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cwiczenia/cw3.html" class="sidebar-item-text sidebar-link">
+  <a href="../cwiczenia/cw3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Zadania Ćwiczenia 3</span></a>
   </div>
 </li>
@@ -237,467 +237,227 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#cele-wykładu" id="toc-cele-wykładu" class="nav-link active" data-scroll-target="#cele-wykładu">🧠 Cele wykładu</a></li>
-  <li><a href="#dane-informacja-baza-danych" id="toc-dane-informacja-baza-danych" class="nav-link" data-scroll-target="#dane-informacja-baza-danych">1️⃣ Dane, informacja, baza danych</a></li>
-  <li><a href="#rodzaje-danych" id="toc-rodzaje-danych" class="nav-link" data-scroll-target="#rodzaje-danych">2️⃣ Rodzaje danych</a></li>
-  <li><a href="#pliki-jako-forma-przechowywania-danych" id="toc-pliki-jako-forma-przechowywania-danych" class="nav-link" data-scroll-target="#pliki-jako-forma-przechowywania-danych">3️⃣ Pliki jako forma przechowywania danych</a></li>
-  <li><a href="#od-pliku-do-bazy-danych" id="toc-od-pliku-do-bazy-danych" class="nav-link" data-scroll-target="#od-pliku-do-bazy-danych">5️⃣ Od pliku do bazy danych</a></li>
-  <li><a href="#różnice-w-przetwarzaniu-danych-przykład-porównawczy" id="toc-różnice-w-przetwarzaniu-danych-przykład-porównawczy" class="nav-link" data-scroll-target="#różnice-w-przetwarzaniu-danych-przykład-porównawczy">6️⃣ Różnice w przetwarzaniu danych – przykład porównawczy</a></li>
-  <li><a href="#architektura-systemów-baz-danych-ansisparc" id="toc-architektura-systemów-baz-danych-ansisparc" class="nav-link" data-scroll-target="#architektura-systemów-baz-danych-ansisparc">7️⃣ Architektura systemów baz danych (ANSI/SPARC)</a></li>
-  <li><a href="#typy-baz-danych" id="toc-typy-baz-danych" class="nav-link" data-scroll-target="#typy-baz-danych">8️⃣ Typy baz danych</a></li>
-  <li><a href="#historia-i-ewolucja-baz-danych" id="toc-historia-i-ewolucja-baz-danych" class="nav-link" data-scroll-target="#historia-i-ewolucja-baz-danych">9️⃣ Historia i ewolucja baz danych</a></li>
-  <li><a href="#zalety-podejścia-relacyjnego" id="toc-zalety-podejścia-relacyjnego" class="nav-link" data-scroll-target="#zalety-podejścia-relacyjnego">🔟 Zalety podejścia relacyjnego</a></li>
-  <li><a href="#wprowadzenie-do-języka-sql" id="toc-wprowadzenie-do-języka-sql" class="nav-link" data-scroll-target="#wprowadzenie-do-języka-sql">1️⃣1️⃣ Wprowadzenie do języka SQL</a></li>
+  <li><a href="#zadania-ćwiczenia-3" id="toc-zadania-ćwiczenia-3" class="nav-link active" data-scroll-target="#zadania-ćwiczenia-3">Zadania Ćwiczenia 3</a>
+  <ul class="collapse">
+  <li><a href="#rodzaje-złączeń-join-w-sql" id="toc-rodzaje-złączeń-join-w-sql" class="nav-link" data-scroll-target="#rodzaje-złączeń-join-w-sql">🔗 Rodzaje Złączeń (JOIN) w SQL</a></li>
+  <li><a href="#najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" id="toc-najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" class="nav-link" data-scroll-target="#najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych">❌ Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych</a></li>
+  <li><a href="#ćwiczenia-podstawowe-select-from-where-dml" id="toc-ćwiczenia-podstawowe-select-from-where-dml" class="nav-link" data-scroll-target="#ćwiczenia-podstawowe-select-from-where-dml">📝 Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)</a></li>
+  <li><a href="#logika-i-sortowanie-and-or-not-in-between-order-by" id="toc-logika-i-sortowanie-and-or-not-in-between-order-by" class="nav-link" data-scroll-target="#logika-i-sortowanie-and-or-not-in-between-order-by">🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)</a></li>
+  <li><a href="#wzorce-i-unikatowe-wartości-distinct-like" id="toc-wzorce-i-unikatowe-wartości-distinct-like" class="nav-link" data-scroll-target="#wzorce-i-unikatowe-wartości-distinct-like">🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)</a></li>
+  <li><a href="#agregacja-i-grupowanie-group-by-having" id="toc-agregacja-i-grupowanie-group-by-having" class="nav-link" data-scroll-target="#agregacja-i-grupowanie-group-by-having">📊 Agregacja i Grupowanie (GROUP BY, HAVING)</a></li>
+  </ul></li>
+  <li><a href="#łączenie-tabel-join---10-zadań" id="toc-łączenie-tabel-join---10-zadań" class="nav-link" data-scroll-target="#łączenie-tabel-join---10-zadań">🔗 Łączenie Tabel (JOIN - 10 Zadań)</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Wykłady</a></li><li class="breadcrumb-item"><a href="../lectures/wyklad1.html">Od pliku do bazy danych</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Od pliku do bazy danych</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw3.html">Zadania Ćwiczenia 3</a></li></ol></nav></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="cele-wykładu" class="level2">
-<h2 class="anchored" data-anchor-id="cele-wykładu">🧠 Cele wykładu</h2>
-<p>W tym module poznasz podstawowe pojęcia związane z danymi i bazami danych. Dowiesz się, czym różni się system plikowy od bazy danych, jak wygląda architektura systemu DBMS oraz dlaczego model relacyjny stał się standardem w przechowywaniu informacji.</p>
-<p>Na końcu wprowadzimy Cię w świat języka SQL – narzędzia, które pozwala komunikować się z bazą danych.</p>
-<p>⸻</p>
-</section>
-<section id="dane-informacja-baza-danych" class="level2">
-<h2 class="anchored" data-anchor-id="dane-informacja-baza-danych">1️⃣ Dane, informacja, baza danych</h2>
-<section id="dane" class="level3">
-<h3 class="anchored" data-anchor-id="dane">🔹 Dane</h3>
-<p>Na początku warto zadać pytanie: czym właściwie są dane?</p>
-<p>Dane to surowe fakty – liczby, teksty, symbole – które same w sobie nie mają znaczenia. Przykładowo, zapis:</p>
-<pre class="csv"><code>12345
-Jan Kowalski
-Bazy danych</code></pre>
-<p>nie mówi nam jeszcze nic o tym, co oznacza. Może to być numer indeksu, nazwisko klienta albo temat zajęć.</p>
-<blockquote class="blockquote">
-<p><img alt="Schemat przedstawiający przejście: ,Dane $\to$ Informacja $\to$ Wiedza'"> (np. piramida DIKW – Data, Information, Knowledge, Wisdom)</p>
-</blockquote>
-</section>
-<section id="informacja" class="level3">
-<h3 class="anchored" data-anchor-id="informacja">🔹 Informacja</h3>
-<p>Informacja powstaje wtedy, gdy dane zostaną zinterpretowane w określonym kontekście. Jeśli wiemy, że „12345” to numer indeksu studenta Jana Kowalskiego, który zapisał się na kurs Bazy danych, mamy już informację.</p>
-<p>W życiu codziennym często mamy mnóstwo danych (np. z mediów społecznościowych), ale niewiele z nich przekłada się na prawdziwą wiedzę.</p>
-<p>⸻</p>
-</section>
-<section id="baza-danych" class="level3">
-<h3 class="anchored" data-anchor-id="baza-danych">🔹 Baza danych</h3>
-<p>Baza danych (ang. database) to uporządkowany zbiór danych, przechowywany w sposób umożliwiający szybkie wyszukiwanie, aktualizację i kontrolę spójności. Można ją porównać do dobrze zorganizowanego archiwum, w którym każdy dokument ma swoje miejsce i jest łatwy do odnalezienia.</p>
-<p>Wizualizacja bazy danych – zestaw powiązanych tabel w relacyjnym modelu danych.</p>
-</section>
-<section id="system-zarządzania-bazą-danych-dbms" class="level3">
-<h3 class="anchored" data-anchor-id="system-zarządzania-bazą-danych-dbms">🔹 System zarządzania bazą danych (DBMS)</h3>
-<p>System zarządzania bazą danych, czyli DBMS (Database Management System), to oprogramowanie pośredniczące między użytkownikiem a bazą danych.</p>
-<p>To ono umożliwia:</p>
+<section id="zadania-ćwiczenia-3" class="level1">
+<h1>Zadania Ćwiczenia 3</h1>
+<section id="rodzaje-złączeń-join-w-sql" class="level2">
+<h2 class="anchored" data-anchor-id="rodzaje-złączeń-join-w-sql">🔗 Rodzaje Złączeń (JOIN) w SQL</h2>
+<p>Złączenia służą do łączenia wierszy z dwóch lub więcej tabel na podstawie powiązanej kolumny (np. klucza obcego). Różne typy złączeń decydują o tym, jak traktowane są wiersze, dla których brakuje pasujących danych w drugiej tabeli (np. pracownik bez działu, lub dział bez pracownika).</p>
+<section id="inner-join-złączenie-wewnętrzne" class="level3">
+<h3 class="anchored" data-anchor-id="inner-join-złączenie-wewnętrzne">INNER JOIN (Złączenie Wewnętrzne)</h3>
+<p>Cel: Zwraca tylko te wiersze, które mają pasujące wartości w obu tabelach (przecięcie zbiorów). Działanie: Jeśli wiersz z Tabeli A nie ma pasującego wiersza w Tabeli B (lub odwrotnie), jest on pomijany. Kiedy używać: Kiedy potrzebujesz danych, które są kompletne po obu stronach relacji.</p>
+<p>Przykład:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    p.imie,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    p.nazwisko,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    d.nazwa_dzialu</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    pracownicy p</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    dzialy d <span class="kw">ON</span> p.id_dzialu <span class="op">=</span> d.id_dzialu;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>W Wyniku:</p>
 <ul>
-<li>definiowanie struktur (np. tabel),</li>
-<li>przechowywanie i wyszukiwanie danych,</li>
-<li>zapewnienie bezpieczeństwa i spójności,</li>
-<li>obsługę wielu użytkowników jednocześnie.</li>
+<li>Pojawią się wszyscy pracownicy, którzy mają przypisany id_dzialu.</li>
+<li>Zostanie pominięta Olga Lisiecka (pracownik bez działu).</li>
+<li>Zostanie pominięty dział Badania i Rozwój (dział bez pracowników).</li>
 </ul>
-<p>Do najpopularniejszych DBMS należą: <strong>PostgreSQL, Oracle, MySQL, SQLite, MS SQL Server</strong>.</p>
 </section>
-</section>
-<section id="rodzaje-danych" class="level2">
-<h2 class="anchored" data-anchor-id="rodzaje-danych">2️⃣ Rodzaje danych</h2>
-<p>W informatyce dane występują w różnych formach. Można je podzielić według stopnia strukturyzacji.</p>
-<section id="dane-ustrukturyzowane" class="level3">
-<h3 class="anchored" data-anchor-id="dane-ustrukturyzowane">🔸 Dane ustrukturyzowane</h3>
-<p>To dane zapisane w tabelach – każda kolumna ma nazwę i określony typ. Znajdujemy je np. w arkuszach kalkulacyjnych lub relacyjnych bazach danych.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>ID</th>
-<th>Imię</th>
-<th>Nazwisko</th>
-<th>Miasto</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>Anna</td>
-<td>Nowak</td>
-<td>Kraków</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Jan</td>
-<td>Kowalski</td>
-<td>Warszawa</td>
-</tr>
-</tbody>
-</table>
-<p><img alt="Grafika pokazująca dane tabelaryczne (np. tabela klientów w SQL lub Excelu)"></p>
-</section>
-<section id="dane-półustrukturyzowane" class="level3">
-<h3 class="anchored" data-anchor-id="dane-półustrukturyzowane">🔸 Dane półustrukturyzowane</h3>
-<p>Mają pewną strukturę, ale nie tak sztywną jak dane tabelaryczne.<br>
-Przykładem mogą być pliki <strong>JSON</strong> lub <strong>XML</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"imie"</span><span class="fu">:</span> <span class="st">"Anna"</span><span class="fu">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"miasto"</span><span class="fu">:</span> <span class="st">"Kraków"</span><span class="fu">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"zainteresowania"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"sport"</span><span class="ot">,</span> <span class="st">"muzyka"</span><span class="ot">]</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img alt=" Ilustracja: porównanie danych JSON i tabeli SQL (elastyczna struktura vs. sztywna)"></p>
-</section>
-<section id="dane-nieustrukturyzowane" class="level3">
-<h3 class="anchored" data-anchor-id="dane-nieustrukturyzowane">🔸 Dane nieustrukturyzowane</h3>
-<p>To dane, które nie mają jasno zdefiniowanej struktury — na przykład obrazy, pliki audio, wideo czy dokumenty PDF. Ich analiza wymaga specjalistycznych narzędzi (np. rozpoznawania obrazów lub przetwarzania języka naturalnego).</p>
-<p>⸻</p>
-</section>
-</section>
-<section id="pliki-jako-forma-przechowywania-danych" class="level2">
-<h2 class="anchored" data-anchor-id="pliki-jako-forma-przechowywania-danych">3️⃣ Pliki jako forma przechowywania danych</h2>
-<p>Zanim powstały systemy baz danych, dane przechowywano w prostych plikach tekstowych.</p>
-<p>Na przykład w pliku CSV:</p>
-<pre class="csv"><code>ID,Imię,Nazwisko,Miasto
-1,Anna,Nowak,Kraków
-2,Jan,Kowalski,Warszawa
-3,Piotr,Wiśniewski,Poznań</code></pre>
-<p>Choć taki plik można łatwo otworzyć w Excelu, ma on liczne ograniczenia:</p>
+<section id="left-join-złączenie-lewostronne" class="level3">
+<h3 class="anchored" data-anchor-id="left-join-złączenie-lewostronne">LEFT JOIN (Złączenie Lewostronne)</h3>
+<p>Cel: Zwraca wszystkie wiersze z lewej tabeli (Tabela A) i pasujące wiersze z prawej tabeli (Tabela B). Jeśli brak dopasowania, w kolumnach z Tabeli B pojawia się wartość NULL.</p>
+<p>Działanie: Tabela po lewej (pracownicy) jest priorytetowa.</p>
+<p>Kiedy używać: Gdy chcesz zobaczyć wszystkie rekordy z jednej strony relacji, nawet jeśli nie mają one powiązanych danych po drugiej stronie.</p>
+<p>Przykład:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    p.imie,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    p.nazwisko,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    d.nazwa_dzialu</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    pracownicy p</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LEFT</span> <span class="kw">JOIN</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    dzialy d <span class="kw">ON</span> p.id_dzialu <span class="op">=</span> d.id_dzialu;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>W Wyniku:</p>
 <ul>
-<li>brak kontroli poprawności danych,</li>
-<li>brak powiązań między plikami,</li>
-<li>brak współbieżności przy edycji.</li>
+<li>Pojawią się wszyscy pracownicy, w tym Olga Lisiecka.</li>
+<li>Dla Olga Lisiecka kolumna nazwa_dzialu będzie miała wartość NULL.</li>
+<li>Dział Badania i Rozwój zostanie pominięty, ponieważ jest w prawej tabeli i nie ma pasującego pracownika.</li>
 </ul>
-<p><img alt="Grafika: dwa pliki CSV (klienci i zamówienia) – brak relacji między nimi"></p>
-<p>## 4️⃣ Problemy pracy z plikami</p>
-<p>System plikowy działa poprawnie przy niewielkiej liczbie danych i prostych zastosowaniach. Wraz ze wzrostem ilości informacji i liczbą użytkowników pojawiają się jednak poważne ograniczenia, które utrudniają bezpieczne i efektywne zarządzanie danymi.</p>
-<section id="typowe-problemy" class="level3">
-<h3 class="anchored" data-anchor-id="typowe-problemy">⚠️ Typowe problemy</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 60%">
-<col style="width: 40%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Problem</th>
-<th>Opis</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>🔁 Redundancja</td>
-<td>Te same dane pojawiają się w wielu miejscach (np. adres klienta powielony w każdym zamówieniu).</td>
-</tr>
-<tr class="even">
-<td>⚠️ Niespójność</td>
-<td>Różne wersje tej samej informacji w różnych plikach (np. inny numer telefonu u klienta w dwóch plikach).</td>
-</tr>
-<tr class="odd">
-<td>⛔ Brak współbieżności</td>
-<td>Trudności przy jednoczesnej edycji — ryzyko nadpisania zmian.</td>
-</tr>
-<tr class="even">
-<td>❌ Brak kontroli dostępu</td>
-<td>Brak ról, uprawnień i mechanizmów audytu.</td>
-</tr>
-<tr class="odd">
-<td>🧩 Słaba integracja</td>
-<td>Dane rozproszone po różnych formatach i miejscach, trudne do połączenia.</td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p><img> Schemat: system plików z wieloma niespójnymi plikami vs.&nbsp;centralna baza danych</p>
-</blockquote>
-<section id="przykład-plikowy" class="level4">
-<h4 class="anchored" data-anchor-id="przykład-plikowy">Przykład (plikowy):</h4>
-<p><code>klienci.txt</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>1;Anna Nowak;Kraków</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>2;Jan Kowalski;Warszawa</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>zamowienia.txt</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>10;Laptop;1</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>11;Monitor;2</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>12;Kabel HDMI;1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Działa to, ale jeśli zmienimy ID klienta lub nazwę produktu, powstaje trudność w utrzymaniu spójności.</p>
-<hr>
 </section>
-</section>
-</section>
-<section id="od-pliku-do-bazy-danych" class="level2">
-<h2 class="anchored" data-anchor-id="od-pliku-do-bazy-danych">5️⃣ Od pliku do bazy danych</h2>
-<p>Aby rozwiązać problemy związane z plikami płaskimi, wprowadzono koncepcję systemu zarządzania bazą danych (DBMS). Główne idee to:</p>
+<section id="right-join-złączenie-prawostronne" class="level3">
+<h3 class="anchored" data-anchor-id="right-join-złączenie-prawostronne">RIGHT JOIN (Złączenie Prawostronne)</h3>
+<p>Cel: Zwraca wszystkie wiersze z prawej tabeli (Tabela B) i pasujące wiersze z lewej tabeli (Tabela A). Jeśli brak dopasowania, w kolumnach z Tabeli A pojawia się wartość NULL.</p>
+<p>Działanie: Tabela po prawej (dzialy) jest priorytetowa.</p>
+<p>Kiedy używać: Analogicznie do LEFT JOIN, ale priorytetem jest zwrócenie wszystkich rekordów z drugiej strony relacji (np. wszystkich działów).</p>
+<p>Przykład:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    p.imie,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    p.nazwisko,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    d.nazwa_dzialu</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    pracownicy p</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RIGHT</span> <span class="kw">JOIN</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    dzialy d <span class="kw">ON</span> p.id_dzialu <span class="op">=</span> d.id_dzialu;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>W Wyniku:</p>
 <ul>
-<li>centralne repozytorium danych,</li>
-<li>kontrolowany dostęp i uprawnienia,</li>
-<li>mechanizmy zapewniające spójność i integralność,</li>
-<li>obsługa współbieżności i transakcji,</li>
-<li>możliwość zapytań (np. SQL) zamiast pełnego skanowania plików.</li>
+<li>Pojawią się wszystkie działy, w tym Badania i Rozwój.</li>
+<li>Dla działu Badania i Rozwój kolumny imie i nazwisko będą miały wartość NULL.</li>
+<li>Pracownik Olga Lisiecka zostanie pominięty, ponieważ nie ma pasującego działu.</li>
 </ul>
-<section id="porównanie-plik-csv-vs-baza-danych-sql" class="level3">
-<h3 class="anchored" data-anchor-id="porównanie-plik-csv-vs-baza-danych-sql">Porównanie: plik CSV vs baza danych (SQL)</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 25%">
-<col style="width: 51%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Cecha</th>
-<th>Plik CSV</th>
-<th>Baza danych (SQL)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Struktura danych</td>
-<td>Tekstowa, dowolna</td>
-<td>Ściśle zdefiniowana (kolumny, typy)</td>
-</tr>
-<tr class="even">
-<td>Spójność danych</td>
-<td>Nie</td>
-<td>Zapewniana przez DBMS</td>
-</tr>
-<tr class="odd">
-<td>Współbieżność</td>
-<td>Brak</td>
-<td>Obsługiwana</td>
-</tr>
-<tr class="even">
-<td>Wyszukiwanie</td>
-<td>Pełne skanowanie</td>
-<td>Zapytania, indeksy</td>
-</tr>
-<tr class="odd">
-<td>Bezpieczeństwo</td>
-<td>Brak</td>
-<td>Kontrola dostępu</td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p><img> Diagram: „Od pliku do bazy” – ewolucja sposobu przechowywania danych</p>
-</blockquote>
-<hr>
 </section>
-</section>
-<section id="różnice-w-przetwarzaniu-danych-przykład-porównawczy" class="level2">
-<h2 class="anchored" data-anchor-id="różnice-w-przetwarzaniu-danych-przykład-porównawczy">6️⃣ Różnice w przetwarzaniu danych – przykład porównawczy</h2>
-<p>Rodzaj przetwarzania zależy od typu danych:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 18%">
-<col style="width: 28%">
-<col style="width: 39%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Typ danych</th>
-<th>Przykład</th>
-<th>Narzędzie przetwarzania</th>
-<th>Typowe operacje</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Tabelaryczne</td>
-<td>sprzedaż, klienci</td>
-<td>SQL, Excel</td>
-<td>sortowanie, sumowanie, filtracja</td>
-</tr>
-<tr class="even">
-<td>Tekstowe</td>
-<td>artykuły, maile</td>
-<td>wyszukiwanie pełnotekstowe</td>
-<td>indeksowanie, analiza słów</td>
-</tr>
-<tr class="odd">
-<td>Obraz</td>
-<td>zdjęcia, wideo</td>
-<td>biblioteki CV, AI</td>
-<td>klasyfikacja, rozpoznawanie obiektów</td>
-</tr>
-<tr class="even">
-<td>Dźwięk</td>
-<td>nagrania, mowa</td>
-<td>DSP, ML</td>
-<td>filtracja, transkrypcja</td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p><strong>Pytanie do dyskusji:</strong> Dlaczego dane tabelaryczne łatwo ująć w relacje, a dźwięk czy obraz — już nie?</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><img> Ilustracja: porównanie przetwarzania danych tabelarycznych i multimedialnych</p>
-</blockquote>
-<hr>
-</section>
-<section id="architektura-systemów-baz-danych-ansisparc" class="level2">
-<h2 class="anchored" data-anchor-id="architektura-systemów-baz-danych-ansisparc">7️⃣ Architektura systemów baz danych (ANSI/SPARC)</h2>
-<p>Aby osiągnąć niezależność danych od aplikacji, wprowadzono model trójwarstwowy ANSI/SPARC:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 25%">
-<col style="width: 41%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Poziom</th>
-<th>Opis</th>
-<th>Przykład</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Zewnętrzny</strong></td>
-<td>Widok użytkownika — sposób, w jaki konkretni użytkownicy widzą dane</td>
-<td>Widok „Studenci z kierunku Informatyka”</td>
-</tr>
-<tr class="even">
-<td><strong>Logiczny (koncepcyjny)</strong></td>
-<td>Globalna struktura danych — tabele, relacje, ograniczenia</td>
-<td>Schemat bazy uczelni</td>
-</tr>
-<tr class="odd">
-<td><strong>Wewnętrzny (fizyczny)</strong></td>
-<td>Fizyczne przechowywanie danych na dysku</td>
-<td>Indeksy, pliki danych, metody dostępu</td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p><img> Schemat trójwarstwowy ANSI/SPARC: użytkownicy ↔︎ DBMS ↔︎ fizyczne dane</p>
-</blockquote>
-<p><strong>Korzyści:</strong></p>
+<section id="full-outer-join-pełne-złączenie-zewnętrzne" class="level3">
+<h3 class="anchored" data-anchor-id="full-outer-join-pełne-złączenie-zewnętrzne">FULL OUTER JOIN (Pełne Złączenie Zewnętrzne)</h3>
+<p>Cel: Zwraca wiersze, jeśli istnieje dopasowanie w którejkolwiek z tabel. Jest to suma LEFT i RIGHT JOIN.</p>
+<p>Działanie: Zwraca wszystkie wiersze z obu tabel, wypełniając NULL tam, gdzie brakuje dopasowania.</p>
+<p>Kiedy używać: Gdy chcesz zobaczyć całą przestrzeń danych: wszystkie rekordy z Tabeli A i wszystkie rekordy z Tabeli B, nawet te niepowiązane.</p>
+<p>Przykład:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    p.imie,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    p.nazwisko,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    d.nazwa_dzialu</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    pracownicy p</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FULL</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    dzialy d <span class="kw">ON</span> p.id_dzialu <span class="op">=</span> d.id_dzialu;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>W Wyniku:</p>
 <ul>
-<li>niezależność logiczna danych (zmiana schematu logicznego nie musi wymagać zmian w aplikacjach),</li>
-<li>niezależność fizyczna danych (zmiana sposobu przechowywania nie wpływa na logikę aplikacji).</li>
+<li>Pojawią się wszyscy pracownicy (w tym Olga Lisiecka z NULL dla działu).</li>
+<li>Pojawią się wszystkie działy (w tym Badania i Rozwój z NULL dla pracownika).</li>
 </ul>
-<hr>
 </section>
-<section id="typy-baz-danych" class="level2">
-<h2 class="anchored" data-anchor-id="typy-baz-danych">8️⃣ Typy baz danych</h2>
-<p>W zależności od modelu danych i sposobu ich użycia wyróżniamy kilka typów baz:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 23%">
-<col style="width: 38%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Typ bazy</th>
-<th>Opis</th>
-<th>Przykład</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Hierarchiczna</td>
-<td>Dane ułożone w strukturę drzewa</td>
-<td>IMS (IBM)</td>
-</tr>
-<tr class="even">
-<td>Sieciowa</td>
-<td>Rekordy połączone są w złożone grafy</td>
-<td>IDMS</td>
-</tr>
-<tr class="odd">
-<td>Relacyjna</td>
-<td>Dane w tabelach, związki przez klucze</td>
-<td>PostgreSQL, MySQL</td>
-</tr>
-<tr class="even">
-<td>Obiektowa</td>
-<td>Dane jako obiekty z metodami</td>
-<td>ObjectDB</td>
-</tr>
-<tr class="odd">
-<td>Dokumentowa (NoSQL)</td>
-<td>Dane w formacie dokumentów (JSON)</td>
-<td>MongoDB, CouchDB</td>
-</tr>
-<tr class="even">
-<td>Grafowa</td>
-<td>Modele relacji jako węzły i krawędzie</td>
-<td>Neo4j</td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p><img> Grafika: schematy — drzewo, sieć, tabela, graf</p>
-</blockquote>
-<p><strong>Uwaga:</strong> Model relacyjny jest najpowszechniej stosowany z uwagi na prostotę i solidne podstawy teoretyczne (algebra relacji).</p>
-<hr>
 </section>
-<section id="historia-i-ewolucja-baz-danych" class="level2">
-<h2 class="anchored" data-anchor-id="historia-i-ewolucja-baz-danych">9️⃣ Historia i ewolucja baz danych</h2>
-<p>Krótka oś czasu najważniejszych etapów:</p>
+<section id="najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" class="level2">
+<h2 class="anchored" data-anchor-id="najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych">❌ Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych</h2>
+<section id="błąd-kartesian-product-iloczyn-kartezjański" class="level3">
+<h3 class="anchored" data-anchor-id="błąd-kartesian-product-iloczyn-kartezjański">Błąd Kartesian Product (Iloczyn Kartezjański)</h3>
+<p>Jest to najbardziej krytyczny błąd wydajnościowy. Występuje, gdy złączamy dwie tabele bez zdefiniowania klauzuli ON (warunku złączenia).</p>
+<p>Co się dzieje: Każdy wiersz z pierwszej tabeli łączy się z każdym wierszem z drugiej tabeli. Jeśli masz tabelę A (1000 wierszy) i tabelę B (1000 wierszy), wynikowy zbiór danych będzie miał 1000×1000=1,000,000 wierszy.</p>
+<p>Obciążenie bazy: Enormana ilość pamięci RAM i czasu procesora jest zużywana na generowanie i przesyłanie tego niepotrzebnego, gigantycznego zbioru danych.</p>
+<p>Jak uniknąć: Zawsze używaj klauzuli ON (lub WHERE w starszym stylu złączeń, choć jest to niezalecane) do określenia relacji między tabelami.</p>
+</section>
+<section id="brak-indeksów-na-kolumnach-złączenia" class="level3">
+<h3 class="anchored" data-anchor-id="brak-indeksów-na-kolumnach-złączenia">Brak Indeksów na Kolumnach Złączenia</h3>
+<p>Silnik bazy danych używa indeksów, aby szybko znaleźć pasujące wiersze podczas wykonywania złączeń.</p>
+<p>Co się dzieje: Jeśli kolumny używane w klauzuli ON (np. p.id_dzialu = d.id_dzialu) nie są indeksowane (zwykle klucze główne i obce są indeksowane domyślnie, ale należy to sprawdzić!), baza musi wykonać pełne skanowanie tabeli (Full Table Scan) dla każdego wiersza z drugiej tabeli, co jest powolne.</p>
+<p>Obciążenie bazy: Drastycznie wydłuża czas wykonywania zapytań, zwłaszcza na dużych tabelach. Jest to najczęstsza przyczyna wolnych zapytań.</p>
+<p>Jak uniknąć: Upewnij się, że każda kolumna używana w klauzulach JOIN ON, WHERE i ORDER BY jest odpowiednio indeksowana.</p>
+</section>
+<section id="złączenie-zbyt-wielu-tabel-naraz" class="level3">
+<h3 class="anchored" data-anchor-id="złączenie-zbyt-wielu-tabel-naraz">Złączenie Zbyt Wielu Tabel Naraz</h3>
+<p>Chociaż czasami konieczne jest złączenie wielu tabel (np. 5 lub 6), zbyt duża liczba złączeń w jednym zapytaniu może skomplikować pracę optymalizatora zapytań.</p>
+<p>Co się dzieje: Optymalizator PostgreSQL musi znaleźć optymalną ścieżkę złączenia (kolejność wykonywania złączeń). Im więcej tabel, tym więcej możliwych kombinacji i dłuższy czas potrzebny na znalezienie najlepszego planu.</p>
+<p>Obciążenie bazy: Wzrost złożoności obliczeniowej (NP-trudny problem) dla samego optymalizatora, co może prowadzić do użycia suboptymalnego planu.</p>
+<p>Jak uniknąć: Używaj widoków (VIEW) lub materializowanych widoków (MATERIALIZED VIEW) do hermetyzowania złożonych złączeń, albo rozważ dekompozycję zapytania na mniejsze kroki (chociaż PostgreSQL jest bardzo dobry w optymalizacji).</p>
+</section>
+<section id="złączenia-na-kolumnach-z-niezgodnymi-typami-danych" class="level3">
+<h3 class="anchored" data-anchor-id="złączenia-na-kolumnach-z-niezgodnymi-typami-danych">Złączenia na Kolumnach z Niezgodnymi Typami Danych</h3>
+<p>PostgreSQL jest elastyczny i często umożliwia złączenia na kolumnach, które mają różne, ale konwertowalne typy danych (np. TEXT i VARCHAR).</p>
+<p>Co się dzieje: Silnik bazy danych musi jawnie konwertować typy danych dla każdego wiersza przed ich złączeniem. Ta konwersja (rzutowanie, ang. casting) uniemożliwia użycie indeksów.</p>
+<p>Obciążenie bazy: Konieczność wykonania operacji konwersji + niemożność wykorzystania indeksów = powolne złączenie.</p>
+<p>Jak uniknąć: Upewnij się, że kolumny używane w klauzuli ON mają identyczne typy danych (np. INTEGER z INTEGER).</p>
+</section>
+<section id="filtracja-danych-po-złączeniu-nieefektywne-where" class="level3">
+<h3 class="anchored" data-anchor-id="filtracja-danych-po-złączeniu-nieefektywne-where">Filtracja Danych po Złączeniu (Nieefektywne WHERE)</h3>
+<p>Często zdarza się, że deweloperzy złączają duże tabele, a dopiero potem filtrują dane w klauzuli WHERE.</p>
+<p>Co się dzieje: Baza danych najpierw generuje duży, kosztowny zbiór wyników złączenia, a dopiero potem odrzuca niepotrzebne wiersze.</p>
+<p>Obciążenie bazy: Niepotrzebne zużycie zasobów na generowanie tymczasowego, nadmiarowego zbioru danych.</p>
+<p>Jak uniknąć: Filtruj tabele (używaj WHERE) przed złączeniem lub w momencie złączenia (np. w klauzuli ON dla LEFT/RIGHT JOIN lub w podzapytaniu), aby złączać mniejsze zbiory danych.</p>
+</section>
+<section id="mylenie-klauzuli-on-z-where-w-złączeniach-zewnętrznych-leftright" class="level3">
+<h3 class="anchored" data-anchor-id="mylenie-klauzuli-on-z-where-w-złączeniach-zewnętrznych-leftright">Mylenie Klauzuli ON z WHERE w Złączeniach Zewnętrznych (LEFT/RIGHT)</h3>
+<p>To jest częsty błąd logiczny, który ma implikacje wydajnościowe.</p>
+<p>Co się dzieje (Błąd): Umieszczenie warunku filtrującego kolumnę z prawej tabeli w klauzuli WHERE po LEFT JOIN zamienia to złączenie na INNER JOIN (usuwa wiersze z wartościami NULL).</p>
+<p>Obciążenie bazy: Chociaż błąd ten niekoniecznie obciąża bazę bardziej niż INNER JOIN, prowadzi do logicznie niepoprawnego zapytania. Ważne jest, aby zrozumieć, że filtry na tabeli zewnętrznej powinny iść do ON (jeśli mają zachować strukturę zewnętrzną) lub powinny być realizowane w podzapytaniu, aby wcześniej zredukować rozmiar tabeli.</p>
+<p>Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wpływa nieumyślnie na działanie złączenia zewnętrznego.</p>
+</section>
+</section>
+<section id="ćwiczenia-podstawowe-select-from-where-dml" class="level2">
+<h2 class="anchored" data-anchor-id="ćwiczenia-podstawowe-select-from-where-dml">📝 Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)</h2>
 <ol type="1">
-<li><strong>Systemy plikowe (lata 50–60)</strong> — proste pliki, brak centralnej kontroli.<br>
-</li>
-<li><strong>Pierwsze DBMS (lata 60–70)</strong> — centralizacja, lepsze zarządzanie danymi.<br>
-</li>
-<li><strong>Modele hierarchiczne i sieciowe</strong> — stosowane w dużych organizacjach, lecz trudne w utrzymaniu.<br>
-</li>
-<li><strong>Model relacyjny (E. F. Codd, 1970)</strong> — rewolucja: tabele, relacje i algebra relacji.<br>
-</li>
-<li><strong>SQL i standaryzacja</strong> — język pozwalający na zdefiniowanie i manipulację danymi.<br>
-</li>
-<li><strong>NoSQL i chmura (XXI wiek)</strong> — elastyczność, skalowalność, nowe modele danych.</li>
+<li>Wyświetl wszystkie dane z tabeli pracownicy.</li>
+<li>“Wyświetl tylko imie, nazwisko i pensja wszystkich pracowników.”</li>
+<li>Wyświetl wszystkie kolumny dla działów z tabeli dzialy.</li>
+<li>Wyświetl nazwy projektów oraz ich typ z tabeli projekty.</li>
+<li>“Znajdź wszystkich pracowników, których pensja jest niższa niż 50000.”</li>
+<li>Znajdź pracownika o nazwisku ‘Kowalska’.</li>
+<li>“Znajdź wszystkie projekty, których typ_projektu to ‘Software’.”</li>
+<li>“Wstaw nowego pracownika: Jan Kowalski, Stanowisko: Tester, Pensja: 48000, Dział: 1 (IT).”</li>
+<li>Zaktualizuj pensję pracownikowi o ID 1 (Anna Kowalska) o 5000 zł (nowa pensja to 85000.00).</li>
+<li>Usuń pracownika o imieniu ‘Natalia’ i nazwisku ‘Kaczmarek’ (ID: 9).</li>
 </ol>
-<blockquote class="blockquote">
-<p><img> Oś czasu: rozwój baz danych od plików do NoSQL i rozwiązań chmurowych</p>
-</blockquote>
-<hr>
 </section>
-<section id="zalety-podejścia-relacyjnego" class="level2">
-<h2 class="anchored" data-anchor-id="zalety-podejścia-relacyjnego">🔟 Zalety podejścia relacyjnego</h2>
-<ul>
-<li>redukcja redundancji poprzez normalizację i klucze,<br>
-</li>
-<li>łatwość łączenia danych (JOINy),<br>
-</li>
-<li>kontrola integralności (ograniczenia, klucze obce),<br>
-</li>
-<li>mechanizmy bezpieczeństwa i wielodostępności,<br>
-</li>
-<li>przewidywalność i zgodność z formalnymi podstawami matematycznymi.</li>
-</ul>
-<blockquote class="blockquote">
-<p><img> Schemat relacji między tabelami: STUDENT → ZAPISY → KURS</p>
-</blockquote>
-<hr>
+<section id="logika-i-sortowanie-and-or-not-in-between-order-by" class="level2">
+<h2 class="anchored" data-anchor-id="logika-i-sortowanie-and-or-not-in-between-order-by">🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)</h2>
+<ol type="1">
+<li>“Znajdź pracowników, których pensja jest pomiędzy 50000 a 70000 (włącznie).”</li>
+<li>“Wyświetl pracowników, którzy są ‘Programistami’ LUB pracują na ‘Starszy Programista’.”</li>
+<li>“Wyświetl pracowników, którzy są ‘Programistami’ I mają pensję wyższą niż 65000.”</li>
+<li>“Wyświetl działy, których lokalizacja to ‘Warszawa’ LUB ‘Gdańsk’.”</li>
+<li>“Wyświetl działy, które NIE znajdują się w lokalizacji ‘Kraków’.”</li>
+<li>“Wyświetl wszystkich pracowników, posortowanych rosnąco według nazwisko.”</li>
+<li>“Wyświetl wszystkich pracowników, posortowanych malejąco według pensja.”</li>
+<li>“Posortuj pracowników najpierw rosnąco według id_dzialu, a następnie malejąco według pensja.”</li>
+</ol>
 </section>
-<section id="wprowadzenie-do-języka-sql" class="level2">
-<h2 class="anchored" data-anchor-id="wprowadzenie-do-języka-sql">1️⃣1️⃣ Wprowadzenie do języka SQL</h2>
-<p><strong>SQL (Structured Query Language)</strong> to standardowy język do komunikacji z relacyjnymi bazami danych. Dzieli się na kilka części:</p>
-<ul>
-<li><strong>DDL (Data Definition Language)</strong> — definiowanie struktur (CREATE, ALTER, DROP),<br>
-</li>
-<li><strong>DML (Data Manipulation Language)</strong> — operacje na danych (SELECT, INSERT, UPDATE, DELETE),<br>
-</li>
-<li><strong>DCL (Data Control Language)</strong> — kontrola dostępu (GRANT, REVOKE),<br>
-</li>
-<li><strong>TCL (Transaction Control Language)</strong> — kontrola transakcji (COMMIT, ROLLBACK).</li>
-</ul>
+<section id="wzorce-i-unikatowe-wartości-distinct-like" class="level2">
+<h2 class="anchored" data-anchor-id="wzorce-i-unikatowe-wartości-distinct-like">🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)</h2>
+<ol start="19" type="1">
+<li>Wyświetl listę unikatowych stanowisk w firmie.</li>
+<li>Wyświetl unikatowe lokalizacje działów.</li>
+<li>“Znajdź pracowników, których nazwisko zaczyna się na literę ‘L’.”</li>
+<li>“Znajdź działy, których nazwa ma ‘Rozwój’ w dowolnym miejscu.”,</li>
+<li>“Znajdź pracowników, których trzecia litera w imie to ‘m’.”</li>
+<li>“Znajdź projekty, których nazwa_projektu kończy się na słowo ‘HR’ lub ‘2024’.</li>
+</ol>
+</section>
+<section id="agregacja-i-grupowanie-group-by-having" class="level2">
+<h2 class="anchored" data-anchor-id="agregacja-i-grupowanie-group-by-having">📊 Agregacja i Grupowanie (GROUP BY, HAVING)</h2>
+<ol start="25" type="1">
+<li>Oblicz średnią pensję dla wszystkich pracowników.,</li>
+<li>Oblicz najwyższą i najniższą pensję w firmie.,</li>
+<li>Policz całkowitą liczbę pracowników w firmie.,</li>
+<li>Oblicz średnią pensję dla każdego unikatowego stanowiska.,</li>
+<li>“Policz, ilu pracowników zatrudnionych jest w każdym id_dzialu.”,</li>
+<li>Oblicz sumę pensji (SUM) dla każdego działu (z pogrupowaniem według id_dzialu).,</li>
+<li>“Policz, ilu pracowników ma pensję powyżej 60000, pogrupowane według stanowisko.”,</li>
+<li>Oblicz maksymalny czas_pracy_h dla każdego projektu (id_projektu).,</li>
+<li>“Wyświetl tylko te id_dzialu, w których średnia pensja jest wyższa niż 60000.”,</li>
+<li>“Znajdź stanowiska, na których pracuje więcej niż 1 osoba.”,</li>
+<li>“Wyświetl id_projektu tylko te, dla których całkowity czas pracy (SUMA) przekracza 200 godzin.”</li>
+</ol>
+</section>
+</section>
+<section id="łączenie-tabel-join---10-zadań" class="level1">
+<h1>🔗 Łączenie Tabel (JOIN - 10 Zadań)</h1>
+<ol start="36" type="1">
+<li>INNER JOIN (Standard),“Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Pomiń pracowników, którzy nie mają działu.”</li>
+<li>LEFT JOIN (Pracownicy),“Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Uwzględnij wszystkich pracowników, nawet tych bez przypisanego działu (np. Olga Lisiecka).”</li>
+<li>RIGHT JOIN (Działy),“Wyświetl nazwa_dzialu oraz imie, nazwisko pracownika. Uwzględnij wszystkie działy, nawet te, które nie mają pracownika (np. Badania i Rozwój).”</li>
+<li>FULL OUTER JOIN,“Wyświetl imie, nazwisko oraz nazwa_dzialu. Uwzględnij WSZYSTKICH pracowników i WSZYSTKIE działy, niezależnie od powiązania.”</li>
+<li>JOIN z WHERE,“Wyświetl imie i nazwisko wszystkich pracowników, którzy pracują w dziale zlokalizowanym w ‘Kraków’.”</li>
+<li>JOIN 3 Tabel (Lista Projektów),“Wyświetl imie, nazwisko pracownika oraz nazwa_projektu, w którym pracuje. Połącz 3 tabele: pracownicy, przydzialy, projekty.”</li>
+<li>LEFT JOIN (Projekty),“Wyświetl nazwa_projektu oraz imie i nazwisko przypisanych pracowników. Uwzględnij wszystkie projekty, nawet jeśli nikt do nich nie jest przypisany.”</li>
+<li>JOIN z ORDER BY,“Wyświetl imie, nazwisko, pensja oraz nazwa_dzialu. Posortuj wynik malejąco według pensji.”</li>
+<li>JOIN z Agregacją (4 Tabele),Oblicz całkowitą liczbę godzin (SUM(czas_pracy_h)) przepracowaną w projektach dla każdego działu. Wynik powinien zawierać nazwa_dzialu.</li>
+<li>JOIN i DISTINCT,“Wyświetl unikatowe nazwa_projektu, w których pracują pracownicy z działu ‘IT’.”</li>
+</ol>
 
 
 </section>

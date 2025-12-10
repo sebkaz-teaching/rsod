@@ -1,0 +1,235 @@
+# Zadania Ćwiczenia 3
+
+## 🔗 Rodzaje Złączeń (JOIN) w SQL
+Złączenia służą do łączenia wierszy z dwóch lub więcej tabel na podstawie powiązanej kolumny (np. klucza obcego). Różne typy złączeń decydują o tym, jak traktowane są wiersze, dla których brakuje pasujących danych w drugiej tabeli (np. pracownik bez działu, lub dział bez pracownika).
+
+### INNER JOIN (Złączenie Wewnętrzne)
+
+Cel: Zwraca tylko te wiersze, które mają pasujące wartości w obu tabelach (przecięcie zbiorów).
+Działanie: Jeśli wiersz z Tabeli A nie ma pasującego wiersza w Tabeli B (lub odwrotnie), jest on pomijany.
+Kiedy używać: Kiedy potrzebujesz danych, które są kompletne po obu stronach relacji.
+
+Przykład:
+```sql
+SELECT
+    p.imie,
+    p.nazwisko,
+    d.nazwa_dzialu
+FROM
+    pracownicy p
+INNER JOIN
+    dzialy d ON p.id_dzialu = d.id_dzialu;
+
+```
+
+W Wyniku:
+
+- Pojawią się wszyscy pracownicy, którzy mają przypisany id_dzialu.
+- Zostanie pominięta Olga Lisiecka (pracownik bez działu).
+- Zostanie pominięty dział Badania i Rozwój (dział bez pracowników).
+
+### LEFT JOIN (Złączenie Lewostronne)
+
+Cel: Zwraca wszystkie wiersze z lewej tabeli (Tabela A) i pasujące wiersze z prawej tabeli (Tabela B). Jeśli brak dopasowania, w kolumnach z Tabeli B pojawia się wartość NULL.
+
+Działanie: Tabela po lewej (pracownicy) jest priorytetowa.
+
+Kiedy używać: Gdy chcesz zobaczyć wszystkie rekordy z jednej strony relacji, nawet jeśli nie mają one powiązanych danych po drugiej stronie.
+
+Przykład:
+```sql
+SELECT
+    p.imie,
+    p.nazwisko,
+    d.nazwa_dzialu
+FROM
+    pracownicy p
+LEFT JOIN
+    dzialy d ON p.id_dzialu = d.id_dzialu;
+```
+W Wyniku:
+
+- Pojawią się wszyscy pracownicy, w tym Olga Lisiecka.
+- Dla Olga Lisiecka kolumna nazwa_dzialu będzie miała wartość NULL.
+- Dział Badania i Rozwój zostanie pominięty, ponieważ jest w prawej tabeli i nie ma pasującego pracownika.
+
+
+### RIGHT JOIN (Złączenie Prawostronne)
+
+Cel: Zwraca wszystkie wiersze z prawej tabeli (Tabela B) i pasujące wiersze z lewej tabeli (Tabela A). Jeśli brak dopasowania, w kolumnach z Tabeli A pojawia się wartość NULL.
+
+Działanie: Tabela po prawej (dzialy) jest priorytetowa.
+
+Kiedy używać: Analogicznie do LEFT JOIN, ale priorytetem jest zwrócenie wszystkich rekordów z drugiej strony relacji (np. wszystkich działów).
+
+Przykład:
+```sql
+SELECT
+    p.imie,
+    p.nazwisko,
+    d.nazwa_dzialu
+FROM
+    pracownicy p
+RIGHT JOIN
+    dzialy d ON p.id_dzialu = d.id_dzialu;
+
+```
+W Wyniku:
+
+- Pojawią się wszystkie działy, w tym Badania i Rozwój.
+- Dla działu Badania i Rozwój kolumny imie i nazwisko będą miały wartość NULL.
+- Pracownik Olga Lisiecka zostanie pominięty, ponieważ nie ma pasującego działu.
+
+### FULL OUTER JOIN (Pełne Złączenie Zewnętrzne)
+
+Cel: Zwraca wiersze, jeśli istnieje dopasowanie w którejkolwiek z tabel. Jest to suma LEFT i RIGHT JOIN.
+
+Działanie: Zwraca wszystkie wiersze z obu tabel, wypełniając NULL tam, gdzie brakuje dopasowania.
+
+Kiedy używać: Gdy chcesz zobaczyć całą przestrzeń danych: wszystkie rekordy z Tabeli A i wszystkie rekordy z Tabeli B, nawet te niepowiązane.
+
+Przykład:
+```sql
+SELECT
+    p.imie,
+    p.nazwisko,
+    d.nazwa_dzialu
+FROM
+    pracownicy p
+FULL OUTER JOIN
+    dzialy d ON p.id_dzialu = d.id_dzialu;
+```
+W Wyniku:
+
+- Pojawią się wszyscy pracownicy (w tym Olga Lisiecka z NULL dla działu).
+- Pojawią się wszystkie działy (w tym Badania i Rozwój z NULL dla pracownika).
+
+
+
+## ❌ Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych
+
+### Błąd Kartesian Product (Iloczyn Kartezjański)
+
+Jest to najbardziej krytyczny błąd wydajnościowy. Występuje, gdy złączamy dwie tabele bez zdefiniowania klauzuli ON (warunku złączenia).
+
+Co się dzieje: Każdy wiersz z pierwszej tabeli łączy się z każdym wierszem z drugiej tabeli. Jeśli masz tabelę A (1000 wierszy) i tabelę B (1000 wierszy), wynikowy zbiór danych będzie miał 1000×1000=1,000,000 wierszy.
+
+Obciążenie bazy: Enormana ilość pamięci RAM i czasu procesora jest zużywana na generowanie i przesyłanie tego niepotrzebnego, gigantycznego zbioru danych.
+
+Jak uniknąć: Zawsze używaj klauzuli ON (lub WHERE w starszym stylu złączeń, choć jest to niezalecane) do określenia relacji między tabelami.
+
+### Brak Indeksów na Kolumnach Złączenia
+
+Silnik bazy danych używa indeksów, aby szybko znaleźć pasujące wiersze podczas wykonywania złączeń.
+
+Co się dzieje: Jeśli kolumny używane w klauzuli ON (np. p.id_dzialu = d.id_dzialu) nie są indeksowane (zwykle klucze główne i obce są indeksowane domyślnie, ale należy to sprawdzić!), baza musi wykonać pełne skanowanie tabeli (Full Table Scan) dla każdego wiersza z drugiej tabeli, co jest powolne.
+
+Obciążenie bazy: Drastycznie wydłuża czas wykonywania zapytań, zwłaszcza na dużych tabelach. Jest to najczęstsza przyczyna wolnych zapytań.
+
+Jak uniknąć: Upewnij się, że każda kolumna używana w klauzulach JOIN ON, WHERE i ORDER BY jest odpowiednio indeksowana.
+
+### Złączenie Zbyt Wielu Tabel Naraz
+
+Chociaż czasami konieczne jest złączenie wielu tabel (np. 5 lub 6), zbyt duża liczba złączeń w jednym zapytaniu może skomplikować pracę optymalizatora zapytań.
+
+Co się dzieje: Optymalizator PostgreSQL musi znaleźć optymalną ścieżkę złączenia (kolejność wykonywania złączeń). Im więcej tabel, tym więcej możliwych kombinacji i dłuższy czas potrzebny na znalezienie najlepszego planu.
+
+Obciążenie bazy: Wzrost złożoności obliczeniowej (NP-trudny problem) dla samego optymalizatora, co może prowadzić do użycia suboptymalnego planu.
+
+Jak uniknąć: Używaj widoków (VIEW) lub materializowanych widoków (MATERIALIZED VIEW) do hermetyzowania złożonych złączeń, albo rozważ dekompozycję zapytania na mniejsze kroki (chociaż PostgreSQL jest bardzo dobry w optymalizacji).
+
+### Złączenia na Kolumnach z Niezgodnymi Typami Danych
+
+PostgreSQL jest elastyczny i często umożliwia złączenia na kolumnach, które mają różne, ale konwertowalne typy danych (np. TEXT i VARCHAR).
+
+Co się dzieje: Silnik bazy danych musi jawnie konwertować typy danych dla każdego wiersza przed ich złączeniem. Ta konwersja (rzutowanie, ang. casting) uniemożliwia użycie indeksów.
+
+Obciążenie bazy: Konieczność wykonania operacji konwersji + niemożność wykorzystania indeksów = powolne złączenie.
+
+Jak uniknąć: Upewnij się, że kolumny używane w klauzuli ON mają identyczne typy danych (np. INTEGER z INTEGER).
+
+### Filtracja Danych po Złączeniu (Nieefektywne WHERE)
+
+Często zdarza się, że deweloperzy złączają duże tabele, a dopiero potem filtrują dane w klauzuli WHERE.
+
+Co się dzieje: Baza danych najpierw generuje duży, kosztowny zbiór wyników złączenia, a dopiero potem odrzuca niepotrzebne wiersze.
+
+Obciążenie bazy: Niepotrzebne zużycie zasobów na generowanie tymczasowego, nadmiarowego zbioru danych.
+
+Jak uniknąć: Filtruj tabele (używaj WHERE) przed złączeniem lub w momencie złączenia (np. w klauzuli ON dla LEFT/RIGHT JOIN lub w podzapytaniu), aby złączać mniejsze zbiory danych.
+
+### Mylenie Klauzuli ON z WHERE w Złączeniach Zewnętrznych (LEFT/RIGHT)
+
+To jest częsty błąd logiczny, który ma implikacje wydajnościowe.
+
+Co się dzieje (Błąd): Umieszczenie warunku filtrującego kolumnę z prawej tabeli w klauzuli WHERE po LEFT JOIN zamienia to złączenie na INNER JOIN (usuwa wiersze z wartościami NULL).
+
+Obciążenie bazy: Chociaż błąd ten niekoniecznie obciąża bazę bardziej niż INNER JOIN, prowadzi do logicznie niepoprawnego zapytania. Ważne jest, aby zrozumieć, że filtry na tabeli zewnętrznej powinny iść do ON (jeśli mają zachować strukturę zewnętrzną) lub powinny być realizowane w podzapytaniu, aby wcześniej zredukować rozmiar tabeli.
+
+Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wpływa nieumyślnie na działanie złączenia zewnętrznego.
+
+
+##  📝 Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)
+
+1. Wyświetl wszystkie dane z tabeli pracownicy.
+2. "Wyświetl tylko imie, nazwisko i pensja wszystkich pracowników."
+3. Wyświetl wszystkie kolumny dla działów z tabeli dzialy.
+4. Wyświetl nazwy projektów oraz ich typ z tabeli projekty.
+5. "Znajdź wszystkich pracowników, których pensja jest niższa niż 50000."
+6. Znajdź pracownika o nazwisku 'Kowalska'.
+7. "Znajdź wszystkie projekty, których typ_projektu to 'Software'."
+8. "Wstaw nowego pracownika: Jan Kowalski, Stanowisko: Tester, Pensja: 48000, Dział: 1 (IT)."
+9. Zaktualizuj pensję pracownikowi o ID 1 (Anna Kowalska) o 5000 zł (nowa pensja to 85000.00).
+10. Usuń pracownika o imieniu 'Natalia' i nazwisku 'Kaczmarek' (ID: 9).
+
+##  🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)
+
+1.  "Znajdź pracowników, których pensja jest pomiędzy 50000 a 70000 (włącznie)."
+2.  "Wyświetl pracowników, którzy są 'Programistami' LUB pracują na 'Starszy Programista'."
+3.  "Wyświetl pracowników, którzy są 'Programistami' I mają pensję wyższą niż 65000."
+4.  "Wyświetl działy, których lokalizacja to 'Warszawa' LUB 'Gdańsk'."
+5.  "Wyświetl działy, które NIE znajdują się w lokalizacji 'Kraków'."
+6.  "Wyświetl wszystkich pracowników, posortowanych rosnąco według nazwisko."
+7.  "Wyświetl wszystkich pracowników, posortowanych malejąco według pensja."
+8.  "Posortuj pracowników najpierw rosnąco według id_dzialu, a następnie malejąco według pensja."
+
+##  🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)
+
+19. Wyświetl listę unikatowych stanowisk w firmie.
+20. Wyświetl unikatowe lokalizacje działów.
+21. "Znajdź pracowników, których nazwisko zaczyna się na literę 'L'."
+22. "Znajdź działy, których nazwa ma 'Rozwój' w dowolnym miejscu.",
+23. "Znajdź pracowników, których trzecia litera w imie to 'm'."
+24. "Znajdź projekty, których nazwa_projektu kończy się na słowo 'HR' lub '2024'.
+
+## 📊 Agregacja i Grupowanie (GROUP BY, HAVING)
+
+
+25. Oblicz średnią pensję dla wszystkich pracowników.,
+26. Oblicz najwyższą i najniższą pensję w firmie.,
+27. Policz całkowitą liczbę pracowników w firmie.,
+28. Oblicz średnią pensję dla każdego unikatowego stanowiska.,
+29. "Policz, ilu pracowników zatrudnionych jest w każdym id_dzialu.",
+30. Oblicz sumę pensji (SUM) dla każdego działu (z pogrupowaniem według id_dzialu).,
+31. "Policz, ilu pracowników ma pensję powyżej 60000, pogrupowane według stanowisko.",
+32. Oblicz maksymalny czas_pracy_h dla każdego projektu (id_projektu).,
+33. "Wyświetl tylko te id_dzialu, w których średnia pensja jest wyższa niż 60000.",
+34. "Znajdź stanowiska, na których pracuje więcej niż 1 osoba.",
+35. "Wyświetl id_projektu tylko te, dla których całkowity czas pracy (SUMA) przekracza 200 godzin."
+
+# 🔗 Łączenie Tabel (JOIN - 10 Zadań)
+
+36. INNER JOIN (Standard),"Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Pomiń pracowników, którzy nie mają działu."
+37. LEFT JOIN (Pracownicy),"Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Uwzględnij wszystkich pracowników, nawet tych bez przypisanego działu (np. Olga Lisiecka)."
+38. RIGHT JOIN (Działy),"Wyświetl nazwa_dzialu oraz imie, nazwisko pracownika. Uwzględnij wszystkie działy, nawet te, które nie mają pracownika (np. Badania i Rozwój)."
+39. FULL OUTER JOIN,"Wyświetl imie, nazwisko oraz nazwa_dzialu. Uwzględnij WSZYSTKICH pracowników i WSZYSTKIE działy, niezależnie od powiązania."
+40. JOIN z WHERE,"Wyświetl imie i nazwisko wszystkich pracowników, którzy pracują w dziale zlokalizowanym w 'Kraków'."
+41. JOIN 3 Tabel (Lista Projektów),"Wyświetl imie, nazwisko pracownika oraz nazwa_projektu, w którym pracuje. Połącz 3 tabele: pracownicy, przydzialy, projekty."
+42. LEFT JOIN (Projekty),"Wyświetl nazwa_projektu oraz imie i nazwisko przypisanych pracowników. Uwzględnij wszystkie projekty, nawet jeśli nikt do nich nie jest przypisany."
+43. JOIN z ORDER BY,"Wyświetl imie, nazwisko, pensja oraz nazwa_dzialu. Posortuj wynik malejąco według pensji."
+44. JOIN z Agregacją (4 Tabele),Oblicz całkowitą liczbę godzin (SUM(czas_pracy_h)) przepracowaną w projektach dla każdego działu. Wynik powinien zawierać nazwa_dzialu.
+45. JOIN i DISTINCT,"Wyświetl unikatowe nazwa_projektu, w których pracują pracownicy z działu 'IT'."
+
+
+
+

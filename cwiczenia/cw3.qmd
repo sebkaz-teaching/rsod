@@ -184,14 +184,14 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 
 ##  🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)
 
-1.  "Znajdź pracowników, których pensja jest pomiędzy 50000 a 70000 (włącznie)."
-2.  "Wyświetl pracowników, którzy są 'Programistami' LUB pracują na 'Starszy Programista'."
-3.  "Wyświetl pracowników, którzy są 'Programistami' I mają pensję wyższą niż 65000."
-4.  "Wyświetl działy, których lokalizacja to 'Warszawa' LUB 'Gdańsk'."
-5.  "Wyświetl działy, które NIE znajdują się w lokalizacji 'Kraków'."
-6.  "Wyświetl wszystkich pracowników, posortowanych rosnąco według nazwisko."
-7.  "Wyświetl wszystkich pracowników, posortowanych malejąco według pensja."
-8.  "Posortuj pracowników najpierw rosnąco według id_dzialu, a następnie malejąco według pensja."
+11.  "Znajdź pracowników, których pensja jest pomiędzy 50000 a 70000 (włącznie)."
+12.  "Wyświetl pracowników, którzy są 'Programistami' LUB pracują na 'Starszy Programista'."
+13.  "Wyświetl pracowników, którzy są 'Programistami' I mają pensję wyższą niż 65000."
+14.  "Wyświetl działy, których lokalizacja to 'Warszawa' LUB 'Gdańsk'."
+15.  "Wyświetl działy, które NIE znajdują się w lokalizacji 'Kraków'."
+16.  "Wyświetl wszystkich pracowników, posortowanych rosnąco według nazwisko."
+17.  "Wyświetl wszystkich pracowników, posortowanych malejąco według pensja."
+18.  "Posortuj pracowników najpierw rosnąco według id_dzialu, a następnie malejąco według pensja."
 
 ##  🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)
 
@@ -229,7 +229,3 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 43. JOIN z ORDER BY,"Wyświetl imie, nazwisko, pensja oraz nazwa_dzialu. Posortuj wynik malejąco według pensji."
 44. JOIN z Agregacją (4 Tabele),Oblicz całkowitą liczbę godzin (SUM(czas_pracy_h)) przepracowaną w projektach dla każdego działu. Wynik powinien zawierać nazwa_dzialu.
 45. JOIN i DISTINCT,"Wyświetl unikatowe nazwa_projektu, w których pracują pracownicy z działu 'IT'."
-
-
-
-

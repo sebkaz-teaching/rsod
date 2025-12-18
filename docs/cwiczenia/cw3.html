@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw3.html">Zadania Ćwiczenia 3</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw3.html">Zastosowania języka SQL</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../cwiczenia/cw3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Zadania Ćwiczenia 3</span></a>
+ <span class="menu-text">Zastosowania języka SQL</span></a>
   </div>
 </li>
       </ul>
@@ -237,29 +237,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title"><strong>Sections</strong></h2>
    
   <ul class="collapse">
-  <li><a href="#zadania-ćwiczenia-3" id="toc-zadania-ćwiczenia-3" class="nav-link active" data-scroll-target="#zadania-ćwiczenia-3">Zadania Ćwiczenia 3</a>
+  <li><a href="#zastosowania-języka-sql" id="toc-zastosowania-języka-sql" class="nav-link active" data-scroll-target="#zastosowania-języka-sql">Zastosowania języka SQL</a>
   <ul class="collapse">
-  <li><a href="#rodzaje-złączeń-join-w-sql" id="toc-rodzaje-złączeń-join-w-sql" class="nav-link" data-scroll-target="#rodzaje-złączeń-join-w-sql">🔗 Rodzaje Złączeń (JOIN) w SQL</a></li>
-  <li><a href="#najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" id="toc-najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" class="nav-link" data-scroll-target="#najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych">❌ Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych</a></li>
-  <li><a href="#ćwiczenia-podstawowe-select-from-where-dml" id="toc-ćwiczenia-podstawowe-select-from-where-dml" class="nav-link" data-scroll-target="#ćwiczenia-podstawowe-select-from-where-dml">📝 Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)</a></li>
-  <li><a href="#logika-i-sortowanie-and-or-not-in-between-order-by" id="toc-logika-i-sortowanie-and-or-not-in-between-order-by" class="nav-link" data-scroll-target="#logika-i-sortowanie-and-or-not-in-between-order-by">🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)</a></li>
-  <li><a href="#wzorce-i-unikatowe-wartości-distinct-like" id="toc-wzorce-i-unikatowe-wartości-distinct-like" class="nav-link" data-scroll-target="#wzorce-i-unikatowe-wartości-distinct-like">🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)</a></li>
-  <li><a href="#agregacja-i-grupowanie-group-by-having" id="toc-agregacja-i-grupowanie-group-by-having" class="nav-link" data-scroll-target="#agregacja-i-grupowanie-group-by-having">📊 Agregacja i Grupowanie (GROUP BY, HAVING)</a></li>
+  <li><a href="#rodzaje-złączeń-join-w-sql" id="toc-rodzaje-złączeń-join-w-sql" class="nav-link" data-scroll-target="#rodzaje-złączeń-join-w-sql">Rodzaje Złączeń (JOIN) w SQL</a></li>
+  <li><a href="#najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" id="toc-najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" class="nav-link" data-scroll-target="#najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych">Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych</a></li>
+  <li><a href="#ćwiczenie-0" id="toc-ćwiczenie-0" class="nav-link" data-scroll-target="#ćwiczenie-0">Ćwiczenie 0</a></li>
+  <li><a href="#ćwiczenia-podstawowe-select-from-where-dml" id="toc-ćwiczenia-podstawowe-select-from-where-dml" class="nav-link" data-scroll-target="#ćwiczenia-podstawowe-select-from-where-dml">Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)</a></li>
+  <li><a href="#logika-i-sortowanie-and-or-not-in-between-order-by" id="toc-logika-i-sortowanie-and-or-not-in-between-order-by" class="nav-link" data-scroll-target="#logika-i-sortowanie-and-or-not-in-between-order-by">Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)</a></li>
+  <li><a href="#wzorce-i-unikatowe-wartości-distinct-like" id="toc-wzorce-i-unikatowe-wartości-distinct-like" class="nav-link" data-scroll-target="#wzorce-i-unikatowe-wartości-distinct-like">Wzorce i Unikatowe Wartości (DISTINCT, LIKE)</a></li>
+  <li><a href="#agregacja-i-grupowanie-group-by-having" id="toc-agregacja-i-grupowanie-group-by-having" class="nav-link" data-scroll-target="#agregacja-i-grupowanie-group-by-having">Agregacja i Grupowanie (GROUP BY, HAVING)</a></li>
   </ul></li>
-  <li><a href="#łączenie-tabel-join---10-zadań" id="toc-łączenie-tabel-join---10-zadań" class="nav-link" data-scroll-target="#łączenie-tabel-join---10-zadań">🔗 Łączenie Tabel (JOIN - 10 Zadań)</a></li>
+  <li><a href="#łączenie-tabel-join---10-zadań" id="toc-łączenie-tabel-join---10-zadań" class="nav-link" data-scroll-target="#łączenie-tabel-join---10-zadań">Łączenie Tabel (JOIN - 10 Zadań)</a>
+  <ul class="collapse">
+  <li><a href="#podzapytania-subqueries" id="toc-podzapytania-subqueries" class="nav-link" data-scroll-target="#podzapytania-subqueries">Podzapytania (Subqueries)</a></li>
+  <li><a href="#wyrażenia-cte-with-i-widoki" id="toc-wyrażenia-cte-with-i-widoki" class="nav-link" data-scroll-target="#wyrażenia-cte-with-i-widoki">Wyrażenia CTE (WITH) i Widoki</a></li>
+  <li><a href="#funkcje-rankingowe-i-okna-window-functions" id="toc-funkcje-rankingowe-i-okna-window-functions" class="nav-link" data-scroll-target="#funkcje-rankingowe-i-okna-window-functions">Funkcje Rankingowe i Okna (Window Functions)</a></li>
+  <li><a href="#operacje-na-zbiorach-i-logika-case-union" id="toc-operacje-na-zbiorach-i-logika-case-union" class="nav-link" data-scroll-target="#operacje-na-zbiorach-i-logika-case-union">Operacje na Zbiorach i Logika (CASE, UNION)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw3.html">Zadania Ćwiczenia 3</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw3.html">Zastosowania języka SQL</a></li></ol></nav></header>
 
 
 
 
-<section id="zadania-ćwiczenia-3" class="level1">
-<h1>Zadania Ćwiczenia 3</h1>
+<section id="zastosowania-języka-sql" class="level1">
+<h1>Zastosowania języka SQL</h1>
 <section id="rodzaje-złączeń-join-w-sql" class="level2">
-<h2 class="anchored" data-anchor-id="rodzaje-złączeń-join-w-sql">🔗 Rodzaje Złączeń (JOIN) w SQL</h2>
+<h2 class="anchored" data-anchor-id="rodzaje-złączeń-join-w-sql">Rodzaje Złączeń (JOIN) w SQL</h2>
 <p>Złączenia służą do łączenia wierszy z dwóch lub więcej tabel na podstawie powiązanej kolumny (np. klucza obcego). Różne typy złączeń decydują o tym, jak traktowane są wiersze, dla których brakuje pasujących danych w drugiej tabeli (np. pracownik bez działu, lub dział bez pracownika).</p>
 <section id="inner-join-złączenie-wewnętrzne" class="level3">
 <h3 class="anchored" data-anchor-id="inner-join-złączenie-wewnętrzne">INNER JOIN (Złączenie Wewnętrzne)</h3>
@@ -344,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych" class="level2">
-<h2 class="anchored" data-anchor-id="najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych">❌ Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych</h2>
+<h2 class="anchored" data-anchor-id="najczęściej-popełniane-błędy-w-złączeniach-obciążające-bazę-danych">Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych</h2>
 <section id="błąd-kartesian-product-iloczyn-kartezjański" class="level3">
 <h3 class="anchored" data-anchor-id="błąd-kartesian-product-iloczyn-kartezjański">Błąd Kartesian Product (Iloczyn Kartezjański)</h3>
 <p>Jest to najbardziej krytyczny błąd wydajnościowy. Występuje, gdy złączamy dwie tabele bez zdefiniowania klauzuli ON (warunku złączenia).</p>
@@ -388,8 +395,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wpływa nieumyślnie na działanie złączenia zewnętrznego.</p>
 </section>
 </section>
+<section id="ćwiczenie-0" class="level2">
+<h2 class="anchored" data-anchor-id="ćwiczenie-0">Ćwiczenie 0</h2>
+<p>Pobierz <a href="https://github.com/sebkaz-teaching/rsod/blob/master/cwiczenia/baza.sql">plik sql</a> i załaduj strukturę tabel do postgresa.</p>
+</section>
 <section id="ćwiczenia-podstawowe-select-from-where-dml" class="level2">
-<h2 class="anchored" data-anchor-id="ćwiczenia-podstawowe-select-from-where-dml">📝 Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)</h2>
+<h2 class="anchored" data-anchor-id="ćwiczenia-podstawowe-select-from-where-dml">Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)</h2>
 <ol type="1">
 <li>Wyświetl wszystkie dane z tabeli pracownicy.</li>
 <li>“Wyświetl tylko imie, nazwisko i pensja wszystkich pracowników.”</li>
@@ -404,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="logika-i-sortowanie-and-or-not-in-between-order-by" class="level2">
-<h2 class="anchored" data-anchor-id="logika-i-sortowanie-and-or-not-in-between-order-by">🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)</h2>
+<h2 class="anchored" data-anchor-id="logika-i-sortowanie-and-or-not-in-between-order-by">Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)</h2>
 <ol start="11" type="1">
 <li>“Znajdź pracowników, których pensja jest pomiędzy 50000 a 70000 (włącznie).”</li>
 <li>“Wyświetl pracowników, którzy są ‘Programistami’ LUB pracują na ‘Starszy Programista’.”</li>
@@ -417,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="wzorce-i-unikatowe-wartości-distinct-like" class="level2">
-<h2 class="anchored" data-anchor-id="wzorce-i-unikatowe-wartości-distinct-like">🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)</h2>
+<h2 class="anchored" data-anchor-id="wzorce-i-unikatowe-wartości-distinct-like">Wzorce i Unikatowe Wartości (DISTINCT, LIKE)</h2>
 <ol start="19" type="1">
 <li>Wyświetl listę unikatowych stanowisk w firmie.</li>
 <li>Wyświetl unikatowe lokalizacje działów.</li>
@@ -428,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="agregacja-i-grupowanie-group-by-having" class="level2">
-<h2 class="anchored" data-anchor-id="agregacja-i-grupowanie-group-by-having">📊 Agregacja i Grupowanie (GROUP BY, HAVING)</h2>
+<h2 class="anchored" data-anchor-id="agregacja-i-grupowanie-group-by-having">Agregacja i Grupowanie (GROUP BY, HAVING)</h2>
 <ol start="25" type="1">
 <li>Oblicz średnią pensję dla wszystkich pracowników.,</li>
 <li>Oblicz najwyższą i najniższą pensję w firmie.,</li>
@@ -445,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="łączenie-tabel-join---10-zadań" class="level1">
-<h1>🔗 Łączenie Tabel (JOIN - 10 Zadań)</h1>
+<h1>Łączenie Tabel (JOIN - 10 Zadań)</h1>
 <ol start="36" type="1">
 <li>INNER JOIN (Standard),“Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Pomiń pracowników, którzy nie mają działu.”</li>
 <li>LEFT JOIN (Pracownicy),“Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Uwzględnij wszystkich pracowników, nawet tych bez przypisanego działu (np. Olga Lisiecka).”</li>
@@ -458,8 +469,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>JOIN z Agregacją (4 Tabele),Oblicz całkowitą liczbę godzin (SUM(czas_pracy_h)) przepracowaną w projektach dla każdego działu. Wynik powinien zawierać nazwa_dzialu.</li>
 <li>JOIN i DISTINCT,“Wyświetl unikatowe nazwa_projektu, w których pracują pracownicy z działu ‘IT’.”</li>
 </ol>
+<section id="podzapytania-subqueries" class="level2">
+<h2 class="anchored" data-anchor-id="podzapytania-subqueries">Podzapytania (Subqueries)</h2>
+<ol start="51" type="1">
+<li>Znajdź pracowników, którzy zarabiają więcej niż średnia pensja w całej firmie. Podzapytanie w WHERE</li>
+<li>Wyświetl imię i nazwisko pracownika oraz informację, o ile jego pensja jest wyższa/niższa od średniej w firmie. Podzapytanie w SELECT</li>
+<li>Znajdź wszystkich pracowników z działu ‘IT’, którzy zarabiają więcej niż jakikolwiek (ANY) pracownik działu ‘HR’. ANY / SOME</li>
+<li>Znajdź pracowników, którzy zarabiają więcej niż wszyscy (ALL) pracownicy działu ‘Finanse’. ALL</li>
+<li>Wyświetl nazwy działów, w których nie pracuje ani jedna osoba. NOT EXISTS</li>
+<li>Podzapytanie korelacyjne: Znajdź pracowników, którzy zarabiają więcej niż średnia w ich własnym dziale. Correlated Subquery</li>
+</ol>
+</section>
+<section id="wyrażenia-cte-with-i-widoki" class="level2">
+<h2 class="anchored" data-anchor-id="wyrażenia-cte-with-i-widoki">Wyrażenia CTE (WITH) i Widoki</h2>
+<p>CTE to “tymczasowe tabele”, które niesamowicie poprawiają czytelność kodu.</p>
+<ol start="57" type="1">
+<li>Stwórz CTE o nazwie SrednieDzialow, które wyliczy średnią pensję dla każdego działu. Następnie użyj go, by wyświetlić działy ze średnią powyżej 60000. WITH (CTE)</li>
+<li>Używając CTE, znajdź pracownika (imię, nazwisko), który ma najwięcej przypisanych godzin w projektach łącznie. WITH + SUM</li>
+<li>Stwórz widok (VIEW) o nazwie RaportProjektow, który łączy nazwę projektu, imię pracownika i liczbę godzin. CREATE VIEW</li>
+</ol>
+</section>
+<section id="funkcje-rankingowe-i-okna-window-functions" class="level2">
+<h2 class="anchored" data-anchor-id="funkcje-rankingowe-i-okna-window-functions">Funkcje Rankingowe i Okna (Window Functions)</h2>
+<p>To absolutny “must-have” w nowoczesnym SQLu.</p>
+<ol start="60" type="1">
+<li>Wyświetl listę pracowników i obok nich (w nowej kolumnie) najwyższą pensję w ich dziale (bez użycia GROUP BY). MAX() OVER()</li>
+<li>Przypisz pracownikom ranking (miejsce) pod względem wysokości pensji w całej firmie (od najwyższej). RANK()</li>
+<li>Przypisz pracownikom ranking pensji, ale wewnątrz każdego działu z osobna. PARTITION BY</li>
+<li>Wyświetl listę pracowników wraz z “sumą kroczącą” (running total) ich pensji w dziale IT. SUM() OVER(ORDER BY…)</li>
+</ol>
+</section>
+<section id="operacje-na-zbiorach-i-logika-case-union" class="level2">
+<h2 class="anchored" data-anchor-id="operacje-na-zbiorach-i-logika-case-union">Operacje na Zbiorach i Logika (CASE, UNION)</h2>
+<ol start="64" type="1">
+<li><p>Połącz listę nazwisk pracowników i nazw działów w jedną kolumnę (np. do wyszukiwarki). UNION</p></li>
+<li><p>Znajdź lokalizacje, w których są działy, ale w których nie mieszkają/pracują żadni pracownicy (użyj operatora zbiorowego). EXCEPT</p></li>
+<li><p>Przy użyciu CASE, stwórz raport: jeśli pensja &lt; 40k -&gt; ‘Junior’, 40k-70k -&gt; ‘Mid’, &gt; 70k -&gt; ‘Senior’. CASE WHEN</p></li>
+<li><p>Zlicz, ilu pracowników przypada na każdą kategorię zdefiniowaną w zadaniu 66. CASE + GROUP BY Sekcja 5: Zaawansowane złączenia i hierarchia</p></li>
+<li><p>Self-Join: Wyświetl imię pracownika oraz imię i nazwisko jego bezpośredniego przełożonego. SELF JOIN</p></li>
+<li><p>Wyświetl wszystkich pracowników (nawet tych bez szefa) oraz imiona ich menedżerów. LEFT JOIN (Self)</p></li>
+<li><p>Wyświetl nazwy projektów, w których pracuje więcej niż 2 osoby, przy czym każda z tych osób zarabia powyżej średniej krajowej (załóżmy 5000). JOIN + HAVING + Subquery</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

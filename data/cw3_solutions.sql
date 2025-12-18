@@ -348,3 +348,76 @@ DECLARE
 BEGIN
     SELECT pensja INTO pensja_result FROM pracownicy WHERE id_pracownika = pracownik_id;
     RETURN
+
+
+-- ************************************************************
+-- *********** ROZWIĄZANIA: ZADANIA ZAAWANSOWANE ***************
+-- ************************************************************
+
+-- 51. Pensja powyżej średniej firmy
+SELECT imie, nazwisko, pensja 
+FROM pracownicy 
+WHERE pensja > (SELECT AVG(pensja) FROM pracownicy);
+
+-- 52. Różnica od średniej
+SELECT imie, nazwisko, pensja,
+       pensja - (SELECT AVG(pensja) FROM pracownicy) AS roznica
+FROM pracownicy;
+
+-- 55. Działy bez pracowników
+SELECT nazwa_dzialu 
+FROM dzialy d
+WHERE NOT EXISTS (SELECT 1 FROM pracownicy p WHERE p.id_dzialu = d.id_dzialu);
+
+-- 56. Zarabiający więcej niż średnia w ICH dziale (Podzapytanie korelacyjne)
+SELECT imie, nazwisko, pensja, id_dzialu
+FROM pracownicy p1
+WHERE pensja > (
+    SELECT AVG(pensja) 
+    FROM pracownicy p2 
+    WHERE p2.id_dzialu = p1.id_dzialu
+);
+
+-- 57. CTE: Działy z wysoką średnią
+WITH SrednieDzialow AS (
+    SELECT id_dzialu, AVG(pensja) as srednia
+    FROM pracownicy
+    GROUP BY id_dzialu
+)
+SELECT d.nazwa_dzialu, s.srednia
+FROM dzialy d
+JOIN SrednieDzialow s ON d.id_dzialu = s.id_dzialu
+WHERE s.srednia > 60000;
+
+-- 61. Ranking pensji w firmie
+SELECT imie, nazwisko, pensja,
+       RANK() OVER (ORDER BY pensja DESC) as pozycja_w_firmie
+FROM pracownicy;
+
+-- 62. Ranking pensji w działach
+SELECT imie, nazwisko, id_dzialu, pensja,
+       DENSE_RANK() OVER (PARTITION BY id_dzialu ORDER BY pensja DESC) as miejsce_w_dziale
+FROM pracownicy;
+
+-- 66. Raport poziomów doświadczenia (CASE)
+SELECT imie, nazwisko, pensja,
+    CASE 
+        WHEN pensja < 40000 THEN 'Junior'
+        WHEN pensja BETWEEN 40000 AND 70000 THEN 'Mid'
+        ELSE 'Senior'
+    END AS poziom_doswiadczenia
+FROM pracownicy;
+
+-- 68. Self-Join: Kto jest czyim szefem?
+SELECT 
+    p.imie AS podwladny, 
+    m.imie AS szef
+FROM pracownicy p
+JOIN pracownicy m ON p.id_menedzera = m.id_pracownika;
+
+-- 69. Lista wszystkich z szefami (nawet jeśli szefa brak)
+SELECT 
+    p.imie || ' ' || p.nazwisko AS pracownik,
+    COALESCE(m.imie || ' ' || m.nazwisko, 'BRAK (Top Management)') AS menedzer
+FROM pracownicy p
+LEFT JOIN pracownicy m ON p.id_menedzera = m.id_pracownika;

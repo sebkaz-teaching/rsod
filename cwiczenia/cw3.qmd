@@ -1,6 +1,6 @@
-# Zadania Ćwiczenia 3
+# Zastosowania języka SQL
 
-## 🔗 Rodzaje Złączeń (JOIN) w SQL
+##  Rodzaje Złączeń (JOIN) w SQL
 Złączenia służą do łączenia wierszy z dwóch lub więcej tabel na podstawie powiązanej kolumny (np. klucza obcego). Różne typy złączeń decydują o tym, jak traktowane są wiersze, dla których brakuje pasujących danych w drugiej tabeli (np. pracownik bez działu, lub dział bez pracownika).
 
 ### INNER JOIN (Złączenie Wewnętrzne)
@@ -105,8 +105,7 @@ W Wyniku:
 - Pojawią się wszystkie działy (w tym Badania i Rozwój z NULL dla pracownika).
 
 
-
-## ❌ Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych
+## Najczęściej Popełniane Błędy w Złączeniach Obciążające Bazę Danych
 
 ### Błąd Kartesian Product (Iloczyn Kartezjański)
 
@@ -169,7 +168,11 @@ Obciążenie bazy: Chociaż błąd ten niekoniecznie obciąża bazę bardziej ni
 Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wpływa nieumyślnie na działanie złączenia zewnętrznego.
 
 
-##  📝 Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)
+## Ćwiczenie 0 
+
+Pobierz [plik sql](https://github.com/sebkaz-teaching/rsod/blob/master/cwiczenia/baza.sql) i załaduj strukturę tabel do postgresa. 
+
+##  Ćwiczenia Podstawowe (SELECT, FROM, WHERE, DML)
 
 1. Wyświetl wszystkie dane z tabeli pracownicy.
 2. "Wyświetl tylko imie, nazwisko i pensja wszystkich pracowników."
@@ -182,7 +185,7 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 9. Zaktualizuj pensję pracownikowi o ID 1 (Anna Kowalska) o 5000 zł (nowa pensja to 85000.00).
 10. Usuń pracownika o imieniu 'Natalia' i nazwisku 'Kaczmarek' (ID: 9).
 
-##  🔍 Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)
+##  Logika i Sortowanie (AND, OR, NOT, IN, BETWEEN, ORDER BY)
 
 11.  "Znajdź pracowników, których pensja jest pomiędzy 50000 a 70000 (włącznie)."
 12.  "Wyświetl pracowników, którzy są 'Programistami' LUB pracują na 'Starszy Programista'."
@@ -193,7 +196,7 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 17.  "Wyświetl wszystkich pracowników, posortowanych malejąco według pensja."
 18.  "Posortuj pracowników najpierw rosnąco według id_dzialu, a następnie malejąco według pensja."
 
-##  🔤 Wzorce i Unikatowe Wartości (DISTINCT, LIKE)
+##  Wzorce i Unikatowe Wartości (DISTINCT, LIKE)
 
 19. Wyświetl listę unikatowych stanowisk w firmie.
 20. Wyświetl unikatowe lokalizacje działów.
@@ -202,8 +205,7 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 23. "Znajdź pracowników, których trzecia litera w imie to 'm'."
 24. "Znajdź projekty, których nazwa_projektu kończy się na słowo 'HR' lub '2024'.
 
-## 📊 Agregacja i Grupowanie (GROUP BY, HAVING)
-
+##  Agregacja i Grupowanie (GROUP BY, HAVING)
 
 25. Oblicz średnią pensję dla wszystkich pracowników.,
 26. Oblicz najwyższą i najniższą pensję w firmie.,
@@ -217,7 +219,7 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 34. "Znajdź stanowiska, na których pracuje więcej niż 1 osoba.",
 35. "Wyświetl id_projektu tylko te, dla których całkowity czas pracy (SUMA) przekracza 200 godzin."
 
-# 🔗 Łączenie Tabel (JOIN - 10 Zadań)
+# Łączenie Tabel (JOIN - 10 Zadań)
 
 36. INNER JOIN (Standard),"Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Pomiń pracowników, którzy nie mają działu."
 37. LEFT JOIN (Pracownicy),"Wyświetl imie, nazwisko pracownika i nazwa_dzialu. Uwzględnij wszystkich pracowników, nawet tych bez przypisanego działu (np. Olga Lisiecka)."
@@ -229,3 +231,43 @@ Jak uniknąć: Zawsze weryfikuj, czy warunek filtrujący w klauzuli WHERE nie wp
 43. JOIN z ORDER BY,"Wyświetl imie, nazwisko, pensja oraz nazwa_dzialu. Posortuj wynik malejąco według pensji."
 44. JOIN z Agregacją (4 Tabele),Oblicz całkowitą liczbę godzin (SUM(czas_pracy_h)) przepracowaną w projektach dla każdego działu. Wynik powinien zawierać nazwa_dzialu.
 45. JOIN i DISTINCT,"Wyświetl unikatowe nazwa_projektu, w których pracują pracownicy z działu 'IT'."
+
+
+##  Podzapytania (Subqueries)
+
+51.	Znajdź pracowników, którzy zarabiają więcej niż średnia pensja w całej firmie.	Podzapytanie w WHERE
+52.	Wyświetl imię i nazwisko pracownika oraz informację, o ile jego pensja jest wyższa/niższa od średniej w firmie.	Podzapytanie w SELECT
+53.	Znajdź wszystkich pracowników z działu 'IT', którzy zarabiają więcej niż jakikolwiek (ANY) pracownik działu 'HR'.	ANY / SOME
+54.	Znajdź pracowników, którzy zarabiają więcej niż wszyscy (ALL) pracownicy działu 'Finanse'.	ALL
+55.	Wyświetl nazwy działów, w których nie pracuje ani jedna osoba.	NOT EXISTS
+56.	Podzapytanie korelacyjne: Znajdź pracowników, którzy zarabiają więcej niż średnia w ich własnym dziale.	Correlated Subquery
+
+
+##  Wyrażenia CTE (WITH) i Widoki
+
+CTE to "tymczasowe tabele", które niesamowicie poprawiają czytelność kodu.
+
+57.	Stwórz CTE o nazwie SrednieDzialow, które wyliczy średnią pensję dla każdego działu. Następnie użyj go, by wyświetlić działy ze średnią powyżej 60000.	WITH (CTE)
+58.	Używając CTE, znajdź pracownika (imię, nazwisko), który ma najwięcej przypisanych godzin w projektach łącznie.	WITH + SUM
+59.	Stwórz widok (VIEW) o nazwie RaportProjektow, który łączy nazwę projektu, imię pracownika i liczbę godzin.	CREATE VIEW
+
+##  Funkcje Rankingowe i Okna (Window Functions)
+
+To absolutny "must-have" w nowoczesnym SQLu.
+
+60.	Wyświetl listę pracowników i obok nich (w nowej kolumnie) najwyższą pensję w ich dziale (bez użycia GROUP BY).	MAX() OVER()
+61.	Przypisz pracownikom ranking (miejsce) pod względem wysokości pensji w całej firmie (od najwyższej).	RANK()
+62.	Przypisz pracownikom ranking pensji, ale wewnątrz każdego działu z osobna.	PARTITION BY
+63.	Wyświetl listę pracowników wraz z "sumą kroczącą" (running total) ich pensji w dziale IT.	SUM() OVER(ORDER BY...)
+
+## Operacje na Zbiorach i Logika (CASE, UNION)
+
+64.	Połącz listę nazwisk pracowników i nazw działów w jedną kolumnę (np. do wyszukiwarki).	UNION
+65.	Znajdź lokalizacje, w których są działy, ale w których nie mieszkają/pracują żadni pracownicy (użyj operatora zbiorowego).	EXCEPT
+66.	Przy użyciu CASE, stwórz raport: jeśli pensja < 40k -> 'Junior', 40k-70k -> 'Mid', > 70k -> 'Senior'.	CASE WHEN
+67.	Zlicz, ilu pracowników przypada na każdą kategorię zdefiniowaną w zadaniu 66.	CASE + GROUP BY
+Sekcja 5: Zaawansowane złączenia i hierarchia
+
+68.	Self-Join: Wyświetl imię pracownika oraz imię i nazwisko jego bezpośredniego przełożonego.	SELF JOIN
+69.	Wyświetl wszystkich pracowników (nawet tych bez szefa) oraz imiona ich menedżerów.	LEFT JOIN (Self)
+70.	Wyświetl nazwy projektów, w których pracuje więcej niż 2 osoby, przy czym każda z tych osób zarabia powyżej średniej krajowej (załóżmy 5000).	JOIN + HAVING + Subquery

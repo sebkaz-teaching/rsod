@@ -32,8 +32,8 @@ Semestr: letni
 
 ### Laboratorium grupa WEL23EA1S0:
 
-1. <del>13.11.2025 Czwartek Lab  - b. 61 sala 116</del>
-2. <del>26.11.2025 środa Lab - b. 61 sala 116</del>
+1. <del>13.11.2025 Czwartek  - b. 61 sala 116</del>
+2. <del>26.11.2025 środa - b. 61 sala 116</del>
 3. <del>11.12.2025 czwartek - b. 61 sala 116</del>
 4. 15.01.2026 czwartek - b. 61 sala 116
 5. 21.01.2026 środa - b. 61 sala 116

@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>cw4 – Relacyjne Systemy Organizacji Danych</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9203b120c5aa9529b4c48b4a2d61fa05.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Relacyjne Systemy Organizacji Danych</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../ksiazki.html"> 
+<span class="menu-text">Książki</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw4.html">📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informacje ogólne</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Wykłady</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Od pliku do bazy danych</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model relacyjny i podstawy SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normalizacja i projektowanie baz danych</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Podstawy PL/SQL, transakcje i indeksy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/wyklad5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mechanizmy zapewniania spójności danych i wprowadzenie do widoków</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laboratorium</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cwiczenia/cw1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">📘 Od plików płaskich do systemów zarządzania bazami danych</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cwiczenia/cw2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Serwer baz danych - PostgreSQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cwiczenia/cw3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zastosowania języka SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cwiczenia/cw4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Sections</strong></h2>
+   
+  <ul class="collapse">
+  <li><a href="#laboratorium-plpgsql-od-zapytań-do-logiki-biznesowej" id="toc-laboratorium-plpgsql-od-zapytań-do-logiki-biznesowej" class="nav-link active" data-scroll-target="#laboratorium-plpgsql-od-zapytań-do-logiki-biznesowej">📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej</a>
+  <ul class="collapse">
+  <li><a href="#blok-1-pierwsze-kroki-w-plpgsql" id="toc-blok-1-pierwsze-kroki-w-plpgsql" class="nav-link" data-scroll-target="#blok-1-pierwsze-kroki-w-plpgsql">🕒 Blok 1: Pierwsze kroki w PL/pgSQL</a></li>
+  <li><a href="#zadania-do-wykonania-twoje-pierwsze-programy" id="toc-zadania-do-wykonania-twoje-pierwsze-programy" class="nav-link" data-scroll-target="#zadania-do-wykonania-twoje-pierwsze-programy">✍️ Zadania do wykonania (Twoje pierwsze programy)</a></li>
+  <li><a href="#blok-2-pętle-i-przetwarzanie-zbiorów" id="toc-blok-2-pętle-i-przetwarzanie-zbiorów" class="nav-link" data-scroll-target="#blok-2-pętle-i-przetwarzanie-zbiorów">🕒 Blok 2: Pętle i przetwarzanie zbiorów</a></li>
+  <li><a href="#zadania-przetwarzanie-danych-w-pętli" id="toc-zadania-przetwarzanie-danych-w-pętli" class="nav-link" data-scroll-target="#zadania-przetwarzanie-danych-w-pętli">✍️ Zadania (Przetwarzanie danych w pętli)</a></li>
+  <li><a href="#blok-3-funkcje-twoje-własne-narzędzia" id="toc-blok-3-funkcje-twoje-własne-narzędzia" class="nav-link" data-scroll-target="#blok-3-funkcje-twoje-własne-narzędzia">🕒 Blok 3: Funkcje – Twoje własne narzędzia</a></li>
+  <li><a href="#zadania-tworzenie-własnych-funkcji" id="toc-zadania-tworzenie-własnych-funkcji" class="nav-link" data-scroll-target="#zadania-tworzenie-własnych-funkcji">✍️ Zadania (Tworzenie własnych funkcji)</a></li>
+  <li><a href="#blok-4-triggery-automatyzacja-bazy" id="toc-blok-4-triggery-automatyzacja-bazy" class="nav-link" data-scroll-target="#blok-4-triggery-automatyzacja-bazy">🕒 Blok 4: Triggery – Automatyzacja bazy</a></li>
+  <li><a href="#zadania-automatyzacja-i-bezpieczeństwo" id="toc-zadania-automatyzacja-i-bezpieczeństwo" class="nav-link" data-scroll-target="#zadania-automatyzacja-i-bezpieczeństwo">✍️ Zadania (Automatyzacja i bezpieczeństwo)</a></li>
+  <li><a href="#zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions" id="toc-zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions" class="nav-link" data-scroll-target="#zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions">🏆 Zadanie Egzaminacyjne 1: System Premii Rocznej (Logic &amp; Functions)</a></li>
+  <li><a href="#zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic" id="toc-zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic" class="nav-link" data-scroll-target="#zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic">🏆 Zadanie Egzaminacyjne 2: System “Złoty Spadochron” (Triggers &amp; Logic)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../cwiczenia/cw1.html">Laboratorium</a></li><li class="breadcrumb-item"><a href="../cwiczenia/cw4.html">📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej</a></li></ol></nav></header>
+
+
+
+
+<section id="laboratorium-plpgsql-od-zapytań-do-logiki-biznesowej" class="level1">
+<h1>📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej</h1>
+<section id="blok-1-pierwsze-kroki-w-plpgsql" class="level2">
+<h2 class="anchored" data-anchor-id="blok-1-pierwsze-kroki-w-plpgsql">🕒 Blok 1: Pierwsze kroki w PL/pgSQL</h2>
+<p>Dlaczego nie wystarczy nam zwykły SQL?</p>
+<p>Zwykły SQL (SELECT, UPDATE) jest jak lista zakupów: mówisz bazie, co ma przynieść.</p>
+<p>PL/pgSQL jest jak przepis kulinarny: mówisz bazie, co ma zrobić krok po kroku, jak ma reagować na sytuacje (np. „jeśli brakuje jajek, użyj zamiennika”) i pozwala zapamiętywać dane w trakcie pracy.</p>
+<p>W PostgreSQL kod proceduralny najprościej uruchomić za pomocą bloku <code>DO</code>. To taki „jednorazowy program”.</p>
+<section id="przykład-a-zmienne-i-wypisywanie-tekstu-zmienne-pozwalają-nam-przechowywać-dane-w-pamięci-programu." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-a-zmienne-i-wypisywanie-tekstu-zmienne-pozwalają-nam-przechowywać-dane-w-pamięci-programu.">Przykład A: Zmienne i wypisywanie tekstu Zmienne pozwalają nam przechowywać dane „w pamięci” programu.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>DO $$ </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DECLARE</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tu tworzymy "pudełka" na dane</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    v_imie TEXT <span class="op">:=</span> <span class="st">'Jan'</span>; </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    v_wiek <span class="dt">INTEGER</span> <span class="op">:=</span> <span class="dv">25</span>;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Tu wykonujemy akcje</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- RAISE </span><span class="al">NOTICE</span><span class="co"> to odpowiednik "print" lub "console.log"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    RAISE NOTICE <span class="st">'Witaj, nazywam się % i mam % lat.'</span>, v_imie, v_wiek;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> $$;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="przykład-b-pobieranie-danych-z-tabeli-do-zmiennej-to-najważniejsza-funkcja-wyciągamy-wynik-selecta-i-wsadzamy-go-do-zmiennej-za-pomocą-słowa-into." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-b-pobieranie-danych-z-tabeli-do-zmiennej-to-najważniejsza-funkcja-wyciągamy-wynik-selecta-i-wsadzamy-go-do-zmiennej-za-pomocą-słowa-into.">Przykład B: Pobieranie danych z tabeli do zmiennej To najważniejsza funkcja – wyciągamy wynik SELECTA i wsadzamy go do zmiennej za pomocą słowa INTO.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>DO $$</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DECLARE</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    v_nazwa_projektu TEXT;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    v_typ TEXT;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Pobieramy dane z tabeli i "wlewamy" je do naszych zmiennych</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> nazwa_projektu, typ_projektu </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INTO</span> v_nazwa_projektu, v_typ </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> projekty </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> id_projektu <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    RAISE NOTICE <span class="st">'Pracujemy nad projektem: % (Typ: %)'</span>, v_nazwa_projektu, v_typ;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> $$;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="przykład-c-prosta-logika-instrukcja-if-pozwala-bazie-myśleć." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-c-prosta-logika-instrukcja-if-pozwala-bazie-myśleć.">Przykład C: Prosta logika (Instrukcja IF) Pozwala bazie „myśleć”.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>DO $$</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DECLARE</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    v_pensja <span class="dt">NUMERIC</span>;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> pensja <span class="kw">INTO</span> v_pensja <span class="kw">FROM</span> pracownicy <span class="kw">WHERE</span> id_pracownika <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">IF</span> v_pensja <span class="op">&gt;</span> <span class="dv">20000</span> <span class="cf">THEN</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        RAISE NOTICE <span class="st">'To jest zarząd lub top management.'</span>;</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">ELSE</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        RAISE NOTICE <span class="st">'To jest pracownik operacyjny.'</span>;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> $$;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="zadania-do-wykonania-twoje-pierwsze-programy" class="level2">
+<h2 class="anchored" data-anchor-id="zadania-do-wykonania-twoje-pierwsze-programy">✍️ Zadania do wykonania (Twoje pierwsze programy)</h2>
+<section id="zadanie-1.1-kalkulator-podatkowy" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-1.1-kalkulator-podatkowy">Zadanie 1.1: Kalkulator podatkowy</h4>
+<p>Napisz blok anonimowy, w którym:</p>
+<ol type="1">
+<li>Zadeklarujesz zmienną v_kwota (np. 1000) oraz v_podatek_procent (np. 0.23).</li>
+<li>Obliczysz wartość podatku i zapiszesz ją do trzeciej zmiennej v_wynik.</li>
+<li>Wyświetlisz komunikat: „Dla kwoty [X] podatek wynosi [Y]”.</li>
+</ol>
+</section>
+<section id="zadanie-1.2-wizytówka-pracownika" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-1.2-wizytówka-pracownika">Zadanie 1.2: Wizytówka pracownika</h4>
+<p>Używając tabeli pracownicy:</p>
+<ol type="1">
+<li>Pobierz do zmiennych imię, nazwisko i pensję pracownika o id_pracownika = 5.</li>
+<li>Wyświetl komunikat: „Pracownik: [Imię] [Nazwisko], zarobki: [Pensja] zł”.</li>
+</ol>
+</section>
+<section id="zadanie-1.3-kontroler-budżetu-projektu" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-1.3-kontroler-budżetu-projektu">Zadanie 1.3: Kontroler budżetu projektu</h4>
+<p>Napisz program, który sprawdzi czas pracy w projekcie:</p>
+<ol type="1">
+<li>Pobierz czas_pracy_h z tabeli przydzialy dla wybranego pracownika i projektu.</li>
+<li>Jeśli czas jest większy niż 100 godzin, wyświetl: „Projekt wymaga optymalizacji!”.</li>
+<li>W przeciwnym razie wyświetl: „Czas pracy w normie”.</li>
+</ol>
+</section>
+<section id="wskazówki" class="level3">
+<h3 class="anchored" data-anchor-id="wskazówki">💡 Wskazówki:</h3>
+<ol type="1">
+<li>Pamiętaj o średnikach ; po każdej instrukcji wewnątrz bloku!</li>
+<li>Znak % w RAISE NOTICE to „miejsce na zmienną” – zostaną one wstawione w kolejności, w jakiej podasz je po przecinku.</li>
+<li>Jeśli Twój SELECT INTO zwróci więcej niż jeden wiersz, baza wyrzuci błąd (na razie celujmy w konkretne ID).</li>
+</ol>
+</section>
+</section>
+<section id="blok-2-pętle-i-przetwarzanie-zbiorów" class="level2">
+<h2 class="anchored" data-anchor-id="blok-2-pętle-i-przetwarzanie-zbiorów">🕒 Blok 2: Pętle i przetwarzanie zbiorów</h2>
+<p>Dlaczego potrzebujemy pętli?</p>
+<p>Pamiętasz błąd z poprzedniego bloku, gdy SELECT INTO zwrócił więcej niż jeden wiersz? W bazie danych rzadko pracujemy na jednym rekordzie. Zazwyczaj chcemy „przejrzeć” całą tabelę, np. aby wystawić faktury dla wszystkich klientów lub sprawdzić wydajność wszystkich pracowników.</p>
+<p>W PL/pgSQL najwygodniejszą pętlą jest FOR IN SELECT.</p>
+<section id="jak-działają-pętle" class="level3">
+<h3 class="anchored" data-anchor-id="jak-działają-pętle">Jak działają pętle?</h3>
+<section id="przykład-a-prosta-pętla-licznikowa-najprostszy-sposób-by-coś-powtórzyć-określoną-liczbę-razy." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-a-prosta-pętla-licznikowa-najprostszy-sposób-by-coś-powtórzyć-określoną-liczbę-razy.">Przykład A: Prosta pętla licznikowa Najprostszy sposób, by coś powtórzyć określoną liczbę razy.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>DO $$</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Pętla od 1 do 5</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">FOR</span> i <span class="kw">IN</span> <span class="dv">1</span><span class="op">..</span><span class="dv">5</span> <span class="cf">LOOP</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        RAISE NOTICE <span class="st">'To jest obrót pętli nr: %'</span>, i;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">END</span> <span class="cf">LOOP</span>;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> $$;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="przykład-b-przeglądanie-tabeli-klucz-do-sukcesu" class="level4">
+<h4 class="anchored" data-anchor-id="przykład-b-przeglądanie-tabeli-klucz-do-sukcesu">Przykład B: Przeglądanie tabeli (Klucz do sukcesu)</h4>
+<p>Zamiast ręcznie wpisywać ID, mówimy bazie: „Dla każdego wiersza, który znajdziesz w tym zapytaniu, wykonaj poniższy kod”. Używamy tu specjalnego typu zmiennej RECORD, który jest jak „kameleon” – dopasowuje się do struktury wiersza.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DO $$</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DECLARE</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Zmienna typu RECORD może przechować cały wiersz z dowolnej tabeli</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    v_wiersz <span class="dt">RECORD</span>;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">FOR</span> v_wiersz <span class="kw">IN</span> <span class="kw">SELECT</span> nazwa_dzialu, lokalizacja <span class="kw">FROM</span> dzialy <span class="cf">LOOP</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        RAISE NOTICE <span class="st">'Dział: % znajduje się w mieście: %'</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                     v_wiersz.nazwa_dzialu, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                     v_wiersz.lokalizacja;</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">END</span> <span class="cf">LOOP</span>;</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span> $$;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="zadania-przetwarzanie-danych-w-pętli" class="level2">
+<h2 class="anchored" data-anchor-id="zadania-przetwarzanie-danych-w-pętli">✍️ Zadania (Przetwarzanie danych w pętli)</h2>
+<section id="zadanie-2.1-lista-płac-podstawy" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-2.1-lista-płac-podstawy">Zadanie 2.1: Lista płac (Podstawy)</h4>
+<p>Napisz pętlę, która przejdzie przez tabelę pracownicy i dla każdego z nich wypisze: “Pracownik: [Nazwisko], Pensja: [Kwota] zł”. Podpowiedź: Użyj zmiennej RECORD w pętli FOR.</p>
+</section>
+<section id="zadanie-2.2-raport-projektów-filtrowanie-w-pętli" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-2.2-raport-projektów-filtrowanie-w-pętli">Zadanie 2.2: Raport projektów (Filtrowanie w pętli)</h4>
+<p>Napisz program, który:</p>
+<ol type="1">
+<li>Wyświetli nagłówek: “— RAPORT PROJEKTÓW IT —”.</li>
+<li>W pętli przejrzy tabelę projekty, ale tylko te, których typ to ‘Software’.</li>
+<li>Wypisze ich nazwy. Podpowiedź: Możesz dodać klauzulę WHERE bezpośrednio w zapytaniu wewnątrz pętli FOR.</li>
+</ol>
+</section>
+<section id="zadanie-2.3-analiza-premii-logika-wewnątrz-pętli" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-2.3-analiza-premii-logika-wewnątrz-pętli">Zadanie 2.3: Analiza premii (Logika wewnątrz pętli)</h4>
+<p>Stwórz program, który przeanalizuje zarobki:</p>
+<ol type="1">
+<li>Przejdź pętlą przez wszystkich pracowników.</li>
+<li>Jeśli pracownik zarabia powyżej 10 000 zł, wypisz: “[Nazwisko]: Wysokie zarobki”.</li>
+<li>Jeśli zarabia poniżej lub równo 10 000 zł, wypisz: “[Nazwisko]: Standardowe zarobki”.</li>
+</ol>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Podpowiedź: Połącz pętlę FOR z instrukcją IF..ELSE, którą poznałeś w poprzednim bloku.</p>
+</blockquote>
+</blockquote>
+</section>
+</section>
+<section id="blok-3-funkcje-twoje-własne-narzędzia" class="level2">
+<h2 class="anchored" data-anchor-id="blok-3-funkcje-twoje-własne-narzędzia">🕒 Blok 3: Funkcje – Twoje własne narzędzia</h2>
+<p>Dlaczego funkcje to “Level Up”?</p>
+<p>Wyobraź sobie, że co tydzień musisz liczyć premię dla pracowników według skomplikowanego wzoru. Zamiast za każdym razem pisać blok DO i kopiować kod, możesz stworzyć funkcję oblicz_premie().</p>
+<section id="zalety-funkcji" class="level3">
+<h3 class="anchored" data-anchor-id="zalety-funkcji">Zalety funkcji:</h3>
+<ol type="1">
+<li>Kod piszesz raz, a używasz go w tysiącach zapytań.</li>
+<li>Uproszczenie SQL: Twoje zapytania SELECT stają się krótsze i czytelniejsze.</li>
+<li>Bezpieczeństwo: Możesz ukryć skomplikowane obliczenia przed użytkownikiem.</li>
+</ol>
+</section>
+<section id="jak-stworzyć-funkcję" class="level3">
+<h3 class="anchored" data-anchor-id="jak-stworzyć-funkcję">Jak stworzyć funkcję?</h3>
+<p>W PostgreSQL używamy polecenia CREATE FUNCTION. Musimy określić:</p>
+<ol type="1">
+<li>Jakie dane funkcja przyjmuje (parametry).</li>
+<li>Co funkcja nam odda (RETURNS).</li>
+<li>W jakim języku jest napisana (LANGUAGE plpgsql).</li>
+</ol>
+<section id="przykład-a-prosty-kalkulator-brutto---netto-funkcja-która-przyjmuje-kwotę-i-zwraca-wartość-po-odjęciu-19-podatku." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-a-prosty-kalkulator-brutto---netto-funkcja-która-przyjmuje-kwotę-i-zwraca-wartość-po-odjęciu-19-podatku.">Przykład A: Prosty kalkulator (Brutto -&gt; Netto) Funkcja, która przyjmuje kwotę i zwraca wartość po odjęciu 19% podatku.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> cena_netto(kwota_brutto <span class="dt">NUMERIC</span>) </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="dt">NUMERIC</span> <span class="kw">AS</span> $$</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RETURN</span> kwota_brutto <span class="op">*</span> <span class="fl">0.81</span>;</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>$$ LANGUAGE plpgsql;</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Jak to wywołać? Jak zwykły SELECT!</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> imie, nazwisko, pensja, cena_netto(pensja) <span class="kw">AS</span> pensja_na_reke </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> pracownicy;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="przykład-b-pobieranie-danych-z-bazy-funkcja-może-przyjąć-id-i-zwrócić-nam-konkretną-informację-np.-nazwę-działu." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-b-pobieranie-danych-z-bazy-funkcja-może-przyjąć-id-i-zwrócić-nam-konkretną-informację-np.-nazwę-działu.">Przykład B: Pobieranie danych z bazy Funkcja może przyjąć ID i zwrócić nam konkretną informację, np. nazwę działu.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> nazwa_mojego_dzialu(p_id_pracownika <span class="dt">INTEGER</span>) </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>RETURNS TEXT <span class="kw">AS</span> $$</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DECLARE</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    v_nazwa TEXT;</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> d.nazwa_dzialu <span class="kw">INTO</span> v_nazwa</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> dzialy d</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">JOIN</span> pracownicy p <span class="kw">ON</span> d.id_dzialu <span class="op">=</span> p.id_dzialu</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> p.id_pracownika <span class="op">=</span> p_id_pracownika;</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RETURN</span> <span class="fu">COALESCE</span>(v_nazwa, <span class="st">'Brak działu'</span>);</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>$$ LANGUAGE plpgsql;</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- Testowanie:</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> nazwa_mojego_dzialu(<span class="dv">5</span>);</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="zadania-tworzenie-własnych-funkcji" class="level2">
+<h2 class="anchored" data-anchor-id="zadania-tworzenie-własnych-funkcji">✍️ Zadania (Tworzenie własnych funkcji)</h2>
+<section id="zadanie-3.1-szybki-wgląd-w-pensję" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-3.1-szybki-wgląd-w-pensję">Zadanie 3.1: Szybki wgląd w pensję</h4>
+<p>Napisz funkcję pobierz_pensje(p_id INT), która przyjmuje ID pracownika i zwraca jego aktualną pensję (typ NUMERIC).</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Test: Sprawdź działanie funkcji dla pracownika o ID = 1.</p>
+</blockquote>
+</blockquote>
+</section>
+<section id="zadanie-3.2-licznik-godzin-pracownika" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-3.2-licznik-godzin-pracownika">Zadanie 3.2: Licznik godzin pracownika</h4>
+<p>Napisz funkcję suma_godzin_pracownika(p_id INT), która zsumuje wszystkie godziny z tabeli przydzialy dla konkretnego pracownika.</p>
+<blockquote class="blockquote">
+<p>Podpowiedź: Użyj SUM(czas_pracy_h) wewnątrz funkcji i przypisz wynik do zmiennej za pomocą SELECT INTO.</p>
+</blockquote>
+</section>
+<section id="zadanie-3.3-klasyfikator-wielkości-działu" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-3.3-klasyfikator-wielkości-działu">Zadanie 3.3: Klasyfikator wielkości działu</h4>
+<p>Napisz funkcję wielkosc_dzialu(p_id_dzialu INT), która zwraca tekst:</p>
+<ol type="1">
+<li>‘Duży’ – jeśli w dziale pracuje więcej niż 5 osób.</li>
+<li>‘Mały/Średni’ – jeśli pracuje 5 lub mniej osób.</li>
+</ol>
+<blockquote class="blockquote">
+<p>Podpowiedź: Wykorzystaj COUNT(*) oraz instrukcję IF.</p>
+</blockquote>
+</section>
+<section id="wskazówki-dla-studentów" class="level3">
+<h3 class="anchored" data-anchor-id="wskazówki-dla-studentów">💡 Wskazówki dla studentów:</h3>
+<ul>
+<li>CREATE OR REPLACE: Zawsze używaj tej frazy. Dzięki temu, jeśli zrobisz błąd, możesz po prostu poprawić kod i uruchomić go ponownie, a baza zaktualizuje funkcję.</li>
+<li>Parametry: Możesz nazywać je jak chcesz, ale dobrą praktyką jest dodawanie przedrostka (np. p_id), aby nie myliły się z nazwami kolumn w tabelach.</li>
+<li>Wywołanie: Funkcje, które zwracają pojedynczą wartość, wywołujemy przez SELECT nazwa_funkcji(argumenty).</li>
+</ul>
+</section>
+</section>
+<section id="blok-4-triggery-automatyzacja-bazy" class="level2">
+<h2 class="anchored" data-anchor-id="blok-4-triggery-automatyzacja-bazy">🕒 Blok 4: Triggery – Automatyzacja bazy</h2>
+<blockquote class="blockquote">
+<p>Czym jest Trigger?</p>
+</blockquote>
+<p>Wyobraź sobie, że baza danych to budynek, a Trigger to czujnik ruchu. Gdy ktoś wchodzi (INSERT), wychodzi (DELETE) lub coś zmienia (UPDATE), czujnik to wykrywa i natychmiast uruchamia alarm lub zapala światło (wykonuje funkcję).</p>
+<p>W PostgreSQL proces ten składa się z dwóch kroków: 1. Stworzenie specjalnej funkcji wyzwalającej (która mówi, co zrobić). 2. Stworzenie triggera (który mówi, kiedy to zrobić i na której tabeli).</p>
+<section id="jak-działają-zmienne-new-i-old" class="level3">
+<h3 class="anchored" data-anchor-id="jak-działają-zmienne-new-i-old">Jak działają zmienne NEW i OLD?</h3>
+<p>To najważniejszy koncept w triggerach:</p>
+<ul>
+<li>NEW: To “nowy” wiersz (dane, które właśnie wstawiasz lub po edycji).</li>
+<li>OLD: To “stary” wiersz (dane, które były w bazie przed zmianą lub usunięciem).</li>
+</ul>
+<section id="przykład-a-automatyczny-log-operacji-chcemy-wiedzieć-kto-i-kiedy-dodał-nowego-pracownika." class="level4">
+<h4 class="anchored" data-anchor-id="przykład-a-automatyczny-log-operacji-chcemy-wiedzieć-kto-i-kiedy-dodał-nowego-pracownika.">Przykład A: Automatyczny log operacji Chcemy wiedzieć, kto i kiedy dodał nowego pracownika.</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Krok 1: Funkcja</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> loguj_nowego_pracownika()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="kw">TRIGGER</span> <span class="kw">AS</span> $$</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">INSERT</span> <span class="kw">INTO</span> logi_operacji(opis_zmiany)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span> (<span class="st">'Dodano pracownika: '</span> <span class="op">||</span> <span class="kw">NEW</span>.imie <span class="op">||</span> <span class="st">' '</span> <span class="op">||</span> <span class="kw">NEW</span>.nazwisko);</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">RETURN</span> <span class="kw">NEW</span>;</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">END</span>;</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>$$ LANGUAGE plpgsql;</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Krok 2: Powiązanie z tabelą</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TRIGGER</span> trg_nowy_pracownik</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">AFTER</span> <span class="kw">INSERT</span> <span class="kw">ON</span> pracownicy</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">FOR</span> <span class="kw">EACH</span> <span class="kw">ROW</span> <span class="kw">EXECUTE</span> <span class="kw">FUNCTION</span> loguj_nowego_pracownika();</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+</section>
+<section id="zadania-automatyzacja-i-bezpieczeństwo" class="level2">
+<h2 class="anchored" data-anchor-id="zadania-automatyzacja-i-bezpieczeństwo">✍️ Zadania (Automatyzacja i bezpieczeństwo)</h2>
+<section id="zadanie-4.1-historia-zmian-pensji-audyt" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-4.1-historia-zmian-pensji-audyt">Zadanie 4.1: Historia zmian pensji (Audyt)</h4>
+<p>Napisz wyzwalacz, który zareaguje na każdą aktualizację (UPDATE) pensji w tabeli pracownicy.</p>
+<ol type="1">
+<li>Funkcja powinna sprawdzić, czy nowa pensja (NEW.pensja) jest inna niż stara (OLD.pensja).</li>
+<li>Jeśli tak, zapisz rekord do tabeli historia_pensji.</li>
+</ol>
+</section>
+<section id="zadanie-4.2-strażnik-menedżerów-walidacja" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-4.2-strażnik-menedżerów-walidacja">Zadanie 4.2: Strażnik Menedżerów (Walidacja)</h4>
+<p>Napisz wyzwalacz typu BEFORE DELETE, który uniemożliwi usunięcie pracownika, jeśli jest on menedżerem dla kogoś innego.</p>
+<ol type="1">
+<li>Sprawdź, czy OLD.id_pracownika występuje w kolumnie id_menedzera u innych pracowników.</li>
+<li>Jeśli tak, użyj polecenia RAISE EXCEPTION ‘Nie można usunąć szefa!’.</li>
+</ol>
+</section>
+<section id="zadanie-4.3-pilnowanie-budżetu-korekta-danych" class="level4">
+<h4 class="anchored" data-anchor-id="zadanie-4.3-pilnowanie-budżetu-korekta-danych">Zadanie 4.3: Pilnowanie budżetu (Korekta danych)</h4>
+<p>Stwórz trigger typu BEFORE INSERT OR UPDATE, który sprawdzi, czy wprowadzana pensja nie przekracza 30 000 zł.</p>
+<ol type="1">
+<li>Jeśli ktoś spróbuje wpisać więcej, trigger powinien automatycznie “uciąć” pensję do poziomu 30 000 zł przed zapisaniem.</li>
+</ol>
+</section>
+</section>
+<section id="zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions" class="level2">
+<h2 class="anchored" data-anchor-id="zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions">🏆 Zadanie Egzaminacyjne 1: System Premii Rocznej (Logic &amp; Functions)</h2>
+<p>Opis problemu: Zarząd chce wypłacić premie zależne od wkładu pracy w projekty. Musisz napisać system, który wyliczy i wypłaci te premie automatycznie.</p>
+<p>Twoje zadanie:</p>
+<ol type="1">
+<li>Stwórz funkcję czy_pracowity(p_id INT):
+<ul>
+<li>Funkcja ma zsumować godziny pracownika w tabeli przydzialy.</li>
+<li>Jeśli suma &gt; 150h, funkcja zwraca TRUE, w przeciwnym razie FALSE.</li>
+</ul></li>
+<li>Stwórz procedurę wyplac_premie_roczna():
+<ul>
+<li>procedura ma przejść pętlą FOR przez wszystkich pracowników.</li>
+<li>Dla każdego pracownika ma sprawdzić warunek: jeśli czy_pracowity(id) jest prawdą, podnieś jego pensję (UPDATE) o 10%.</li>
+<li>Dodatkowo, procedura ma zapisać informację o podwyżce w tabeli logi_operacji (np. “Pracownik [Nazwisko] otrzymał premię”).</li>
+</ul></li>
+</ol>
+</section>
+<section id="zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic" class="level2">
+<h2 class="anchored" data-anchor-id="zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic">🏆 Zadanie Egzaminacyjne 2: System “Złoty Spadochron” (Triggers &amp; Logic)</h2>
+<p>Opis problemu: Firma chce chronić menedżerów przed nagłym zwolnieniem, ale też pilnować spójności bazy danych.</p>
+<p>Twoje zadanie:</p>
+<ol type="1">
+<li>Stwórz trigger BEFORE DELETE na tabeli pracownicy:
+<ul>
+<li>Trigger ma sprawdzić, czy usuwany pracownik jest menedżerem (czy ktoś ma jego ID w kolumnie id_menedzera).</li>
+<li>Jeśli jest menedżerem: zamiast pozwolić na usunięcie, trigger ma automatycznie przenieść wszystkich jego podwładnych pod opiekę Prezesa (ID = 1).</li>
+<li>Dopiero po tym “przepisaniu” podwładnych, rekord menedżera może zostać usunięty.</li>
+</ul></li>
+<li>Walidacja pensji w tym samym triggerze:
+<ul>
+<li>Jeśli usuwamy pracownika, który zarabia więcej niż 20 000 zł, zapisz informację w logi_operacji: “UWAGA: Wysokopłatne stanowisko [Nazwisko] zostało zlikwidowane”.</li>
+</ul></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sebkaz-teaching\.github\.io\/rsod");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Sebastian Zając</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

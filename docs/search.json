@@ -343,6 +343,185 @@
     ]
   },
   {
+    "objectID": "cwiczenia/cw4.html",
+    "href": "cwiczenia/cw4.html",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Dlaczego nie wystarczy nam zwykły SQL?\nZwykły SQL (SELECT, UPDATE) jest jak lista zakupów: mówisz bazie, co ma przynieść.\nPL/pgSQL jest jak przepis kulinarny: mówisz bazie, co ma zrobić krok po kroku, jak ma reagować na sytuacje (np. „jeśli brakuje jajek, użyj zamiennika”) i pozwala zapamiętywać dane w trakcie pracy.\nW PostgreSQL kod proceduralny najprościej uruchomić za pomocą bloku DO. To taki „jednorazowy program”.\n\n\nDO $$ \nDECLARE \n    -- Tu tworzymy \"pudełka\" na dane\n    v_imie TEXT := 'Jan'; \n    v_wiek INTEGER := 25;\nBEGIN \n    -- Tu wykonujemy akcje\n    -- RAISE NOTICE to odpowiednik \"print\" lub \"console.log\"\n    RAISE NOTICE 'Witaj, nazywam się % i mam % lat.', v_imie, v_wiek;\nEND $$;\n\n\n\nDO $$\nDECLARE\n    v_nazwa_projektu TEXT;\n    v_typ TEXT;\nBEGIN\n    -- Pobieramy dane z tabeli i \"wlewamy\" je do naszych zmiennych\n    SELECT nazwa_projektu, typ_projektu \n    INTO v_nazwa_projektu, v_typ \n    FROM projekty \n    WHERE id_projektu = 1;\n\n    RAISE NOTICE 'Pracujemy nad projektem: % (Typ: %)', v_nazwa_projektu, v_typ;\nEND $$;\n\n\n\nDO $$\nDECLARE\n    v_pensja NUMERIC;\nBEGIN\n    SELECT pensja INTO v_pensja FROM pracownicy WHERE id_pracownika = 1;\n\n    IF v_pensja &gt; 20000 THEN\n        RAISE NOTICE 'To jest zarząd lub top management.';\n    ELSE\n        RAISE NOTICE 'To jest pracownik operacyjny.';\n    END IF;\nEND $$;\n\n\n\n\n\n\nNapisz blok anonimowy, w którym:\n\nZadeklarujesz zmienną v_kwota (np. 1000) oraz v_podatek_procent (np. 0.23).\nObliczysz wartość podatku i zapiszesz ją do trzeciej zmiennej v_wynik.\nWyświetlisz komunikat: „Dla kwoty [X] podatek wynosi [Y]”.\n\n\n\n\nUżywając tabeli pracownicy:\n\nPobierz do zmiennych imię, nazwisko i pensję pracownika o id_pracownika = 5.\nWyświetl komunikat: „Pracownik: [Imię] [Nazwisko], zarobki: [Pensja] zł”.\n\n\n\n\nNapisz program, który sprawdzi czas pracy w projekcie:\n\nPobierz czas_pracy_h z tabeli przydzialy dla wybranego pracownika i projektu.\nJeśli czas jest większy niż 100 godzin, wyświetl: „Projekt wymaga optymalizacji!”.\nW przeciwnym razie wyświetl: „Czas pracy w normie”.\n\n\n\n\n\nPamiętaj o średnikach ; po każdej instrukcji wewnątrz bloku!\nZnak % w RAISE NOTICE to „miejsce na zmienną” – zostaną one wstawione w kolejności, w jakiej podasz je po przecinku.\nJeśli Twój SELECT INTO zwróci więcej niż jeden wiersz, baza wyrzuci błąd (na razie celujmy w konkretne ID).\n\n\n\n\n\nDlaczego potrzebujemy pętli?\nPamiętasz błąd z poprzedniego bloku, gdy SELECT INTO zwrócił więcej niż jeden wiersz? W bazie danych rzadko pracujemy na jednym rekordzie. Zazwyczaj chcemy „przejrzeć” całą tabelę, np. aby wystawić faktury dla wszystkich klientów lub sprawdzić wydajność wszystkich pracowników.\nW PL/pgSQL najwygodniejszą pętlą jest FOR IN SELECT.\n\n\n\n\nDO $$\nBEGIN\n    -- Pętla od 1 do 5\n    FOR i IN 1..5 LOOP\n        RAISE NOTICE 'To jest obrót pętli nr: %', i;\n    END LOOP;\nEND $$;\n\n\n\nZamiast ręcznie wpisywać ID, mówimy bazie: „Dla każdego wiersza, który znajdziesz w tym zapytaniu, wykonaj poniższy kod”. Używamy tu specjalnego typu zmiennej RECORD, który jest jak „kameleon” – dopasowuje się do struktury wiersza.\nDO $$\nDECLARE\n    -- Zmienna typu RECORD może przechować cały wiersz z dowolnej tabeli\n    v_wiersz RECORD;\nBEGIN\n    FOR v_wiersz IN SELECT nazwa_dzialu, lokalizacja FROM dzialy LOOP\n        RAISE NOTICE 'Dział: % znajduje się w mieście: %', \n                     v_wiersz.nazwa_dzialu, \n                     v_wiersz.lokalizacja;\n    END LOOP;\nEND $$;\n\n\n\n\n\n\n\nNapisz pętlę, która przejdzie przez tabelę pracownicy i dla każdego z nich wypisze: “Pracownik: [Nazwisko], Pensja: [Kwota] zł”. Podpowiedź: Użyj zmiennej RECORD w pętli FOR.\n\n\n\nNapisz program, który:\n\nWyświetli nagłówek: “— RAPORT PROJEKTÓW IT —”.\nW pętli przejrzy tabelę projekty, ale tylko te, których typ to ‘Software’.\nWypisze ich nazwy. Podpowiedź: Możesz dodać klauzulę WHERE bezpośrednio w zapytaniu wewnątrz pętli FOR.\n\n\n\n\nStwórz program, który przeanalizuje zarobki:\n\nPrzejdź pętlą przez wszystkich pracowników.\nJeśli pracownik zarabia powyżej 10 000 zł, wypisz: “[Nazwisko]: Wysokie zarobki”.\nJeśli zarabia poniżej lub równo 10 000 zł, wypisz: “[Nazwisko]: Standardowe zarobki”.\n\n\n\nPodpowiedź: Połącz pętlę FOR z instrukcją IF..ELSE, którą poznałeś w poprzednim bloku.\n\n\n\n\n\n\nDlaczego funkcje to “Level Up”?\nWyobraź sobie, że co tydzień musisz liczyć premię dla pracowników według skomplikowanego wzoru. Zamiast za każdym razem pisać blok DO i kopiować kod, możesz stworzyć funkcję oblicz_premie().\n\n\n\nKod piszesz raz, a używasz go w tysiącach zapytań.\nUproszczenie SQL: Twoje zapytania SELECT stają się krótsze i czytelniejsze.\nBezpieczeństwo: Możesz ukryć skomplikowane obliczenia przed użytkownikiem.\n\n\n\n\nW PostgreSQL używamy polecenia CREATE FUNCTION. Musimy określić:\n\nJakie dane funkcja przyjmuje (parametry).\nCo funkcja nam odda (RETURNS).\nW jakim języku jest napisana (LANGUAGE plpgsql).\n\n\n\nCREATE OR REPLACE FUNCTION cena_netto(kwota_brutto NUMERIC) \nRETURNS NUMERIC AS $$\nBEGIN\n    RETURN kwota_brutto * 0.81;\nEND;\n$$ LANGUAGE plpgsql;\n\n-- Jak to wywołać? Jak zwykły SELECT!\nSELECT imie, nazwisko, pensja, cena_netto(pensja) AS pensja_na_reke \nFROM pracownicy;\n\n\n\nCREATE OR REPLACE FUNCTION nazwa_mojego_dzialu(p_id_pracownika INTEGER) \nRETURNS TEXT AS $$\nDECLARE\n    v_nazwa TEXT;\nBEGIN\n    SELECT d.nazwa_dzialu INTO v_nazwa\n    FROM dzialy d\n    JOIN pracownicy p ON d.id_dzialu = p.id_dzialu\n    WHERE p.id_pracownika = p_id_pracownika;\n\n    RETURN COALESCE(v_nazwa, 'Brak działu');\nEND;\n$$ LANGUAGE plpgsql;\n\n-- Testowanie:\nSELECT nazwa_mojego_dzialu(5);\n\n\n\n\n\n\n\nNapisz funkcję pobierz_pensje(p_id INT), która przyjmuje ID pracownika i zwraca jego aktualną pensję (typ NUMERIC).\n\n\nTest: Sprawdź działanie funkcji dla pracownika o ID = 1.\n\n\n\n\n\nNapisz funkcję suma_godzin_pracownika(p_id INT), która zsumuje wszystkie godziny z tabeli przydzialy dla konkretnego pracownika.\n\nPodpowiedź: Użyj SUM(czas_pracy_h) wewnątrz funkcji i przypisz wynik do zmiennej za pomocą SELECT INTO.\n\n\n\n\nNapisz funkcję wielkosc_dzialu(p_id_dzialu INT), która zwraca tekst:\n\n‘Duży’ – jeśli w dziale pracuje więcej niż 5 osób.\n‘Mały/Średni’ – jeśli pracuje 5 lub mniej osób.\n\n\nPodpowiedź: Wykorzystaj COUNT(*) oraz instrukcję IF.\n\n\n\n\n\nCREATE OR REPLACE: Zawsze używaj tej frazy. Dzięki temu, jeśli zrobisz błąd, możesz po prostu poprawić kod i uruchomić go ponownie, a baza zaktualizuje funkcję.\nParametry: Możesz nazywać je jak chcesz, ale dobrą praktyką jest dodawanie przedrostka (np. p_id), aby nie myliły się z nazwami kolumn w tabelach.\nWywołanie: Funkcje, które zwracają pojedynczą wartość, wywołujemy przez SELECT nazwa_funkcji(argumenty).\n\n\n\n\n\n\nCzym jest Trigger?\n\nWyobraź sobie, że baza danych to budynek, a Trigger to czujnik ruchu. Gdy ktoś wchodzi (INSERT), wychodzi (DELETE) lub coś zmienia (UPDATE), czujnik to wykrywa i natychmiast uruchamia alarm lub zapala światło (wykonuje funkcję).\nW PostgreSQL proces ten składa się z dwóch kroków: 1. Stworzenie specjalnej funkcji wyzwalającej (która mówi, co zrobić). 2. Stworzenie triggera (który mówi, kiedy to zrobić i na której tabeli).\n\n\nTo najważniejszy koncept w triggerach:\n\nNEW: To “nowy” wiersz (dane, które właśnie wstawiasz lub po edycji).\nOLD: To “stary” wiersz (dane, które były w bazie przed zmianą lub usunięciem).\n\n\n\n-- Krok 1: Funkcja\nCREATE OR REPLACE FUNCTION loguj_nowego_pracownika()\nRETURNS TRIGGER AS $$\nBEGIN\n    INSERT INTO logi_operacji(opis_zmiany)\n    VALUES ('Dodano pracownika: ' || NEW.imie || ' ' || NEW.nazwisko);\n    RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\n-- Krok 2: Powiązanie z tabelą\nCREATE TRIGGER trg_nowy_pracownik\nAFTER INSERT ON pracownicy\nFOR EACH ROW EXECUTE FUNCTION loguj_nowego_pracownika();\n\n\n\n\n\n\n\nNapisz wyzwalacz, który zareaguje na każdą aktualizację (UPDATE) pensji w tabeli pracownicy.\n\nFunkcja powinna sprawdzić, czy nowa pensja (NEW.pensja) jest inna niż stara (OLD.pensja).\nJeśli tak, zapisz rekord do tabeli historia_pensji.\n\n\n\n\nNapisz wyzwalacz typu BEFORE DELETE, który uniemożliwi usunięcie pracownika, jeśli jest on menedżerem dla kogoś innego.\n\nSprawdź, czy OLD.id_pracownika występuje w kolumnie id_menedzera u innych pracowników.\nJeśli tak, użyj polecenia RAISE EXCEPTION ‘Nie można usunąć szefa!’.\n\n\n\n\nStwórz trigger typu BEFORE INSERT OR UPDATE, który sprawdzi, czy wprowadzana pensja nie przekracza 30 000 zł.\n\nJeśli ktoś spróbuje wpisać więcej, trigger powinien automatycznie “uciąć” pensję do poziomu 30 000 zł przed zapisaniem.\n\n\n\n\n\nOpis problemu: Zarząd chce wypłacić premie zależne od wkładu pracy w projekty. Musisz napisać system, który wyliczy i wypłaci te premie automatycznie.\nTwoje zadanie:\n\nStwórz funkcję czy_pracowity(p_id INT):\n\nFunkcja ma zsumować godziny pracownika w tabeli przydzialy.\nJeśli suma &gt; 150h, funkcja zwraca TRUE, w przeciwnym razie FALSE.\n\nStwórz procedurę wyplac_premie_roczna():\n\nprocedura ma przejść pętlą FOR przez wszystkich pracowników.\nDla każdego pracownika ma sprawdzić warunek: jeśli czy_pracowity(id) jest prawdą, podnieś jego pensję (UPDATE) o 10%.\nDodatkowo, procedura ma zapisać informację o podwyżce w tabeli logi_operacji (np. “Pracownik [Nazwisko] otrzymał premię”).\n\n\n\n\n\nOpis problemu: Firma chce chronić menedżerów przed nagłym zwolnieniem, ale też pilnować spójności bazy danych.\nTwoje zadanie:\n\nStwórz trigger BEFORE DELETE na tabeli pracownicy:\n\nTrigger ma sprawdzić, czy usuwany pracownik jest menedżerem (czy ktoś ma jego ID w kolumnie id_menedzera).\nJeśli jest menedżerem: zamiast pozwolić na usunięcie, trigger ma automatycznie przenieść wszystkich jego podwładnych pod opiekę Prezesa (ID = 1).\nDopiero po tym “przepisaniu” podwładnych, rekord menedżera może zostać usunięty.\n\nWalidacja pensji w tym samym triggerze:\n\nJeśli usuwamy pracownika, który zarabia więcej niż 20 000 zł, zapisz informację w logi_operacji: “UWAGA: Wysokopłatne stanowisko [Nazwisko] zostało zlikwidowane”.",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#blok-1-pierwsze-kroki-w-plpgsql",
+    "href": "cwiczenia/cw4.html#blok-1-pierwsze-kroki-w-plpgsql",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Dlaczego nie wystarczy nam zwykły SQL?\nZwykły SQL (SELECT, UPDATE) jest jak lista zakupów: mówisz bazie, co ma przynieść.\nPL/pgSQL jest jak przepis kulinarny: mówisz bazie, co ma zrobić krok po kroku, jak ma reagować na sytuacje (np. „jeśli brakuje jajek, użyj zamiennika”) i pozwala zapamiętywać dane w trakcie pracy.\nW PostgreSQL kod proceduralny najprościej uruchomić za pomocą bloku DO. To taki „jednorazowy program”.\n\n\nDO $$ \nDECLARE \n    -- Tu tworzymy \"pudełka\" na dane\n    v_imie TEXT := 'Jan'; \n    v_wiek INTEGER := 25;\nBEGIN \n    -- Tu wykonujemy akcje\n    -- RAISE NOTICE to odpowiednik \"print\" lub \"console.log\"\n    RAISE NOTICE 'Witaj, nazywam się % i mam % lat.', v_imie, v_wiek;\nEND $$;\n\n\n\nDO $$\nDECLARE\n    v_nazwa_projektu TEXT;\n    v_typ TEXT;\nBEGIN\n    -- Pobieramy dane z tabeli i \"wlewamy\" je do naszych zmiennych\n    SELECT nazwa_projektu, typ_projektu \n    INTO v_nazwa_projektu, v_typ \n    FROM projekty \n    WHERE id_projektu = 1;\n\n    RAISE NOTICE 'Pracujemy nad projektem: % (Typ: %)', v_nazwa_projektu, v_typ;\nEND $$;\n\n\n\nDO $$\nDECLARE\n    v_pensja NUMERIC;\nBEGIN\n    SELECT pensja INTO v_pensja FROM pracownicy WHERE id_pracownika = 1;\n\n    IF v_pensja &gt; 20000 THEN\n        RAISE NOTICE 'To jest zarząd lub top management.';\n    ELSE\n        RAISE NOTICE 'To jest pracownik operacyjny.';\n    END IF;\nEND $$;",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#zadania-do-wykonania-twoje-pierwsze-programy",
+    "href": "cwiczenia/cw4.html#zadania-do-wykonania-twoje-pierwsze-programy",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Napisz blok anonimowy, w którym:\n\nZadeklarujesz zmienną v_kwota (np. 1000) oraz v_podatek_procent (np. 0.23).\nObliczysz wartość podatku i zapiszesz ją do trzeciej zmiennej v_wynik.\nWyświetlisz komunikat: „Dla kwoty [X] podatek wynosi [Y]”.\n\n\n\n\nUżywając tabeli pracownicy:\n\nPobierz do zmiennych imię, nazwisko i pensję pracownika o id_pracownika = 5.\nWyświetl komunikat: „Pracownik: [Imię] [Nazwisko], zarobki: [Pensja] zł”.\n\n\n\n\nNapisz program, który sprawdzi czas pracy w projekcie:\n\nPobierz czas_pracy_h z tabeli przydzialy dla wybranego pracownika i projektu.\nJeśli czas jest większy niż 100 godzin, wyświetl: „Projekt wymaga optymalizacji!”.\nW przeciwnym razie wyświetl: „Czas pracy w normie”.\n\n\n\n\n\nPamiętaj o średnikach ; po każdej instrukcji wewnątrz bloku!\nZnak % w RAISE NOTICE to „miejsce na zmienną” – zostaną one wstawione w kolejności, w jakiej podasz je po przecinku.\nJeśli Twój SELECT INTO zwróci więcej niż jeden wiersz, baza wyrzuci błąd (na razie celujmy w konkretne ID).",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#blok-2-pętle-i-przetwarzanie-zbiorów",
+    "href": "cwiczenia/cw4.html#blok-2-pętle-i-przetwarzanie-zbiorów",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Dlaczego potrzebujemy pętli?\nPamiętasz błąd z poprzedniego bloku, gdy SELECT INTO zwrócił więcej niż jeden wiersz? W bazie danych rzadko pracujemy na jednym rekordzie. Zazwyczaj chcemy „przejrzeć” całą tabelę, np. aby wystawić faktury dla wszystkich klientów lub sprawdzić wydajność wszystkich pracowników.\nW PL/pgSQL najwygodniejszą pętlą jest FOR IN SELECT.\n\n\n\n\nDO $$\nBEGIN\n    -- Pętla od 1 do 5\n    FOR i IN 1..5 LOOP\n        RAISE NOTICE 'To jest obrót pętli nr: %', i;\n    END LOOP;\nEND $$;\n\n\n\nZamiast ręcznie wpisywać ID, mówimy bazie: „Dla każdego wiersza, który znajdziesz w tym zapytaniu, wykonaj poniższy kod”. Używamy tu specjalnego typu zmiennej RECORD, który jest jak „kameleon” – dopasowuje się do struktury wiersza.\nDO $$\nDECLARE\n    -- Zmienna typu RECORD może przechować cały wiersz z dowolnej tabeli\n    v_wiersz RECORD;\nBEGIN\n    FOR v_wiersz IN SELECT nazwa_dzialu, lokalizacja FROM dzialy LOOP\n        RAISE NOTICE 'Dział: % znajduje się w mieście: %', \n                     v_wiersz.nazwa_dzialu, \n                     v_wiersz.lokalizacja;\n    END LOOP;\nEND $$;",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#zadania-przetwarzanie-danych-w-pętli",
+    "href": "cwiczenia/cw4.html#zadania-przetwarzanie-danych-w-pętli",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Napisz pętlę, która przejdzie przez tabelę pracownicy i dla każdego z nich wypisze: “Pracownik: [Nazwisko], Pensja: [Kwota] zł”. Podpowiedź: Użyj zmiennej RECORD w pętli FOR.\n\n\n\nNapisz program, który:\n\nWyświetli nagłówek: “— RAPORT PROJEKTÓW IT —”.\nW pętli przejrzy tabelę projekty, ale tylko te, których typ to ‘Software’.\nWypisze ich nazwy. Podpowiedź: Możesz dodać klauzulę WHERE bezpośrednio w zapytaniu wewnątrz pętli FOR.\n\n\n\n\nStwórz program, który przeanalizuje zarobki:\n\nPrzejdź pętlą przez wszystkich pracowników.\nJeśli pracownik zarabia powyżej 10 000 zł, wypisz: “[Nazwisko]: Wysokie zarobki”.\nJeśli zarabia poniżej lub równo 10 000 zł, wypisz: “[Nazwisko]: Standardowe zarobki”.\n\n\n\nPodpowiedź: Połącz pętlę FOR z instrukcją IF..ELSE, którą poznałeś w poprzednim bloku.",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#blok-3-funkcje-twoje-własne-narzędzia",
+    "href": "cwiczenia/cw4.html#blok-3-funkcje-twoje-własne-narzędzia",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Dlaczego funkcje to “Level Up”?\nWyobraź sobie, że co tydzień musisz liczyć premię dla pracowników według skomplikowanego wzoru. Zamiast za każdym razem pisać blok DO i kopiować kod, możesz stworzyć funkcję oblicz_premie().\n\n\n\nKod piszesz raz, a używasz go w tysiącach zapytań.\nUproszczenie SQL: Twoje zapytania SELECT stają się krótsze i czytelniejsze.\nBezpieczeństwo: Możesz ukryć skomplikowane obliczenia przed użytkownikiem.\n\n\n\n\nW PostgreSQL używamy polecenia CREATE FUNCTION. Musimy określić:\n\nJakie dane funkcja przyjmuje (parametry).\nCo funkcja nam odda (RETURNS).\nW jakim języku jest napisana (LANGUAGE plpgsql).\n\n\n\nCREATE OR REPLACE FUNCTION cena_netto(kwota_brutto NUMERIC) \nRETURNS NUMERIC AS $$\nBEGIN\n    RETURN kwota_brutto * 0.81;\nEND;\n$$ LANGUAGE plpgsql;\n\n-- Jak to wywołać? Jak zwykły SELECT!\nSELECT imie, nazwisko, pensja, cena_netto(pensja) AS pensja_na_reke \nFROM pracownicy;\n\n\n\nCREATE OR REPLACE FUNCTION nazwa_mojego_dzialu(p_id_pracownika INTEGER) \nRETURNS TEXT AS $$\nDECLARE\n    v_nazwa TEXT;\nBEGIN\n    SELECT d.nazwa_dzialu INTO v_nazwa\n    FROM dzialy d\n    JOIN pracownicy p ON d.id_dzialu = p.id_dzialu\n    WHERE p.id_pracownika = p_id_pracownika;\n\n    RETURN COALESCE(v_nazwa, 'Brak działu');\nEND;\n$$ LANGUAGE plpgsql;\n\n-- Testowanie:\nSELECT nazwa_mojego_dzialu(5);",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#zadania-tworzenie-własnych-funkcji",
+    "href": "cwiczenia/cw4.html#zadania-tworzenie-własnych-funkcji",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Napisz funkcję pobierz_pensje(p_id INT), która przyjmuje ID pracownika i zwraca jego aktualną pensję (typ NUMERIC).\n\n\nTest: Sprawdź działanie funkcji dla pracownika o ID = 1.\n\n\n\n\n\nNapisz funkcję suma_godzin_pracownika(p_id INT), która zsumuje wszystkie godziny z tabeli przydzialy dla konkretnego pracownika.\n\nPodpowiedź: Użyj SUM(czas_pracy_h) wewnątrz funkcji i przypisz wynik do zmiennej za pomocą SELECT INTO.\n\n\n\n\nNapisz funkcję wielkosc_dzialu(p_id_dzialu INT), która zwraca tekst:\n\n‘Duży’ – jeśli w dziale pracuje więcej niż 5 osób.\n‘Mały/Średni’ – jeśli pracuje 5 lub mniej osób.\n\n\nPodpowiedź: Wykorzystaj COUNT(*) oraz instrukcję IF.\n\n\n\n\n\nCREATE OR REPLACE: Zawsze używaj tej frazy. Dzięki temu, jeśli zrobisz błąd, możesz po prostu poprawić kod i uruchomić go ponownie, a baza zaktualizuje funkcję.\nParametry: Możesz nazywać je jak chcesz, ale dobrą praktyką jest dodawanie przedrostka (np. p_id), aby nie myliły się z nazwami kolumn w tabelach.\nWywołanie: Funkcje, które zwracają pojedynczą wartość, wywołujemy przez SELECT nazwa_funkcji(argumenty).",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#blok-4-triggery-automatyzacja-bazy",
+    "href": "cwiczenia/cw4.html#blok-4-triggery-automatyzacja-bazy",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Czym jest Trigger?\n\nWyobraź sobie, że baza danych to budynek, a Trigger to czujnik ruchu. Gdy ktoś wchodzi (INSERT), wychodzi (DELETE) lub coś zmienia (UPDATE), czujnik to wykrywa i natychmiast uruchamia alarm lub zapala światło (wykonuje funkcję).\nW PostgreSQL proces ten składa się z dwóch kroków: 1. Stworzenie specjalnej funkcji wyzwalającej (która mówi, co zrobić). 2. Stworzenie triggera (który mówi, kiedy to zrobić i na której tabeli).\n\n\nTo najważniejszy koncept w triggerach:\n\nNEW: To “nowy” wiersz (dane, które właśnie wstawiasz lub po edycji).\nOLD: To “stary” wiersz (dane, które były w bazie przed zmianą lub usunięciem).\n\n\n\n-- Krok 1: Funkcja\nCREATE OR REPLACE FUNCTION loguj_nowego_pracownika()\nRETURNS TRIGGER AS $$\nBEGIN\n    INSERT INTO logi_operacji(opis_zmiany)\n    VALUES ('Dodano pracownika: ' || NEW.imie || ' ' || NEW.nazwisko);\n    RETURN NEW;\nEND;\n$$ LANGUAGE plpgsql;\n\n-- Krok 2: Powiązanie z tabelą\nCREATE TRIGGER trg_nowy_pracownik\nAFTER INSERT ON pracownicy\nFOR EACH ROW EXECUTE FUNCTION loguj_nowego_pracownika();",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#zadania-automatyzacja-i-bezpieczeństwo",
+    "href": "cwiczenia/cw4.html#zadania-automatyzacja-i-bezpieczeństwo",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Napisz wyzwalacz, który zareaguje na każdą aktualizację (UPDATE) pensji w tabeli pracownicy.\n\nFunkcja powinna sprawdzić, czy nowa pensja (NEW.pensja) jest inna niż stara (OLD.pensja).\nJeśli tak, zapisz rekord do tabeli historia_pensji.\n\n\n\n\nNapisz wyzwalacz typu BEFORE DELETE, który uniemożliwi usunięcie pracownika, jeśli jest on menedżerem dla kogoś innego.\n\nSprawdź, czy OLD.id_pracownika występuje w kolumnie id_menedzera u innych pracowników.\nJeśli tak, użyj polecenia RAISE EXCEPTION ‘Nie można usunąć szefa!’.\n\n\n\n\nStwórz trigger typu BEFORE INSERT OR UPDATE, który sprawdzi, czy wprowadzana pensja nie przekracza 30 000 zł.\n\nJeśli ktoś spróbuje wpisać więcej, trigger powinien automatycznie “uciąć” pensję do poziomu 30 000 zł przed zapisaniem.",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions",
+    "href": "cwiczenia/cw4.html#zadanie-egzaminacyjne-1-system-premii-rocznej-logic-functions",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Opis problemu: Zarząd chce wypłacić premie zależne od wkładu pracy w projekty. Musisz napisać system, który wyliczy i wypłaci te premie automatycznie.\nTwoje zadanie:\n\nStwórz funkcję czy_pracowity(p_id INT):\n\nFunkcja ma zsumować godziny pracownika w tabeli przydzialy.\nJeśli suma &gt; 150h, funkcja zwraca TRUE, w przeciwnym razie FALSE.\n\nStwórz procedurę wyplac_premie_roczna():\n\nprocedura ma przejść pętlą FOR przez wszystkich pracowników.\nDla każdego pracownika ma sprawdzić warunek: jeśli czy_pracowity(id) jest prawdą, podnieś jego pensję (UPDATE) o 10%.\nDodatkowo, procedura ma zapisać informację o podwyżce w tabeli logi_operacji (np. “Pracownik [Nazwisko] otrzymał premię”).",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "cwiczenia/cw4.html#zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic",
+    "href": "cwiczenia/cw4.html#zadanie-egzaminacyjne-2-system-złoty-spadochron-triggers-logic",
+    "title": "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej",
+    "section": "",
+    "text": "Opis problemu: Firma chce chronić menedżerów przed nagłym zwolnieniem, ale też pilnować spójności bazy danych.\nTwoje zadanie:\n\nStwórz trigger BEFORE DELETE na tabeli pracownicy:\n\nTrigger ma sprawdzić, czy usuwany pracownik jest menedżerem (czy ktoś ma jego ID w kolumnie id_menedzera).\nJeśli jest menedżerem: zamiast pozwolić na usunięcie, trigger ma automatycznie przenieść wszystkich jego podwładnych pod opiekę Prezesa (ID = 1).\nDopiero po tym “przepisaniu” podwładnych, rekord menedżera może zostać usunięty.\n\nWalidacja pensji w tym samym triggerze:\n\nJeśli usuwamy pracownika, który zarabia więcej niż 20 000 zł, zapisz informację w logi_operacji: “UWAGA: Wysokopłatne stanowisko [Nazwisko] zostało zlikwidowane”.",
+    "crumbs": [
+      "Książki",
+      "Laboratorium",
+      "📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Informacje ogólne",
+    "section": "",
+    "text": "Kod:\nSemestr: letni",
+    "crumbs": [
+      "Książki",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "index.html#relacyjne-systemy-organizacji-danych",
+    "href": "index.html#relacyjne-systemy-organizacji-danych",
+    "title": "Informacje ogólne",
+    "section": "",
+    "text": "Kod:\nSemestr: letni",
+    "crumbs": [
+      "Książki",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "index.html#kalendarz",
+    "href": "index.html#kalendarz",
+    "title": "Informacje ogólne",
+    "section": "Kalendarz",
+    "text": "Kalendarz\n\nWykład dla grup: WEL23EV1S0, WEL23EA1S0\n\n\n09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)\n\n\n14.10.2025 Wtorek Wykład 2 - b. 61 sala 116 (9-10)\n\n\n15.10.2025 Środa Wykład 3 - b. 61 sala 116 (3-4)\n\n\n29.10.2025 Środa Wykład 4 - b. 61 sala 116 (9-10)\n\n\n30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)\n\n\n\n\nLaboratorium grupa WEL23EV1S0:\n\n\n25.11.2025 Wtorek - b. 61 sala 116\n\n\n04.12.2025 czwartek - b. 61 sala 116\n\n\n18.12.2025 czwartek - b. 61 sala 116\n\n08.01.2026 Czwartek - b. 61 sala 116\n22.01.2026 czwartek - b. 61 sala 116\n\n\n\nLaboratorium grupa WEL23EA1S0:\n\n\n13.11.2025 Czwartek - b. 61 sala 116\n\n\n26.11.2025 środa - b. 61 sala 116\n\n\n11.12.2025 czwartek - b. 61 sala 116\n\n15.01.2026 czwartek - b. 61 sala 116\n21.01.2026 środa - b. 61 sala 116",
+    "crumbs": [
+      "Książki",
+      "Informacje ogólne"
+    ]
+  },
+  {
+    "objectID": "ksiazki.html",
+    "href": "ksiazki.html",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
+    "objectID": "ksiazki.html#książki",
+    "href": "ksiazki.html#książki",
+    "title": "Książki i strony WWW",
+    "section": "",
+    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
+  },
+  {
     "objectID": "cwiczenia/cw3.html",
     "href": "cwiczenia/cw3.html",
     "title": "Zastosowania języka SQL",
@@ -484,53 +663,6 @@
       "Książki",
       "Laboratorium",
       "Zastosowania języka SQL"
-    ]
-  },
-  {
-    "objectID": "ksiazki.html",
-    "href": "ksiazki.html",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
-  },
-  {
-    "objectID": "ksiazki.html#książki",
-    "href": "ksiazki.html#książki",
-    "title": "Książki i strony WWW",
-    "section": "",
-    "text": "C.J. Date, An Introduction to Database Systems\nR. Elmasri, S.B. Navathe, Fundamentals of Database Systems\nDokumentacja PostgreSQL: https://www.postgresql.org/docs/"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Informacje ogólne",
-    "section": "",
-    "text": "Kod:\nSemestr: letni",
-    "crumbs": [
-      "Książki",
-      "Informacje ogólne"
-    ]
-  },
-  {
-    "objectID": "index.html#relacyjne-systemy-organizacji-danych",
-    "href": "index.html#relacyjne-systemy-organizacji-danych",
-    "title": "Informacje ogólne",
-    "section": "",
-    "text": "Kod:\nSemestr: letni",
-    "crumbs": [
-      "Książki",
-      "Informacje ogólne"
-    ]
-  },
-  {
-    "objectID": "index.html#kalendarz",
-    "href": "index.html#kalendarz",
-    "title": "Informacje ogólne",
-    "section": "Kalendarz",
-    "text": "Kalendarz\n\nWykład dla grup: WEL23EV1S0, WEL23EA1S0\n\n\n09.10.2025 Czwartek Wykład 1 - b. 61 sala 116 (3-4)\n\n\n14.10.2025 Wtorek Wykład 2 - b. 61 sala 116 (9-10)\n\n\n15.10.2025 Środa Wykład 3 - b. 61 sala 116 (3-4)\n\n\n29.10.2025 Środa Wykład 4 - b. 61 sala 116 (9-10)\n\n\n30.10.2025 Czwartek Wykład 5 - b. 61 sala 116 (5-6)\n\n\n\n\nLaboratorium grupa WEL23EV1S0:\n\n\n25.11.2025 Wtorek - b. 61 sala 116\n\n\n04.12.2025 czwartek - b. 61 sala 116\n\n\n18.12.2025 czwartek - b. 61 sala 116\n\n08.01.2026 Czwartek - b. 61 sala 116\n22.01.2026 czwartek - b. 61 sala 116\n\n\n\nLaboratorium grupa WEL23EA1S0:\n\n\n13.11.2025 Czwartek Lab - b. 61 sala 116\n\n\n26.11.2025 środa Lab - b. 61 sala 116\n\n\n11.12.2025 czwartek - b. 61 sala 116\n\n15.01.2026 czwartek - b. 61 sala 116\n21.01.2026 środa - b. 61 sala 116",
-    "crumbs": [
-      "Książki",
-      "Informacje ogólne"
     ]
   },
   {

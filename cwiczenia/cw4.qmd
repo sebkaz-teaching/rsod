@@ -1,0 +1,335 @@
+# 📚 Laboratorium PL/pgSQL: Od zapytań do logiki biznesowej
+
+
+## 🕒 Blok 1: Pierwsze kroki w PL/pgSQL
+
+Dlaczego nie wystarczy nam zwykły SQL?
+
+Zwykły SQL (SELECT, UPDATE) jest jak lista zakupów: mówisz bazie, co ma przynieść. 
+
+PL/pgSQL jest jak przepis kulinarny: mówisz bazie, co ma zrobić krok po kroku, jak ma reagować na sytuacje 
+(np. „jeśli brakuje jajek, użyj zamiennika”) i pozwala zapamiętywać dane w trakcie pracy.
+
+
+W PostgreSQL kod proceduralny najprościej uruchomić za pomocą bloku `DO`. To taki „jednorazowy program”.
+
+#### Przykład A: Zmienne i wypisywanie tekstu Zmienne pozwalają nam przechowywać dane „w pamięci” programu.
+```sql
+DO $$ 
+DECLARE 
+    -- Tu tworzymy "pudełka" na dane
+    v_imie TEXT := 'Jan'; 
+    v_wiek INTEGER := 25;
+BEGIN 
+    -- Tu wykonujemy akcje
+    -- RAISE NOTICE to odpowiednik "print" lub "console.log"
+    RAISE NOTICE 'Witaj, nazywam się % i mam % lat.', v_imie, v_wiek;
+END $$;
+```
+
+#### Przykład B: Pobieranie danych z tabeli do zmiennej To najważniejsza funkcja – wyciągamy wynik SELECTA i wsadzamy go do zmiennej za pomocą słowa INTO.
+
+```sql
+DO $$
+DECLARE
+    v_nazwa_projektu TEXT;
+    v_typ TEXT;
+BEGIN
+    -- Pobieramy dane z tabeli i "wlewamy" je do naszych zmiennych
+    SELECT nazwa_projektu, typ_projektu 
+    INTO v_nazwa_projektu, v_typ 
+    FROM projekty 
+    WHERE id_projektu = 1;
+
+    RAISE NOTICE 'Pracujemy nad projektem: % (Typ: %)', v_nazwa_projektu, v_typ;
+END $$;
+```
+
+#### Przykład C: Prosta logika (Instrukcja IF) Pozwala bazie „myśleć”.
+
+```sql
+DO $$
+DECLARE
+    v_pensja NUMERIC;
+BEGIN
+    SELECT pensja INTO v_pensja FROM pracownicy WHERE id_pracownika = 1;
+
+    IF v_pensja > 20000 THEN
+        RAISE NOTICE 'To jest zarząd lub top management.';
+    ELSE
+        RAISE NOTICE 'To jest pracownik operacyjny.';
+    END IF;
+END $$;
+
+```
+
+## ✍️ Zadania do wykonania (Twoje pierwsze programy)
+
+#### Zadanie 1.1: Kalkulator podatkowy
+
+Napisz blok anonimowy, w którym:
+
+1. Zadeklarujesz zmienną v_kwota (np. 1000) oraz v_podatek_procent (np. 0.23).
+2. Obliczysz wartość podatku i zapiszesz ją do trzeciej zmiennej v_wynik.
+3. Wyświetlisz komunikat: „Dla kwoty [X] podatek wynosi [Y]”.
+
+#### Zadanie 1.2: Wizytówka pracownika
+
+Używając tabeli pracownicy:
+
+1. Pobierz do zmiennych imię, nazwisko i pensję pracownika o id_pracownika = 5.
+2. Wyświetl komunikat: „Pracownik: [Imię] [Nazwisko], zarobki: [Pensja] zł”.
+
+#### Zadanie 1.3: Kontroler budżetu projektu
+
+Napisz program, który sprawdzi czas pracy w projekcie:
+
+1. Pobierz czas_pracy_h z tabeli przydzialy dla wybranego pracownika i projektu.
+2. Jeśli czas jest większy niż 100 godzin, wyświetl: „Projekt wymaga optymalizacji!”.
+3. W przeciwnym razie wyświetl: „Czas pracy w normie”.
+
+
+### 💡 Wskazówki:
+
+1. Pamiętaj o średnikach ; po każdej instrukcji wewnątrz bloku!
+2. Znak % w RAISE NOTICE to „miejsce na zmienną” – zostaną one wstawione w kolejności, w jakiej podasz je po przecinku.
+3. Jeśli Twój SELECT INTO zwróci więcej niż jeden wiersz, baza wyrzuci błąd (na razie celujmy w konkretne ID).
+
+## 🕒 Blok 2: Pętle i przetwarzanie zbiorów
+
+Dlaczego potrzebujemy pętli?
+
+Pamiętasz błąd z poprzedniego bloku, gdy SELECT INTO zwrócił więcej niż jeden wiersz? 
+W bazie danych rzadko pracujemy na jednym rekordzie. 
+Zazwyczaj chcemy „przejrzeć” całą tabelę, np. aby wystawić faktury dla wszystkich klientów lub sprawdzić wydajność wszystkich pracowników.
+
+W PL/pgSQL najwygodniejszą pętlą jest FOR IN SELECT.
+
+### Jak działają pętle?
+
+#### Przykład A: Prosta pętla licznikowa Najprostszy sposób, by coś powtórzyć określoną liczbę razy.
+
+```sql
+DO $$
+BEGIN
+    -- Pętla od 1 do 5
+    FOR i IN 1..5 LOOP
+        RAISE NOTICE 'To jest obrót pętli nr: %', i;
+    END LOOP;
+END $$;
+```
+
+#### Przykład B: Przeglądanie tabeli (Klucz do sukcesu) 
+
+Zamiast ręcznie wpisywać ID, mówimy bazie: „Dla każdego wiersza, który znajdziesz w tym zapytaniu, wykonaj poniższy kod”. Używamy tu specjalnego typu zmiennej RECORD, który jest jak „kameleon” – dopasowuje się do struktury wiersza.
+
+```sql
+DO $$
+DECLARE
+    -- Zmienna typu RECORD może przechować cały wiersz z dowolnej tabeli
+    v_wiersz RECORD;
+BEGIN
+    FOR v_wiersz IN SELECT nazwa_dzialu, lokalizacja FROM dzialy LOOP
+        RAISE NOTICE 'Dział: % znajduje się w mieście: %', 
+                     v_wiersz.nazwa_dzialu, 
+                     v_wiersz.lokalizacja;
+    END LOOP;
+END $$;
+```
+
+## ✍️ Zadania (Przetwarzanie danych w pętli)
+
+#### Zadanie 2.1: Lista płac (Podstawy)
+
+Napisz pętlę, która przejdzie przez tabelę pracownicy i dla każdego z nich wypisze: "Pracownik: [Nazwisko], Pensja: [Kwota] zł". Podpowiedź: Użyj zmiennej RECORD w pętli FOR.
+
+#### Zadanie 2.2: Raport projektów (Filtrowanie w pętli)
+
+Napisz program, który:
+
+1. Wyświetli nagłówek: "--- RAPORT PROJEKTÓW IT ---".
+2. W pętli przejrzy tabelę projekty, ale tylko te, których typ to 'Software'.
+3. Wypisze ich nazwy. Podpowiedź: Możesz dodać klauzulę WHERE bezpośrednio w zapytaniu wewnątrz pętli FOR.
+
+#### Zadanie 2.3: Analiza premii (Logika wewnątrz pętli)
+
+Stwórz program, który przeanalizuje zarobki:
+
+1. Przejdź pętlą przez wszystkich pracowników.
+2. Jeśli pracownik zarabia powyżej 10 000 zł, wypisz: "[Nazwisko]: Wysokie zarobki".
+3. Jeśli zarabia poniżej lub równo 10 000 zł, wypisz: "[Nazwisko]: Standardowe zarobki". 
+
+>> Podpowiedź: Połącz pętlę FOR z instrukcją IF..ELSE, którą poznałeś w poprzednim bloku.
+
+
+## 🕒 Blok 3: Funkcje – Twoje własne narzędzia
+
+Dlaczego funkcje to "Level Up"?
+
+Wyobraź sobie, że co tydzień musisz liczyć premię dla pracowników według skomplikowanego wzoru. 
+Zamiast za każdym razem pisać blok DO i kopiować kod, możesz stworzyć funkcję oblicz_premie().
+
+### Zalety funkcji:
+
+1. Kod piszesz raz, a używasz go w tysiącach zapytań.
+2. Uproszczenie SQL: Twoje zapytania SELECT stają się krótsze i czytelniejsze.
+3. Bezpieczeństwo: Możesz ukryć skomplikowane obliczenia przed użytkownikiem.
+
+### Jak stworzyć funkcję?
+
+W PostgreSQL używamy polecenia CREATE FUNCTION. Musimy określić:
+
+1. Jakie dane funkcja przyjmuje (parametry).
+2. Co funkcja nam odda (RETURNS).
+3. W jakim języku jest napisana (LANGUAGE plpgsql).
+
+#### Przykład A: Prosty kalkulator (Brutto -> Netto) Funkcja, która przyjmuje kwotę i zwraca wartość po odjęciu 19% podatku.
+
+```sql
+CREATE OR REPLACE FUNCTION cena_netto(kwota_brutto NUMERIC) 
+RETURNS NUMERIC AS $$
+BEGIN
+    RETURN kwota_brutto * 0.81;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Jak to wywołać? Jak zwykły SELECT!
+SELECT imie, nazwisko, pensja, cena_netto(pensja) AS pensja_na_reke 
+FROM pracownicy;
+
+```
+
+#### Przykład B: Pobieranie danych z bazy Funkcja może przyjąć ID i zwrócić nam konkretną informację, np. nazwę działu.
+
+```sql
+CREATE OR REPLACE FUNCTION nazwa_mojego_dzialu(p_id_pracownika INTEGER) 
+RETURNS TEXT AS $$
+DECLARE
+    v_nazwa TEXT;
+BEGIN
+    SELECT d.nazwa_dzialu INTO v_nazwa
+    FROM dzialy d
+    JOIN pracownicy p ON d.id_dzialu = p.id_dzialu
+    WHERE p.id_pracownika = p_id_pracownika;
+
+    RETURN COALESCE(v_nazwa, 'Brak działu');
+END;
+$$ LANGUAGE plpgsql;
+
+-- Testowanie:
+SELECT nazwa_mojego_dzialu(5);
+```
+
+## ✍️ Zadania (Tworzenie własnych funkcji)
+
+#### Zadanie 3.1: Szybki wgląd w pensję
+
+Napisz funkcję pobierz_pensje(p_id INT), która przyjmuje ID pracownika i zwraca jego aktualną pensję (typ NUMERIC).
+
+>> Test: Sprawdź działanie funkcji dla pracownika o ID = 1.
+
+#### Zadanie 3.2: Licznik godzin pracownika
+
+Napisz funkcję suma_godzin_pracownika(p_id INT), która zsumuje wszystkie godziny z tabeli przydzialy dla konkretnego pracownika.
+
+> Podpowiedź: Użyj SUM(czas_pracy_h) wewnątrz funkcji i przypisz wynik do zmiennej za pomocą SELECT INTO.
+
+#### Zadanie 3.3: Klasyfikator wielkości działu
+
+Napisz funkcję wielkosc_dzialu(p_id_dzialu INT), która zwraca tekst:
+
+1. 'Duży' – jeśli w dziale pracuje więcej niż 5 osób.
+2. 'Mały/Średni' – jeśli pracuje 5 lub mniej osób.
+
+> Podpowiedź: Wykorzystaj COUNT(*) oraz instrukcję IF.
+
+### 💡 Wskazówki dla studentów:
+
+- CREATE OR REPLACE: Zawsze używaj tej frazy. Dzięki temu, jeśli zrobisz błąd, możesz po prostu poprawić kod i uruchomić go ponownie, a baza zaktualizuje funkcję.
+- Parametry: Możesz nazywać je jak chcesz, ale dobrą praktyką jest dodawanie przedrostka (np. p_id), aby nie myliły się z nazwami kolumn w tabelach.
+- Wywołanie: Funkcje, które zwracają pojedynczą wartość, wywołujemy przez SELECT nazwa_funkcji(argumenty).
+ 
+## 🕒 Blok 4: Triggery – Automatyzacja bazy
+
+> Czym jest Trigger?
+
+Wyobraź sobie, że baza danych to budynek, a Trigger to czujnik ruchu. Gdy ktoś wchodzi (INSERT), wychodzi (DELETE) lub coś zmienia (UPDATE), czujnik to wykrywa i natychmiast uruchamia alarm lub zapala światło (wykonuje funkcję).
+
+W PostgreSQL proces ten składa się z dwóch kroków:
+1. Stworzenie specjalnej funkcji wyzwalającej (która mówi, co zrobić).
+2. Stworzenie triggera (który mówi, kiedy to zrobić i na której tabeli).
+
+### Jak działają zmienne NEW i OLD?
+
+To najważniejszy koncept w triggerach:
+
+- NEW: To "nowy" wiersz (dane, które właśnie wstawiasz lub po edycji).
+- OLD: To "stary" wiersz (dane, które były w bazie przed zmianą lub usunięciem).
+
+#### Przykład A: Automatyczny log operacji Chcemy wiedzieć, kto i kiedy dodał nowego pracownika.
+```sql
+-- Krok 1: Funkcja
+CREATE OR REPLACE FUNCTION loguj_nowego_pracownika()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO logi_operacji(opis_zmiany)
+    VALUES ('Dodano pracownika: ' || NEW.imie || ' ' || NEW.nazwisko);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Krok 2: Powiązanie z tabelą
+CREATE TRIGGER trg_nowy_pracownik
+AFTER INSERT ON pracownicy
+FOR EACH ROW EXECUTE FUNCTION loguj_nowego_pracownika();
+
+```
+
+## ✍️ Zadania (Automatyzacja i bezpieczeństwo)
+
+#### Zadanie 4.1: Historia zmian pensji (Audyt)
+
+Napisz wyzwalacz, który zareaguje na każdą aktualizację (UPDATE) pensji w tabeli pracownicy.
+
+1. Funkcja powinna sprawdzić, czy nowa pensja (NEW.pensja) jest inna niż stara (OLD.pensja).
+2. Jeśli tak, zapisz rekord do tabeli historia_pensji.
+
+#### Zadanie 4.2: Strażnik Menedżerów (Walidacja)
+
+Napisz wyzwalacz typu BEFORE DELETE, który uniemożliwi usunięcie pracownika, jeśli jest on menedżerem dla kogoś innego.
+
+1. Sprawdź, czy OLD.id_pracownika występuje w kolumnie id_menedzera u innych pracowników.
+2. Jeśli tak, użyj polecenia RAISE EXCEPTION 'Nie można usunąć szefa!'.
+
+#### Zadanie 4.3: Pilnowanie budżetu (Korekta danych)
+
+Stwórz trigger typu BEFORE INSERT OR UPDATE, który sprawdzi, czy wprowadzana pensja nie przekracza 30 000 zł.
+
+1. Jeśli ktoś spróbuje wpisać więcej, trigger powinien automatycznie "uciąć" pensję do poziomu 30 000 zł przed zapisaniem.
+
+## 🏆 Zadanie Egzaminacyjne 1: System Premii Rocznej (Logic & Functions)
+
+Opis problemu: Zarząd chce wypłacić premie zależne od wkładu pracy w projekty. Musisz napisać system, który wyliczy i wypłaci te premie automatycznie.
+
+Twoje zadanie:
+
+1. Stwórz funkcję czy_pracowity(p_id INT):
+   - Funkcja ma zsumować godziny pracownika w tabeli przydzialy.
+   - Jeśli suma > 150h, funkcja zwraca TRUE, w przeciwnym razie FALSE.
+2. Stwórz procedurę wyplac_premie_roczna():
+   - procedura ma przejść pętlą FOR przez wszystkich pracowników.
+   - Dla każdego pracownika ma sprawdzić warunek: jeśli czy_pracowity(id) jest prawdą, podnieś jego pensję (UPDATE) o 10%.
+   - Dodatkowo, procedura ma zapisać informację o podwyżce w tabeli logi_operacji (np. "Pracownik [Nazwisko] otrzymał premię").
+
+## 🏆 Zadanie Egzaminacyjne 2: System "Złoty Spadochron" (Triggers & Logic)
+
+Opis problemu: Firma chce chronić menedżerów przed nagłym zwolnieniem, ale też pilnować spójności bazy danych.
+
+Twoje zadanie:
+
+1. Stwórz trigger BEFORE DELETE na tabeli pracownicy:
+   - Trigger ma sprawdzić, czy usuwany pracownik jest menedżerem (czy ktoś ma jego ID w kolumnie id_menedzera).
+   - Jeśli jest menedżerem: zamiast pozwolić na usunięcie, trigger ma automatycznie przenieść wszystkich jego podwładnych pod opiekę Prezesa (ID = 1).
+   - Dopiero po tym "przepisaniu" podwładnych, rekord menedżera może zostać usunięty.
+2. Walidacja pensji w tym samym triggerze:
+   - Jeśli usuwamy pracownika, który zarabia więcej niż 20 000 zł, zapisz informację w logi_operacji: "UWAGA: Wysokopłatne stanowisko [Nazwisko] zostało zlikwidowane".
